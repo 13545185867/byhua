@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">新增</div>
+					<div class="panel-body">
+						<form class="form-horizontal" role="form" id="dailogForm" action="$!{basePath}/activity/back/activityConfig/doAdd.do" method="POST">
+					  		<input type="hidden" id="btn_sub" class="btn_sub" />
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">主办单位</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.organizer}" name="organizer" id="organizer" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">打开前加载页0为系统默认，1为自定义</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.usedefaultloadpage}" name="usedefaultloadpage" id="usedefaultloadpage" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">主办单位url链接0为不开启
+1为开启</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.jumplinkbtn}" name="jumplinkbtn" id="jumplinkbtn" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">主办方URL</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.organizerlink}" name="organizerlink" id="organizerlink" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">显示版权0为显示系统默认 1为自定义</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.usedefaultcopyright}" name="usedefaultcopyright" id="usedefaultcopyright" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">分享图片0为系统默认
+1为自定义图片</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.useshareico}" name="useshareico" id="useshareico" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">分享小图标url</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.shareimgpath}" name="shareimgpath" id="shareimgpath" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">分享标题 0为默认
+1是为自定义</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.usesharetitle}" name="usesharetitle" id="usesharetitle" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">分享自定义标题</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.sharetitletext}" name="sharetitletext" id="sharetitletext" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">分享内容0为默认1为自定义</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.usesharetxt}" name="usesharetxt" id="usesharetxt" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">未得奖分享内容</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.noawardtext}" name="noawardtext" id="noawardtext" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">得奖分享内容</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.awardtext}" name="awardtext" id="awardtext" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">引导关注图链接</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.wxlink}" name="wxlink" id="wxlink" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否需要关注后参加0为不关注可参加1为否</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.needfollow}" name="needfollow" id="needfollow" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">填写手机号码才可参加 0为关闭1为开启</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.participatelimit}" name="participatelimit" id="participatelimit" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">1填写信息才可兑奖
+0不用填写</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.exchangelimit}" name="exchangelimit" id="exchangelimit" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">只允许这些地能得奖或投票</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.addresstext}" name="addresstext" id="addresstext" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.activityid}" name="activityid" id="activityid" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.activityConfigcol}" name="activityConfigcol" id="activityConfigcol" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.activityConfigcol1}" name="activityConfigcol1" id="activityConfigcol1" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.activityConfigcol2}" name="activityConfigcol2" id="activityConfigcol2" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">自定义版权图</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.customcopyrightpic}" name="customcopyrightpic" id="customcopyrightpic" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">版权链接</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.copyrightlink}" name="copyrightlink" id="copyrightlink" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否是现场活动
+0为否
+1为是
+现场活动需现场参加</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.iscurrent}" name="iscurrent" id="iscurrent" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.organizerlogo}" name="organizerlogo" id="organizerlogo" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">活动背景</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.bgpic}" name="bgpic" id="bgpic" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.needarea}" name="needarea" id="needarea" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">性别验证</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.needsex}" name="needsex" id="needsex" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">true为开启好友协助false为不开启</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.withhelp}" name="withhelp" id="withhelp" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.city}" name="city" id="city" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.province}" name="province" id="province" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.hideorganizerlogo}" name="hideorganizerlogo" id="hideorganizerlogo" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.showcopyright}" name="showcopyright" id="showcopyright" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityConfig.showsupport}" name="showsupport" id="showsupport" class="form-control" />
+													    </div>
+													</div>
+										<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/activity/back/activityConfig/list.do')">返回</button>
+	        									<button type="button" class="btn btn-primary" id="formSubmit">提交</button>
+        									 </div>
+        								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="$!{basePath}/plug-in/js/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="$!{basePath}/plug-in/js/forminit.p3.js"></script> 

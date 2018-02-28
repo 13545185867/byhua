@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.aboutActivity.entity.ActivityConfig">
+
+	<!-- Result Map-->
+	<resultMap id="ActivityConfig" type="com.jeecg.p3.aboutActivity.entity.ActivityConfig" >
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="organizer" property="organizer" jdbcType="VARCHAR"/>
+		<result column="useDefaultLoadPage" property="usedefaultloadpage" jdbcType="INTEGER"/>
+		<result column="jumpLinkBtn" property="jumplinkbtn" jdbcType="INTEGER"/>
+		<result column="organizerLink" property="organizerlink" jdbcType="VARCHAR"/>
+		<result column="useDefaultCopyright" property="usedefaultcopyright" jdbcType="VARCHAR"/>
+		<result column="useShareIco" property="useshareico" jdbcType="INTEGER"/>
+		<result column="shareimgPath" property="shareimgpath" jdbcType="VARCHAR"/>
+		<result column="useShareTitle" property="usesharetitle" jdbcType="INTEGER"/>
+		<result column="sharetitleText" property="sharetitletext" jdbcType="VARCHAR"/>
+		<result column="useShareTxt" property="usesharetxt" jdbcType="INTEGER"/>
+		<result column="noAwardText" property="noawardtext" jdbcType="VARCHAR"/>
+		<result column="awardText" property="awardtext" jdbcType="VARCHAR"/>
+		<result column="wxlink" property="wxlink" jdbcType="VARCHAR"/>
+		<result column="needFollow" property="needfollow" jdbcType="VARCHAR"/>
+		<result column="addresstext" property="addresstext" jdbcType="VARCHAR"/>
+		<result column="activityId" property="activityid" jdbcType="INTEGER"/>
+		<result column="activity_configcol" property="activityConfigcol" jdbcType="VARCHAR"/>
+		<result column="activity_configcol1" property="activityConfigcol1" jdbcType="VARCHAR"/>
+		<result column="activity_configcol2" property="activityConfigcol2" jdbcType="VARCHAR"/>
+		<result column="customCopyrightPic" property="customcopyrightpic" jdbcType="VARCHAR"/>
+		<result column="copyrightLink" property="copyrightlink" jdbcType="VARCHAR"/>
+		<result column="iscurrent" property="iscurrent" jdbcType="INTEGER"/>
+		<result column="organizerLogo" property="organizerlogo" jdbcType="VARCHAR"/>
+		<result column="bgPic" property="bgpic" jdbcType="VARCHAR"/>
+		<result column="needArea" property="needarea" jdbcType="VARCHAR"/>
+		<result column="needSex" property="needsex" jdbcType="VARCHAR"/>
+		<result column="withHelp" property="withhelp" jdbcType="VARCHAR"/>
+		<result column="city" property="city" jdbcType="VARCHAR"/>
+		<result column="province" property="province" jdbcType="VARCHAR"/>
+		<result column="hideOrganizerLogo" property="hideorganizerlogo" jdbcType="VARCHAR"/>
+		<result column="showCopyright" property="showcopyright" jdbcType="VARCHAR"/>
+		<result column="showSupport" property="showsupport" jdbcType="VARCHAR"/>
+		<result column="participateLimit" property="participateLimit" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.organizer != null and query.organizer != ''" >
+	  		 		/* 主办单位 */
+			    	AND ac.organizer =  #{query.organizer,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.usedefaultloadpage != null and query.usedefaultloadpage != ''" >
+	  		 		/* 打开前加载页0为系统默认，1为自定义 */
+			    	AND ac.useDefaultLoadPage =  #{query.usedefaultloadpage,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.jumplinkbtn != null and query.jumplinkbtn != ''" >
+	  		 		/* 主办单位url链接0为不开启
+1为开启 */
+			    	AND ac.jumpLinkBtn =  #{query.jumplinkbtn,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.organizerlink != null and query.organizerlink != ''" >
+	  		 		/* 主办方URL */
+			    	AND ac.organizerLink =  #{query.organizerlink,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.usedefaultcopyright != null and query.usedefaultcopyright != ''" >
+	  		 		/* 显示版权0为显示系统默认 1为自定义 */
+			    	AND ac.useDefaultCopyright =  #{query.usedefaultcopyright,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.useshareico != null and query.useshareico != ''" >
+	  		 		/* 分享图片0为系统默认
+1为自定义图片 */
+			    	AND ac.useShareIco =  #{query.useshareico,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.shareimgpath != null and query.shareimgpath != ''" >
+	  		 		/* 分享小图标url */
+			    	AND ac.shareimgPath =  #{query.shareimgpath,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.usesharetitle != null and query.usesharetitle != ''" >
+	  		 		/* 分享标题 0为默认
+1是为自定义 */
+			    	AND ac.useShareTitle =  #{query.usesharetitle,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.sharetitletext != null and query.sharetitletext != ''" >
+	  		 		/* 分享自定义标题 */
+			    	AND ac.sharetitleText =  #{query.sharetitletext,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.usesharetxt != null and query.usesharetxt != ''" >
+	  		 		/* 分享内容0为默认1为自定义 */
+			    	AND ac.useShareTxt =  #{query.usesharetxt,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.noawardtext != null and query.noawardtext != ''" >
+	  		 		/* 未得奖分享内容 */
+			    	AND ac.noAwardText =  #{query.noawardtext,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.awardtext != null and query.awardtext != ''" >
+	  		 		/* 得奖分享内容 */
+			    	AND ac.awardText =  #{query.awardtext,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.wxlink != null and query.wxlink != ''" >
+	  		 		/* 引导关注图链接 */
+			    	AND ac.wxlink =  #{query.wxlink,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.needfollow != null and query.needfollow != ''" >
+	  		 		/* 是否需要关注后参加0为不关注可参加1为否 */
+			    	AND ac.needFollow =  #{query.needfollow,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.addresstext != null and query.addresstext != ''" >
+	  		 		/* 只允许这些地能得奖或投票 */
+			    	AND ac.addresstext =  #{query.addresstext,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.activityid != null and query.activityid != ''" >
+	  		 		/*  */
+			    	AND ac.activityId =  #{query.activityid,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.activityConfigcol != null and query.activityConfigcol != ''" >
+	  		 		/*  */
+			    	AND ac.activity_configcol =  #{query.activityConfigcol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.activityConfigcol1 != null and query.activityConfigcol1 != ''" >
+	  		 		/*  */
+			    	AND ac.activity_configcol1 =  #{query.activityConfigcol1,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.activityConfigcol2 != null and query.activityConfigcol2 != ''" >
+	  		 		/*  */
+			    	AND ac.activity_configcol2 =  #{query.activityConfigcol2,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.customcopyrightpic != null and query.customcopyrightpic != ''" >
+	  		 		/* 自定义版权图 */
+			    	AND ac.customCopyrightPic =  #{query.customcopyrightpic,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.copyrightlink != null and query.copyrightlink != ''" >
+	  		 		/* 版权链接 */
+			    	AND ac.copyrightLink =  #{query.copyrightlink,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.iscurrent != null and query.iscurrent != ''" >
+	  		 		/* 是否是现场活动
+0为否
+1为是
+现场活动需现场参加 */
+			    	AND ac.iscurrent =  #{query.iscurrent,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.organizerlogo != null and query.organizerlogo != ''" >
+	  		 		/*  */
+			    	AND ac.organizerLogo =  #{query.organizerlogo,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.bgpic != null and query.bgpic != ''" >
+	  		 		/* 活动背景 */
+			    	AND ac.bgPic =  #{query.bgpic,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.needarea != null and query.needarea != ''" >
+	  		 		/*  */
+			    	AND ac.needArea =  #{query.needarea,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.needsex != null and query.needsex != ''" >
+	  		 		/* 性别验证 */
+			    	AND ac.needSex =  #{query.needsex,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.withhelp != null and query.withhelp != ''" >
+	  		 		/* true为开启好友协助false为不开启 */
+			    	AND ac.withHelp =  #{query.withhelp,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.city != null and query.city != ''" >
+	  		 		/*  */
+			    	AND ac.city =  #{query.city,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.province != null and query.province != ''" >
+	  		 		/*  */
+			    	AND ac.province =  #{query.province,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.hideorganizerlogo != null and query.hideorganizerlogo != ''" >
+	  		 		/*  */
+			    	AND ac.hideOrganizerLogo =  #{query.hideorganizerlogo,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.showcopyright != null and query.showcopyright != ''" >
+	  		 		/*  */
+			    	AND ac.showCopyright =  #{query.showcopyright,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.showsupport != null and query.showsupport != ''" >
+	  		 		/*  */
+			    	AND ac.showSupport =  #{query.showsupport,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.participateLimit != null and query.participateLimit != ''" >
+	  		 		/*  */
+			    	AND ac.participateLimit =  #{query.participateLimit,jdbcType=VARCHAR}
+				 </if>				 
+				 
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.activity.entity.ActivityConfig.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  activity_config   /*  */  
+					(	
+                       organizer                     /* 主办单位 */ 
+                     ,useDefaultLoadPage            /* 打开前加载页0为系统默认，1为自定义 */ 
+                     ,jumpLinkBtn                   /* 主办单位url链接0为不开启
+1为开启 */ 
+                     ,organizerLink                 /* 主办方URL */ 
+                     ,useDefaultCopyright           /* 显示版权0为显示系统默认 1为自定义 */ 
+                     ,useShareIco                   /* 分享图片0为系统默认
+1为自定义图片 */ 
+                     ,shareimgPath                  /* 分享小图标url */ 
+                     ,useShareTitle                 /* 分享标题 0为默认
+1是为自定义 */ 
+                     ,sharetitleText                /* 分享自定义标题 */ 
+                     ,useShareTxt                   /* 分享内容0为默认1为自定义 */ 
+                     ,noAwardText                   /* 未得奖分享内容 */ 
+                     ,awardText                     /* 得奖分享内容 */ 
+                     ,wxlink                        /* 引导关注图链接 */ 
+                     ,needFollow                    /* 是否需要关注后参加0为不关注可参加1为否 */ 
+          
+                     ,addresstext                   /* 只允许这些地能得奖或投票 */ 
+                     ,activityId                    /*  */ 
+                     ,activity_configcol            /*  */ 
+                     ,activity_configcol1           /*  */ 
+                     ,activity_configcol2           /*  */ 
+                     ,customCopyrightPic            /* 自定义版权图 */ 
+                     ,copyrightLink                 /* 版权链接 */ 
+                     ,iscurrent                     /* 是否是现场活动
+0为否
+1为是
+现场活动需现场参加 */ 
+                     ,organizerLogo                 /*  */ 
+                     ,bgPic                         /* 活动背景 */ 
+                     ,needArea                      /*  */ 
+                     ,needSex                       /* 性别验证 */ 
+                     ,withHelp                      /* true为开启好友协助false为不开启 */ 
+                     ,city                          /*  */ 
+                     ,province                      /*  */ 
+                     ,hideOrganizerLogo             /*  */ 
+                     ,showCopyright                 /*  */ 
+                     ,showSupport                   /*  */ 
+                     ,participateLimit
+					)
+			values (
+                       #{organizer,jdbcType=VARCHAR}                     /* 主办单位 */ 
+                     ,#{usedefaultloadpage,jdbcType=INTEGER}            /* 打开前加载页0为系统默认，1为自定义 */ 
+                     ,#{jumplinkbtn,jdbcType=INTEGER}                   /* 主办单位url链接0为不开启
+1为开启 */ 
+                     ,#{organizerlink,jdbcType=VARCHAR}                 /* 主办方URL */ 
+                     ,#{usedefaultcopyright,jdbcType=VARCHAR}           /* 显示版权0为显示系统默认 1为自定义 */ 
+                     ,#{useshareico,jdbcType=INTEGER}                   /* 分享图片0为系统默认
+1为自定义图片 */ 
+                     ,#{shareimgpath,jdbcType=VARCHAR}                  /* 分享小图标url */ 
+                     ,#{usesharetitle,jdbcType=INTEGER}                 /* 分享标题 0为默认
+1是为自定义 */ 
+                     ,#{sharetitletext,jdbcType=VARCHAR}                /* 分享自定义标题 */ 
+                     ,#{usesharetxt,jdbcType=INTEGER}                   /* 分享内容0为默认1为自定义 */ 
+                     ,#{noawardtext,jdbcType=VARCHAR}                   /* 未得奖分享内容 */ 
+                     ,#{awardtext,jdbcType=VARCHAR}                     /* 得奖分享内容 */ 
+                     ,#{wxlink,jdbcType=VARCHAR}                        /* 引导关注图链接 */ 
+                     ,#{needfollow,jdbcType=VARCHAR}                    /* 是否需要关注后参加0为不关注可参加1为否 */ 
+                
+                     ,#{addresstext,jdbcType=VARCHAR}                   /* 只允许这些地能得奖或投票 */ 
+                     ,#{activityid,jdbcType=INTEGER}                    /*  */ 
+                     ,#{activityConfigcol,jdbcType=VARCHAR}             /*  */ 
+                     ,#{activityConfigcol1,jdbcType=VARCHAR}            /*  */ 
+                     ,#{activityConfigcol2,jdbcType=VARCHAR}            /*  */ 
+                     ,#{customcopyrightpic,jdbcType=VARCHAR}            /* 自定义版权图 */ 
+                     ,#{copyrightlink,jdbcType=VARCHAR}                 /* 版权链接 */ 
+                     ,#{iscurrent,jdbcType=INTEGER}                     /* 是否是现场活动
+0为否
+1为是
+现场活动需现场参加 */ 
+                     ,#{organizerlogo,jdbcType=VARCHAR}                 /*  */ 
+                     ,#{bgpic,jdbcType=VARCHAR}                         /* 活动背景 */ 
+                     ,#{needarea,jdbcType=VARCHAR}                      /*  */ 
+                     ,#{needsex,jdbcType=VARCHAR}                       /* 性别验证 */ 
+                     ,#{withhelp,jdbcType=VARCHAR}                      /* true为开启好友协助false为不开启 */ 
+                     ,#{city,jdbcType=VARCHAR}                          /*  */ 
+                     ,#{province,jdbcType=VARCHAR}                      /*  */ 
+                     ,#{hideorganizerlogo,jdbcType=VARCHAR}             /*  */ 
+                     ,#{showcopyright,jdbcType=VARCHAR}                 /*  */ 
+                     ,#{showsupport,jdbcType=VARCHAR}                   /*  */ 
+                     ,#{participateLimit,jdbcType=VARCHAR} 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.activity.entity.ActivityConfig.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   activity_config  	/*  */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="organizer != null">
+		    		 		/* 主办单位 */ 
+	    		 			organizer = #{organizer,jdbcType=VARCHAR},
+						 </if>
+						 <if test="usedefaultloadpage != null">
+		    		 		/* 打开前加载页0为系统默认，1为自定义 */ 
+	    		 			useDefaultLoadPage = #{usedefaultloadpage,jdbcType=INTEGER},
+						 </if>
+						 <if test="jumplinkbtn != null">
+		    		 		/* 主办单位url链接0为不开启
+1为开启 */ 
+	    		 			jumpLinkBtn = #{jumplinkbtn,jdbcType=INTEGER},
+						 </if>
+						 <if test="organizerlink != null">
+		    		 		/* 主办方URL */ 
+	    		 			organizerLink = #{organizerlink,jdbcType=VARCHAR},
+						 </if>
+						 <if test="usedefaultcopyright != null">
+		    		 		/* 显示版权0为显示系统默认 1为自定义 */ 
+	    		 			useDefaultCopyright = #{usedefaultcopyright,jdbcType=VARCHAR},
+						 </if>
+						 <if test="useshareico != null">
+		    		 		/* 分享图片0为系统默认
+1为自定义图片 */ 
+	    		 			useShareIco = #{useshareico,jdbcType=INTEGER},
+						 </if>
+						 <if test="shareimgpath != null">
+		    		 		/* 分享小图标url */ 
+	    		 			shareimgPath = #{shareimgpath,jdbcType=VARCHAR},
+						 </if>
+						 <if test="usesharetitle != null">
+		    		 		/* 分享标题 0为默认
+1是为自定义 */ 
+	    		 			useShareTitle = #{usesharetitle,jdbcType=INTEGER},
+						 </if>
+						 <if test="sharetitletext != null">
+		    		 		/* 分享自定义标题 */ 
+	    		 			sharetitleText = #{sharetitletext,jdbcType=VARCHAR},
+						 </if>
+						 <if test="usesharetxt != null">
+		    		 		/* 分享内容0为默认1为自定义 */ 
+	    		 			useShareTxt = #{usesharetxt,jdbcType=INTEGER},
+						 </if>
+						 <if test="noawardtext != null">
+		    		 		/* 未得奖分享内容 */ 
+	    		 			noAwardText = #{noawardtext,jdbcType=VARCHAR},
+						 </if>
+						 <if test="awardtext != null">
+		    		 		/* 得奖分享内容 */ 
+	    		 			awardText = #{awardtext,jdbcType=VARCHAR},
+						 </if>
+						 <if test="wxlink != null">
+		    		 		/* 引导关注图链接 */ 
+	    		 			wxlink = #{wxlink,jdbcType=VARCHAR},
+						 </if>
+						 <if test="needfollow != null">
+		    		 		/* 是否需要关注后参加0为不关注可参加1为否 */ 
+	    		 			needFollow = #{needfollow,jdbcType=VARCHAR},
+						 </if>
+						 <if test="addresstext != null">
+		    		 		/* 只允许这些地能得奖或投票 */ 
+	    		 			addresstext = #{addresstext,jdbcType=VARCHAR},
+						 </if>
+						 <if test="activityid != null">
+		    		 		/*  */ 
+	    		 			activityId = #{activityid,jdbcType=INTEGER},
+						 </if>
+						 <if test="activityConfigcol != null">
+		    		 		/*  */ 
+	    		 			activity_configcol = #{activityConfigcol,jdbcType=VARCHAR},
+						 </if>
+						 <if test="activityConfigcol1 != null">
+		    		 		/*  */ 
+	    		 			activity_configcol1 = #{activityConfigcol1,jdbcType=VARCHAR},
+						 </if>
+						 <if test="activityConfigcol2 != null">
+		    		 		/*  */ 
+	    		 			activity_configcol2 = #{activityConfigcol2,jdbcType=VARCHAR},
+						 </if>
+						 <if test="customcopyrightpic != null">
+		    		 		/* 自定义版权图 */ 
+	    		 			customCopyrightPic = #{customcopyrightpic,jdbcType=VARCHAR},
+						 </if>
+						 <if test="copyrightlink != null">
+		    		 		/* 版权链接 */ 
+	    		 			copyrightLink = #{copyrightlink,jdbcType=VARCHAR},
+						 </if>
+						 <if test="iscurrent != null">
+		    		 		/* 是否是现场活动
+0为否
+1为是
+现场活动需现场参加 */ 
+	    		 			iscurrent = #{iscurrent,jdbcType=INTEGER},
+						 </if>
+						 <if test="organizerlogo != null">
+		    		 		/*  */ 
+	    		 			organizerLogo = #{organizerlogo,jdbcType=VARCHAR},
+						 </if>
+						 <if test="bgpic != null">
+		    		 		/* 活动背景 */ 
+	    		 			bgPic = #{bgpic,jdbcType=VARCHAR},
+						 </if>
+						 <if test="needarea != null">
+		    		 		/*  */ 
+	    		 			needArea = #{needarea,jdbcType=VARCHAR},
+						 </if>
+						 <if test="needsex != null">
+		    		 		/* 性别验证 */ 
+	    		 			needSex = #{needsex,jdbcType=VARCHAR},
+						 </if>
+						 <if test="withhelp != null">
+		    		 		/* true为开启好友协助false为不开启 */ 
+	    		 			withHelp = #{withhelp,jdbcType=VARCHAR},
+						 </if>
+						 <if test="city != null">
+		    		 		/*  */ 
+	    		 			city = #{city,jdbcType=VARCHAR},
+						 </if>
+						 <if test="province != null">
+		    		 		/*  */ 
+	    		 			province = #{province,jdbcType=VARCHAR},
+						 </if>
+						 <if test="hideorganizerlogo != null">
+		    		 		/*  */ 
+	    		 			hideOrganizerLogo = #{hideorganizerlogo,jdbcType=VARCHAR},
+						 </if>
+						 <if test="showcopyright != null">
+		    		 		/*  */ 
+	    		 			showCopyright = #{showcopyright,jdbcType=VARCHAR},
+						 </if>
+						 <if test="showsupport != null">
+		    		 		/*  */ 
+	    		 			showSupport = #{showsupport,jdbcType=VARCHAR},
+						 </if>
+						  <if test="participateLimit != null">
+		    		 		/*  */ 
+	    		 			participateLimit = #{participateLimit,jdbcType=VARCHAR},
+						 </if>
+						 
+	  	  		</trim>
+				WHERE
+	  	 		 		activityId = #{activityid}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.activity.entity.ActivityConfig.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="ActivityConfig">
+		   SELECT   
+                   ac.id                            /*  */ 
+                  ,ac.organizer                     /* 主办单位 */ 
+                  ,ac.useDefaultLoadPage            /* 打开前加载页0为系统默认，1为自定义 */ 
+                  ,ac.jumpLinkBtn                   /* 主办单位url链接0为不开启
+1为开启 */ 
+                  ,ac.organizerLink                 /* 主办方URL */ 
+                  ,ac.useDefaultCopyright           /* 显示版权0为显示系统默认 1为自定义 */ 
+                  ,ac.useShareIco                   /* 分享图片0为系统默认
+1为自定义图片 */ 
+                  ,ac.shareimgPath                  /* 分享小图标url */ 
+                  ,ac.useShareTitle                 /* 分享标题 0为默认
+1是为自定义 */ 
+                  ,ac.sharetitleText                /* 分享自定义标题 */ 
+                  ,ac.useShareTxt                   /* 分享内容0为默认1为自定义 */ 
+                  ,ac.noAwardText                   /* 未得奖分享内容 */ 
+                  ,ac.awardText                     /* 得奖分享内容 */ 
+                  ,ac.wxlink                        /* 引导关注图链接 */ 
+                  ,ac.needFollow                    /* 是否需要关注后参加0为不关注可参加1为否 */ 
+                  ,ac.addresstext                   /* 只允许这些地能得奖或投票 */ 
+                  ,ac.activityId                    /*  */ 
+                  ,ac.activity_configcol            /*  */ 
+                  ,ac.activity_configcol1           /*  */ 
+                  ,ac.activity_configcol2           /*  */ 
+                  ,ac.customCopyrightPic            /* 自定义版权图 */ 
+                  ,ac.copyrightLink                 /* 版权链接 */ 
+                  ,ac.iscurrent                     /* 是否是现场活动
+0为否
+1为是
+现场活动需现场参加 */ 
+                  ,ac.organizerLogo                 /*  */ 
+                  ,ac.bgPic                         /* 活动背景 */ 
+                  ,ac.needArea                      /*  */ 
+                  ,ac.needSex                       /* 性别验证 */ 
+                  ,ac.withHelp                      /* true为开启好友协助false为不开启 */ 
+                  ,ac.city                          /*  */ 
+                  ,ac.province                      /*  */ 
+                  ,ac.hideOrganizerLogo             /*  */ 
+                  ,ac.showCopyright                 /*  */ 
+                  ,ac.showSupport                   /*  */ 
+                  ,ac.participateLimit
+		   FROM   activity_config      AS ac      /*  */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.activity.entity.ActivityConfig.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM activity_config 	/*  */  
+		WHERE 
+			activityId = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.activity.entity.ActivityConfig.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  activity_config      AS ac      /*  */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.activity.entity.ActivityConfig.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="ActivityConfig">
+		    SELECT 
+                   ac.id                            /*  */ 
+                  ,ac.organizer                     /* 主办单位 */ 
+                  ,ac.useDefaultLoadPage            /* 打开前加载页0为系统默认，1为自定义 */ 
+                  ,ac.jumpLinkBtn                   /* 主办单位url链接0为不开启
+1为开启 */ 
+                  ,ac.organizerLink                 /* 主办方URL */ 
+                  ,ac.useDefaultCopyright           /* 显示版权0为显示系统默认 1为自定义 */ 
+                  ,ac.useShareIco                   /* 分享图片0为系统默认
+1为自定义图片 */ 
+                  ,ac.shareimgPath                  /* 分享小图标url */ 
+                  ,ac.useShareTitle                 /* 分享标题 0为默认
+1是为自定义 */ 
+                  ,ac.sharetitleText                /* 分享自定义标题 */ 
+                  ,ac.useShareTxt                   /* 分享内容0为默认1为自定义 */ 
+                  ,ac.noAwardText                   /* 未得奖分享内容 */ 
+                  ,ac.awardText                     /* 得奖分享内容 */ 
+                  ,ac.wxlink                        /* 引导关注图链接 */ 
+                  ,ac.needFollow                    /* 是否需要关注后参加0为不关注可参加1为否 */ 
+                  ,ac.addresstext                   /* 只允许这些地能得奖或投票 */ 
+                  ,ac.activityId                    /*  */ 
+                  ,ac.activity_configcol            /*  */ 
+                  ,ac.activity_configcol1           /*  */ 
+                  ,ac.activity_configcol2           /*  */ 
+                  ,ac.customCopyrightPic            /* 自定义版权图 */ 
+                  ,ac.copyrightLink                 /* 版权链接 */ 
+                  ,ac.iscurrent                     /* 是否是现场活动
+0为否
+1为是
+现场活动需现场参加 */ 
+                  ,ac.organizerLogo                 /*  */ 
+                  ,ac.bgPic                         /* 活动背景 */ 
+                  ,ac.needArea                      /*  */ 
+                  ,ac.needSex                       /* 性别验证 */ 
+                  ,ac.withHelp                      /* true为开启好友协助false为不开启 */ 
+                  ,ac.city                          /*  */ 
+                  ,ac.province                      /*  */ 
+                  ,ac.hideOrganizerLogo             /*  */ 
+                  ,ac.showCopyright                 /*  */ 
+                  ,ac.showSupport                   /*  */ 
+                  ,ac.participateLimit
+		FROM   	 activity_config      AS ac      /*  */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+		<select id="queryOne" parameterType="Object"  resultMap="ActivityConfig">
+		    SELECT 
+                   ac.id                            /*  */ 
+                  ,ac.organizer                     /* 主办单位 */ 
+                  ,ac.useDefaultLoadPage            /* 打开前加载页0为系统默认，1为自定义 */ 
+                  ,ac.jumpLinkBtn                   /* 主办单位url链接0为不开启
+1为开启 */ 
+                  ,ac.organizerLink                 /* 主办方URL */ 
+                  ,ac.useDefaultCopyright           /* 显示版权0为显示系统默认 1为自定义 */ 
+                  ,ac.useShareIco                   /* 分享图片0为系统默认
+1为自定义图片 */ 
+                  ,ac.shareimgPath                  /* 分享小图标url */ 
+                  ,ac.useShareTitle                 /* 分享标题 0为默认
+1是为自定义 */ 
+                  ,ac.sharetitleText                /* 分享自定义标题 */ 
+                  ,ac.useShareTxt                   /* 分享内容0为默认1为自定义 */ 
+                  ,ac.noAwardText                   /* 未得奖分享内容 */ 
+                  ,ac.awardText                     /* 得奖分享内容 */ 
+                  ,ac.wxlink                        /* 引导关注图链接 */ 
+                  ,ac.needFollow                    /* 是否需要关注后参加0为不关注可参加1为否 */ 
+                  ,ac.addresstext                   /* 只允许这些地能得奖或投票 */ 
+                  ,ac.activityId                    /*  */ 
+                  ,ac.activity_configcol            /*  */ 
+                  ,ac.activity_configcol1           /*  */ 
+                  ,ac.activity_configcol2           /*  */ 
+                  ,ac.customCopyrightPic            /* 自定义版权图 */ 
+                  ,ac.copyrightLink                 /* 版权链接 */ 
+                  ,ac.iscurrent                     /* 是否是现场活动
+0为否
+1为是
+现场活动需现场参加 */ 
+                  ,ac.organizerLogo                 /*  */ 
+                  ,ac.bgPic                         /* 活动背景 */ 
+                  ,ac.needArea                      /*  */ 
+                  ,ac.needSex                       /* 性别验证 */ 
+                  ,ac.withHelp                      /* true为开启好友协助false为不开启 */ 
+                  ,ac.city                          /*  */ 
+                  ,ac.province                      /*  */ 
+                  ,ac.hideOrganizerLogo             /*  */ 
+                  ,ac.showCopyright                 /*  */ 
+                  ,ac.showSupport                   /*  */ 
+                  ,ac.participateLimit
+		FROM   	 activity_config      AS ac      /*  */ 
+		WHERE  activityId =#{activityid}
+	</select>
+	
+</mapper>

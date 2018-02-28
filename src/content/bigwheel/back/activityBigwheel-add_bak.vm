@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">新增</div>
+					<div class="panel-body">
+						<form class="form-horizontal" role="form" id="dailogForm" action="$!{basePath}/bigwheel/back/activityBigwheel/doAdd.do" method="POST">
+					  		<input type="hidden" id="btn_sub" class="btn_sub" />
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">活动名称</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.title}" name="title" id="title" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!dateTool.format("yyyy-MM-dd",$!{activityBigwheel.end})" name="end" id="end" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!dateTool.format("yyyy-MM-dd",$!{activityBigwheel.start})" name="start" id="start" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否显示参与人数0隐藏1为显示</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.hideparticipant}" name="hideparticipant" id="hideparticipant" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">活动规则</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.ruletips}" name="ruletips" id="ruletips" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">1为已删除
+0为正常</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.deleted}" name="deleted" id="deleted" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">活动类型</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.activitytype}" name="activitytype" id="activitytype" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">所属公众号</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.appid}" name="appid" id="appid" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">创建人</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.userid}" name="userid" id="userid" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">活动界面设计</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.pagejsoncontent}" name="pagejsoncontent" id="pagejsoncontent" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.activityBigwheelcol}" name="activityBigwheelcol" id="activityBigwheelcol" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">总中奖率</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.globalprobability}" name="globalprobability" id="globalprobability" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否均匀发放</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.probabilitytype}" name="probabilitytype" id="probabilitytype" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">获奖验证</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.trophyvalidator}" name="trophyvalidator" id="trophyvalidator" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">助力环节图片及布局</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.qrcodeurl}" name="qrcodeurl" id="qrcodeurl" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheel.awardsendtype}" name="awardsendtype" id="awardsendtype" class="form-control" />
+													    </div>
+													</div>
+										<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/bigwheel/back/activityBigwheel/list.do')">返回</button>
+	        									<button type="button" class="btn btn-primary" id="formSubmit">提交</button>
+        									 </div>
+        								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="$!{basePath}/plug-in/js/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="$!{basePath}/plug-in/js/forminit.p3.js"></script> 

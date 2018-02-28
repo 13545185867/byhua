@@ -1,0 +1,126 @@
+.moveFrame {
+	border: 0px dashed rgb(43, 115, 186); border-image: none; overflow: hidden; font-size: 0px; position: absolute; z-index: 9028; -ms-zoom: 1;
+}
+.moduleLayer {
+	margin: 0px; padding: 0px; left: 0px; top: 0px; height: 24px; color: rgb(0, 0, 0); font-family: ËÎÌå,ÐÂËÎÌå; font-size: 12px; border-bottom-color: rgb(55, 133, 202); border-bottom-width: 1px; border-bottom-style: dashed; position: absolute; z-index: 9030; -ms-zoom: 1; background-color: rgb(86, 161, 227);
+}
+.moduleLayer .item {
+	float: left;
+}
+.moduleLayer .tool {
+	margin: 2px; padding: 0px 3px; height: 20px; color: rgb(255, 255, 255); line-height: 22px; text-decoration: none; float: left; display: inline; position: relative; background-color: rgb(86, 161, 227);
+}
+.moduleLayer .holder {
+	margin: 0px; padding: 0px; height: 24px; border-right-color: rgb(55, 133, 202); border-right-width: 1px; border-right-style: solid;
+}
+.ui-resizable-n {
+	left: 0px; top: -5px; width: 100%; height: 9px; cursor: s-resize;
+}
+.ui-resizable-e {
+	top: 0px; width: 9px; height: 100%; right: -5px; cursor: e-resize;
+}
+.ui-resizable-handle {
+	font-size: 0.1px; display: block; position: absolute; z-index: 9999;
+}
+.ui-resizable-s {
+	left: 0px; width: 100%; height: 9px; bottom: -5px; cursor: s-resize;
+}
+.ui-resizable-w {
+	left: -5px; top: 0px; width: 9px; height: 100%; cursor: e-resize;
+}
+.ui-icon {
+	border: 1px dotted gray; border-image: none; width: 16px; height: 16px; background-image: url("../../../image/admin/newgame/gamepage/ui-icons_222222_256x240.png"); background-color: rgb(204, 250, 250);
+}
+.ui-icon-gripsmall-diagonal-se {
+	background-position: -84px -228px;
+}
+.ui-resizable-se {
+	width: 12px; height: 12px; right: 0px; bottom: 0px; cursor: se-resize; opacity: 0.5;
+}
+.ui-resizable-sw {
+	left: 0px; width: 12px; height: 12px; bottom: 0px; cursor: sw-resize; opacity: 0.5;
+}
+.recoverBtn {
+	background: url("../../../image/admin/newgame/gamepage/recover1.gif") no-repeat 0px 0px !important; width: 24px; height: 20px; right: 3px; bottom: 3px; font-size: 0.1px; display: none; position: absolute; z-index: 9999; opacity: 1;
+}
+.ui-resizable-helper {
+	border: 2px dotted gray; border-image: none;
+}
+.ui-resizable-imgTopLeftTip {
+	border: currentColor !important; border-image: none !important; width: 16px; height: 16px; opacity: 1;
+}
+.ui-resizable-imgTopRightTip {
+	border: currentColor !important; border-image: none !important; width: 16px; height: 16px; opacity: 1;
+}
+.ui-resizable-imgBottomLeftTip {
+	border: currentColor !important; border-image: none !important; width: 16px; height: 16px; opacity: 1;
+}
+.ui-resizable-imgBottomRightTip {
+	border: currentColor !important; border-image: none !important; width: 16px; height: 16px; opacity: 1;
+}
+.ui-resizable-imgTopLeftTip {
+	background: url("../../../image/admin/newgame/gamepage/imgResizeIcon.gif") no-repeat 0px 0px; left: 0px; top: 0px; cursor: nw-resize;
+}
+.ui-resizable-imgTopRightTip {
+	background: url("../../../image/admin/newgame/gamepage/imgResizeIcon.gif") no-repeat 11px 1px; top: 0px; right: 0px; cursor: ne-resize;
+}
+.ui-resizable-imgBottomLeftTip {
+	background: url("../../../image/admin/newgame/gamepage/imgResizeIcon.gif") no-repeat 0px 11px; left: 0px; bottom: 0px;
+}
+.ui-resizable-imgBottomRightTip {
+	background: url("../../../image/admin/newgame/gamepage/imgResizeIcon.gif") no-repeat 11px 11px; right: 0px; bottom: 0px;
+}
+.ui-resizable-imgTopTip {
+	background: url("../../../image/admin/newgame/gamepage/imgResizeIcon.gif") no-repeat 50% 49% !important; top: -2px;
+}
+.ui-resizable-imgBottomTip {
+	background: url("../../../image/admin/newgame/gamepage/imgResizeIcon.gif") no-repeat 50% 50% !important; bottom: -2px;
+}
+.ui-resizable-imgLeftTip {
+	background: url("../../../image/admin/newgame/gamepage/imgResizeIcon.gif") no-repeat 49% 50% !important; left: -2px;
+}
+.ui-resizable-imgRightTip {
+	background: url("../../../image/admin/newgame/gamepage/imgResizeIcon.gif") no-repeat 49% 50% !important; right: -2px;
+}
+.gameBox {
+	width: 100%; height: 100%;
+}
+#gameBgBox {
+	width: 100%; height: 100%; overflow: hidden; min-height: 25.2rem;
+}
+#gameBgBox img {
+	width: 100%; height: auto;
+}
+.gameBox .gameTopBar {
+	background: rgba(0, 0, 0, 0.4); color: rgb(255, 255, 255);
+}
+.gameBox .userInfoBox {
+	margin-left: 0.75rem;
+}
+.gameBox .userInfoBox .userImgBox {
+	border-radius: 999px; border: 0.1rem solid rgba(255, 255, 255, 0.3); border-image: none; width: 2.5rem; height: 2.5rem; display: inline-block;
+}
+.gameBox .userImgBox .userImg {
+	border-radius: 999px; width: 100%; height: 100%; display: inline-block;
+}
+.gameBox .userInfoBox .grade {
+	line-height: 2.6rem; font-size: 0.9rem; margin-left: 0.3rem; vertical-align: top; display: inline-block;
+}
+.gameBox .timeBox {
+	margin: 0.5rem auto auto; left: 0px; top: 0px; width: 4rem; text-align: center; right: 0px; font-size: 0.8rem; position: absolute;
+}
+.gameBox .timeBox .time {
+	font-size: 1.3rem;
+}
+.tishi {
+	background-position: center; left: 0px; top: 0px; width: 100%; height: 100%; display: none; position: absolute; background-repeat: no-repeat; background-color: rgba(0, 0, 0, 0.8);
+}
+#gameLayerBox {
+	left: 0px; top: 0px; width: 100%; bottom: 0px; overflow: hidden; position: absolute;
+}
+.gameTopBar {
+	padding: 0.4rem 0px; top: 0px; width: 100%; color: rgb(231, 138, 33); position: absolute; z-index: 100; background-color: rgba(255, 255, 255, 0);
+}
+.defBgColor {
+	background-color: rgba(0, 0, 0, 0);
+}

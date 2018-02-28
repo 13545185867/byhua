@@ -1,0 +1,12 @@
+.fileinput-button {
+	overflow: hidden; display: inline-block; position: relative;
+}
+.fileinput-button input {
+	margin: 0px; top: 0px; right: 0px; font-size: 200px !important; position: absolute; cursor: pointer; direction: ltr; opacity: 0;
+}
+@media unknown
+{
+.fileinput-button input {
+	height: 100%; font-size: 100%;
+}
+}

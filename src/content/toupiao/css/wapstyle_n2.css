@@ -1,0 +1,156 @@
+@CHARSET "UTF8";
+
+
+.weixinstyle{
+	
+	 background-color: #f2f2f2;
+}
+.weixinstyle .navbar-poll .navbar-inner{
+	background-color: #29abdd;
+    background-image: linear-gradient(to bottom, #29abdd, #29abdd);
+    background-repeat: repeat-x;
+    border-color: #29abdd;
+    
+}
+.bottombar{
+		background-color: #29abdd;
+}
+ .carousel-items  .active {
+    background-color: #29abdd;
+  }
+.weixinstyle .wxvoteinfo {
+	 background-color: #29abdd;
+}
+.weixinstyle .wxvoteinfo ul li{
+
+	color: #fff;
+	font-size: 14px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    
+}
+.weixinstyle  .left-border{
+	
+	border-left:1px solid #fff;
+	
+}
+.weixinstyle .votetitle h4{
+	
+}
+.weixinstyle .blockcell{
+	border-bottom: 1px solid #ececec;
+}
+
+.weixinstyle  .rightarrow .arrow{
+	color: #ccc;
+}
+
+.weixinstyle .voteoplist .wxop{
+	background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
+.weixinstyle  .topbar {
+	background-color: #29abdd;
+	color:#fff;
+}
+.iphone .topbar{
+	background-color: #29abdd;
+}
+.weixinstyle  .topbar a{
+	color: #fff;
+
+}
+
+.weixinstyle  .votenuminfo{
+	color: red;
+   
+}
+
+.weixinstyle .btn {
+  
+  color: white;
+  height: 35px;
+  font-size:16px;
+}
+.weixinstyle  .btn:hover, .weixinstyle  .btn:focus {
+    background-color: #a17d7d;
+    color: white;
+}
+.weixinstyle   .btn:active,.weixinstyle  .btn.active {
+    background-color: #29abdd;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.weixinstyle  .btn.btn-warning{
+	background-color: #29abdd;
+}
+.weixinstyle  .btn.btn-warning {
+    background-color: #29abdd; 
+}
+.weixinstyle .btn.btn-warning:hover, .weixinstyle .btn.btn-warning:focus {
+      background-color: #a17d7d; 
+}
+.weixinstyle   .btn.btn-warning:active,.weixinstyle .btn.btn-warning.active {
+      background-color: #29abdd; 
+}
+.weixinstyle .btn.btn-info {
+    background-color: #29abdd; 
+}
+.weixinstyle .btn.btn-info:hover,.weixinstyle .btn.btn-info:focus {
+      background-color: #2DC1FC; 
+}
+.weixinstyle  .btn.btn-info:active,.weixinstyle .btn.btn-info.active {
+      background-color: #29abdd; 
+}
+
+.weixinstyle  .btn.disabled,.weixinstyle  .btn[disabled] {
+    background-color: #ccc;
+    color: white; 
+}
+
+.weixinstyle .voteoplist .wxop  .wxoptxt a{
+	color:#29abdd;
+	font-size:14px;
+}
+
+.form-inline input{
+	 height: 25px;
+}
+.weixinstyle .btnorderlist{
+	line-height:35px;
+}
+.bottombar {
+	background-color:#29abdd;
+}
+.searchbar{
+	background-color: rgba(41, 171, 221, 0.7);
+    background-image: none;
+}
+.weixinstyle .searchbar button{
+	width:85px;
+}
+.weixinstyle .btn-link {
+	color:#29abdd;
+}
+.icheckbox_line-grey, .iradio_line-grey{
+	background-color: #29abdd;
+	width: 60px;
+	margin: 0 auto;
+}
+.icheckbox_line-grey.hover{
+	background-color: #29abdd;
+}
+.weixinstyle .votebuttons .btn-info{
+	lin/e-height:32px;
+}
+.swiper-pagination-bullet-active{
+	background:#29abdd none repeat scroll 0 0;
+}
+.invitecodeboxinvote h4{
+	color:#fff;
+	background-color: #29abdd;
+	bord/er: 1px solid #fff;
+}

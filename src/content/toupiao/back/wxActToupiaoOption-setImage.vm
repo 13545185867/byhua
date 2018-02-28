@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">设置选项图片</div>
+					<div class="panel-body">
+						<form class="form-horizontal" role="form" id="dailogForm" action="$!{basePath}/toupiao/back/wxActToupiaoOption/doSetImage.do" method="POST">
+					  		<input type="hidden" id="btn_sub" class="btn_sub" />
+													<div class="form-group mno" style="display:none;">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">选项所属投票活动ID</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{wxActToupiaoOption.id}" name="id" id="id" class="form-control" />
+													    </div>
+													</div>
+
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">选项名称</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{wxActToupiaoOption.title}" name="title" id="title" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">选项图片</label>
+													    
+													   <div class="col-sm-8">
+												      <input type="hidden" value="$!{wxActToupiaoOption.image}" name="image" id="image">  
+												        <div id="fileQueue" style="width:200px;"></div>   
+													    <input type="file" name="uploadify" id="uploadify" />   
+
+													    
+													     <table>
+  <tr>
+  	<td>													    <div id="pic_view_div" >  
+													         <img src="$!{basePath}/upload/img/system/$!{wxActToupiaoOption.image}"  id="pic_view">  
+													    </div> </td>
+  	<td><div style="width: 550px; height: 660px; overflow: hidden; margin-left: 5px;" ><img id="preview" /></div></td>
+  </tr>
+  <tr>
+  	<td>
+  <input type="hidden" name="x" id="x" />
+  <input type="hidden" name="y" id="y" />
+  <input type="hidden" name="w" id="w" />
+  <input type="hidden" name="h" id="h" />
+  	</td>
+  </tr>
+  </table>
+												    </div>
+
+										<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/toupiao/back/wxActToupiaoOption/list.do?actId=$!{wxActToupiaoOption.actId}')">返回</button>
+	        									<button type="button" class="btn btn-primary" id="formSubmit1">提交</button>
+        									 </div>
+        								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="$!{basePath}/plug-in/js/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="$!{basePath}/plug-in/js/forminit.p3.js"></script>  
+<script src="$!{basePath}/content/system/js/jquery.uploadify.min.js" type="text/javascript"></script>
+<script src="$!{basePath}/content/toupiao/js/jquery.Jcrop.js" type="text/javascript"></script>
+<script src="$!{basePath}/content/toupiao/js/jQuery.UtrialAvatarCutter.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="$!{basePath}/content/toupiao/css/jquery.Jcrop.css" type="text/css"></link>
+<link rel="stylesheet" href="$!{basePath}/content/system/css/uploadify.css">
+<script >
+jQuery.browser={};(function(){jQuery.browser.msie=false; jQuery.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)./)){ jQuery.browser.msie=true;jQuery.browser.version=RegExp.$1;}})();
+
+$(function(){
+    $("#uploadify").uploadify({  
+        'swf'            : '$!{basePath}/content/system/js/uploadify.swf',  
+        'uploader'       : '$!{basePath}/system/back/jwSystemProject/doUpload.do',
+        'queueID'        : 'fileQueue',  
+        'auto'           : true,  
+        'multi'          : true,  
+        'buttonCursor'   : 'hand',  
+        'fileObjName'    : 'file',  
+        'buttonText'     : '上传图片',  
+        'height'         : '25',  
+        'progressData'   : 'percentage',  
+        'fileTypeDesc'   : '支持格式:jpg/gif/jpeg/png/bmp.',    
+        'fileTypeExts': '*.jpg;*.gif;*.jpeg;*.png;*.bmp',//允许的格式         
+        onUploadStart : function(file) {
+
+        },
+        onUploadSuccess  : function(file,data,response) {  
+            //设置图片预览  
+            var a =  JSON.parse(data);
+            $("#image").val(a.obj);  
+            $("#pic_view").attr("src",'$!{basePath}/upload/img/system/' + a.obj);  
+            $("#preview").attr("src",'$!{basePath}/upload/img/system/' + a.obj);  
+        }  
+    });  
+});
+	var cutter = new jQuery.UtrialAvatarCutter();
+		$("#pic_view").bind("load",function(){
+			 cutter.init();
+			});
+	
+			
+			$("#formSubmit1").bind("click",function(event){
+				var x = $("#x").val();
+				var y = $("#y").val();
+				var w = $("#w").val();
+				var h = $("#h").val();
+
+				var img = $("#pic_view").attr("src");
+				var index =countInstances(img,'/',4);
+				img = img.substring(index);
+				if(w<550 || h<660){
+				alert("为了保持页面美观，上传的图片宽度不能小于550px,高度不能小于660px");
+				return false;
+				};
+				        			if(confirm("确认提交吗？")){
+						ajaxdoFormSubmit('dailogForm');}
+				});
+					function countInstances(mainStr, subStr,index)
+    {
+        var count = 0;
+        var offset = 0;
+        do
+        {
+            offset = mainStr.indexOf(subStr, offset);
+            if(offset != -1)
+            {
+                count++;
+                offset += subStr.length;
+            }
+        }while(offset != -1&&count<index)
+        return offset;
+    } 
+	
+</script>	
+

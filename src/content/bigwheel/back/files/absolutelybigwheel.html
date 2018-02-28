@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html style="font-size: 20px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1,user-scalable=no,maximum-scale=1,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>百分百大转盘</title>
+<link rel="stylesheet" href="./absolutelyBigWheel.css"><style>
+#join_line_cont{
+	top: 22.3rem;
+}
+
+#prizeList{
+	position: relative;
+}
+
+#superView{
+	background: rgba(0,0,0,0);
+}
+
+/*圣诞样式  */
+
+
+/* 默认样式 */
+#smallView{
+	background-image: url(./lot/2.png);
+}
+
+#wheelBox{
+	background-image: url(./lot/3.png);
+}
+</style></head>
+
+<body>
+<link rel="stylesheet" href="./game_common.css"><link rel="stylesheet" href="./gamepage.css"><script type="text/javascript" src="./jquery-1.7.2.min.js"></script><script type="text/javascript" src="./jquery-ui-core.min.js"></script><script type="text/javascript" src="./jquery.deparam.js"></script><script type="text/javascript" src="./iscroll.js"></script><script type="text/javascript" src="./game_common.js"></script><script type="text/javascript" src="./gamepage.js"></script><style>
+.fire_loading .loading_banner_bg{
+	background-image: url("./lot/opening_bg2.jpg");
+}
+.fire_loading .yy_logo_bg{
+	background-image: url("./lot/opening_logo.png");
+}
+</style>
+<!-- S custom css -->
+<style type="text/css" id="_yy_custom_css">#loading_banner_bg {background-image:url('./lot/opening_bg2.jpg');}</style>
+<!-- E custom css -->
+<script type="text/javascript">
+function $getStack(e, d) {
+    if (e && e.stack) {  
+        var s = e.stack.replace(/(?:http:)[^:]*:(.*)/g, "$1").replace(/@/g, "at").split("at"), l = d ? d + 1  
+                : s.length - 1;  
+        return s.slice(1, l).join(":");  
+    } else if (arguments.callee.caller.caller) {  
+        var curr = arguments.callee.caller.caller, c, o = [];  
+        while (curr) {
+            c = curr;  
+            o.push(c.toString().substring(0, 100));  
+            curr = curr.caller;  
+        }  
+        return o.join(":");  
+    } else {
+        return "";
+    }
+};  
+function $initBadjs() {
+    window.onerror = function(msg, url, l, c) {
+        if(document.getElementById("youyu_loading_main")){
+        	document.getElementById("youyu_loading_main").style.display="none";
+        }
+        if (/WeixinJSBridge/.test(msg)) {
+			return;
+		}
+        var stack = $getStack();  
+        $sendBadjs(msg, url, l + ":" + stack, l, c);  
+        return false;  
+    };
+}
+function $sendBadjs(msg, src, d, l, c) {
+     var ua = navigator.userAgent.toLowerCase(), s,
+         bom =  (s = ua.match(/msie ([\d.]+)/)) ? "ie:" + s[1] :
+            (s = ua.match(/firefox\/([\d.]+)/)) ? "firefox:" + s[1] :
+            (s = ua.match(/chrome\/([\d.]+)/)) ? "chrome:" + s[1] :
+            (s = ua.match(/opera.([\d.]+)/)) ? "opera:" + s[1] :
+            (s = ua.match(/version\/([\d.]+).*safari/)) ? "safari:" + s[1] : 0;
+         
+     var ts = d;  
+     var errImg = new Image();
+     var errImgSrc = "/mobile/newgame/jserror?errorMessage="+msg;
+     errImgSrc += "&scriptURI="+encodeURIComponent(src || window.location.href);
+     errImgSrc += "&lineNumber="+(l || 0);
+     errImgSrc += "&columnNumber="+(c || 0);
+     errImgSrc += "&errorObj="+ts;
+     errImgSrc += "&bowserType="+ua;
+     errImgSrc += "&type=0";
+     errImgSrc += "&_="+new Date().getTime();
+     errImg.src = errImgSrc;
+     errImg.imageSrcKey = errImgSrc;
+};  
+$initBadjs();
+window._sendBadjs = $sendBadjs;
+</script>
+<!-- 活动自定义样式 -->
+<script type="text/javascript">
+var extendOperation = {};
+var _customStyle=document.getElementById("_yy_custom_css");
+var innerStyle = "";
+if(extendOperation.loadingPic){
+	innerStyle += "#loading_banner_bg {background-image:"+extendOperation.loadingPic+";}";
+} else {
+	innerStyle += "#loading_banner_bg {background-image:url('./lot/opening_bg2.jpg');}";
+	
+}
+if(extendOperation.loadingLogo){
+	innerStyle += "#yy_logo_bg {background-image:"+extendOperation.loadingLogo+";}";
+}
+if(extendOperation.lotteryPic){
+	innerStyle += "#lotto_banner_bg {background-image:"+extendOperation.lotteryPic+";}";
+}
+if(extendOperation.lotteryLogo){
+	innerStyle += "#lotto_logo_bg {background-image:"+extendOperation.lotteryLogo+";}";
+}
+_customStyle.innerHTML=innerStyle;
+</script>
+<link rel="stylesheet" href="./game_style.css"><!-- 游戏通用弹出层页面 -->
+<div class="mask fire_res fire_loading " id="js_start_ad" style="display: none;">
+	<a class="loading_banner_bg layerId-10 defBgColor" id="loading_banner_bg" href="javascript:;">
+		</a>
+	<div class="yy_logo_bg layerId-11 defBgColor" id="yy_logo_bg">
+		</div>
+	<a href="javascript:;" class="skip_btn"><span class="skip_time"><span class="skip_count">3</span>秒</span> 跳过</a>
+	<!-- 加载页面开启可点击提示 -->
+	<div class="openClick-btn imgContainer hide">
+		<a id="openClick_pic_link" href="javascript:;">
+			<div class="ui-wrapper ui-resizable-autohide" style="overflow: hidden; position: absolute; width: 100px; height: 40px; top: 120px; left: -50px; margin: 0px; float: none; z-index: 100; padding: 0px; cursor: move;" _from="openClick_pic"><img id="openClick_pic" class="openClick-pic block_img slaveImg layerId-14 defBgColor ui-resizable" style="width: 100px; height: 40px; top: 6rem; left: -2.5rem; position: static; margin: 0px; resize: none; zoom: 1; display: block;" src="./lot/open_click_btn.png"><div class="ui-resizable-handle ui-resizable-n ui-resizable-imgTopTip" style="z-index: 9030; display: none;"><div class="imgResizeLine imgResizeLine-first" style="width: 46px;"></div><div class="imgResizeLine imgResizeLine-second" style="width: 46px;"></div></div><div class="ui-resizable-handle ui-resizable-e ui-resizable-imgRightTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-s ui-resizable-imgBottomTip" style="z-index: 9030; display: none;"><div class="imgResizeLine imgResizeLine-first" style="width: 46px;"></div><div class="imgResizeLine imgResizeLine-second" style="width: 46px;"></div></div><div class="ui-resizable-handle ui-resizable-w ui-resizable-imgLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-ne ui-resizable-imgTopRightTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-nw ui-resizable-imgTopLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-sw ui-resizable-imgBottomLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-resizable-imgBottomRightTip" style="z-index: 9030; display: none;"></div><a class="recoverBtn" href="javascript:;"></a></div>
+			</a>
+    </div>
+</div>
+
+<div class="mask fire_res fire_success hide" style="display: none;">
+	<div class="success_bg"></div>
+	<div class="fire_res_light a-rotateL"></div>
+	<div class="fire_res_success"></div>
+	<div class="fire_res_title"><div></div></div>
+	<div class="fire_res_star3"><div></div></div>
+	<div class="fire_res_star2"><div></div></div>
+	<div class="fire_res_star1"><div></div></div>
+	<div class="fire_res_guang"><div></div></div>
+	<p class="p_text_1">获得<span class="score">xx</span>分</p>
+	<p id="resule-status-daylimit" class="p_text_2 layerId-2 defBgColor"><span class="p_text">今天还有<span class="daylimit">xx</span>次，总共还有<span class="actlimit">xx</span>次抽奖机会</span></p>
+	<p id="resule-status-actlimit" class="p_text_3 layerId-3 defBgColor" style="display:none;"><span class="p_text">你总共还有<span class="actlimit">xxxxx</span>次抽奖机会</span></p>
+	<div class="fire_btn_cont">
+		<div class="fire_btn fire_ress_success_award link_lottery"></div>
+		<div class="fire_btn fire_ress_success_share share" data-role="share"></div>
+	    <div class="fire_btn fire_ress_success_subscribe subscribe_link"></div>
+    </div>
+</div>
+
+<div class="mask fire_res fire_fail hide" style="display: none;">
+	<div class="fail_bg"></div>
+	<div class="fire_res_fail"></div>
+	<div class="fire_res_title"><div></div></div>
+	<div class="fire_res_star3"><div></div></div>
+	<div class="fire_res_star2"><div></div></div>
+	<div class="fire_res_star1"><div></div></div>
+	<p class="p_text_1">获得<span class="score">xx</span>分</p>
+	<p id="resule-status-minscore" class="p_text_2 layerId-1 defBgColor"><span class="p_text">需要达到<span class="prize_score">7</span>分才能抽奖哦</span></p>
+	<p class="p_text_3"><span class="p_text">你还有1次挑战机会</span></p>
+	<div class="fire_btn_cont">
+		<div class="fire_btn fire_ress_fail_playagain playagain_link"></div>
+	    <div class="fire_btn fire_ress_fail_share share" data-role="share"></div>
+	    <div class="fire_btn fire_ress_fail_subscribe subscribe_link"></div>
+		<p class="share_text" style="display:none;">
+			分享给好友，可以获得更多游戏机会哦！
+		</p>
+	</div>
+</div>
+
+<div class="mask fire_res fire_end hide" style="display: none;">
+	<div class="fire_res_light a-rotateL"></div>
+	<div class="fire_res_end"></div>
+	<p class="p_text_1">获得<span class="score_text">99</span>分</p>
+	<p class="p_text_2">您的最高分数<span class="total_score">99</span>分，排名<span class="rank_text">99</span></p>
+	<p class="p_text_3 share_text">分享给好友可以提高最高分哦！</p>
+	<div class="fire_btn_cont">
+		<div class="fire_btn fire_ress_end_playagain playagain_link"></div>
+	    <div class="fire_btn fire_ress_end_rank rank_link"></div>
+	    <div class="fire_btn fire_ress_end_share" data-role="share"></div>
+	    <div class="fire_btn fire_ress_end_subscribe subscribe_link"></div>
+	</div>
+</div>
+
+<div class="mask fire_res fire_prize_hb_success hide" style="display: none;">
+	<div class="prize_success">
+       <div class="price_success_gift"></div>
+    </div>
+	<p class="p_text_1">获得了1个现金红包</p>
+	<div class="fire_btn_cont">
+		<div class="fire_btn fire_success_detail unlock_prize_link"></div>
+        <div class="fire_btn fire_success_subscribe subscribe_link "></div>
+        <div class="fire_btn fire_success_join join_play_link hide"></div>
+    </div>
+</div>
+<div class="mask fire_res fire_prize_success hide" style="display: none;">
+	<div class="prize_success">
+	    <div class="price_success_gift"></div>
+	</div>
+	<p class="p_text_1">获得<span class="prizeName score">xxx</span></p>
+	<p class="jiangpinName">xxx</p>
+	<div class="fire_btn_cont">
+		<a class="unlock_prize_link" href="javascript:;"><div class="fire_btn fire_success_detail"></div></a>
+        <div class="fire_btn fire_success_subscribe subscribe_link "></div>
+        <div class="fire_btn fire_success_join join_play_link hide"></div>
+    </div>
+</div>
+<div class="mask fire_res fire_prize_fail hide" style="display: none;">
+	<div class="prize_fail"></div>
+	<div class="prize_fail_lihe"></div>
+	<p class="p_text_1"><span>没中呢~再来一次，肯定中奖</span></p>
+	<p class="p_text_2">换个姿势，</p>
+	<p class="p_text_3">快来啊~</p>
+	<div class="fire_btn_cont">
+		<div class="fire_btn fire_prize_fail_playagain playagain_link"></div>
+        <div class="fire_btn fire_prize_fail_subscribe subscribe_link "></div>
+        <div class="fire_btn fire_prize_fail_join join_play_link hide"></div>
+    </div>
+</div>
+<!-- 没有机会了 -->
+<div class="mask fire_res fire_nochance hide" style="display: none;">
+	<span class="close"></span>
+	<div class="fire_res_nochance"></div>
+	<p class="p_text_1"><span class="response_text">游戏机会已用完</span><span class="share_text">分享给好友可以获得更多机会哦。</span></p>
+	<div class="fire_btn_cont" style="margin-top:1.5rem;">
+	    <div class="fire_btn share" data-role="share"></div>
+	    <div class="fire_btn luckdraw" style="display:none;background-image: url(./lot/btn_continue.png);background-size:90%;background-position:center;"></div>
+	    <div class="fire_btn subscribe_link"><a href="javascript:void(0);"></a></div>
+	</div>
+</div>
+
+<div class="mask fire_res fire_qrcode hide" style="display: none;">
+	<p class="p_text_1">长按保存图片，发送给小伙伴<br><span class="share_text">邀请小伙伴扫码，给你提供助力！</span></p>
+	<img id="help_qrcode_img" class="help_qrcode_img">
+	<img id="youyu_qrcode_img" class="youyu_qrcode_img">
+</div>
+<!-- 分享二维码自定义页面  -->
+<div id="qrcode_edit_page" class="mask fire_res fire_qrcode_edit hide" style="display: none;">
+	<img id="qrcode_edit_bgimg" class="help_qrcode_img layerId-21 defBgColor" src="./lot/dbadf863-9786-441d-bc0b-50736d82bbb0.jpg" data-rawwidth="574" data-rawheight="860" style="left: 0px; top: 0px; width: 320px; height: 479px;">
+	<a href="javascript:;" class="qrcode_edit_btn imgContainer">
+		<div class="ui-wrapper ui-resizable-autohide" style="overflow: hidden; position: absolute; width: 40px; height: 40px; top: 223px; left: 22px; margin: 0px; float: none; z-index: 100; padding: 0px; cursor: move;" _from="qrcode_edit_headimg"><img id="qrcode_edit_headimg" class="block_img slaveImg layerId-19 defBgColor ui-resizable" alt="" src="./lot/headimg.png" style="left: 22px; top: 223px; width: 40px; height: 40px; margin: 0px; resize: none; position: static; zoom: 1; display: block;"><div class="ui-resizable-handle ui-resizable-n ui-resizable-imgTopTip" style="z-index: 9030; display: none;"><div class="imgResizeLine imgResizeLine-first" style="width: 16px;"></div><div class="imgResizeLine imgResizeLine-second" style="width: 16px;"></div></div><div class="ui-resizable-handle ui-resizable-e ui-resizable-imgRightTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-s ui-resizable-imgBottomTip" style="z-index: 9030; display: none;"><div class="imgResizeLine imgResizeLine-first" style="width: 16px;"></div><div class="imgResizeLine imgResizeLine-second" style="width: 16px;"></div></div><div class="ui-resizable-handle ui-resizable-w ui-resizable-imgLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-ne ui-resizable-imgTopRightTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-nw ui-resizable-imgTopLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-sw ui-resizable-imgBottomLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-resizable-imgBottomRightTip" style="z-index: 9030; display: none;"></div><a class="recoverBtn" href="javascript:;"></a></div>
+	</a>
+	<a href="javascript:;" class="qrcode_edit_btn imgContainer">
+		<div class="ui-wrapper ui-resizable-autohide" style="overflow: hidden; position: absolute; width: 112px; height: 112px; top: 298px; left: 48px; margin: 0px; float: none; z-index: 100; padding: 0px; cursor: move;" _from="qrcode_edit_codeimg"><img id="qrcode_edit_codeimg" class="block_img slaveImg layerId-20 defBgColor ui-resizable" alt="" src="./lot/qcode-youyu_2.png" style="left: 48px; top: 298px; width: 112px; height: 112px; margin: 0px; resize: none; position: static; zoom: 1; display: block;"><div class="ui-resizable-handle ui-resizable-n ui-resizable-imgTopTip" style="z-index: 9030; display: none;"><div class="imgResizeLine imgResizeLine-first" style="width: 52px;"></div><div class="imgResizeLine imgResizeLine-second" style="width: 52px;"></div></div><div class="ui-resizable-handle ui-resizable-e ui-resizable-imgRightTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-s ui-resizable-imgBottomTip" style="z-index: 9030; display: none;"><div class="imgResizeLine imgResizeLine-first" style="width: 52px;"></div><div class="imgResizeLine imgResizeLine-second" style="width: 52px;"></div></div><div class="ui-resizable-handle ui-resizable-w ui-resizable-imgLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-ne ui-resizable-imgTopRightTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-nw ui-resizable-imgTopLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-sw ui-resizable-imgBottomLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-resizable-imgBottomRightTip" style="z-index: 9030; display: none;"></div><a class="recoverBtn" href="javascript:;"></a></div>
+	</a>
+	<div id="qrcode_edit_represent_text" class="text layerId-17 defBgColor" style="color: rgb(0, 0, 0); display: inline-block; left: 72px; top: 220px; font-size: 13px; cursor: move; position: absolute;" data-text="[nickname]" data-size="13px" data-color="rgb(0, 0, 0)">[nickname]</div>
+	<div id="qrcode_edit_title_text" class="text layerId-18 defBgColor" style="color: rgb(0, 0, 0); display: inline-block; left: 196px; top: 220px; font-size: 13px; cursor: move; position: absolute;" data-text="[title]" data-size="13px" data-color="rgb(0, 0, 0)">[title]</div>
+<div id="poster_text_0" style="font-size: 13px; color: rgb(0, 0, 0); left: 142px; top: 220px; cursor: move; position: absolute;" class="text j-text-poster layerId-22 defBgColor" data-text="新增分享文本" data-size="12px" data-color="rgb(0, 0, 0)">正在参与</div></div>
+ 
+
+<!-- 通用弹出框 -->
+<div class="fire_res fire_common hide">
+	<span class="close"></span>
+	<div class="fire_res_common"></div>
+	<p class="p_text_1"></p>
+	<div class="fire_btn_cont">
+		<!-- 分享 -->
+	    <div class="fire_btn share hide"></div>
+	    <!-- 关注我们 -->
+	    <div class="fire_btn subscribe_link hide"><a href="javascript:void(0);"></a></div>
+	    <!-- 我要参与 -->
+	    <div class="fire_btn join_link hide"><a href="javascript:void(0);"></a></div>
+	</div>
+</div>
+
+<div class="mask fire_res fire_rule hide" style="display: none;">
+	<a href="javascript:;" class="rule_myprize_link"></a>
+	<a href="javascript:;" class="rule_rule_link active"></a>
+	<span class="close"></span>
+	<div class="fire_res_rule_bg"></div>
+	<div class="content" id="ruleWrapper">
+		<div class="scroller">
+		<div class="rule_tab fire_res_rule_award">活动奖品</div>
+		<div id="rule_award" class="layerId-7 defBgColor"><p>一等奖：价值100元礼品券</p><p>二等奖：价值50元礼品券</p><p>三等奖：价值10元礼品券</p></div>
+		<div class="rule_tab fire_res_rule_time">活动时间</div>
+		<div id="rule_time" class="layerId-4 defBgColor">2017年07月28日~2017年08月04日</div>
+		<div class="rule_tab fire_res_rule_tips">活动规则</div>
+		<div id="rule_content_text" class="fire_res_rule_tips_text layerId-5 defBgColor">1、玩家进入游戏后可通过分享给好友来增加游戏的中奖概率。<br>2、集够一定的成功助力人数再点击“开始抽奖”进行抽奖。<br>3、转盘转动停止后，指针会停在装盘中的某一个空格。<br>4、中奖后会跳转进入奖品页面，未中奖可根据主办方所确定的规则进行再抽奖。<br>5、分享达到主办方所设置的成功助力人数会百分百中奖。<br>6、活动期间用户全程免费参与。</div>
+		<div class="rule_tab fire_res_rule_organizer">主办单位</div>
+		<div id="rule_organizer" class="layerId-6 defBgColor">
+			<p>本次活动主办单位为 <a href="javascript:;" class="organizer organizer_link"></a></p>
+			<!-- <p>主办单位在法律允许的范围内拥有活动解释权</p> -->
+		</div>
+		</div>
+	</div>
+	<div class="content" id="myprizeWrapper">
+		<div class="scroller">
+			<div class="myprize_list_cont"><div data-index="0" class="myprize_item s0"><p class="award_name">一等奖</p><p class="expired_time">价值100元礼品券</p><p class="exchange_statu">未领取</p><p></p></div>
+			</div>
+			<div class="myprize_empty">您暂时没奖品哦~</div>
+		</div>
+	</div>
+</div>
+
+<div class="mask fire_res fire_rank hide" style="display: none;">
+	<span class="close"></span>
+	<a href="javascript:;" class="rank_rank_link active"></a>
+	<a href="javascript:;" class="rank_prizerecord_link"></a>
+	<div class="fire_res_rank_bg"></div>
+	<div class="fire_res_rank_prizerecord_bg" style="display: none;"></div>
+	<div class="content" id="rankWrapper">
+		<div class="scroller">
+			<div class="rank_text" style="position: relative; left: -13rem; animation-name: RanklistFadeIn; animation-duration: 0.8s; animation-fill-mode: forwards;">
+			当前排名第<span class="ranking_text">0</span>名，战胜了<span class="percent_text">0</span>%的对手
+			</div>
+			<div id="rankSpecialWrapper" class="rank_special">
+				<div class="rank_firstPlace">
+					<div class="headerimg"><img src="./icon_1.png"></div>
+					<div class="jiangtai" style="animation-name: firstRaise; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-fill-mode: forwards; margin-bottom: -7rem; animation-delay: 0.3s;">
+						<div class="personName" style="animation-name: firstRaise; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-fill-mode: forwards; margin-bottom: -7rem; animation-delay: 0.3s;"></div>
+						<div class="personScore" style="animation-name: firstRaise; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-fill-mode: forwards; margin-bottom: -7rem; animation-delay: 0.3s;"></div>
+						<div class="jiangpai" style="animation-name: firstRaise; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-fill-mode: forwards; margin-bottom: -7rem; animation-delay: 0.3s;"></div>
+					</div>
+				</div>
+				<div class="rank_secondPlace">
+					<div class="headerimg"><img src="./icon_1.png"></div>
+					<div class="jiangtai" style="animation-name: firstRaise; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-fill-mode: forwards; margin-bottom: -7rem; animation-delay: 0.6s;">
+						<div class="personName" style="animation-name: firstRaise; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-fill-mode: forwards; margin-bottom: -7rem; animation-delay: 0.6s;"></div>
+						<div class="personScore" style="animation-name: firstRaise; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-fill-mode: forwards; margin-bottom: -7rem; animation-delay: 0.6s;"></div>
+						<div class="jiangpai" style="animation-name: firstRaise; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-fill-mode: forwards; margin-bottom: -7rem; animation-delay: 0.6s;"></div>
+					</div>
+				</div>
+				<div class="rank_thirdPlace">
+					<div class="headerimg"><img src="./icon_1.png"></div>
+					<div class="jiangtai" style="animation-name: firstRaise; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-fill-mode: forwards; margin-bottom: -7rem; animation-delay: 0.9s;">
+						<div class="personName" style="animation-name: firstRaise; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-fill-mode: forwards; margin-bottom: -7rem; animation-delay: 0.9s;"></div>
+						<div class="personScore" style="animation-name: firstRaise; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-fill-mode: forwards; margin-bottom: -7rem; animation-delay: 0.9s;"></div>
+						<div class="jiangpai" style="animation-name: firstRaise; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-fill-mode: forwards; margin-bottom: -7rem; animation-delay: 0.9s;"></div>
+					</div>
+				</div>
+				<div class="dizuo" style="position: relative; left: -12rem; animation-name: RanklistFadeIn; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-delay: 0s; animation-fill-mode: forwards;">
+					<div class="jiangzuo"></div>
+				</div>
+			</div>
+			<div id="rankTableWrapper" class="rank_table">
+				<div class="scroller">
+					<table cellspacing="0">
+						<thead>
+							<tr class="header">
+								<th style="position: relative; left: -12rem; animation-name: RanklistFadeIn; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-delay: 1.2s; animation-fill-mode: forwards;">排名</th>
+								<th style="position: relative; left: -12rem; animation-name: RanklistFadeIn; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-delay: 1.2s; animation-fill-mode: forwards;">小伙伴</th>
+								<th style="position: relative; left: -12rem; animation-name: RanklistFadeIn; animation-duration: 0.8s; animation-timing-function: ease-in-out; animation-delay: 1.2s; animation-fill-mode: forwards;">成绩</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<p class="ranklist_empty">没有更多排名数据了~</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content" id="prizeRecordWrapper">
+		<div class="scroller">
+			<!--  
+			<div class="prize_award_tab">一等奖</div>
+			<div class="award_record_list">wfwe、fewfe</div>
+			<div class="prize_award_tab">一等奖</div>
+			<div class="award_record_list">wfwe、fewfe</div>
+			-->
+			<div id="prizeListTableWrapper" class="prizelist_table">
+				<div class="scroller">
+					<div class=""></div>
+					<table cellspacing="0">
+						<thead>
+							<tr class="header">
+								<th>头像</th>
+								<th>用户昵称</th>
+								<th>奖品</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<p class="prizelist_empty">没有更多中奖数据了~</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 钱戏套餐已过期提示 -->
+<div class="qx-modal qxFansModal">
+	<div class="modal-dialog">
+		<div class="modal-header textRight">
+			<div style="height: 1.275rem;padding: 0.237rem 0;display: inline-block;float: left;">
+				<span class="logo-grey"></span>
+			</div>
+			<!-- <span class="icon_close"></span> -->
+		</div>
+		<div class="modal-body" style="padding-top: .3rem">
+			<p class="text-default">该活动的账号已到期，现活动已暂停，需要联系主办方进行处理，方可继续该活动</p>
+		</div>
+		<div class="modal-footer textCenter">
+			<a class="qxBtn qxBtn-blue" href="tel:">联系主办方</a>
+		</div>
+	</div>
+</div>
+<div class="qx-modal qxShoperModal">
+	<div class="modal-dialog">
+		<div class="modal-header textRight">
+			<div style="height: 1.275rem;padding: 0.237rem 0;display: inline-block;float: left;">
+				<span class="logo-grey"></span>
+			</div>
+			<!-- <span class="icon_close"></span> -->
+		</div>
+		<div class="modal-body">
+			<p style="color: #5185EB;font-size: .9rem;padding: .3rem 0;">亲爱的账号：</p>
+			<p class="text-default">您的账号已到期，该活动已暂停运营，活动充值后方可继续该活动。快去充值！继续享受畅快活动。</p>
+		</div>
+		<div class="modal-footer textCenter">
+			<a class="qxBtn qxBtn-red" href="http://m.qianxi.weijuju.com/mobile/wxpay/qian_recharge.jsp">马上充值</a>
+		</div>
+	</div>
+</div>
+
+<!-- 钱戏演示活动版权信息 -->
+<div class="qx-copyright-box hide">
+	<div class="qx-copyright-logo"></div>
+	<div class="qx-copyright-title">本活动由钱戏互动制作</div>
+	<a class="qx-copyright-btn" href="http://m.qianxi.weijuju.com/mobile/qianxi/gameList.jsp">
+		<span class="qx-copyright-btn-text">我也要创建</span>
+		<span class="qx-copyright-btn-ico"></span>
+	</a>
+</div>
+<!-- 钱戏游戏页面投诉按钮 -->
+<div class="qx-complain-box hide">
+	<a href="tel:075588308939">投诉</a>
+</div>
+<!-- 钱戏游戏页面分享二维码 -->
+<div class="qx-share-qrcode-box hide">
+	<div class="qxShareCloseIcon"></div>
+	<img id="qxShareQrcodeImg" class="qxShareQrcodeImg">
+	<canvas id="qxShareQrcodeCanvas" class="qxShareQrcodeCanvas"></canvas>
+	<div id="qxShareQrcodeDiv" style="display: none;"></div>
+</div>
+
+<!-- 参与前提交个人信息 -->
+<div class="mask fire_res fire_participate_userinfo hide" style="display: none;">
+	<div class="fire_res_userinfo_bg"></div>
+	<p class="p_tips_text">为了更好的联系您兑奖，请先填写您的联系电话再开始游戏</p>
+	<div class="input_cont phone_cont">
+		<input name="phone" id="phone" type="tel" placeholder="请填写您的手机号">
+	</div>
+	<div class="fire_btn_cont">
+	    <div class="fire_btn btn_save"></div>
+	</div>
+	<p class="p_tips_text_2">若因未填写或填写错误导致兑奖失败<br>主办方不承担相关法律责任</p>
+	</div>
+
+<!-- 领奖前提交个人信息 -->
+<div class="mask fire_res fire_award_userinfo hide" style="display: none;">
+	<div class="fire_res_userinfo_bg"></div>
+	<p class="p_tips_text">请填写联系电话方可领取奖品</p>
+	<div class="input_cont phone_cont">
+		<input name="phone" id="phone" type="tel" placeholder="请填写您的手机号">
+	</div>
+	<div class="input_cont validcode_cont">
+		<input name="validcode" id="validcode" type="text" placeholder="请填写图片中的文字">
+		<img class="valid_img" src="http://youyu.weijuju.com/admin/newgame/template/absolutelybigwheel.jsp?templateId=34&amp;skinId=1&amp;_t=201707281927">
+		<img class="valid_refresh" src="./valid_refresh.png">
+	</div>
+	<div class="fire_btn_cont">
+	    <div class="fire_btn btn_save"></div>
+	</div>
+</div>
+
+<!-- 奖品详情 -->
+<div class="mask fire_res fire_award_info hide" style="display: none;">
+	<span class="close"></span>
+	<div class="awardDetail">
+		<div class="award_detail_view_tip hide" style="display: block;">(当前页面仅供参考，以手机端显示内容为主)</div>
+		<div class="organizerName"></div>
+		<div class="awardName ellipsis" id="trophyNamePhoneTxt">价值100元礼品券</div>
+		<div class="awardSubTitle" id="subheadPhoneTxt"></div>
+		<div class="awardCodeTime" style="display: none"><em>兑奖时间</em>：<span class="codeBgTime" id="validityStartPhoneTxt">2017.07.28</span> - <span class="codeEndTime" id="validityStopPhoneTxt">2017.08.04</span></div>
+		<div class="awardDetailWarp"></div>
+	</div>
+	<div class="codeImgBox">
+		<div id="codeStatusBox" class="hide">
+			<div id="codeStatusBtn"></div>
+			<div id="codeStatusInfo">商家已将该兑奖码设置为作废<br>详情请联系商家</div>
+		</div>
+		<div id="codeDetailInfoBox">
+			<div class="codeImg-wrapper">
+				<img class="codeImg" src="./gfwx_1.jpg">
+					<span class="codeStatu"></span>
+			</div>
+			<div class="codeLine"><span id="codeName">兑奖码</span>：<span class="code">666666</span></div>
+			<div class="copyHint">(长按可复制兑奖码)</div>
+			<div class="codeOptInfo" id="operationTipPhoneTxt" style="word-wrap: break-word;">凭券联系现场工作人员兑奖</div>
+		</div>
+	</div>
+	<div>
+	<div style="height:0.4rem;"></div>
+		<div>
+            <div class="awardCusText awardDetailBtn"><span class="text">兑奖券详情</span><span class="awardDeailIcon"></span></div>
+            <div id="awardCusTextInfo" class="awardDetailText">
+            	<div class="ticketInfo">
+			        <div class="itemList clear-fix">
+			            <div class="title">兑奖时间</div>
+			            <div class="box">
+			                <span class="codeBgTime" id="validityStartPhoneTxt1">2017.07.28</span>-<span class="codeEndTime" id="validityStopPhoneTxt1">2017.08.04</span>
+			            </div>
+			        </div>
+			        <div class="itemList addressLine clear-fix">
+			            <div class="title titleAdress">兑奖地址</div>
+			            <div class="box">
+			                <div class="address" style="word-wrap: break-word;" id="storeAddressPhoneTxt">请填写您的兑奖地址或者门店地址</div>
+			            </div>
+			        </div>
+			        <div class="itemList clear-fix">
+			            <div class="title">客服电话</div>
+			            <div class="box">
+			                <a class="tel" id="serviceTelPhoneTxt"></a>
+			            </div>
+			        </div>
+			        <div class="itemList clear-fix">
+			            <div class="title titleNotice">兑奖须知</div>
+			            <div class="box">
+			                <div class="notice" style="word-wrap: break-word;" id="descriptionPhoneTxt"></div>
+			            </div>
+			        </div>
+			    </div>
+            </div>
+            <a id="awardCusBtnInfo" href="javascript:;" style="text-decoration:none;display: none;"><div class="awardCusBtn awardDetailBtn defBgColor" style="border-top:none;"><span class="text">自定义按钮<em>（未开启）</em></span><span class="awardDeailIcon"></span></div></a>
+			<a id="jumpBtn" href="javascript:;" style="display:none;">
+				<div class="awardCusBtn awardDetailBtn defBgColor" style="border-top:none;"><span class="text">企业官网</span><span class="awardDeailIcon"></span></div>
+			</a>
+		</div>
+	<div style="height:2.75rem;"></div>
+		<div class="awardCollection" style="display: none;">
+			<div id="awardCollectionBtn" ontouchend="window.game.favorite();">收藏兑奖券</div>
+		</div>
+		<div class="awardVerifyPwd">
+					<div id="awardVerifyPwdBtn">密码核销</div>
+				</div>
+			</div>
+</div>
+<!-- 定制处理 -->
+<script type="text/javascript">
+$(function(){
+	if(typeof(activityJson) != "undefined" && activityJson.unionId==405605){
+		$(".codeImg-wrapper").remove();
+		$(".awardVerifyPwd").remove();
+		$(".codeImgBox .codeLine").css({"font-size":"1rem","line-height":"2rem"});
+	}
+});
+</script>
+
+<!-- 红包奖品中奖列表 -->
+<div class="mask fire_res hbres hide" style="display: none;">
+	<div class="hbTop"></div>
+	<div style="top: 4rem;left: 50%;margin-left: -10.1%;width: 21%;border-radius: 100%;">
+		<img style="width:100%;border-radius: 100%;" class="topheader header" src="http://youyu.weijuju.com/admin/newgame/template/absolutelybigwheel.jsp?templateId=34&amp;skinId=1&amp;_t=201707281927">
+	</div>
+	<p style="width: 74%;top: 30%;margin-left: 13%;line-height: 1rem;color: black;font-size: 0.9rem;">获得<span class="wxname">XXX</span>的现金红包</p>
+	<p style="width: 74%;top: 38%;margin-left: 13%;line-height: 1.65rem;color: black;font-size: 0.7rem;"><span class="money" style="font-size: 3.4rem;">5.00</span>元</p>
+	<p style="width: 74%;top: 48%;margin-left: 13%;line-height: 1.65rem;color: black;font-size: 0.7rem;color:#497ACE;">点击服务通知领取红包存入零钱，可直接提现</p>
+	<div style="top: 55%;left: 0;width: 100%;" class="hblist">
+		<p class="list_header"><span style="margin-left:0.7rem;">已发放<span class="sendTotal">0</span>个红包（只显示最近30个）</span></p>
+	 </div>
+</div>
+
+<!-- 红包奖品详情 -->
+<div class="mask fire_res fire_hbres hide" style="display: none;">
+	<span class="close"></span>
+	<div style="background-color: #fff;">
+		<div class="hbTop"></div>
+		<div class="header_cont">
+			<img style="width:100%;border-radius: 100%;" class="topheader header" src="http://youyu.weijuju.com/admin/newgame/template/absolutelybigwheel.jsp?templateId=34&amp;skinId=1&amp;_t=201707281927">
+		</div>
+		<p class="p_text_1">获得<span class="wxname">XXX</span>的现金红包</p>
+		<p class="p_text_2"><span class="money" style="font-size: 3.4rem;">5.00</span>元</p>
+		<p class="p_text_3 codeOptInfo">点击服务通知领取红包存入零钱，可直接提现</p>
+	</div>
+	<div>
+		<div style="height:0.4rem;"></div>
+		<div>
+            <div class="awardCusText awardDetailBtn"><span class="text">详情</span><span class="awardDeailIcon"></span></div>
+            <div id="awardCusTextInfo" class="awardDetailText hide">
+            	<div class="ticketInfo">
+			        <div class="itemList clear-fix">
+			            <div class="title">客服电话</div>
+			            <div class="box">
+			                <div class="tel">13588888888</div>
+			            </div>
+			        </div>
+			        <div class="itemList clear-fix">
+			            <div class="title titleNotice">兑奖须知</div>
+			            <div class="box">
+			                <div class="notice">XXXXXX</div>
+			            </div>
+			        </div>
+			    </div>
+            </div>
+            <a id="awardCusBtnInfo" href="javascript:;" style="text-decoration:none;display: none;"><div class="awardCusBtn awardDetailBtn defBgColor" style="border-top:none;"><span class="text">自定义按钮<em>（未开启）</em></span><span class="awardDeailIcon"></span></div></a>
+		</div>
+	</div>
+</div>
+
+<!-- 抽奖页面 -->
+<div class="mask fire_res fire_lotto hide" style="display: none;">
+	<div class="fire_lotto_page help_page_style" style="display: block;">
+		<div class="help_page_cont">
+			<div class="lotto_banner_bg" id="lotto_banner_bg"></div>
+			<div class="lotto_logo_bg" id="lotto_logo_bg"></div>
+			<div class="lotting_text_cont">
+				<div class="lotting_text">正在开奖</div>
+			</div>
+			<div class="loader_lotto"></div>
+		</div>
+	</div>
+</div>
+
+ 
+
+<!-- 奖品核销前验证个人信息 -->
+<div class="mask fire_res fire_award_verify hide" style="display: none;">
+	<div class="fire_res_verify_bg"></div>
+	<p class="p_award_name">100元优惠券</p>
+	<p class="p_tips_text">为了核实身份与方便奖品派送，<br>需填写以下信息</p>
+	<div class="userinfo_form_cont">
+		<div>
+			<div class="input_cont username_cont">
+				<input name="username" id="username" type="text" placeholder="请输入领奖人姓名">
+			</div>
+			<div class="input_cont phone_cont">
+				<input name="phone" id="phone" type="tel" placeholder="请输入手机号码">
+			</div>
+			<div class="input_cont address_cont">
+				<input name="address" id="address" type="text" placeholder="请输入领奖地址">
+				</div>
+			<div class="input_cont expiry-area" style="display: none;">
+				<input name="expirydetail" data-fieldname="扩展项" type="text" placeholder="请输入扩展项">
+			</div>
+			<div class="input_cont expiry-area" style="display: none;">
+				<input name="expirydetail" data-fieldname="扩展项" type="text" placeholder="请输入扩展项">
+			</div>
+		</div>
+		<div class="input_cont validcode_cont">
+			<input name="validcode" id="validcode" type="text" placeholder="请输入验证码">
+			<img class="valid_img" src="http://youyu.weijuju.com/admin/newgame/template/absolutelybigwheel.jsp?templateId=34&amp;skinId=1&amp;_t=201707281927">
+		</div>
+		<div class="btn_save">验证</div>
+	</div>
+</div>
+
+<!-- 奖品核销前验证手机号码（发送语音验证码） -->
+<div class="mask fire_res fire_award_phone_verify hide" style="display: none;">
+	<div class="fire_res_verify_phone_bg"></div>
+	<p class="p_tips_text">请先验证你的手机号</p>
+	<div class="input_cont phone_cont">
+		<span class="phone_label">手机</span>
+		<input name="phone" id="phone" type="tel" placeholder="请填写您的手机号">
+	</div>
+	<div class="input_cont validcode_cont">
+		<input name="validcode" id="validcode" type="text" placeholder="请填写验证码">
+		<img class="valid_img" src="http://youyu.weijuju.com/admin/newgame/template/absolutelybigwheel.jsp?templateId=34&amp;skinId=1&amp;_t=201707281927">
+	</div>
+	<p class="yuyin_tips">验证码将会以语音电话形式发送，请注意接听来电</p>
+	<div class="btn_next">下一步</div>
+	
+	<div class="phone_display">
+		<div class="phone_number">
+			<span>1</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+		</div>
+		<div class="resend_btn">重现获取</div>
+	</div>
+	<div class="code_input_area">
+		<ul>
+			<li>
+				<input class="code_input" type="tel" maxlength="1">
+			</li>
+			<li>
+				<input class="code_input" type="tel" maxlength="1">
+			</li>
+			<li>
+				<input class="code_input" type="tel" maxlength="1">
+			</li>
+			<li>
+				<input class="code_input" type="tel" maxlength="1">
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!-- 奖品核销密码输入框 -->
+<div class="mask fire_res fire_verify_pwd hide" style="display: none;">
+	<div class="fire_res_verify_pwd_bg"></div>
+	<span class="close">×</span>
+	<p class="p_tips_text">请输入核销密码</p>
+	<div class="input_cont phone_cont">
+		<input name="verfiy_pwd" id="verfiy_pwd" type="password">
+	</div>
+	<div class="btn_save">确定</div>
+	<p class="p_tips_text_2">核销功能仅供商家兑奖，请勿擅自使用</p>
+</div>
+
+<!-- 奖品密码核销结果输入框 -->
+<div class="mask fire_res fire_verify_pwd_result hide" style="display: none;">
+	<div class="fire_res_verify_pwd_result_bg"></div>
+	<span class="close">×</span>
+	<p class="p_tips_text">核销成功</p>
+	<div class="btn_save">确定</div>
+</div>
+
+<!-- 游戏参与人数超过限制 -->
+<div class="mask fire_res fire_participate_overlimit hide" style="display: none;">
+	<div class="fire_res_overlimit_bg"></div>
+	<div class="fire_btn_cont">
+	    <div class="fire_btn subscribe_link"></div>
+	</div>
+</div>
+
+<!-- 奖品核销前提示关注商家公众号 -->
+<div class="mask fire_res fire_award_attention_verify hide" style="display: none;">
+	<div class="fire_res_verify_attention_bg"></div>
+	<p class="p_tips_text">请先关注【<span class="wxname">xxx</span>】<br>才能领取红包哦</p>
+	<div class="btn_attention subscribe_link">马上去关注</div>
+</div>
+
+<div class="acitivity_isOver hide">
+	<div class="btn hide"></div>
+</div>
+<div class="activity_isOver_awards hide">
+	<div class="btn"></div>
+	<div class="btn hide"></div>
+</div>
+	
+
+
+<div class="mask activity_unStart hide" style="display: none;">
+	<div class="timeRemain">
+		<!-- <div class="close"></div> -->
+		<p class="top">活动还没开始呢~</p>
+		<p class="timeHint">距离活动开始时间还有：</p>
+		<div class="time">
+			<span class="bottomLayer"><span class="timeSplit day1">0</span></span>
+			<span class="bottomLayer"><span class="timeSplit day2">0</span></span><span>天</span>
+			<span class="bottomLayer"><span class="timeSplit hour1">0</span></span>
+			<span class="bottomLayer"><span class="timeSplit hour2">0</span></span><span>时</span>
+			<span class="bottomLayer"><span class="timeSplit min1">0</span></span>
+			<span class="bottomLayer"><span class="timeSplit min2">0</span></span><span>分</span>
+			<span class="bottomLayer"><span class="timeSplit sec1">0</span></span>
+			<span class="bottomLayer"><span class="timeSplit sec2">0</span></span><span>秒</span>
+		</div>
+		<p class="bottom">敬请期待哦！</p>
+	</div>
+	<div class="statement"></div>
+	<div class="focus"></div>
+</div>
+
+<div class="mask dialPhone hide" style="display: none;">
+	<div class="phoneBox">
+		<img class="close" src="./phoneBoxClose.png" alt="">
+		<p>拨打电话：<span class="phoneNumber"></span></p>
+		<a href="javascript:;" class="close">取消</a>
+		<a href="javascript:;">拨打</a>
+	</div>
+</div>
+<script type="text/javascript">
+var currentWwwPath=window.document.location.href;  
+//获取主机地址之后的目录，如：/supermarket/user.do(注意：不包括?后面传递的参数)
+var pathName=window.document.location.pathname;  
+//获取/uimcardprj中/的位置(也就是主机地址后面的/)，这里是：21
+var position=currentWwwPath.indexOf(pathName);  
+var serverpath = parent.serverroot;
+//获取主机地址，如：http://localhost:8080
+var localhostPath=currentWwwPath.substring(0,position); 
+var _resRoot = localhostPath+serverpath+"/"+ "content/bigwheel/back/files";
+var _qiniuResRoot = localhostPath+"/";
+var params = $.deparam(window.location.search.substring(1));
+var _manage = true;
+var _templateId = 34;
+var m_debug = false; 
+var _union_id = 424157;
+window.skinId = "1";
+var gamePageJson = null;
+var activityJson = {"activityType":0,"awardSendType":0,"awardTips":"","awardUrl":"","bgPic":"","createTime":null,"customCopyrightPic":"","deleted":false,"editUrl":"","end":null,"extendOperation":"","extraData":"","flowValidate":false,"globalProbability":0,"hideOrganizerLogo":false,"hideParticipant":false,"hongbaoValidate":false,"id":0,"mobileUrl":"","organizer":"","organizerLink":"","organizerLogo":"","organizers":"","pageId":0,"pageTemplateId":0,"participantVirtualAddCount":0,"path":"","platformId":0,"privilegeType":0,"probabilityType":0,"qrcodeUrl":"","ruleTips":"","securityLevel":0,"shareQrcodeBg":"","showCopyright":false,"showSupport":false,"skinId":0,"snValidate":false,"source":0,"start":null,"statu":0,"title":"","trophyValidator":false,"unionId":0,"useDefaultCopyright":false,"useDefaultQrcodeBg":false,"viewUrl":"","withHelp":false,"wuid":0,"wxlink":"","wxname":""};
+var qrcodePageJson = {};
+function removeBgFrame(){
+	HdGame.removeMoveFrame('homeBgBox');
+	HdGame.removeMoveFrame('gameBgBox');
+}
+GameImgReady = (function() {
+	var d = [],
+		c = null,
+		b = function() {
+			var e = 0;
+			for (; e < d.length; e++) {
+				d[e].end ? d.splice(e--, 1) : d[e]()
+			}!d.length && a()
+		},
+		a = function() {
+			clearInterval(c);
+			c = null
+		};
+	return function(f, k, m, j) {
+		var l, g, n, i, e, h = new Image();
+		h.src = f;
+		if (h.complete) {
+			k.call(h);
+			m && m.call(h);
+			return
+		}
+		g = h.width;
+		n = h.height;
+		h.onerror = function() {
+			j && j.call(h);
+			l.end = true;
+			h = h.onload = h.onerror = null
+		};
+		l = function() {
+			i = h.width;
+			e = h.height;
+			if (i !== g || e !== n || i * e > 1024) {
+				k.call(h);
+				l.end = true
+			}
+		};
+		l();
+		h.onload = function() {
+			!l.end && l();
+			m && m.call(h);
+			h = h.onload = h.onerror = null
+		};
+		if (!l.end) {
+			d.push(l);
+			if (c === null) {
+				c = setInterval(b, 40)
+			}
+		}
+	}
+})();
+
+// 初始化编辑列表
+var editPageCount = window["editPageCount"] || 1;
+for (var EditPageCount_i=0; EditPageCount_i<editPageCount; EditPageCount_i++) {
+	var _j = EditPageCount_i==0? "": EditPageCount_i;
+	window["Edit"+ _j] = {origin:[]};
+}
+
+// 序列化二维码分享页面默认数据
+var defaultQrcodePageData = {"headerImg":{"position":{"left":22,"top":223},"size":{"width":40,"height":40},"path":"*_resRoot*/headimg.png","showState":"1"},"codeImg":{"position":{"left":48,"top":298},"size":{"width":112,"height":112},"path":"*_resRoot*/qcode-youyu_2.png"},"bgImg":{"position":{"left":0,"top":0},"size":{"width":320,"height":479},"path":"*_resRoot*/dbadf863-9786-441d-bc0b-50736d82bbb0.jpg","showState":"1"},"posterText":[{"position":{"left":"142","top":"220"},"font":{"size":"13","color":"000000"},"size":{"width":52,"height":17},"content":"正在参与"}],"representText":{"position":{"left":"72","top":"220"},"font":{"size":"13","color":"000000"},"size":{"width":90,"height":16},"content":"[nickname]","showState":"1"},"titleText":{"position":{"left":"196","top":"220"},"font":{"size":"13","color":"000000"},"size":{"width":120,"height":16},"content":"[title]","showState":"1"}};
+var qrcodePageEditData = defaultQrcodePageData;
+$(function(){
+   window.game.init({
+		"aid":params.aid,
+		"activityid":params.activityid,
+		"wuid":params.wuid,
+		"platformId":"0",
+		"wjjPageDomain":"http://www.weijuju.com/"
+   });
+   HdGame.initModuleLayer('#actName',1,"actName");
+   HdGame.initModuleLayer('#resule-status-minscore',2,"minscore",null,false);
+   HdGame.initModuleLayer('#resule-status-daylimit',2,"daylimit",null,false);
+   HdGame.initModuleLayer('#resule-status-actlimit',2,"actlimit",null,false);
+   HdGame.initModuleLayer('#rule_time',2,"acttime",null,false);
+   HdGame.initModuleLayer('#rule_content_text',2,"ruletext",null,false);
+   HdGame.initModuleLayer('#rule_organizer',2,"organizer",null,false);
+   HdGame.initModuleLayer('#rule_award',2,"actaward",null,false);
+   //HdGame.initModuleLayer('#help_qrcode_img',2,"qrcodebg",null,true);
+/*    HdGame.initModuleLayer('.subscribe_link',2,"subscribe",null,true); */
+   HdGame.initModuleLayer('#start_bottom',2,"copyright",null,false);
+   HdGame.initModuleLayer('.join_line',2,"participant",null,false);
+   
+   // 加载页面banner
+   HdGame.initModuleLayer('#loading_banner_bg',2,"loadPage_group",[
+       {
+           from   : "#loading_banner_bg",
+           title  : '广告图',
+           limit  : '200k',
+           noForFree : true,
+           defSrc : _resRoot+'/lot/opening_bg2.jpg'
+       }
+   ]);
+   // 加载页面底部LOGO
+   HdGame.initModuleLayer('#yy_logo_bg',2,"loadPage_group",[
+       {
+           from   : "#yy_logo_bg",
+           title  : '底部LOGO',
+           limit  : '100k',
+           noForFree : true,
+           defSrc :  _resRoot+'/lot/opening_logo.png'
+       }
+   ]);
+   
+    // 企业logo
+    if (gamePageJson && gamePageJson.organizerLogo) {
+    	var organizerLogoPos = $.parseJSON(gamePageJson.organizerLogo.pos);
+        var organizerLogoSize = $.parseJSON(gamePageJson.organizerLogo.size);
+        $("#organizer_logo").css({
+    		"left":organizerLogoPos.left || '0.75rem',
+    		"top":organizerLogoPos.top || '3.5rem',
+    		"width":organizerLogoSize.width || '2rem',
+    		"height":organizerLogoSize.height || '2rem'
+    	}).attr("src",window.game.replaceResRoot(gamePageJson.organizerLogo.path));
+    }
+ 	// 加载页面开启可点击提示
+    if (gamePageJson && gamePageJson.openClickPic) {
+    	var openClickPicPos = $.parseJSON(gamePageJson.openClickPic.pos);
+        var openClickPicSize = $.parseJSON(gamePageJson.openClickPic.size);
+        $("#openClick_pic").css({
+    		"left":openClickPicPos.left || '-2.5rem',
+    		"top":openClickPicPos.top || '6rem',
+    		"width":openClickPicSize.width || '5rem',
+    		"height":openClickPicSize.height || '2rem'
+    	}).attr("src",window.game.replaceResRoot(gamePageJson.openClickPic.path));
+    }
+    
+    var hbp =  _resRoot+'/lot/start_bg.jpg';
+	var gbp =  _resRoot+'/lot/bg.jpg';
+	// 百分百大转盘
+	
+    if(params.aid){
+    	// 获取默认的编辑列表
+    	for (var _i=0; _i<editPageCount; _i++) {
+    		var _j = _i==0? "": _i;
+    		var oldOrigin = window["Edit"+ _j]["originDef"];
+    		var newOrigin = [];
+    		var finalOrigin = [];
+    		
+    		if (!!gamePageJson['propList'+_j]) {
+    			newOrigin = $.parseJSON(HdGame.replaceResRoot(gamePageJson['propList'+_j]));
+    		}
+    		// 保存对象里没有的数据就拿默认的（ps:新增编辑对象时，老活动没有，则不会初始化也无法保存活动。）
+    		if (oldOrigin.length > newOrigin.length) {
+    			for (var o_i=0; o_i<oldOrigin.length; o_i++) {
+    				for (var n_i=0; n_i<newOrigin.length; n_i++) {
+    					if (oldOrigin[o_i].name == newOrigin[n_i].name) {
+    						finalOrigin.push(newOrigin[n_i]);
+    						break;
+    					} else if (n_i == newOrigin.length-1) {
+    						finalOrigin.push(oldOrigin[o_i]);
+    					}
+        			}
+    			}
+    		} else {
+    			finalOrigin = newOrigin;
+    		}
+    		window["Edit"+ _j]["origin"] = finalOrigin;
+    	}
+     	
+     	// 获取活动的二维码分享页面编辑数据
+     	if(activityJson.qrcodeUrl){
+	     	qrcodePageEditData = qrcodePageJson;
+     	}
+     	if(gamePageJson.hbp){
+	     	hbp = HdGame.replaceResRoot(gamePageJson.hbp);
+     	}
+     	gbp = HdGame.replaceResRoot(gamePageJson.gbp);
+     	var titlePos = $.parseJSON(gamePageJson.titleImg.pos);
+     	var titleSize = $.parseJSON(gamePageJson.titleImg.size);
+     	var startBtnPos = $.parseJSON(gamePageJson.startBtn.pos);
+     	var startBtnSize = $.parseJSON(gamePageJson.startBtn.size);
+     	if (gamePageJson.ruleBtn) {
+	     	var ruleBtnPos = $.parseJSON(gamePageJson.ruleBtn.pos);
+	     	var ruleBtnSize = $.parseJSON(gamePageJson.ruleBtn.size);
+	     	 $("#rule_tag_img").attr("src",HdGame.replaceResRoot(gamePageJson.ruleBtn.path));
+	       /*  $("#rule_tag_img").css({
+	            "width":ruleBtnSize.width,
+	            "height":ruleBtnSize.height,
+	            "left":ruleBtnPos.left,
+	            "top":ruleBtnPos.top
+	        }).attr("src",HdGame.replaceResRoot(gamePageJson.ruleBtn.path)); */
+	    }
+     	$("#titleImg").css({
+     		"width":titleSize.width,
+     		"height":titleSize.height,
+     		"left":titlePos.left,
+     		"top":titlePos.top
+     	}).attr("src",HdGame.replaceResRoot(gamePageJson.titleImg.path));
+     	$("#startBtnImg").css({
+     		"width":startBtnSize.width,
+     		"height":startBtnSize.height,
+     		"left":startBtnPos.left,
+     		"top":startBtnPos.top
+     	}).attr("src",HdGame.replaceResRoot(gamePageJson.startBtn.path));
+
+     	//回写弹出框分享按钮图片路径
+     	//$(".fire_btn.share").attr("src",gamePageJson.shareBtn);
+     	if(gamePageJson.shareBtn){
+	     	window.parent.setJqSrc($(".fire_btn.share"),HdGame.replaceResRoot(gamePageJson.shareBtn));
+     	}
+     	// 回写弹出框去抽奖按钮图片路径
+     	if(gamePageJson.awardBtn){
+	     	window.parent.setJqSrc($(".link_lottery"),HdGame.replaceResRoot(gamePageJson.awardBtn));
+     	}
+     	// 回写弹出框挑战成功图片路径
+     	if(gamePageJson.fireResSuccess){
+	     	window.parent.setJqSrc($(".fire_res_success"),HdGame.replaceResRoot(gamePageJson.fireResSuccess));
+     	}
+     	// 回写弹出框挑战失败图片路径
+     	if(gamePageJson.fireResFail){
+	     	window.parent.setJqSrc($(".fire_res_fail"),HdGame.replaceResRoot(gamePageJson.fireResFail));
+     	}
+    	// 回写弹出框再玩一次按钮图片路径
+    	if(gamePageJson.replayBtn){
+	     	window.parent.setJqSrc($(".playagain_link"),HdGame.replaceResRoot(gamePageJson.replayBtn));
+    	}
+    	// 回写弹出框关注我们按钮图片路径
+    	if(gamePageJson.subscribeBtn){
+	     	window.parent.setJqSrc($(".subscribe_link"),HdGame.replaceResRoot(gamePageJson.subscribeBtn));
+    	}
+    	// 回写弹出框查看详情按钮图片路径
+    	if(gamePageJson.detailsBtn){
+	     	window.parent.setJqSrc($(".fire_success_detail"),HdGame.replaceResRoot(gamePageJson.detailsBtn));
+    	}
+    	console.log(gamePageJson)
+    }
+    // 确保titleImg和startBtnImg和organizer_logo图片加载完成后才初始化
+    (function(){
+    	function initTitleImg(){
+		    HdGame.initModuleLayer('#titleImg',-1,"",[
+		        {
+		            from   : "#titleImg",
+		            title  : '标题图片',
+		            limit  : '100k',
+		            defSrc :  _resRoot+'/lot/title.png'
+		        }
+		    ]);
+		    HdGame.moduleSlaveImgResize($('#titleImg'));
+		    HdGame.moduleDraggale('#titleImg',true);
+    	}
+    	function initStartBtnImg(){
+    	    HdGame.initModuleLayer('#startBtnImg',-1,"",[
+      	        {
+      	            from   : "#startBtnImg",
+      	            title  : '按钮图片',
+      	            limit  : '50k',
+      	            defSrc :  _resRoot+'/lot/btn_begin.png'
+      	        }
+      	    ]);
+      	    HdGame.moduleSlaveImgResize($('#startBtnImg'));
+      	    HdGame.moduleDraggale('#startBtnImg',true);
+    	}
+    	function initRuleBtnImg(){
+    	    HdGame.initModuleLayer('#rule_tag_img',-1,"",[
+      	        {
+      	            from   : "#rule_tag_img",
+      	            title  : '活动说明按钮图片',
+      	            limit  : '50k',
+      	            defSrc :  _resRoot+'/lot/btn_tag.png'
+      	        }
+      	    ]);
+      	    HdGame.moduleSlaveImgResize($('#startBtnImg'));
+      	    HdGame.moduleDraggale('#startBtnImg',true);
+    	}
+    	function initOrganizerLogo(){
+    		HdGame.initModuleLayer('#organizer_logo',2,"logo",[
+           	    {
+           	        from   : "#organizer_logo",
+           	        title  : "企业logo",
+           	        limit  : '100k',
+           	        defSrc :  _resRoot+'/lot/organizer_logo.jpg'
+           	    }
+           	]);
+           	HdGame.moduleSlaveImgResize($('#organizer_logo'),{width:'2rem',height:'2rem'});
+           	HdGame.moduleDraggale('#organizer_logo',true);
+    	}
+    	function initOpenClickPic(){
+    		HdGame.initModuleLayer('#openClick_pic',2,"openClick",[
+           	    {
+           	        from   : "#openClick_pic",
+           	        title  : "点击查看",
+           	        limit  : '100k',
+           	        defSrc :  _resRoot+'/lot/open_click_btn.png'
+           	    }
+           	]);
+           	HdGame.moduleSlaveImgResize($('#openClick_pic'),{width:'5rem',height:'2rem'});
+           	HdGame.moduleDraggale('#openClick_pic',true);
+    	}
+    	
+    	// 开始页面顶部标题图片
+    	if($("#titleImg").height() == 0){
+		    $("#titleImg").on("load",function(){
+		    	initTitleImg();
+		    })
+    	} else {
+    		initTitleImg();
+    	}
+    	// 开始按钮
+    	if($("#startBtnImg").height() == 0){
+		    $("#startBtnImg").on("load",function(){
+		    	initStartBtnImg();
+		    })
+    	} else {
+    		initStartBtnImg();
+    	}
+    	// 活动说明按钮
+    	if($("#rule_tag_img").height() == 0){
+		    $("#rule_tag_img").on("load",function(){
+		    	initRuleBtnImg();
+		    })
+    	} else {
+    		initRuleBtnImg();
+    	}
+    	// 企业LOGO
+    	if($("#organizer_logo").height() == 0){
+		    $("#organizer_logo").on("load",function(){
+		    	initOrganizerLogo();
+		    })
+    	} else {
+    		initOrganizerLogo();
+    	}
+    	// 加载页面开启可点击提示
+    	if($("#openClick_pic").height() == 0){
+		    $("#openClick_pic").on("load",function(){
+		    	initOpenClickPic();
+		    })
+    	} else {
+    		initOpenClickPic();
+    	}
+    })();
+	$("#homeBg").attr("src",hbp);
+	$("#gameBg").attr("src",gbp);
+	
+	// 初始化数据
+	for (var _i=0; _i<editPageCount; _i++) {
+		var _j = _i==0? "": _i;
+		
+		$.each(window["Edit"+ _j].originDef,function(i,item) {
+	        if(!window["Edit"+ _j].origin[i] || !window["Edit"+ _j].origin[i].path || !window["Edit"+ _j].origin[i].pos || !window["Edit"+ _j].origin[i].size){
+	            window["Edit"+ _j].origin[i] = item;
+	        } else {
+	        	// 游戏自定义编辑数据兼容处理
+	        	if($.isArray(item.path)){
+	        		for(var pathIndex = 0;pathIndex<item.path.length;pathIndex++){
+	        			if(!window["Edit"+ _j].origin[i].path[pathIndex]){
+	        				window["Edit"+ _j].origin[i].path[pathIndex] = item.path[pathIndex];
+	        			}
+	        		}
+	        	}
+	        }
+	    });
+	    HdGame.initEdit(window["Edit"+ _j]);
+	}
+	
+    (function(){
+        /* 音效编辑框特殊处理*/
+        /**
+        var soundEdit = '.start_page,.game_page';
+        parent.addEditBtn('编辑音效',soundEdit,function(){
+            parent.showEditByGame(-4,"",[]);
+            return false;
+        });
+        **/
+        
+        /* 背景编辑框特殊处理*/
+        var editPageList = "#ruleImg,.start_page,.game_page";
+        // 多背景活动特殊处理
+        if( _templateId == 13 || _templateId == 15 || _templateId == 16 || _templateId == 17 || _templateId == 19 || _templateId == 20 || _templateId == 22 || _templateId == 23 || _templateId == 24 || _templateId == 25 || _templateId == 37 || _templateId == 40 || _templateId == 42){
+        	editPageList = "#ruleImg,.start_page";
+        }
+     	// 隐藏背景编辑按钮-过滤首页
+        if (window["isHideDefaultEditBg"]) {
+        	editPageList = "#ruleImg,.start_page";
+        }
+        try{
+	        parent.addEditBtn('编辑背景',editPageList,function(){
+	            var imgArgs = [];
+	            var arg = {};
+	            if($('.home').is(':visible')){
+	                arg.from = '#homeBg';
+	                arg.defSrc =  _resRoot+'/lot/start_bg.jpg';
+	            }else if($('.gameBgBox').is(':visible')){
+	                arg.from = "#gameBg";
+	                arg.defSrc =  _resRoot+'/lot/bg.jpg';
+	                // 百分百大转盘
+	                if(_templateId==34){
+	                	arg.defSrc =  _resRoot+'/lot/bg.jpg';
+	                }
+	            }
+	            if(Edit && Edit.bgList){
+	                var obj,$from;
+	                for (var i = Edit.bgList.length - 1; i >= 0; i--){
+	                    obj = Edit.bgList[i];
+	                    $from = $(obj.from);
+	                    if($from.length > 0 && $from.eq(0).is(':visible')){
+	                        arg = obj;
+	                        break;
+	                    }
+	                }
+	            }
+	            arg.title = '背景图片';
+	            arg.size = '640px*1136px';
+	            arg.limit = '200k';
+	            imgArgs.push(arg);
+	            parent.showEditByGame(-1,"",imgArgs);
+	            return false;
+	        });
+        } catch(e){
+        	console.log(e);
+        }
+    })();
+    
+ 	// 初始化数据
+	for (var _i=0; _i<editPageCount; _i++) {
+		var _j = _i==0? "": _i;
+		window["Edit"+ _j] && window["Edit"+ _j].setAllEdit();
+	}
+	
+    // 还原图片，兼容其他页面的数据
+    if (!pubResizeDef) {
+    	pubResizeDef={             //图片恢复默认参数
+    	'organizer_logo': {width:'2rem',height:'2rem',top:'3.5rem',left:'0.75rem'},
+    	'openClick_pic': {width:'5rem',height:'2rem',top:'6rem',left:'-2.5rem'}
+    	};
+    } else {
+        pubResizeDef.organizer_logo = {width:'2rem',height:'2rem',top:'3.5rem',left:'0.75rem'};
+        pubResizeDef.openClick_pic = {width:'5rem',height:'2rem',top:'6rem',left:'-2.5rem'};
+    }
+    
+    // 还原图片，兼容其他页面的数据
+    if (pubResizeDef) {
+        pubResizeDef.qrcode_edit_headimg = {width:'40px',height:'40px'};
+        pubResizeDef.qrcode_edit_codeimg = {width:'112px',height:'112px'};
+    }
+   $(document).on('click','.recoverBtn',function(){
+       var wrapper = $(this).parent();
+       var _from = wrapper.attr('_from');
+       var info = pubResizeDef[_from];
+       if(!info){
+           return;
+       }
+       var slaveImg = wrapper.find('.slaveImg');
+       wrapper.find('.recoverBtn').hide();
+       slaveImg.attr('resize',0);
+       if(wrapper.attr('resize')){
+           wrapper.attr('resize',0);
+       }
+       wrapper.add(slaveImg).css({
+           'width' :info.width,
+           'height':info.height
+       });
+       if(info.left && info.top){
+           wrapper.add(slaveImg).css({
+               'left':info.left,
+               'top' :info.top
+           });
+       }
+       slaveImg.css('margin','auto');
+       var recoverCallBack = slaveImg.data('recoverCallBack');
+       recoverCallBack && recoverCallBack.call(slaveImg);
+   });
+   
+   
+    // 助力环节二维码分享图片自定义
+	// 解析json数据(初始化)
+	function initQrcodeEditPageData(jsonData){
+		var _data = jsonData || {};
+		// 容错处理
+		if(_data.codeImg && (_data.codeImg.size.height == 0 || _data.codeImg.size.width == 0)){
+			_data = defaultQrcodePageData;
+		}
+		if(_data.bgImg && (_data.bgImg.size.height == 0 || _data.bgImg.size.width == 0)){
+			_data = defaultQrcodePageData;
+		}
+		// 页面初始化
+		$("#qrcode_edit_page .j-text-poster").remove();
+		if(_data.bgImg){
+			// 背景
+			$("#qrcode_edit_bgimg").css({
+				left : _data.bgImg.position.left + "px",
+				top : _data.bgImg.position.top + "px",
+				width : _data.bgImg.size.width + "px",
+				height : _data.bgImg.size.height + "px"
+			}).attr("src", HdGame.replaceResRoot(_data.bgImg.path));
+			GameImgReady(HdGame.replaceResRoot(_data.bgImg.path),function(){
+				$("#qrcode_edit_bgimg").attr("data-rawwidth",this.width);
+				$("#qrcode_edit_bgimg").attr("data-rawheight",this.height);
+			});
+		}
+		
+		if(_data.headerImg){
+			// 头像
+			if(_data.headerImg.showState == "1"){
+				$("#qrcode_edit_headimg").show();	
+			}else{
+				$("#qrcode_edit_headimg").hide();
+			}
+			$("#qrcode_edit_headimg").css({
+				left : _data.headerImg.position.left + "px",
+				top : _data.headerImg.position.top + "px",
+				width : _data.headerImg.size.width + "px",
+				height : _data.headerImg.size.height + "px"
+			}).attr("src", HdGame.replaceResRoot(_data.headerImg.path)).data("type", _data.headerImg.showState);
+			
+		}
+		
+		if(_data.codeImg){
+			// 二维码
+			$("#qrcode_edit_codeimg").css({
+				left : _data.codeImg.position.left + "px",
+				top : _data.codeImg.position.top + "px",
+				width : _data.codeImg.size.width + "px",
+				height : _data.codeImg.size.height + "px"
+			}).attr("src", HdGame.replaceResRoot(_data.codeImg.path));
+		}
+		
+		if(_data.representText){
+			// 昵称
+			if(_data.representText.showState == "1"){
+				$("#qrcode_edit_represent_text").css("display", "inline-block");
+			}else{
+				$("#qrcode_edit_represent_text").css("display", "none");
+			}
+			$("#qrcode_edit_represent_text").css({
+				left : _data.representText.position.left + "px",
+				top : _data.representText.position.top + "px",
+				fontSize: _data.representText.font.size + "px",
+				color: "#" + _data.representText.font.color
+			});
+		}
+		
+		if(_data.titleText){
+			// 昵称
+			if(_data.titleText.showState == "1"){
+				$("#qrcode_edit_title_text").css("display", "inline-block");
+			}else{
+				$("#qrcode_edit_title_text").css("display", "none");
+			}
+			$("#qrcode_edit_title_text").css({
+				left : _data.titleText.position.left + "px",
+				top : _data.titleText.position.top + "px",
+				fontSize: _data.titleText.font.size + "px",
+				color: "#" + _data.titleText.font.color
+			});
+		}
+		
+		// 分享文本
+		if(_data.posterText && _data.posterText.length >0){
+			var _posterText = "";
+			var _posterItems = {};
+			for(var i = 0; i< _data.posterText.length; i++){
+				_posterItems = _data.posterText[i];
+				_posterText = '<div id="poster_text_'+ i +'" style="font-size: '+_posterItems.font.size+'px; color:#'+_posterItems.font.color+'; left:'+_posterItems.position.left+'px; top:'+_posterItems.position.top+'px;" class="text j-text-poster" data-text="新增分享文本" data-size="12px" data-color="rgb(0, 0, 0)">'+_posterItems.content+'</div>';
+				$("#qrcode_edit_page").append(_posterText);
+			}
+			
+			// 等待文本插入DOM中
+			setTimeout(function(){
+				$(".j-text-poster").each(function() {
+					var _id = "#" + $(this).attr("id");
+					HdGame.initModuleLayer(_id, 5, _id, null, true);
+					HdGame.moduleDraggale(_id, false);
+				});
+			}, 1000);
+			
+		}
+		
+		// 初始化设置编辑
+		HdGame.initModuleLayer('#qrcode_edit_represent_text', 5, "#qrcode_edit_represent_text", null, false);
+		HdGame.moduleDraggale('#qrcode_edit_represent_text', false);
+		HdGame.initModuleLayer('#qrcode_edit_title_text', 5, "#qrcode_edit_title_text", null, false);
+		HdGame.moduleDraggale('#qrcode_edit_title_text', false);
+	    
+		HdGame.initModuleLayer('#qrcode_edit_headimg',-2,"",[
+  	        {
+  	            from   : "#qrcode_edit_headimg",
+  	            title  : '微信头像',
+  	            limit  : '100k',
+  	            defSrc : HdGame.replaceResRoot(defaultQrcodePageData.headerImg.path)
+  	        }
+  	    ]);
+  	    HdGame.moduleSlaveImgResize($('#qrcode_edit_headimg'));
+  	    HdGame.moduleDraggale('#qrcode_edit_headimg',true);
+  	    
+		HdGame.initModuleLayer('#qrcode_edit_codeimg',-2,"",[
+  	        {
+  	            from   : "#qrcode_edit_codeimg",
+  	            title  : '二维码',
+  	            limit  : '200k',
+  	            defSrc : HdGame.replaceResRoot(defaultQrcodePageData.headerImg.path)
+  	        }
+  	    ]);
+  	    HdGame.moduleSlaveImgResize($('#qrcode_edit_codeimg'));
+  	    HdGame.moduleDraggale('#qrcode_edit_codeimg',true);
+  	    
+	    HdGame.initModuleLayer('#qrcode_edit_bgimg',-1,"",[
+  	        {
+  	            from   : "#qrcode_edit_bgimg",
+  	            title  : '背景图',
+  	            limit  : '500k',
+  	            defSrc : HdGame.replaceResRoot(defaultQrcodePageData.bgImg.path)
+  	        }
+  	    ]);
+		// 执行父页面初始化
+		//parent.initQrcodeBindPage();
+	}
+    // 初始化
+	initQrcodeEditPageData(qrcodePageEditData);
+	//新增分享文本
+	window.addPosterText = (function(){
+		var _newId = 0;
+		return function(){
+			var _posterItems={
+				position: {left: 120, top: 370},
+	            font: {size: 16, color: "000000"},
+	            content: "新增分享文本"	
+			}
+			var _posterText = '<div id="poster_add_'+ _newId +'" style="font-size: '+_posterItems.font.size+'px; color:#'+_posterItems.font.color+'; left:'+_posterItems.position.left+'px; top:'+_posterItems.position.top+'px;" class="text j-text-poster" data-text="新增分享文本" data-size="16px" data-color="rgb(0, 0, 0)">'+_posterItems.content+'</div>';
+			$("#qrcode_edit_page").append(_posterText);
+			
+			// 等待文本插入DOM中
+			setTimeout(function(){
+				var _id = '#poster_add_'+ _newId;
+				HdGame.initModuleLayer(_id, 5, _id, null, true);
+				HdGame.moduleDraggale(_id, false);
+				 _newId ++;
+			}, 200);
+		}
+	}());
+	
+	// 上传背景图片
+	window.triggerQrcodePageBgUpload = function(){
+		var _item = [];
+	   	var itemObject = {
+		     from: "#qrcode_edit_bgimg",
+	         title: '背景图',
+	         limit: '200k',
+	         defSrc: HdGame.replaceResRoot(defaultQrcodePageData.bgImg.path),
+	         img_src: HdGame.replaceResRoot(defaultQrcodePageData.bgImg.path),
+	         recover: false
+	   	};
+	   	
+	   	_item.push(itemObject);
+	   	
+   		// 调用
+		var editByGameFn = parent.showEditByGame;
+		if(!editByGameFn){
+			editByGameFn = showEditByGame;
+		}
+		editByGameFn.call(this, -1, "", _item);
+	};
+});
+</script>
+<!-- 游戏奖品助力页面 -->
+<div class="award_help_page help_page_style" style="display: none;">
+	<div class="award_help_cont help_page_cont" id="awardHelpCont">
+		<div class="help_daocao_left"></div>
+		<div class="help_daocao_right"></div>
+		<div class="help_dikuang"></div>
+		<div class="help_lihe"></div>
+		<div class="help_caidai"></div>
+		<p class="p_title">有娱互动营销</p>
+		<!-- <p class="p_awardname">100元优惠券</p> -->
+		<div class="award_statu_1">
+			<p class="p_time">1天30分钟5秒内</p>
+			<p class="p_text_1">需集齐<span class="unlockPrizeCount">10</span>个小伙伴 拆奖品</p>
+		</div>
+		<!-- 
+		<div class="award_statu_2">
+			<p class="p_text_3">你已获得</p>
+			<p class="p_text_4">为了方便您联系，请留下您的联系方式</p>
+			<div class="input_cont phone_cont">
+				<input name="phone" id="phone" type="tel" placeholder="请填写您的手机号" />
+			</div>
+			<div class="input_cont validcode_cont">
+				<input name="validcode" id="validcode" type="text" placeholder="请填写图片中的文字" />
+				<img class="valid_img" src="">
+			</div>
+		</div>
+		 -->
+		<div class="invite_btn">邀请伙伴</div>
+		<p class="p_text_2">还差<span class="unlockLeft">10</span>位</p>
+		<div style="position: relative;overflow: visible;top: -0.5rem;">
+			<div class="cyclo_l"></div>
+			<div class="cyclo_r"></div>
+		</div>
+		<div class="help_list_cont">
+			<p class="p_total">【已有<span class="unlockCount">5</span>位好友相助】</p>
+			<ul class="help_list">
+				<!--
+				<li>
+					<img class="headimg" src="http://wx.qlogo.cn/mmopen/SRtFY5jQzZibm0CTUsMQ69hYlLHJaGibpjgoBwg7EDTnKz9J53DEV6arzPc8xarzaRPU9icw0jia5ZcQHd9mJP4ZhnyWxgrYH3TJ/0" />
+					<p class="nickname">测试</p>
+					<p class="time">2016-09-09 12:2</p>
+					<p class="word">我来拆奖，友谊的小船不会翻</p>
+				</li>
+				 -->
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!-- 游戏通用封面页面 -->
+<div class="start_page home" style="display: none;">
+	<div class="rule_tag rule_btn">
+		<img id="rule_tag_img" class="block_img" alt="" src="./lot/btn_tag.png">
+	</div>
+	<div class="rank_btn" style="display: none;">
+		<img id="rank_tag_img" class="block_img" alt="" src="./lot/btn_rank.png">
+	</div>
+	<div id="homeBgBox"><img id="homeBg" src="./lot/start_bg.jpg" style="width:100%;height:auto"></div>
+	<a href="javascript:;" class="title_img titleDown imgContainer">
+		<div class="ui-wrapper ui-resizable-autohide" style="overflow: hidden; position: absolute; width: 320px; height: 117px; top: auto; left: auto; margin: 0px; float: none; z-index: 100; padding: 0px; cursor: move;" _from="titleImg"><img id="titleImg" class="block_img slaveImg layerId-12 defBgColor ui-resizable" alt="" src="./lot/title.png" style="margin: 0px; resize: none; position: static; zoom: 1; display: block; height: 117px; width: 320px;"><div class="ui-resizable-handle ui-resizable-n ui-resizable-imgTopTip" style="z-index: 9030; display: none;"><div class="imgResizeLine imgResizeLine-first" style="width: 156px;"></div><div class="imgResizeLine imgResizeLine-second" style="width: 156px;"></div></div><div class="ui-resizable-handle ui-resizable-e ui-resizable-imgRightTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-s ui-resizable-imgBottomTip" style="z-index: 9030; display: none;"><div class="imgResizeLine imgResizeLine-first" style="width: 156px;"></div><div class="imgResizeLine imgResizeLine-second" style="width: 156px;"></div></div><div class="ui-resizable-handle ui-resizable-w ui-resizable-imgLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-ne ui-resizable-imgTopRightTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-nw ui-resizable-imgTopLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-sw ui-resizable-imgBottomLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-resizable-imgBottomRightTip" style="z-index: 9030; display: none;"></div><a class="recoverBtn" href="javascript:;"></a></div>
+	</a>
+	<a href="javascript:;" class="start_btn imgContainer">
+		<img id="startBtnImg" class="block_img slaveImg startTada" alt="" src="./lot/btn_begin.png">
+	</a>
+	<div id="join_line_cont">
+		<div class="join_line layerId-9 defBgColor">已有<span class="join_num">***</span>人参加游戏</div>
+	</div>
+	<a id="start_bottom" class="start_bottom layerId-8 defBgColor" href="javascript:;">
+		<div class="start_logo imgContainer">
+		<style>
+			.start_logo {
+			    width: 7.38rem;
+			    margin: 0.2rem auto 0;
+			}
+			</style>
+			<img id="startLogoImg" class="block_img slaveImg" alt="" src="./lot/yylogo_2.png">
+		</div>
+	</a>
+	<!-- 企业logo -->
+	<div class="organizer-btn imgContainer hide">
+       	<div class="ui-wrapper ui-resizable-autohide" style="overflow: hidden; position: absolute; width: 40px; height: 40px; top: 70px; left: 15px; margin: auto; float: none; z-index: 100; padding: 0px; cursor: move;" _from="organizer_logo"><img id="organizer_logo" class="organizer-logo block_img slaveImg layerId-13 defBgColor ui-resizable" style="width: 40px; height: 40px; top: 3.5rem; left: 0.75rem; position: static; margin: 0px; resize: none; zoom: 1; display: block;" src="./organizer_logo.jpg"><div class="ui-resizable-handle ui-resizable-n ui-resizable-imgTopTip" style="z-index: 9030; display: none;"><div class="imgResizeLine imgResizeLine-first" style="width: 16px;"></div><div class="imgResizeLine imgResizeLine-second" style="width: 16px;"></div></div><div class="ui-resizable-handle ui-resizable-e ui-resizable-imgRightTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-s ui-resizable-imgBottomTip" style="z-index: 9030; display: none;"><div class="imgResizeLine imgResizeLine-first" style="width: 16px;"></div><div class="imgResizeLine imgResizeLine-second" style="width: 16px;"></div></div><div class="ui-resizable-handle ui-resizable-w ui-resizable-imgLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-ne ui-resizable-imgTopRightTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-nw ui-resizable-imgTopLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-sw ui-resizable-imgBottomLeftTip" style="z-index: 9030; display: none;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-resizable-imgBottomRightTip" style="z-index: 9030; display: none;"></div><a class="recoverBtn" href="javascript:;"></a></div>
+    </div>
+</div>
+<div class="game_page gameBox gameBgBox" style="display: block;">
+	<div id="gameBgBox">
+		<img id="gameBg" src="./lot/bg.jpg" style="width:100%;height:auto">
+	</div>
+	<div id="gameLayerBox" style="z-index: 11;">
+		<!-- <img class="editTarget-nbg"> -->
+		<div id="bigWheel" style="overflow:auto;">
+			<div id="superView">
+				<!-- 活动说明 -->
+				<img class="ruleBtn rule_rule_link" src="./lot/6.png" alt="活动说明按钮">
+		
+				<!-- 底部轮播中奖人信息 -->
+				<div id="shufflingNews" style="z-index:12;"> 
+					<div id="shufflingNewsList">
+						<div class="listBox">
+							<p><span class="sn_nickName">wenner</span>刚刚抽中了<span class="sn_prize">二等奖</span>，快来试试你的运气吧！</p>
+							<p><span class="sn_nickName">wenner</span>刚刚抽中了<span class="sn_prize">二等奖</span>，快来试试你的运气吧！</p>	
+						</div>				
+					</div>
+				</div>
+				
+				<!-- 游戏标题 -->
+				<div class="imgContainer absCenter"><img class="editTarget-title abs slaveImg layerId-15 defBgColor" style="z-index: 11; top: 0.5rem; left: 1rem; width: 14rem; height: 5.1rem;" src="./lot/bt.png" alt="标题"></div>
+		
+				<!-- 游戏发起者 -->
+				<div id="fqz_view" style="display: block;">
+					<p class="sv_tip">好友助力会增加得奖机会，<br>成功邀请<b class="need_num">9</b>人可以获得<b id="probability">100%</b>的中奖率</p>
+					<p class="sv_tip sv_tip2">你还有<b id="luck_num">0</b>次抽奖机会</p>
+					<!-- 大转盘 -->
+					<div id="smallView">
+						<img class="den" style="display: block;" src="./den1.png" alt="跑马灯">
+						<img class="den" src="./lot/den2.png" alt="跑马灯">
+						<img class="den" src="./lot/den3.png" alt="跑马灯">
+						<div id="wheelBox" class="prizeList6">
+							<ul id="prizeList">
+								<li class="prize6">
+									<h3 class="prize_name">价值100元礼品券</h3>
+									<img class="prize_img" src="./lot/p3.png" alt="奖品图片">
+								</li>
+								<li class="prize6">
+									<h3 class="prize_name">价值50元礼品券</h3>
+									<img class="prize_img" src="./lot/p3.png" alt="奖品图片">
+								</li>
+								<li class="prize6">
+									<h3 class="prize_name">价值10元礼品券</h3>
+									<img class="prize_img" src="./lot/p3.png" alt="奖品图片">
+								</li>
+								<li class="prize6">
+									<h3 class="prize_name">谢谢参与</h3>
+									<img class="prize_img" src="./lot/p8.png" alt="奖品图片">
+								</li>
+								<li class="prize6">
+									<h3 class="prize_name">谢谢参与</h3>
+									<img class="prize_img" src="./lot/p8.png" alt="奖品图片">
+								</li>
+								<li class="prize6">
+									<h3 class="prize_name">谢谢参与</h3>
+									<img class="prize_img" src="./lot/p8.png" alt="奖品图片">
+								</li>
+								<li class="prize6">
+									<h3 class="prize_name">谢谢参与</h3>
+									<img class="prize_img" src="./lot/p8.png" alt="奖品图片">
+								</li>
+								<li class="prize6">
+									<h3 class="prize_name">谢谢参与</h3>
+									<img class="prize_img" src="./lot/p8.png" alt="奖品图片">
+								</li>
+								<li class="prize6">
+									<h3 class="prize_name">谢谢参与</h3>
+									<img class="prize_img" src="./lot/p8.png" alt="奖品图片">
+								</li>
+								<li class="prize6">
+									<h3 class="prize_name">谢谢参与</h3>
+									<img class="prize_img" src="./lot/p8.png" alt="奖品图片">
+								</li>
+							</ul>
+						</div>
+						<div class="imgContainer absCenter"><img id="luckyBtn1" class="editTarget-btn abs slaveImg layerId-16 defBgColor" style="z-index: 11; display: block; top: -18rem; left: 6rem; width: 4rem; height: 4.3rem;" src="./btn1.png" alt="抽奖按钮"></div>
+						<img id="luckyBtn2" class="luckyBtn" src="./lot/btn2.png" alt="抽奖按钮">
+						<img id="luckyBtn3" class="luckyBtn" src="./lot/btn3.png" alt="抽奖按钮">
+		
+						<a id="rule_btn" class="gamebtn" href="javascript:void(0)"></a>
+						<a id="prize_btn" class="gamebtn" href="javascript:void(0)"></a>
+					</div>
+				</div>
+				
+				<!-- 助力者页面 -->
+				<div id="zlz_view" style="display: none;">
+					<ul class="zv_box">
+						<li>
+							<img id="zv_head" src="./lot/head.png" alt="头像">
+							<span id="zv_nickname">夜奔小娘子</span>
+						</li>
+						<li>谢谢你！</li>
+						<li>帮我增加了中奖的概率！</li>
+						<li>快来一起转转盘啊！越转越有奖哦~</li>
+					</ul>
+					<a class="focusonBtn" href="http://youyu.weijuju.com/admin/newgame/template/absolutelybigwheel.jsp?templateId=34&amp;skinId=1&amp;_t=201707281927#">我也要转转盘</a>
+				</div>
+		
+		
+				<!-- 排行榜 -->
+				<div id="rankBox">
+					<h2 class="rb_head">好友助力榜单</h2>
+					<p id="noMessage" style="display: none;">暂没好友助力~</p>
+					<ul id="friendList">
+						</ul>
+				</div>
+		
+				<!-- 提示蒙版 -->
+				<div id="tipBox" style="display:none;">
+					<div class="tb_box">
+						<img id="closeBtn" src="./out.png" alt="关闭按钮">
+						<p class="tb_text">邀请好友，<b class="need_num">9</b>人成功助力<br>就<b>100%</b>中奖哦！</p>
+						<a class="focusonBtn" href="http://youyu.weijuju.com/admin/newgame/template/absolutelybigwheel.jsp?templateId=34&amp;skinId=1&amp;_t=201707281927#">我也要转转盘</a>
+					</div>
+				</div>
+		
+			</div>
+					
+		</div>	
+	</div>
+</div>
+
+<script type="text/javascript">
+	//var path = "/v2"; // 圣诞皮肤
+	var path = ""; // 默认皮肤
+	Edit.originDef = [
+		{"name":"title","pos":{"left":"1rem","top":"0.5rem","disable":"disable"},
+			"size":{"width":"14rem","height":"5.1rem"},
+			"path": [serverpath+"/content/bigwheel/back/files/lot/bt.png","标题","100k","disable","disable"]
+		,"edit":"all"},
+		{"name":"btn","pos":{"left":"6rem","top":"-18rem","disable":"disable"},
+			"size":{"width":"4rem","height":"4.3rem"},
+			
+			"path":[[serverpath+"/content/bigwheel/back/files/lot/btn1.png","抽奖按钮1","100k","disable","disable"],[serverpath+"/content/bigwheel/back/files/lot/btn2.png","抽奖按钮2","100k","disable","disable"],[serverpath+"/content/bigwheel/back/files/lot/btn3.png","抽奖按钮3","100k","disable","disable"],[serverpath+"/content/bigwheel/back/files/lot/bj2.png","提示蒙版","100k","disable","disable"]]
+			
+		,"edit":"all"}
+	];
+     var pubResizeDef={             //图片恢复默认参数
+      'titleImg'     : {width:'14.35rem',height:'3.95rem'},
+      'startBtnImg'  : {width:'9.35rem',height:'11.05rem'}
+    }; 
+     $(function(){
+    	 // 获取父窗口元素
+    	 var parentWin = window.parent || window.top;
+    	 // 监听键盘事件
+    	 parentWin.jQuery("input[name='trophyName']").live("keyup",function(e){
+    		 var indexId = $(this).parents(".award_tab").attr("data-id");
+    		 $("#prizeList").find("li").eq(indexId).find(".prize_name").text($(this).val());
+    	 });
+    	 // 加和减
+    	 parentWin.jQuery(".del_award_tab_item,.add_award_tab_item").live("click",function(){
+    		var prize_length = parentWin.jQuery(".prize_tab_item").find(":visible").length;
+     		var ge_num = 8;
+     		if(prize_length>0 && prize_length<3){
+    			ge_num = 4;
+    			$("#wheelBox").removeClass().addClass("prizeList4");
+    			$("#prizeList").find("li").removeClass().addClass("prize4");
+    			$("#prizeList").css("background-image","url(./newgame/absolutelybigwheel/game"+path+"/4_03.png)");
+    		}else if(prize_length>2 && prize_length<5){
+    			ge_num = 6;
+    			$("#wheelBox").removeClass().addClass("prizeList6");
+    			$("#prizeList").find("li").removeClass().addClass("prize6");
+    			$("#prizeList").css("background-image","url(./6_03.png)");
+    		}else if(prize_length>4 && prize_length<7){
+    			ge_num = 8;
+    			$("#wheelBox").removeClass();
+    			$("#prizeList").find("li").removeClass().addClass("prize");
+    			$("#prizeList").css("background-image","url(./newgame/absolutelybigwheel/game"+path+"/8_03.png)");
+    		}else if(prize_length>6 && prize_length<9){
+    			ge_num = 10;
+    			$("#wheelBox").removeClass().addClass("prizeList10");
+    			$("#prizeList").find("li").removeClass().addClass("prize10");
+    			$("#prizeList").css("background-image","url(./newgame/absolutelybigwheel/game"+path+"/10_03.png)");
+    		}
+    		 for(var i=0; i< parentWin.jQuery("input[name='trophyName']").length; i++){
+    			 if(parentWin.jQuery(".prize_tab_item").eq(i).is(":hidden")){
+    				 
+    				 $("#prizeList").find("li").eq(i).find(".prize_name").text("谢谢参与");
+    				 $("#prizeList").find("li").eq(i).find(".prize_img").attr("src","./p8.png");
+    				 continue;
+    			 }
+    			 if(i>ge_num-3){
+    				 break;
+    			 }
+    			
+    			 $("#prizeList").find("li").eq(i).find(".prize_name").text(parentWin.jQuery("input[name='trophyName']").eq(i).val());
+    			 $("#prizeList").find("li").eq(i).find(".prize_img").attr("src",parentWin.jQuery("input[name='prize_image']").eq(i).val()?parentWin.jQuery(".prize_thumb_img").eq(i).attr("src"):"./p3.png");
+    		 }
+    	 });
+    	 
+    	 parentWin.jQuery("#other_cgroup").hide();
+    	 parentWin.jQuery("#set_minscore_box").hide();
+    	 parentWin.jQuery("#set_globalProbability_box").hide();
+    	 parentWin.jQuery("#set_logo_box").hide();
+    	 
+    	 parentWin.jQuery("#set_probabilityType_box").hide();
+    	 parentWin.jQuery("#set_awardSendType_box").find(".inline").eq(1).hide();
+    	 parentWin.jQuery("#set_actlimit_box").find(".inline").eq(0).hide();
+    	 parentWin.jQuery("#set_actlimit_box").find("input[name='totalLotteryCountRadio']").eq(1).attr("checked","checked");
+    	 /* parentWin.hideHelpEffect();
+  	     parentWin.$("#other_cgroup").find("input").attr("disabled","disabled");
+    	    */
+    	 parentWin.jQuery("#set_probabilityMode_box").hide();   
+    	    
+    	 parentWin.jQuery("#set_awardSendType_box").find(".help-inline-awardSendType2").text("活动参与者通过转动转盘参与抽奖来获得奖品，您可以自由设置中奖概率以及每人最多中奖次数");
+    	 parentWin.jQuery("#set_daylimit_box").find(".help-inline").text("抽奖机会用光后，参与者不能再进行抽奖");
+    	 parentWin.jQuery("#set_helpNum_box").find(".help-inline").text("设置的数值越大，所需他人助力数就越多。如果当助力成功率设置为50%，同时设置了需要10人成功助力达到100%中奖，那么大约需要20人助力才能达到100%的中奖率");
+    	 
+     });
+     
+</script>
+<input class="editTarget-btn-1" type="hidden" value="./lot/btn2.png"><input class="editTarget-btn-2" type="hidden" value="./lot/btn3.png"><input class="editTarget-btn-3" type="hidden" value="./lot/bj2.png"></body></html>

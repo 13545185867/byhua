@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<script type="text/javascript"  charset="utf-8" src="$!{basePath}/ueditor/ueditor.config.js"></script>
+  <script type="text/javascript"  charset="utf-8" src="$!{basePath}/ueditor/ueditor.all.min.js"></script>
+      <script type="text/javascript" charset="utf-8" src="$!{basePath}/ueditor/lang/zh-cn/zh-cn.js"></script>
+            <script src="$!{basePath}/content/js/vue.min.js" type="text/javascript"></script>
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">编辑</div>
+				<div class="panel-body">
+					<form class="form-horizontal" role="form" id="dailogForm" action="$!{basePath}/houseaOnline/back/xfHouse/doGenerate.html" method="POST">
+						 <input type="hidden" id="btn_sub" class="btn_sub" />
+						 <input type="hidden" value="$!{xfHouse.cellid}" name="cellid" id="cellid" />
+						 <input type="hidden" value="$!{xfHouse.buildingid}" name="buildingid" id="buildingid" />
+						 <input type="hidden" value="$!{xfHouse.hxid}" name="hxid" id="hxid" />
+						 <input type="hidden" value="$!{xfHouse.pid}" name="pid" id="pid" />
+						  		 <div class="form-group mno"  style="height:60px;padding-top:10px;border-bottom:1px solid blue">
+						  <label for="inputEmail3" class=" control-label" style="text-align:left;">
+						  系统将会以【<strong>$!{xfHouse.projectname}</strong>】项目 【<strong>$!{xfHouse.buildingname}</strong>】栋  【<strong>$!{xfHouse.cellname}</strong>】 单元 【<strong>$!{xfHouse.hxname}</strong>】户型 【$!{xfHouse.name}</strong>】号房为模板批量生成房间信息
+						  该楼总共有 【<strong>$!{xfHouse.floorcount}</strong>】层 ，  该户型面积为 【<strong>$!{xfHouse.area}</strong>】m²  </label>
+						 </div>
+						 						<div class="form-group mno"   style="height:60px;padding-top:10px;border-bottom:1px solid blue">
+												    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:right;">该楼所有</label>
+												      <input type="text" v-model="floor" name="startfloor" id="startfloor" class="form-control col-sm-1"/>
+												      <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:center;">层 至</label>
+												      <input type="text" v-model="floorcount"  name="endfloor" id="endfloor" class="form-control col-sm-1"/>
+												       <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:center;">层编号为</label>
+												      <input type="text" v-model="name" name="name" id="name" class="form-control col-sm-1"/>
+												     <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:right;">的房间数据将会被自动生成</label> 
+												       <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:right;">户型面积</label>
+												      <input type="text" value="$!{xfHouse.area}" name="area" id="area" class="form-control col-sm-1 "/>m²
+												</div>
+												
+												<div class="form-group mno"   style="height:60px;padding-top:10px;border-bottom:1px solid blue">
+														<label for="inputEmail3" class="col-sm-1 control-label" style="text-align:right;">【{{floor}}】层报价为</label>
+												      <input type="text" value="" placeholder="$!{xfHouse.price}"  name="price" id="price" class="form-control col-sm-2"  datatype="*"/>
+												      <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:right;">价格单位</label>
+												        <select name="priceUnit"  id="priceUnit" class="form-control col-sm-1" >
+															    <option disabled  value="" >选择价格单位</option>
+															    <option value="元/m²"  >元/m²</option>
+															    <option value="元/套"  >元/套</option>
+															 </select>
+												      <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:right;"> 每上一层价格增加</label>
+												      <input type="text" value="" name="plusprice" id="plusprice" class="form-control col-sm-1 "/>
+												      <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"> 元</label>
+												 </div>
+													<div class="form-group mno"   style="height:60px;padding-top:10px;border-bottom:1px solid blue"> 
+													<label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">网上选房定金设置</label>
+													      <input type="text" value="$!{xfHouse.orderprice}" name="orderprice" id="orderprice" class="form-control  col-sm-1" />
+													   <label for="inputEmail3" class="col-sm-5  control-label" style="text-align:left;">元     *备注：不填，或填写金额为 0时， 在线定房不需要用户缴纳定金</label>
+													   
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">销售状态：  </label>
+												       <select name="status" id="status"  value="$!{xfHouse.status}" class="form-control col-sm-2" >
+															    <option value="" >选择销售状态</option>
+															    <option value="0" #if('0' eq $!{xfHouse.status})selected#end>待售</option>
+															    <option value="1" #if('1' eq $!{xfHouse.status})selected#end>在售</option>
+															    <option value="2" #if('2' eq $!{xfHouse.status})selected#end>已被预定未支付定金</option>
+															    <option value="3" #if('3' eq $!{xfHouse.status})selected#end>已支付定金</option>
+															    <option value="4" #if('3' eq $!{xfHouse.status})selected#end>已售</option>
+													 </select>
+													 
+													 
+												  </div>
+											  
+												
+												<div class="form-group mno"    style="height:60px;padding-top:10px;border-bottom:1px solid blue">
+												<label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">装修情况</label>
+													   <select name="zhuangxiustatus" id="zhuangxiustatus"  value="$!{xfHouse.zhuangxiustatus}" class="form-control col-sm-2 " >
+															    <option value="" >设置装修情况</option>
+															    <option value="0" #if('0' eq $!{xfHouse.zhuangxiustatus})selected#end>毛坯</option>
+															    <option value="1" #if('1' eq $!{xfHouse.zhuangxiustatus})selected#end>简装</option>
+															    <option value="2" #if('2' eq $!{xfHouse.zhuangxiustatus})selected#end>精装</option>
+															    </select>
+												    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">电梯情况</label>
+												      <input type="text" value="$!{xfHouse.elevator}" name="elevator" id="elevator" class=" col-sm-2 form-control"/>
+												    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">房屋朝向</label>
+												      <input type="text" value="$!{xfHouse.chaoxiang}" name="chaoxiang" id="chaoxiang" class="form-control col-sm-2"/>
+												     <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:right;">交房日期</label>
+												      <input type="text" value="$!dateTool.format("yyyy-MM-dd",$!{xfHouse.deliverydate})" name="deliverydate" id="deliverydate" class="form-control col-sm-2 "   onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+												    
+												</div>
+												
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">房间描述</label>
+												    <div class="col-sm-8">
+												       <textarea name="content" id="content"  >$!{xfHouse.content}</textarea>
+															<script type="text/javascript">
+													        var editor = UE.getEditor('content');
+													    </script>
+												    </div>
+												</div>
+												
+									<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/houseaOnline/back/xfHouse/list.html?cellid=$!{xfHouse.cellid}&pid=$!{xfHouse.pid}&buildingid=$!{xfHouse.buildingid}')">返回</button>
+	        									<button type="button" class="btn btn-primary" id="formSubmit">提交</button>
+        									 </div>
+        							</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="$!{basePath}/plug-in/js/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="$!{basePath}/plug-in/js/forminit.p3.js"></script>  
+<script> 
+  var vm=new Vue({
+      el:"#dailogForm",
+      data:{
+          priceold:'',
+          priceunit:'元/m²' ,
+          floor:'$!{xfHouse.floor}',
+          floorcount:'$!{xfHouse.floorcount}',
+          name:'$!{xfHouse.name}'.substring('$!{xfHouse.floor}'.length)
+     },
+     computed: {
+	    price:function () {
+	     return this.price = this.priceold+this.priceunit
+	    },
+	    name:function(){
+	     return this.name = this.floor+this.code
+	    }
+    }
+  });
+    
+</script>

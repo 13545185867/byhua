@@ -1,0 +1,141 @@
+@CHARSET "UTF8";
+
+
+.weixinstyle{
+	background: none repeat scroll 0 0 #000;
+    color: #fff;
+	
+}
+.weixinstyle .navbar-poll .navbar-inner{
+	background-color: #000000;
+    background-image: linear-gradient(to bottom, #000000, #000000);
+    background-repeat: repeat-x;
+    border-color: #000000;
+    
+}
+ .carousel-items  .active {
+    background-color: #000000;
+  }
+.weixinstyle .wxvoteinfo {
+	 background-color: #000000;
+}
+.weixinstyle .wxvoteinfo ul li{
+
+	color: #fff;
+	
+}
+.weixinstyle  .left-border{
+	
+	border-left:1px solid #fff;
+	
+}
+.weixinstyle .votetitle h4{
+	
+}
+.weixinstyle .blockcell{
+	border-bottom: 1px solid #ececec;
+}
+
+.weixinstyle  .rightarrow .arrow{
+	color: #ccc;
+}
+
+.weixinstyle .voteoplist .wxop{
+	background-color: #fff;
+   color: #000;
+}
+
+
+.weixinstyle  .topbar {
+	background-color: #000000;
+}
+.iphone .topbar{
+	background-color: #000000;
+}
+.weixinstyle  .topbar a{
+	color: #fff;
+
+}
+
+.weixinstyle  .votenuminfo{
+	color: red;
+   
+}
+
+.weixinstyle .btn {
+  background: #34495e;
+  color: white;
+}
+.weixinstyle  .btn:hover, .weixinstyle  .btn:focus {
+    background-color: #4e6d8d;
+    color: white;
+}
+.weixinstyle   .btn:active,.weixinstyle  .btn.active {
+    background-color: #000000;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.weixinstyle  .btn.btn-warning{
+	background-color: #f1c40f;
+}
+.weixinstyle  .btn.btn-warning {
+    background-color: #f1c40f; 
+}
+.weixinstyle .btn.btn-warning:hover, .weixinstyle .btn.btn-warning:focus {
+      background-color: #f4d03f; 
+}
+.weixinstyle   .btn.btn-warning:active,.weixinstyle .btn.btn-warning.active {
+      background-color: #cea70c; 
+}
+.weixinstyle .btn.btn-info {
+    background-color: #000000; 
+}
+.weixinstyle .btn.btn-info:hover,.weixinstyle .btn.btn-info:focus {
+      background-color: #18001a; 
+}
+.weixinstyle  .btn.btn-info:active,.weixinstyle .btn.btn-info.active {
+      background-color: #000000; 
+}
+
+.weixinstyle  .btn.disabled,.weixinstyle  .btn[disabled] {
+    background-color: #ccc;
+    color: white; 
+}
+
+.weixinstyle  .footer{
+	
+	color:#fff;
+}
+
+.weixinstyle .btn-link {
+	color:white;
+}
+
+.weixinstyle .voteoplist .wxop  .wxoptxt a{
+	color:black;
+}
+.form-inline .btn,.weixinstyle .btnorderlist{
+	border:1px solid #fff;
+}
+.icheckbox_line-grey, .iradio_line-grey{
+	background-color: #000000;
+	width: 60px;
+	margin: 0 auto;
+}
+.icheckbox_line-grey.hover{
+	background-color: #000000;
+}
+.swiper-pagination-bullet-active{
+	background:#000 none repeat scroll 0 0;
+}
+.weixinstyle .wxopvotediv .wxvinfo .giftbutton{
+	color:#333;
+}
+.buygiftconfirmbox{
+	color:#333;
+}
+.invitecodeboxinvote h4{
+	color:#fff;
+	background-color: #000000;
+	border: 1px solid #fff;
+}

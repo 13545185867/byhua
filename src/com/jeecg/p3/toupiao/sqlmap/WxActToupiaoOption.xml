@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.toupiao.entity.WxActToupiaoOption">
+
+	<!-- Result Map-->
+	<resultMap id="WxActToupiaoOption" type="com.jeecg.p3.toupiao.entity.WxActToupiaoOption" >
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="act_id" property="actId" jdbcType="VARCHAR"/>
+		<result column="identifier" property="identifier" jdbcType="INTEGER"/>
+		<result column="title" property="title" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="tel" property="tel" jdbcType="VARCHAR"/>
+		<result column="addr" property="addr" jdbcType="VARCHAR"/>
+		<result column="image" property="image" jdbcType="VARCHAR"/>
+		<result column="video" property="video" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="link" property="link" jdbcType="VARCHAR"/>
+		<result column="is_active" property="isActive" jdbcType="VARCHAR"/>
+		<result column="is_delete" property="isDelete" jdbcType="VARCHAR"/>
+		<result column="vote_count" property="voteCount" jdbcType="INTEGER"/>
+		<result column="jwid" property="jwid" jdbcType="VARCHAR"/>
+		<result column="creat_time" property="creatTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.actId != null and query.actId != ''" >
+	  		 		/* 选项所属投票活动ID */
+			    	AND wato.act_id =  #{query.actId,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.identifier != null and query.identifier != ''" >
+	  		 		/* 选项编号 */
+			    	AND wato.identifier =  #{query.identifier,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.title != null and query.title != ''" >
+	  		 		/* 选项名称 */
+			    	AND wato.title =  #{query.title,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.image != null and query.image != ''" >
+	  		 		/* 选项图片 */
+			    	AND wato.image =  #{query.image,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.video != null and query.video != ''" >
+	  		 		/* 选项视频 */
+			    	AND wato.video =  #{query.video,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.description != null and query.description != ''" >
+	  		 		/* 选项描述 */
+			    	AND wato.description =  #{query.description,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.link != null and query.link != ''" >
+	  		 		/* 选项链接地址 */
+			    	AND wato.link =  #{query.link,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isActive != null and query.isActive != ''" >
+	  		 		/* 选项是否启用 0为不启用 1为启用 */
+			    	AND wato.is_active =  #{query.isActive,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isDelete != null and query.isDelete != ''" >
+	  		 		/* 是否已删除 0 未删除 1 已删除 */
+			    	AND wato.is_delete =  #{query.isDelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.voteCount != null and query.voteCount != ''" >
+	  		 		/* 投票次数 */
+			    	AND wato.vote_count =  #{query.voteCount,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.jwid != null and query.jwid != ''" >
+	  		 		/* 微信APPid */
+			    	AND wato.jwid =  #{query.jwid,jdbcType=VARCHAR}
+				 </if>
+				 				 <if test="query.tel != null and query.tel != ''" >
+	  		 		/* 微信APPid */
+			    	AND wato.tel =  #{query.tel,jdbcType=VARCHAR}
+				 </if>
+				 				 <if test="query.name != null and query.name != ''" >
+	  		 		/* name */
+			    	AND wato.name =  #{query.name,jdbcType=VARCHAR}
+				 </if>
+				 				 <if test="query.addr != null and query.addr != ''" >
+	  		 		/* 微信APPid */
+			    	AND wato.addr =  #{query.addr,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.creatTime != null and query.creatTime != ''" >
+	  		 		/* 选项创建时间 */
+			    	AND wato.creat_time =  #{query.creatTime,jdbcType=TIMESTAMP}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoOption.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  wx_act_toupiao_option   /*  */  
+					(	
+                      id                            /* 投票选项ID */ 
+                     ,act_id                        /* 选项所属投票活动ID */ 
+                     ,identifier                    /* 选项编号 */ 
+                     ,title                         /* 选项名称 */ 
+                     ,image                         /* 选项图片 */ 
+                     ,video                         /* 选项视频 */ 
+                     ,description                   /* 选项描述 */ 
+                     ,link                          /* 选项链接地址 */ 
+                     ,is_active                     /* 选项是否启用 0为不启用 1为启用 */ 
+                     ,is_delete                     /* 是否已删除 0 未删除 1 已删除 */ 
+                     ,vote_count                    /* 投票次数 */ 
+                     ,jwid                          /* 微信APPid */ 
+                     ,creat_time                    /* 选项创建时间 */ 
+                     ,tel
+                     ,name
+                     ,addr
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /* 投票选项ID */ 
+                     ,#{actId,jdbcType=VARCHAR}                         /* 选项所属投票活动ID */ 
+                     ,#{identifier,jdbcType=INTEGER}                    /* 选项编号 */ 
+                     ,#{title,jdbcType=VARCHAR}                         /* 选项名称 */ 
+                     ,#{image,jdbcType=VARCHAR}                         /* 选项图片 */ 
+                     ,#{video,jdbcType=VARCHAR}                         /* 选项视频 */ 
+                     ,#{description,jdbcType=VARCHAR}                   /* 选项描述 */ 
+                     ,#{link,jdbcType=VARCHAR}                          /* 选项链接地址 */ 
+                     ,#{isActive,jdbcType=VARCHAR}                      /* 选项是否启用 0为不启用 1为启用 */ 
+                     ,#{isDelete,jdbcType=VARCHAR}                      /* 是否已删除 0 未删除 1 已删除 */ 
+                     ,#{voteCount,jdbcType=INTEGER}                     /* 投票次数 */ 
+                     ,#{jwid,jdbcType=VARCHAR}                          /* 微信APPid */ 
+                     ,#{creatTime,jdbcType=TIMESTAMP}                     /* 选项创建时间 */ 
+                         ,#{tel,jdbcType=VARCHAR}    
+                             ,#{name,jdbcType=VARCHAR}    
+                                 ,#{addr,jdbcType=VARCHAR}    
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoOption.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   wx_act_toupiao_option  	/*  */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="actId != null">
+		    		 		/* 选项所属投票活动ID */ 
+	    		 			act_id = #{actId,jdbcType=VARCHAR},
+						 </if>
+						 <if test="identifier != null">
+		    		 		/* 选项编号 */ 
+	    		 			identifier = #{identifier,jdbcType=INTEGER},
+						 </if>
+						 <if test="title != null">
+		    		 		/* 选项名称 */ 
+	    		 			title = #{title,jdbcType=VARCHAR},
+						 </if>
+						 <if test="image != null">
+		    		 		/* 选项图片 */ 
+	    		 			image = #{image,jdbcType=VARCHAR},
+						 </if>
+						 <if test="video != null">
+		    		 		/* 选项视频 */ 
+	    		 			video = #{video,jdbcType=VARCHAR},
+						 </if>
+						 <if test="description != null">
+		    		 		/* 选项描述 */ 
+	    		 			description = #{description,jdbcType=VARCHAR},
+						 </if>
+						 <if test="link != null">
+		    		 		/* 选项链接地址 */ 
+	    		 			link = #{link,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isActive != null">
+		    		 		/* 选项是否启用 0为不启用 1为启用 */ 
+	    		 			is_active = #{isActive,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isDelete != null">
+		    		 		/* 是否已删除 0 未删除 1 已删除 */ 
+	    		 			is_delete = #{isDelete,jdbcType=VARCHAR},
+						 </if>
+						 <if test="voteCount != null">
+		    		 		/* 投票次数 */ 
+	    		 			vote_count = #{voteCount,jdbcType=INTEGER},
+						 </if>
+						 <if test="jwid != null">
+		    		 		/* 微信APPid */ 
+	    		 			jwid = #{jwid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="creatTime != null">
+		    		 		/* 选项创建时间 */ 
+	    		 			creat_time = #{creatTime,jdbcType=TIMESTAMP},
+						 </if>
+						 						 <if test="name != null">
+		    		 		/* 微信APPid */ 
+	    		 			name = #{name,jdbcType=VARCHAR},
+						 </if>
+						 						 <if test="tel != null">
+		    		 		/* 微信APPid */ 
+	    		 			tel = #{tel,jdbcType=VARCHAR},
+						 </if>
+						 						 <if test="addr != null">
+		    		 		/* 微信APPid */ 
+	    		 			addr = #{addr,jdbcType=VARCHAR},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoOption.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="WxActToupiaoOption">
+		   SELECT   
+                   wato.id                            /* 投票选项ID */ 
+                  ,wato.act_id                        /* 选项所属投票活动ID */ 
+                  ,wato.identifier                    /* 选项编号 */ 
+                  ,wato.title                         /* 选项名称 */ 
+                  ,wato.name
+                  ,wato.tel
+                  ,wato.addr
+                  ,wato.image                         /* 选项图片 */ 
+                  ,wato.video                         /* 选项视频 */ 
+                  ,wato.description                   /* 选项描述 */ 
+                  ,wato.link                          /* 选项链接地址 */ 
+                  ,wato.is_active                     /* 选项是否启用 0为不启用 1为启用 */ 
+                  ,wato.is_delete                     /* 是否已删除 0 未删除 1 已删除 */ 
+                  ,wato.vote_count                    /* 投票次数 */ 
+                  ,wato.jwid                          /* 微信APPid */ 
+                  ,wato.creat_time                    /* 选项创建时间 */ 
+		   FROM   wx_act_toupiao_option      AS wato      /*  */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoOption.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM wx_act_toupiao_option 	/*  */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoOption.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  wx_act_toupiao_option      AS wato      /*  */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoOption.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="WxActToupiaoOption">
+		    SELECT 
+                   wato.id                            /* 投票选项ID */ 
+                  ,wato.act_id                        /* 选项所属投票活动ID */ 
+                  ,wato.identifier                    /* 选项编号 */ 
+                  ,wato.title                         /* 选项名称 */ 
+                  ,wato.image                         /* 选项图片 */ 
+                  ,wato.name
+                  ,wato.addr
+                  ,wato.tel
+                  ,wato.video                         /* 选项视频 */ 
+                  ,wato.description                   /* 选项描述 */ 
+                  ,wato.link                          /* 选项链接地址 */ 
+                  ,wato.is_active                     /* 选项是否启用 0为不启用 1为启用 */ 
+                  ,wato.is_delete                     /* 是否已删除 0 未删除 1 已删除 */ 
+                  ,wato.vote_count                    /* 投票次数 */ 
+                  ,wato.jwid                          /* 微信APPid */ 
+                  ,wato.creat_time                    /* 选项创建时间 */ 
+		FROM   	 wx_act_toupiao_option      AS wato      /*  */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+	
+	<!--
+	方法名称: getSumByActId
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoOption.getSumByActId
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="getSumByActId" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT sum(wato.vote_count)  FROM  wx_act_toupiao_option      AS wato      /*  */ 
+		 WHERE wato.act_id=#{actId}	
+	</select>
+	
+	
+	<!--
+	方法名称: updateVoteCount
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoOption.updateVoteCount
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="updateVoteCount" parameterType="Object" >
+	  UPDATE   wx_act_toupiao_option  	/*  */
+	  			set
+	    		 			vote_count = vote_count +1
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+	 	<!--
+	方法名称: getVoteOrder
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoOption.getVoteOrder
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="getVoteOrder" parameterType="Object"  resultMap="WxActToupiaoOption">
+		    SELECT 
+                   wato.id                            /* 投票选项ID */ 
+                  ,wato.act_id                        /* 选项所属投票活动ID */ 
+                  ,wato.identifier                    /* 选项编号 */ 
+                  ,wato.title                         /* 选项名称 */ 
+                  ,wato.image                         /* 选项图片 */ 
+                  ,wato.video                         /* 选项视频 */ 
+                  ,wato.name
+                  ,wato.tel
+                  ,wato.addr
+                  ,wato.description                   /* 选项描述 */ 
+                  ,wato.link                          /* 选项链接地址 */ 
+                  ,wato.is_active                     /* 选项是否启用 0为不启用 1为启用 */ 
+                  ,wato.is_delete                     /* 是否已删除 0 未删除 1 已删除 */ 
+                  ,wato.vote_count                    /* 投票次数 */ 
+                  ,wato.jwid                          /* 微信APPid */ 
+                  ,wato.creat_time                    /* 选项创建时间 */ 
+		FROM   	 wx_act_toupiao_option      AS wato      /*  */ 
+		WHERE wato.is_active ='1' and wato.is_delete ='0' and 	
+	  	 		 		act_id = #{actId}	order by wato.vote_count desc	/* 序号 */ 
+	</select>
+	
+	
+	
+</mapper>

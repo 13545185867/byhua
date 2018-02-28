@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+ <script type="text/javascript"  charset="utf-8" src="$!{basePath}/ueditor/ueditor.config.js"></script>
+  <script type="text/javascript"  charset="utf-8" src="$!{basePath}/ueditor/ueditor.all.min.js"></script>
+      <script type="text/javascript" charset="utf-8" src="$!{basePath}/ueditor/lang/zh-cn/zh-cn.js"></script>
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">详情</div>
+				  	<div class="panel-body">
+				   		<form class="form-horizontal" role="form">
+							  <fieldset disabled>
+							  											
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">选项编号</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{wxActToupiaoOption.identifier}" name="identifier" id="identifier" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">选项名称</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{wxActToupiaoOption.title}" name="title" id="title" class="form-control" />
+													    </div>
+													  </div>
+
+																								<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">联系人姓名</label>
+												    <div class="col-sm-2">
+												      <input type="text" value="$!{wxActToupiaoOption.name}" name="name" id="name" class="form-control"/>
+												    </div>
+												</div>
+												
+																								<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">联系人电话</label>
+												    <div class="col-sm-2">
+												      <input type="text" value="$!{wxActToupiaoOption.tel}" name="tel" id="tel" class="form-control"/>
+												    </div>
+												</div>
+												
+																								<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">联系人地址</label>
+												    <div class="col-sm-2">
+												      <input type="text" value="$!{wxActToupiaoOption.addr}" name="addr" id="addr" class="form-control"/>
+												    </div>
+												</div>
+
+													
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">选项描述</label>
+													    <div class="col-sm-2">
+													      $!{wxActToupiaoOption.description} 
+													      </div>
+													  </div>
+													 
+													
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">投票次数</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{wxActToupiaoOption.voteCount}" name="voteCount" id="voteCount" class="form-control" />
+													    </div>
+													  </div>
+													 
+													  <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">选项创建时间</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!dateTool.format("yyyy-MM-dd",$!{wxActToupiaoOption.creatTime})" name="creatTime" id="creatTime" class="form-control" />
+													    </div>
+													  </div>
+							  </fieldset>
+							  			<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/toupiao/back/wxActToupiaoOption/list.do?actId=$!{wxActToupiaoOption.actId}')">返回</button>
+        									 </div>
+        							    </div>
+						</form>
+					</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

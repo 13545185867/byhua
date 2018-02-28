@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script type="text/javascript" src="./jquery.min.js"></script>
+<script type="text/javascript" language="javascript"> 
+var index = 0;
+function FileUpload_onselect()
+{
+	var currentWwwPath=window.document.location.href;  
+    //获取主机地址之后的目录，如：/supermarket/user.do(注意：不包括?后面传递的参数)
+    //var pathName=window.document.location.pathname;  
+    //console.log(pathName);
+    //获取/uimcardprj中/的位置(也就是主机地址后面的/)，这里是：21
+    var position=currentWwwPath.indexOf("/content/toupiao/baoming/uploadimage_iframe.html");  
+  
+    //获取主机地址，如：http://localhost:8080
+    var localhostPath=currentWwwPath.substring(0,position); 
+	document.formupload.action=localhostPath+"/toupiao/upFile/doUp.do";
+	document.getElementById("formupload").submit();
+	parent.startUploading(index);
+}
+
+function select_file()
+{
+	$("#FileUpload").click();
+}
+
+function uploadedImg(json)
+{
+	if(json.status == 1)
+	{
+		//alert(json.guid);
+		parent.endUploading(json,index);
+	}
+	else
+	{
+		alert(json.errormsg);
+	}
+}
+
+    </script>
+
+</head>
+<body>
+<ul>
+
+</ul>
+<button id="selectpic">选择图片</button>
+<iframe name="posthere_upload" src="./saved_resource(3).html"></iframe>
+<form style="width:0px;height:0px; overflow:hidden;" method="post" action="/toupiao/upFile/doUp.do" enctype="multipart/form-data" target="posthere_upload" id="formupload" name="formupload">
+<input id="FileUpload" name="file" type="file" value="上传图片" onchange="return FileUpload_onselect()">
+<input type="hidden" name="index" value="0">
+<button id="doupload" type="submit">开始上传</button>
+</form>
+
+</body></html>

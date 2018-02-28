@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">详情</div>
+				  	<div class="panel-body">
+				   		<form class="form-horizontal" role="form">
+							  <fieldset disabled>
+							  																 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfOrder.houseid}" name="houseid" id="houseid" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfOrder.houseprice}" name="houseprice" id="houseprice" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">0未支付定金 1已支付 2签定合同 3 购房成功</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfOrder.status}" name="status" id="status" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfOrder.createuser}" name="createuser" id="createuser" class="form-control" />
+													    </div>
+													  </div>
+													  <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!dateTool.format("yyyy-MM-dd",$!{xfOrder.createtime})" name="createtime" id="createtime" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfOrder.isDelete}" name="isDelete" id="isDelete" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfOrder.payuserid}" name="payuserid" id="payuserid" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfOrder.xfOrdercol}" name="xfOrdercol" id="xfOrdercol" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfOrder.xfOrdercol1}" name="xfOrdercol1" id="xfOrdercol1" class="form-control" />
+													    </div>
+													  </div>
+													  <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!dateTool.format("yyyy-MM-dd",$!{xfOrder.expiretime})" name="expiretime" id="expiretime" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfOrder.payresult}" name="payresult" id="payresult" class="form-control" />
+													    </div>
+													  </div>
+													  <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!dateTool.format("yyyy-MM-dd",$!{xfOrder.paytime})" name="paytime" id="paytime" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfOrder.paycodeurl}" name="paycodeurl" id="paycodeurl" class="form-control" />
+													    </div>
+													  </div>
+							  </fieldset>
+							  			<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/houseaOnline/back/xfOrder/list.html')">返回</button>
+        									 </div>
+        							    </div>
+						</form>
+					</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

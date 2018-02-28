@@ -1,0 +1,144 @@
+#parse("content/base/back/common/macro.vm")
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<form role="form" class="form-inline" action="$!{basePath}/houseaOnline/back/xfHouse/list.html" method="post"  id="formSubmit">
+				<div  class="col-md-10" style="width:100%">
+								<div class="panel panel-default">
+								  <div class="panel-heading">单元房间列表</div>
+								  <div class="panel-body">
+								  		<div class="search">
+								  		 <div class="form-group col-sm-3"  style="display:none;">
+															    <label for="pid" class="control-label col-sm-3 line34">项目ID</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="pid" id="pid" value="$!{pid}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3" style="display:none;">
+															    <label for="buildingid" class="control-label col-sm-3 line34">楼栋ID</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="buildingid" id="buildingid" value="$!{xfHouse.buildingid}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3"  style="display:none;">
+															    <label for="cellid" class="control-label col-sm-3 line34">单元ID</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="cellid" id="cellid" value="$!{xfHouse.cellid}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="name" class="control-label col-sm-3 line34">房间编号</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="name" id="name" value="$!{xfHouse.name}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="hxid" class="control-label col-sm-3 line34">户型</label>
+															     <div class="col-sm-8">
+															       <select name="hxid" id="hxid"  value="$!{xfHouse.hxid}" class="form-control" >
+													      <option value="" >请选择房产户型 </option>
+													       	#if($!{pagehxInfos})
+													                #foreach($!{info} in $!{pagehxInfos})
+													               	 <option value="$!{info.id}" #if($!{info.id} eq $!{xfHouse.hxid})selected#end>$!{info.name}</option>
+														             #end
+													    	 	#end
+													      </select>
+															  	</div>
+															 </div>
+															
+															 <div class="form-group col-sm-3">
+															    <label for="status" class="control-label col-sm-3 line34">销售状态 </label>
+															     <div class="col-sm-8">
+															      <select name="status" id="status"  value="$!{xfHouse.status}" class="form-control" >
+															    <option value="" >根据销售状态查询</option>
+															    <option value="0" #if('0' eq $!{xfHouse.status})selected#end>待售</option>
+															    <option value="1" #if('1' eq $!{xfHouse.status})selected#end>在售</option>
+															    <option value="2" #if('2' eq $!{xfHouse.status})selected#end>已预定未支付</option>
+															    <option value="3" #if('3' eq $!{xfHouse.status})selected#end>已售</option>
+															    </select>
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="zhuangxiustatus" class="control-label col-sm-3 line34">装修情况</label>
+															     <div class="col-sm-8">
+															     <select name="zhuangxiustatus" id="zhuangxiustatus"  value="$!{xfHouse.zhuangxiustatus}" class="form-control" >
+															    <option value="" >根据装修情况查询</option>
+															    <option value="0" #if('0' eq $!{xfHouse.zhuangxiustatus})selected#end>毛坯</option>
+															    <option value="1" #if('1' eq $!{xfHouse.zhuangxiustatus})selected#end>简装</option>
+															    <option value="2" #if('2' eq $!{xfHouse.zhuangxiustatus})selected#end>精装</option>
+															    </select>
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="floor" class="control-label col-sm-3 line34">楼层</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="floor" id="floor" value="$!{xfHouse.floor}" class="form-control">
+															  	</div>
+															 </div>
+											  <button type="submit" class="btn btn-primary">搜  索</button>
+											  <div class="clearfix"></div>
+								  		</div>
+								  		<div id="legend">
+								          <legend  class="le"><button type="button" class="btn btn-primary" onclick="doUrl('$!{basePath}/houseaOnline/back/xfHouse/toAdd.html?cellid=$!{xfHouse.cellid}&buildingid=$!{xfHouse.buildingid}&pid=$!{pid}')" >新增</button></legend> 
+								        </div>
+								        <table class="table table-striped">
+									        <thead>
+													<th>房间编号</th>
+													<th>销售状态 </th>
+													<th>报价</th>
+													<th>装修情况</th>
+													<th>楼层</th>
+													<th>电梯情况</th>
+													<th>房屋朝向</th>
+													<th>网上定金</th>
+						                			<th>操作</th>
+									        </thead>
+									        <tobody>
+									    	  #if($!{pageInfos})
+								                #foreach($!{info} in $!{pageInfos})
+									            	<tr>			
+																	<td>$!{info.name}</td>
+																	<td> 
+																	#if('0' eq $!{info.status})待售 #end 
+															     #if('1' eq $!{info.status}) 在售#end  
+																 #if('2' eq $!{info.status})已预定未支付#end 
+															     #if('3' eq $!{info.status}) 已支付定金#end  
+																	</td>
+																	<td>$!{info.price}</td>
+																	<td> 
+																	#if('0' eq $!{info.zhuangxiustatus})毛坯#end 
+															     #if('1' eq $!{info.zhuangxiustatus}) 简装#end  
+																 #if('2' eq $!{info.zhuangxiustatus})精装#end 
+																	</td>
+																	<td>$!{info.floor}楼</td>
+																	<td>$!{info.elevator}</td>
+																	<td>$!{info.chaoxiang}</td>
+																	<td>$!{info.orderprice}元</td>
+										                <td class="last">
+							                			<a href="javascript:doUrl('$!{basePath}/houseaOnline/back/xfHouse/toEdit.html?id=$!{info.id}')" >编辑</a>
+							                			<a href="$!{basePath}/houseaOnline/back/xfHouse/toDetail.html?id=$!{info.id}" target="_blank">详情</a>
+							                			<a href="javascript:delData('$!{basePath}/houseaOnline/back/xfHouse/doDelete.html?id=$!{info.id}')">删除</a>
+							                			<a href="javascript:doUrl('$!{basePath}/houseaOnline/back/xfHouse/toGenerate.html?id=$!{info.id}')" >以该房间为模板生成类似房产数据</a>
+						                				</td>
+									           		</tr>
+									             #end
+									    	 #end
+									         </tobody>
+									    </table>
+										<div class="text-right">
+											<!--公用翻页代码-->
+							                #set($attr='formSubmit')
+							            	#showPageList($pageInfos $attr)
+							                <!--END公用翻页代码-->
+										</div>
+								  </div>	
+								</div>
+				</div>  
+				</form>
+		</div>
+	</div>
+</body>
+</html>

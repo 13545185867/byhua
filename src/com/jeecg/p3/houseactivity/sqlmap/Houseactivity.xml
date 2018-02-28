@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.houseactivity.entity.Houseactivity">
+
+	<!-- Result Map-->
+	<resultMap id="Houseactivity" type="com.jeecg.p3.houseactivity.entity.Houseactivity" >
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="title" property="title" jdbcType="VARCHAR"/>
+		<result column="addr" property="addr" jdbcType="VARCHAR"/>
+		<result column="totalpepole" property="totalpepole" jdbcType="INTEGER"/>
+		<result column="remainpepole" property="remainpepole" jdbcType="INTEGER"/>
+		<result column="isdelete" property="isdelete" jdbcType="VARCHAR"/>
+		<result column="endtime" property="endtime" jdbcType="TIMESTAMP"/>
+		<result column="content" property="content" jdbcType="VARCHAR"/>
+		<result column="isvipview" property="isvipview" jdbcType="VARCHAR"/>
+		<result column="isvipparty" property="isvipparty" jdbcType="VARCHAR"/>
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP"/>
+		<result column="creatuser" property="creatuser" jdbcType="VARCHAR"/>
+		<result column="leadpic" property="leadpic" jdbcType="VARCHAR"/>
+		<result column="leadpicviewtype" property="leadpicviewtype" jdbcType="VARCHAR"/>
+		<result column="areaid" property="areaid" jdbcType="INTEGER"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="viewcount" property="viewcount" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.title != null and query.title != ''" >
+	  		 		/* 标题 */
+			    	AND h.title =  #{query.title,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.addr != null and query.addr != ''" >
+	  		 		/*  */
+			    	AND h.addr =  #{query.addr,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.totalpepole != null and query.totalpepole != ''" >
+	  		 		/* 总名额  */
+			    	AND h.totalpepole =  #{query.totalpepole,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.remainpepole != null and query.remainpepole != ''" >
+	  		 		/* 剩余名额  */
+			    	AND h.remainpepole =  #{query.remainpepole,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.isdelete != null and query.isdelete != ''" >
+	  		 		/* 是否删除  0否 1删除 */
+			    	AND h.isdelete =  #{query.isdelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.endtime != null and query.endtime != ''" >
+	  		 		/* 截止时间 */
+			    	AND h.endtime =  #{query.endtime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.content != null and query.content != ''" >
+	  		 		/* 详细内容  */
+			    	AND h.content =  #{query.content,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isvipview != null and query.isvipview != ''" >
+	  		 		/* 是否只有VIP可查看 */
+			    	AND h.isvipview =  #{query.isvipview,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isvipparty != null and query.isvipparty != ''" >
+	  		 		/* 是否只有VIP可参加 */
+			    	AND h.isvipparty =  #{query.isvipparty,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.createtime != null and query.createtime != ''" >
+	  		 		/* 创建时间 */
+			    	AND h.createtime =  #{query.createtime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.creatuser != null and query.creatuser != ''" >
+	  		 		/* 创建 人 */
+			    	AND h.creatuser =  #{query.creatuser,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.leadpic != null and query.leadpic != ''" >
+	  		 		/* 缩略图 */
+			    	AND h.leadpic =  #{query.leadpic,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.leadpicviewtype != null and query.leadpicviewtype != ''" >
+	  		 		/* 主题图显示方式（0为小图，1为大图） */
+			    	AND h.leadpicviewtype =  #{query.leadpicviewtype,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.areaid != null and query.areaid != ''" >
+	  		 		/* 所属区域ID */
+			    	AND h.areaid =  #{query.areaid,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.type != null and query.type != ''" >
+	  		 		/* 0代表抵押 1代表转让 2 代表团购 3代表在现选房 */
+			    	AND h.type =  #{query.type,jdbcType=VARCHAR}
+				 </if>
+				  <if test="query.status != null and query.status != ''" >
+			    	AND h.status =  #{query.status,jdbcType=VARCHAR}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.houseactivity.entity.Houseactivity.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  houseactivity   /* 房屋转让团购抵押表 */  
+					(	
+                      id                            /*  */ 
+                     ,title                         /* 标题 */ 
+                     ,addr                          /*  */ 
+                     ,totalpepole                   /* 总名额  */ 
+                     ,remainpepole                  /* 剩余名额  */ 
+                     ,isdelete                      /* 是否删除  0否 1删除 */ 
+                     ,endtime                       /* 截止时间 */ 
+                     ,content                       /* 详细内容  */ 
+                     ,isvipview                     /* 是否只有VIP可查看 */ 
+                     ,isvipparty                    /* 是否只有VIP可参加 */ 
+                     ,createtime                    /* 创建时间 */ 
+                     ,creatuser                     /* 创建 人 */ 
+                     ,leadpic                       /* 缩略图 */ 
+                     ,leadpicviewtype               /* 主题图显示方式（0为小图，1为大图） */ 
+                     ,areaid                        /* 所属区域ID */ 
+                     ,type                          /* 0代表抵押 1代表转让 2 代表团购 3代表在现选房 */ 
+                     ,status
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /*  */ 
+                     ,#{title,jdbcType=VARCHAR}                         /* 标题 */ 
+                     ,#{addr,jdbcType=VARCHAR}                          /*  */ 
+                     ,#{totalpepole,jdbcType=INTEGER}                   /* 总名额  */ 
+                     ,#{remainpepole,jdbcType=INTEGER}                  /* 剩余名额  */ 
+                     ,#{isdelete,jdbcType=VARCHAR}                      /* 是否删除  0否 1删除 */ 
+                     ,#{endtime,jdbcType=TIMESTAMP}                       /* 截止时间 */ 
+                     ,#{content,jdbcType=VARCHAR}                       /* 详细内容  */ 
+                     ,#{isvipview,jdbcType=VARCHAR}                     /* 是否只有VIP可查看 */ 
+                     ,#{isvipparty,jdbcType=VARCHAR}                    /* 是否只有VIP可参加 */ 
+                     ,#{createtime,jdbcType=TIMESTAMP}                    /* 创建时间 */ 
+                     ,#{creatuser,jdbcType=VARCHAR}                     /* 创建 人 */ 
+                     ,#{leadpic,jdbcType=VARCHAR}                       /* 缩略图 */ 
+                     ,#{leadpicviewtype,jdbcType=VARCHAR}               /* 主题图显示方式（0为小图，1为大图） */ 
+                     ,#{areaid,jdbcType=INTEGER}                        /* 所属区域ID */ 
+                     ,#{type,jdbcType=VARCHAR}                          /* 0代表抵押 1代表转让 2 代表团购 3代表在现选房 */ 
+					,#{status,jdbcType=VARCHAR} )
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.houseactivity.entity.Houseactivity.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   houseactivity  	/* 房屋转让团购抵押表 */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="title != null">
+		    		 		/* 标题 */ 
+	    		 			title = #{title,jdbcType=VARCHAR},
+						 </if>
+						 <if test="addr != null">
+		    		 		/*  */ 
+	    		 			addr = #{addr,jdbcType=VARCHAR},
+						 </if>
+						 <if test="totalpepole != null">
+		    		 		/* 总名额  */ 
+	    		 			totalpepole = #{totalpepole,jdbcType=INTEGER},
+						 </if>
+						 <if test="remainpepole != null">
+		    		 		/* 剩余名额  */ 
+	    		 			remainpepole = #{remainpepole,jdbcType=INTEGER},
+						 </if>
+						 <if test="isdelete != null">
+		    		 		/* 是否删除  0否 1删除 */ 
+	    		 			isdelete = #{isdelete,jdbcType=VARCHAR},
+						 </if>
+						 <if test="endtime != null">
+		    		 		/* 截止时间 */ 
+	    		 			endtime = #{endtime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="content != null">
+		    		 		/* 详细内容  */ 
+	    		 			content = #{content,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isvipview != null">
+		    		 		/* 是否只有VIP可查看 */ 
+	    		 			isvipview = #{isvipview,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isvipparty != null">
+		    		 		/* 是否只有VIP可参加 */ 
+	    		 			isvipparty = #{isvipparty,jdbcType=VARCHAR},
+						 </if>
+						 <if test="createtime != null">
+		    		 		/* 创建时间 */ 
+	    		 			createtime = #{createtime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="creatuser != null">
+		    		 		/* 创建 人 */ 
+	    		 			creatuser = #{creatuser,jdbcType=VARCHAR},
+						 </if>
+						 <if test="leadpic != null">
+		    		 		/* 缩略图 */ 
+	    		 			leadpic = #{leadpic,jdbcType=VARCHAR},
+						 </if>
+						 <if test="leadpicviewtype != null">
+		    		 		/* 主题图显示方式（0为小图，1为大图） */ 
+	    		 			leadpicviewtype = #{leadpicviewtype,jdbcType=VARCHAR},
+						 </if>
+						 <if test="areaid != null">
+		    		 		/* 所属区域ID */ 
+	    		 			areaid = #{areaid,jdbcType=INTEGER},
+						 </if>
+						 <if test="type != null">
+		    		 		/* 0代表抵押 1代表转让 2 代表团购 3代表在现选房 */ 
+	    		 			type = #{type,jdbcType=VARCHAR},
+						 </if>
+						  <if test="status != null">
+		    		 		/* 0代表抵押 1代表转让 2 代表团购 3代表在现选房 */ 
+	    		 			status = #{status,jdbcType=VARCHAR},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.houseactivity.entity.Houseactivity.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="Houseactivity">
+		   SELECT   
+                   h.id                            /*  */ 
+                  ,h.title                         /* 标题 */ 
+                  ,h.addr                          /*  */ 
+                  ,h.totalpepole                   /* 总名额  */ 
+                  ,h.remainpepole                  /* 剩余名额  */ 
+                  ,h.isdelete                      /* 是否删除  0否 1删除 */ 
+                  ,h.endtime                       /* 截止时间 */ 
+                  ,h.content                       /* 详细内容  */ 
+                  ,h.isvipview                     /* 是否只有VIP可查看 */ 
+                  ,h.isvipparty                    /* 是否只有VIP可参加 */ 
+                  ,h.createtime                    /* 创建时间 */ 
+                  ,h.creatuser                     /* 创建 人 */ 
+                  ,h.leadpic                       /* 缩略图 */ 
+                  ,h.leadpicviewtype               /* 主题图显示方式（0为小图，1为大图） */ 
+                  ,h.areaid                        /* 所属区域ID */ 
+                  ,h.type                          /* 0代表抵押 1代表转让 2 代表团购 3代表在现选房 */ 
+                  ,h.status
+                  ,v.viewcount
+		   FROM   houseactivity      AS h      /* 房屋转让团购抵押表 */  left join viewcount v on h.id = v.resourceid
+		   WHERE
+				h.id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.houseactivity.entity.Houseactivity.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM houseactivity 	/* 房屋转让团购抵押表 */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.houseactivity.entity.Houseactivity.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  houseactivity      AS h      /* 房屋转让团购抵押表 */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.houseactivity.entity.Houseactivity.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="Houseactivity">
+		    SELECT 
+                   h.id                            /*  */ 
+                  ,h.title                         /* 标题 */ 
+                  ,h.addr                          /*  */ 
+                  ,h.totalpepole                   /* 总名额  */ 
+                  ,h.remainpepole                  /* 剩余名额  */ 
+                  ,h.isdelete                      /* 是否删除  0否 1删除 */ 
+                  ,h.endtime                       /* 截止时间 */ 
+                  ,h.content                       /* 详细内容  */ 
+                  ,h.isvipview                     /* 是否只有VIP可查看 */ 
+                  ,h.isvipparty                    /* 是否只有VIP可参加 */ 
+                  ,h.createtime                    /* 创建时间 */ 
+                  ,h.creatuser                     /* 创建 人 */ 
+                  ,h.leadpic                       /* 缩略图 */ 
+                  ,h.leadpicviewtype               /* 主题图显示方式（0为小图，1为大图） */ 
+                  ,h.areaid                        /* 所属区域ID */ 
+                  ,h.type                          /* 0代表抵押 1代表转让 2 代表团购 3代表在现选房 */ 
+                  ,h.status
+		FROM   	 houseactivity      AS h      /* 房屋转让团购抵押表 */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/> order by createtime desc
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+	<sql id="wherecontationSelect">
+		<trim  suffixOverrides="," >
+				 <if test="title != null and title != ''" >
+	  		 		/* 标题 */
+			    	AND h.title =  #{title,jdbcType=VARCHAR}
+				 </if>
+				 <if test="addr != null and addr != ''" >
+	  		 		/*  */
+			    	AND h.addr =  #{addr,jdbcType=VARCHAR}
+				 </if>
+				 <if test="totalpepole != null and totalpepole != ''" >
+	  		 		/* 总名额  */
+			    	AND h.totalpepole =  #{totalpepole,jdbcType=INTEGER}
+				 </if>
+				 <if test="remainpepole != null and remainpepole != ''" >
+	  		 		/* 剩余名额  */
+			    	AND h.remainpepole =  #{remainpepole,jdbcType=INTEGER}
+				 </if>
+				 <if test="isdelete != null and isdelete != ''" >
+	  		 		/* 是否删除  0否 1删除 */
+			    	AND h.isdelete =  #{isdelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="endtime != null and endtime != ''" >
+	  		 		/* 截止时间 */
+			    	AND h.endtime =  #{endtime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="content != null and content != ''" >
+	  		 		/* 详细内容  */
+			    	AND h.content =  #{content,jdbcType=VARCHAR}
+				 </if>
+				 <if test="isvipview != null and isvipview != ''" >
+	  		 		/* 是否只有VIP可查看 */
+			    	AND h.isvipview =  #{isvipview,jdbcType=VARCHAR}
+				 </if>
+				 <if test="isvipparty != null and isvipparty != ''" >
+	  		 		/* 是否只有VIP可参加 */
+			    	AND h.isvipparty =  #{isvipparty,jdbcType=VARCHAR}
+				 </if>
+				 <if test="createtime != null and createtime != ''" >
+	  		 		/* 创建时间 */
+			    	AND h.createtime =  #{createtime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="creatuser != null and creatuser != ''" >
+	  		 		/* 创建 人 */
+			    	AND h.creatuser =  #{creatuser,jdbcType=VARCHAR}
+				 </if>
+				 <if test="leadpic != null and leadpic != ''" >
+	  		 		/* 缩略图 */
+			    	AND h.leadpic =  #{leadpic,jdbcType=VARCHAR}
+				 </if>
+				 <if test="leadpicviewtype != null and leadpicviewtype != ''" >
+	  		 		/* 主题图显示方式（0为小图，1为大图） */
+			    	AND h.leadpicviewtype =  #{leadpicviewtype,jdbcType=VARCHAR}
+				 </if>
+				 <if test="areaid != null and areaid != ''" >
+	  		 		/* 所属区域ID */
+			    	AND h.areaid =  #{areaid,jdbcType=INTEGER}
+				 </if>
+				 <if test="type != null and type != ''" >
+	  		 		/* 0代表抵押 1代表转让 2 代表团购 3代表在现选房 */
+			    	AND h.type =  #{type,jdbcType=VARCHAR}
+				 </if>
+				  <if test="status != null and status != ''" >
+			    	AND h.status =  #{status,jdbcType=VARCHAR}
+				 </if>
+		</trim>
+	</sql>
+	
+		<select id="queryList" parameterType="Object"  resultMap="Houseactivity">
+		    SELECT 
+                   h.id                            /*  */ 
+                  ,h.title                         /* 标题 */ 
+                  ,h.addr                          /*  */ 
+                  ,h.totalpepole                   /* 总名额  */ 
+                  ,h.remainpepole                  /* 剩余名额  */ 
+                  ,h.isdelete                      /* 是否删除  0否 1删除 */ 
+                  ,h.endtime                       /* 截止时间 */ 
+                  ,h.content                       /* 详细内容  */ 
+                  ,h.isvipview                     /* 是否只有VIP可查看 */ 
+                  ,h.isvipparty                    /* 是否只有VIP可参加 */ 
+                  ,h.createtime                    /* 创建时间 */ 
+                  ,h.creatuser                     /* 创建 人 */ 
+                  ,h.leadpic                       /* 缩略图 */ 
+                  ,h.leadpicviewtype               /* 主题图显示方式（0为小图，1为大图） */ 
+                  ,h.areaid                        /* 所属区域ID */ 
+                  ,h.type                          /* 0代表抵押 1代表转让 2 代表团购 3代表在现选房 */ 
+                  ,h.status
+		FROM   	 houseactivity      AS h      /* 房屋转让团购抵押表 */ 
+		WHERE 1=1
+		   <include refid="wherecontationSelect"/> order by createtime desc
+ LIMIT  5 
+	</select>
+	
+</mapper>

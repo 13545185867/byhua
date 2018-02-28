@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.houseaOnline.entity.XfHx">
+
+	<!-- Result Map-->
+	<resultMap id="XfHx" type="com.jeecg.p3.houseaOnline.entity.XfHx" >
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="pid" property="pid" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="area" property="area" jdbcType="DECIMAL"/>
+		<result column="pic" property="pic" jdbcType="VARCHAR"/>
+		<result column="is_delete" property="isDelete" jdbcType="VARCHAR"/>
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP"/>
+		<result column="creatuser" property="creatuser" jdbcType="VARCHAR"/>
+		<result column="hx_content" property="hxContent" jdbcType="VARCHAR"/>
+		<result column="xf_hxcol" property="xfHxcol" jdbcType="VARCHAR"/>
+		<result column="xf_hxcol1" property="xfHxcol1" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.pid != null and query.pid != ''" >
+	  		 		/* 楼盘项目ID  */
+			    	AND xh.pid =  #{query.pid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.name != null and query.name != ''" >
+	  		 		/* 户型 名称 */
+			    	AND xh.name =  #{query.name,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.area != null and query.area != ''" >
+	  		 		/* 面积 */
+			    	AND xh.area =  #{query.area,jdbcType=DECIMAL}
+				 </if>
+				 <if test="query.pic != null and query.pic != ''" >
+	  		 		/* 户型缩略图 */
+			    	AND xh.pic =  #{query.pic,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isDelete != null and query.isDelete != ''" >
+	  		 		/* 是否已删除 */
+			    	AND xh.is_delete =  #{query.isDelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.createtime != null and query.createtime != ''" >
+	  		 		/* 创建时间 */
+			    	AND xh.createtime =  #{query.createtime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.creatuser != null and query.creatuser != ''" >
+	  		 		/* 创建人ID */
+			    	AND xh.creatuser =  #{query.creatuser,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.hxContent != null and query.hxContent != ''" >
+	  		 		/* 户型介绍 */
+			    	AND xh.hx_content =  #{query.hxContent,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.xfHxcol != null and query.xfHxcol != ''" >
+	  		 		/*  */
+			    	AND xh.xf_hxcol =  #{query.xfHxcol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.xfHxcol1 != null and query.xfHxcol1 != ''" >
+	  		 		/*  */
+			    	AND xh.xf_hxcol1 =  #{query.xfHxcol1,jdbcType=INTEGER}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfHx.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  xf_hx   /* 在线选房,户型表 */  
+					(	
+                      id                            /* 户型 ID */ 
+                     ,pid                           /* 楼盘项目ID  */ 
+                     ,name                          /* 户型 名称 */ 
+                     ,area                          /* 面积 */ 
+                     ,pic                           /* 户型缩略图 */ 
+                     ,is_delete                     /* 是否已删除 */ 
+                     ,createtime                    /* 创建时间 */ 
+                     ,creatuser                     /* 创建人ID */ 
+                     ,hx_content                    /* 户型介绍 */ 
+                     ,xf_hxcol                      /*  */ 
+                     ,xf_hxcol1                     /*  */ 
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /* 户型 ID */ 
+                     ,#{pid,jdbcType=VARCHAR}                           /* 楼盘项目ID  */ 
+                     ,#{name,jdbcType=VARCHAR}                          /* 户型 名称 */ 
+                     ,#{area,jdbcType=DECIMAL}                          /* 面积 */ 
+                     ,#{pic,jdbcType=VARCHAR}                           /* 户型缩略图 */ 
+                     ,#{isDelete,jdbcType=VARCHAR}                      /* 是否已删除 */ 
+                     ,#{createtime,jdbcType=TIMESTAMP}                    /* 创建时间 */ 
+                     ,#{creatuser,jdbcType=VARCHAR}                     /* 创建人ID */ 
+                     ,#{hxContent,jdbcType=VARCHAR}                     /* 户型介绍 */ 
+                     ,#{xfHxcol,jdbcType=VARCHAR}                       /*  */ 
+                     ,#{xfHxcol1,jdbcType=INTEGER}                      /*  */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfHx.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   xf_hx  	/* 在线选房,户型表 */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="pid != null">
+		    		 		/* 楼盘项目ID  */ 
+	    		 			pid = #{pid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="name != null">
+		    		 		/* 户型 名称 */ 
+	    		 			name = #{name,jdbcType=VARCHAR},
+						 </if>
+						 <if test="area != null">
+		    		 		/* 面积 */ 
+	    		 			area = #{area,jdbcType=DECIMAL},
+						 </if>
+						 <if test="pic != null">
+		    		 		/* 户型缩略图 */ 
+	    		 			pic = #{pic,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isDelete != null">
+		    		 		/* 是否已删除 */ 
+	    		 			is_delete = #{isDelete,jdbcType=VARCHAR},
+						 </if>
+						 <if test="createtime != null">
+		    		 		/* 创建时间 */ 
+	    		 			createtime = #{createtime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="creatuser != null">
+		    		 		/* 创建人ID */ 
+	    		 			creatuser = #{creatuser,jdbcType=VARCHAR},
+						 </if>
+						 <if test="hxContent != null">
+		    		 		/* 户型介绍 */ 
+	    		 			hx_content = #{hxContent,jdbcType=VARCHAR},
+						 </if>
+						 <if test="xfHxcol != null">
+		    		 		/*  */ 
+	    		 			xf_hxcol = #{xfHxcol,jdbcType=VARCHAR},
+						 </if>
+						 <if test="xfHxcol1 != null">
+		    		 		/*  */ 
+	    		 			xf_hxcol1 = #{xfHxcol1,jdbcType=INTEGER},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}			and creatuser=#{creatuser}	/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfHx.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="XfHx">
+		   SELECT   
+                   xh.id                            /* 户型 ID */ 
+                  ,xh.pid                           /* 楼盘项目ID  */ 
+                  ,xh.name                          /* 户型 名称 */ 
+                  ,xh.area                          /* 面积 */ 
+                  ,xh.pic                           /* 户型缩略图 */ 
+                  ,xh.is_delete                     /* 是否已删除 */ 
+                  ,xh.createtime                    /* 创建时间 */ 
+                  ,xh.creatuser                     /* 创建人ID */ 
+                  ,xh.hx_content                    /* 户型介绍 */ 
+                  ,xh.xf_hxcol                      /*  */ 
+                  ,xh.xf_hxcol1                     /*  */ 
+		   FROM   xf_hx      AS xh      /* 在线选房,户型表 */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfHx.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM xf_hx 	/* 在线选房,户型表 */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfHx.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  xf_hx      AS xh      /* 在线选房,户型表 */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfHx.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="XfHx">
+		    SELECT 
+                   xh.id                            /* 户型 ID */ 
+                  ,xh.pid                           /* 楼盘项目ID  */ 
+                  ,xh.name                          /* 户型 名称 */ 
+                  ,xh.area                          /* 面积 */ 
+                  ,xh.pic                           /* 户型缩略图 */ 
+                  ,xh.is_delete                     /* 是否已删除 */ 
+                  ,xh.createtime                    /* 创建时间 */ 
+                  ,xh.creatuser                     /* 创建人ID */ 
+                  ,xh.hx_content                    /* 户型介绍 */ 
+                  ,xh.xf_hxcol                      /*  */ 
+                  ,xh.xf_hxcol1                     /*  */ 
+		FROM   	 xf_hx      AS xh      /* 在线选房,户型表 */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+	<sql id="wherecontationselect">
+		<trim  suffixOverrides="," >
+				 <if test="pid != null and pid != ''" >
+	  		 		/* 楼盘项目ID  */
+			    	AND xh.pid =  #{pid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="name != null and name != ''" >
+	  		 		/* 户型 名称 */
+			    	AND xh.name =  #{name,jdbcType=VARCHAR}
+				 </if>
+				 <if test="area != null and area != ''" >
+	  		 		/* 面积 */
+			    	AND xh.area =  #{area,jdbcType=DECIMAL}
+				 </if>
+				 <if test="pic != null and pic != ''" >
+	  		 		/* 户型缩略图 */
+			    	AND xh.pic =  #{pic,jdbcType=VARCHAR}
+				 </if>
+				 <if test="isDelete != null and isDelete != ''" >
+	  		 		/* 是否已删除 */
+			    	AND xh.is_delete =  #{isDelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="createtime != null and createtime != ''" >
+	  		 		/* 创建时间 */
+			    	AND xh.createtime =  #{createtime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="creatuser != null and creatuser != ''" >
+	  		 		/* 创建人ID */
+			    	AND xh.creatuser =  #{creatuser,jdbcType=VARCHAR}
+				 </if>
+				 <if test="hxContent != null and hxContent != ''" >
+	  		 		/* 户型介绍 */
+			    	AND xh.hx_content =  #{hxContent,jdbcType=VARCHAR}
+				 </if>
+				 <if test="xfHxcol != null and xfHxcol != ''" >
+	  		 		/*  */
+			    	AND xh.xf_hxcol =  #{xfHxcol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="xfHxcol1 != null and xfHxcol1 != ''" >
+	  		 		/*  */
+			    	AND xh.xf_hxcol1 =  #{xfHxcol1,jdbcType=INTEGER}
+				 </if>
+		</trim>
+	</sql>
+	
+		<select id="queryAllByPid" parameterType="Object"  resultMap="XfHx">
+		    SELECT 
+                   xh.id                            /* 户型 ID */ 
+                  ,xh.pid                           /* 楼盘项目ID  */ 
+                  ,xh.name                          /* 户型 名称 */ 
+                  ,xh.area                          /* 面积 */ 
+                  ,xh.pic                           /* 户型缩略图 */ 
+                  ,xh.is_delete                     /* 是否已删除 */ 
+                  ,xh.createtime                    /* 创建时间 */ 
+                  ,xh.creatuser                     /* 创建人ID */ 
+                  ,xh.hx_content                    /* 户型介绍 */ 
+                  ,xh.xf_hxcol                      /*  */ 
+                  ,xh.xf_hxcol1                     /*  */ 
+		FROM   	 xf_hx      AS xh      /* 在线选房,户型表 */ 
+		WHERE 1=1
+		   <include refid="wherecontationselect"/> order by  xh.createtime desc
+	</select>
+	
+</mapper>

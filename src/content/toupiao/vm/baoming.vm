@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>$!{toupiao.actName}-报名</title>
+<meta http-equiv="X-UA-Compatible" content="edge">
+<meta name="”format-detection”" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="email=no" name="format-detection">
+<meta content="telephone=no" name="format-detection">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+
+<link href="$!{basePath}/content/toupiao/baoming/uploadify.css" rel="stylesheet" media="screen">
+<link href="$!{basePath}/content/toupiao/baoming/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="$!{basePath}/content/toupiao/baoming/jquery.js"></script>
+<link rel="stylesheet" href="$!{basePath}/content/toupiao/baoming/font-awesome.min.css">
+
+
+<script>
+var editor_lang = "zh-cn";
+var captchtimermax = '3';
+var hostname = ".mvote.cn";
+var TESTCODEMODE = "0";
+var geetestObj = null;
+var serverroot1 = "$!{basePath}";
+var subscribe ="$!{subscribe}";
+</script>
+<script src="$!{basePath}/content/toupiao/baoming/config.js"></script>
+<link href="$!{basePath}/content/toupiao/baoming/style.css" rel="stylesheet" media="screen">
+<script src="$!{basePath}/content/toupiao/baoming/bootstrap.min.js"></script>
+<link href="$!{basePath}/content/toupiao/baoming/votestyle.css" rel="stylesheet" media="screen">
+<link href="$!{basePath}/content/toupiao/baoming/datetimepicker.css" rel="stylesheet" media="screen">
+<link href="$!{basePath}/content/toupiao/baoming/regform.css" rel="stylesheet" media="screen">
+<link href="$!{basePath}/content/toupiao/baoming/jquery.alerts.css" rel="stylesheet">
+<link href="$!{basePath}/content/toupiao/baoming/jalert.css" rel="stylesheet"><script>
+var guid = "$!{toupiao.id}";
+var expired = "$!{expired}";
+</script>
+<style type="text/css"></style>
+<style>
+.navbar-inner{min-height:5px;}
+.wrap .bodycontainer{width:100%;}
+</style>
+<div class="wrap" >
+<div class="container bodycontainer" id="surveypage" >
+<ul class="breadcrumb" style="margin:0 0;">
+	  <li>
+	  <a href="$!{basePath}/toupiao/toIndex.html?actId=$!{toupiao.id}&jwid=$!{toupiao.jwid}">
+	   $!{toupiao.actName}
+	  </a> <span class="divider">/</span></li>
+	  <li class="active">报名页</li>
+	 
+</ul> 
+#if("$!{expired}" eq "0")
+		<table cellspacing="0" cellpadding="0" class="table voteinfo" style="border:0px;">
+		<tbody><tr class="info">
+		<td>
+		<span>
+		报名截止时间
+		</span>
+				<span style="color:red;">
+$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{toupiao.endEnterTime})
+		</span>
+				</td>
+		</tr>
+	</tbody></table>
+	
+	
+			<table cellspacing="0" cellpadding="0" class="table voteinfo" style="border:0px;">
+		<tbody><tr class="info">
+		<td>
+		<span>
+		注意事项
+		</span>  
+		 </td>
+		</tr>
+	</tbody></table>
+				<div style="padding-left:20px;line-height:normal;" id="surveycontent">
+	$!{toupiao.attention}
+	</div>
+
+		
+			<table cellspacing="0" cellpadding="0" class="table voteinfo" style="border:0px;">
+		<tbody><tr class="info">
+		<td>
+		<span>
+		报名信息
+		</span>  
+		 </td>
+		</tr>
+	</tbody></table>
+	<div class="" style="margin-top:10px;">
+			<form id="registrationform" class="form-horizontal" method="post"  action="$!{basePath}/toupiao/dobaoming.do" onsubmit="return checkDoRegistrationForm();" >
+			<input type="hidden" name="actId" value="$!{toupiao.id}">
+			
+			<div class="form-horizontal surveyuserinfo">
+<div class="control-group" id="inputrealnameDiv">
+<label class="control-label">姓名</label>
+<div class="controls">
+<input type="text" class="userinfofield" name="name" title="1" id="uf_realname" placeholder="请填写姓名" value="">
+<span class="help-inline mustfill"> * 必填 </span>
+</div>
+</div>
+<script>
+$(document).ready(function(){
+	
+	langs['formmustfill'] = "必填";
+	
+	$("#uf_realname").blur(function(){
+		
+		_val = $(this).val();
+		
+		
+		if(_val != "")
+		{
+			$("#inputrealnameDiv").removeClass("error");
+		}
+		else if($(this).attr("title")==1)
+		{
+			showFormError("#inputrealnameDiv",langs['formmustfill']);
+		}
+		
+	})
+	
+})
+</script>
+										
+<div class="control-group" id="inputmobileDiv">
+<label class="control-label">手机</label>
+<div class="controls">
+<input type="text" class="userinfofield" name="tel" title="1" id="uf_mobile" placeholder="请填写手机" value="">
+<span class="help-inline mustfill"> * 必填 </span>
+</div>
+</div>
+<script>
+$(document).ready(function(){
+	
+	$("#uf_mobile").blur(function(){
+		_val = $(this).val();
+		if(_val != "")
+		{
+			$("#inputmobileDiv").removeClass("error");
+			
+			if(!isdigit(_val))
+			{
+				showFormError("#inputmobileDiv",langs['fieldtypeerror']);
+			}
+			
+			else 
+			{
+				if(langs.now == 'cn' &&  _val.length != 11 )
+					showFormError("#inputmobileDiv",langs['fieldtypeerror']);
+			}
+			
+		}
+		else if($(this).attr("title")==1)
+		{
+			showFormError("#inputmobileDiv",langs['formmustfill']);
+		}
+		
+	})
+	
+})
+</script>
+										
+<div class="control-group" id="inputinfoshopnameDiv">
+<label class="control-label">选项名称</label>
+<div class="controls">
+<input type="text" class="userinfofield" name="title" title="1" id="uf_infoshopname" placeholder="请填写，此名称显示在投票首页" value="">
+<span class="help-inline mustfill"> * 必填 </span>
+</div>
+</div>
+<script>
+$(document).ready(function(){
+	
+	langs['formmustfill'] = "必填";
+	
+	$("#uf_infoshopname").blur(function(){
+		_val = $(this).val();
+		if(_val != "")
+		{
+			$("#inputinfoshopnameDiv").removeClass("error");
+		}
+		else if($(this).attr("title")==1)
+		{
+			showFormError("#inputinfoshopnameDiv",langs['formmustfill']);
+		}
+		
+	})
+	
+})
+</script>
+<script>
+$(document).ready(function(){
+	
+	$("#uf_infojoinracemsg").blur(function(){
+		
+		_val = $(this).val();
+		if(_val != "")
+		{
+			$("#inputinfojoinracemsgDiv").removeClass("error");
+		}
+		else if($(this).attr("title")==1)
+		{
+			showFormError("#inputinfojoinracemsgDiv",langs['formmustfill']);
+		}
+		
+	})
+	
+})
+</script>
+									
+<div class="control-group" id="inputaddressDiv">
+<label class="control-label">地址</label>
+<div class="controls">
+<input type="text" class="userinfofield" name="addr" title="1" id="uf_address" placeholder="请填写地址" value="">
+<span class="help-inline mustfill"> * 必填 </span>
+</div>
+</div>
+<script>
+$(document).ready(function(){
+	
+	langs['formmustfill'] = "必填";
+	
+	$("#uf_address").blur(function(){
+		
+		_val = $(this).val();
+		if(_val != "")
+		{
+			$("#inputaddressDiv").removeClass("error");
+		}
+		else if($(this).attr("title")==1)
+		{
+			showFormError("#inputaddressDiv",langs['formmustfill']);
+		}
+	})
+	
+})
+</script>
+										
+<style>
+.controls .selectimgbox{
+	width:50px;
+	height:50px;
+	display:inline-block;
+	position: relative;
+	background-color:#ccc;
+	margin-right:20px;
+}
+.controls .selectimgboxlloading{
+	background-color:#fff;
+}
+.controls .selectimgbox .icon-picture{
+	color: #ccc;
+    float: left;
+    font-size: 46px;
+    margin-left: 1px;
+    margin-top: 1px;
+}
+.controls .selectimgbox .icon-plus{
+	color: #666;
+    font-size: 16px;
+    left: 19px;
+    position: absolute;
+    top: 17px;
+}
+.controls .selectimgbox img{
+	float:left;
+}
+.controls .selectimgbox .imgboxdiv{
+	width:50px;
+	height:50px;
+	 position: relative;
+	 cursor: pointer;
+}
+.controls .selectimgbox  .imgdelbtn{
+	position: absolute;
+    right: -14px;
+    top: -9px;
+    display:none;
+}
+.controls .selectimgbox  iframe{
+	width:0px;
+	height:0px; 
+	overflow:hidden;
+}
+</style>
+<div class="control-group" id="inputinfophotoDiv">
+<label class="control-label">照片</label>
+<div class="controls">
+
+<div class="selectimgbox img-rounded" id="selectimgbox_0">
+	<div class="imgboxdiv">
+	<i class="icon-picture"></i>
+	<i class="icon-plus"></i>
+	</div>
+	<iframe frameborder="0" border="0" src="$!{basePath}/content/toupiao/baoming/uploadimage_iframe.html" id="selectimgbox_0_iframe"></iframe>
+	<div onclick="javascript:delRegFormUploadImage(&#39;selectimgbox_0&#39;);return false;" class="deliconbtn imgdelbtn"><i class="icon-remove" title="删除图片"></i> </div>
+</div>
+
+ <!-- 
+<div class="selectimgbox img-rounded" id="selectimgbox_1">
+	<div class="imgboxdiv">
+	<i class="icon-picture"></i>
+	<i class="icon-plus"></i>
+	</div>
+	<iframe frameborder="0" border="0" src="$!{basePath}/content/toupiao/baoming/uploadimage_iframe(1).html" id="selectimgbox_1_iframe"></iframe>
+	<div onclick="javascript:delRegFormUploadImage(&#39;selectimgbox_1&#39;);return false;" class="deliconbtn imgdelbtn"><i class="icon-remove" title="删除图片"></i> </div>
+</div>
+ -->
+
+<input type="hidden" class="userinfofield" name="image" title="1" id="uf_infophoto" placeholder="请填写照片" value="">
+<span class="help-block mustfill"> * 必填 只能添加一张图片(类型：jpg、png)，每张图片大小不超过8M</span>
+</div>
+
+</div>
+
+<div class="control-group" id="inputUploadSwfDiv">
+<label class="control-label"></label>
+<div class="controls">
+</div>
+</div>
+
+<script>
+_sid = '';
+_uploadnum = 0 ;
+uploadregformimgnum = '3';
+imgguids = new Array();
+uploadingimg = false;
+var imgName='';
+function startUploading(index)
+{
+	uploadingimg = true;
+	$("#selectimgbox_"+index+"").addClass("selectimgboxlloading");
+	$("#selectimgbox_"+index+" .imgboxdiv").html("<img src='$!{basePath}/content/toupiao/baoming/loading.gif' width=50 height=50>");
+}
+function endUploading(json,index)
+{
+	uploadingimg = false;
+	if(json.status == 1)
+	{
+		$("#selectimgbox_"+index+" .imgboxdiv").html("<img  id='"+json.imgName+"' src='"+json.imgthumb+"' class='img-rounded'  width=50 height=50>");
+		$("#selectimgbox_"+index+" .imgdelbtn").show();
+		imgName=json.imgName;
+		_uploadnum ++;
+		imgguids.push(json.imageguid);
+		setImageGuidsVal();
+	}
+	else
+	{
+		alert(json.errormsg);
+	}
+}
+function setImageGuidsVal()
+{
+	
+	 
+	 imgguids_str = "";
+	 $(".selectimgbox .imgboxdiv img").each(function(){
+		 
+		 _thisguid = $(this).attr("id");
+		 imgguids_str ==""?imgguids_str=_thisguid:imgguids_str=imgguids_str+","+_thisguid;
+		 
+	 })
+	 $("#uf_infophoto").val(imgguids_str);
+}
+
+
+$(document).ready(function(){
+	
+	$(".selectimgbox .imgboxdiv").click(function(){
+		
+		if(uploadingimg)
+			return false;
+		if($(this).find(".img-rounded").is("img"))
+		{
+			return false;
+		}
+		_selectid = $(this).parent().attr("id");
+		document.getElementById(_selectid+"_iframe").contentWindow.select_file();
+		return false;
+	})
+	
+})
+</script>
+								
+<div class="control-group" id="inputinfojoinracemsgDiv">
+<label class="control-label" style=" text-align: left;margin-left:25px;">选项描述</label>
+<div class="controls" style="margin-left:15px;">
+<textarea class="userinfofield" style="width:250px;height:200px;" type="textarea" name="description" title="1" id="uf_infojoinracemsg" placeholder="请填写选项描述，也可以是比赛宣言"></textarea>
+<span class="help-inline mustfill"> * 必填 </span>
+</div>
+</div>
+<script>
+$(document).ready(function(){
+	
+	$("#uf_infojoinracemsg").blur(function(){
+		
+		_val = $(this).val();
+		if(_val != "")
+		{
+			$("#inputinfojoinracemsgDiv").removeClass("error");
+		}
+		else if($(this).attr("title")==1)
+		{
+			showFormError("#inputinfojoinracemsgDiv",langs['formmustfill']);
+		}
+		
+	})
+	
+})
+</script>
+							</div>
+			<legend></legend>
+			<div class="alert" id="submitalertdiv" style="display:none;">
+	  		<h4></h4>
+	  		<span></span>
+			</div>
+<button type="submit" class="btn btn-primary" style="margin: 0 auto;display: block;" id="doregistration">提交报名</button>
+			 </form>
+			<iframe name="posthere" frameborder="0" width="0" height="0" src="$!{basePath}/content/toupiao/baoming/saved_resource(2).html"></iframe>
+	</div>
+	</div>
+	#else
+	<link   rel="stylesheet" type="text/css" href="$!{basePath}/content/jlb/css/weui.min.css"/>
+<link  rel="stylesheet" type="text/css" href="$!{basePath}/content/jlb/css/w_safe3301b4.css"/>
+	<div class="page_msg_t extra_t">
+    <div class="icon_area"><i class="icon_msg warn"></i></div>
+    <div class="text_area_t">
+		<div class="text">
+					<h1 class="title"> 报名功能关闭或超时！
+						</h1>
+				</div>
+  
+    </div>
+</div>
+	#end
+	
+</div>
+</div>	
+
+<!--[if lte IE 6]>
+  <!-- bsie js 补丁只在IE6中才执行 -->
+  <script type="text/javascript" src="$!{basePath}/content/toupiao/baoming/bootstrap-ie.js"></script>
+<!--[endif]---->
+ <!-- r.c.mvote.net  -->
+<script src="$!{basePath}/content/toupiao/baoming/lang_206.js"></script>
+
+<script type="text/javascript" src="$!{basePath}/content/toupiao/baoming/sio-1.3.5.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/toupiao/baoming/spin.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/toupiao/baoming/sco.modal.js"></script>
+<script src="$!{basePath}/content/toupiao/baoming/main.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/toupiao/baoming/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/toupiao/baoming/jquery.alerts.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/toupiao/baoming/jquery.jalert.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/toupiao/baoming/regform.js"></script>
+
+
+
+</body></html>

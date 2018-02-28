@@ -1,0 +1,88 @@
+#parse("content/base/back/common/macro.vm")
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<form role="form" class="form-inline" action="$!{basePath}/toupiao/back/wxActToupiaoConfig/list.do" method="post"  id="formSubmit">
+				<div  class="col-md-10" style="width:100%">
+								<div class="panel panel-default">
+								  <div class="panel-heading">投票活动配置</div>
+								  <div class="panel-body">
+								  		<div class="search">
+			
+															 <div class="form-group col-sm-3">
+															    <label for="actId" class="control-label col-sm-3 line34">活动ID</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="actId" id="actId" value="$!{wxActToupiaoConfig.actId}" class="form-control">
+															  	</div>
+															 </div>
+															
+											  <button type="submit" class="btn btn-primary">搜  索</button>
+											  <div class="clearfix"></div>
+								  		</div>
+								  		<div id="legend">
+								  		#if($!{pageInfos.totalItem} <1)
+								          <legend  class="le"><button type="button" class="btn btn-primary" onclick="doUrl('$!{basePath}/toupiao/back/wxActToupiaoConfig/toAdd.do')" >新增</button></legend> 
+								       #end
+								       
+								        </div>
+								        <table class="table table-striped">
+									        <thead>
+													<th>允许每天多次投票</th>
+													<th>每天投票次数</th>
+													<th>是否关注后投票</th>
+													<th>投票方式</th>
+													<th>选项显示样式</th>
+													<th>选项称谓</th>
+													<th>选项量词</th>
+													<th>是否显示搜索 </th>
+													<th>是否显示介绍 </th>
+													<th>是否显示统计</th>
+													<th>是否显示票数</th>
+													<th>是否显示报名入口</th>
+													<th>每次可选个数</th>
+						                			<th>操作</th>
+									        </thead>
+									        <tobody>
+									    	  #if($!{pageInfos})
+								                #foreach($!{info} in $!{pageInfos})
+									            	<tr>			
+																	<td>#if($!{info.isManyVtoe} eq 1)允许#else禁止#end</td>
+																	<td>$!{info.verydayMaxVotecount}</td>
+																	<td>#if($!{info.foucsUserCanJoin} eq 1)是#else否#end</td>
+																	<td>#if($!{info.voteType} eq 1)多选#else单选#end</td>
+																	<td>#if($!{info.optionViewStyle} eq 1)单列显示#end #if($!{info.optionViewStyle} eq 2)两列显示#end #if($!{info.optionViewStyle} eq 3)三列显示#end</td>
+																	<td>$!{info.optionAddr}</td>
+																	<td>$!{info.optionClassic}</td>
+																	<td>#if($!{info.isViewSearch} eq 1)显示 #else不显示#end</td>
+																	<td>#if($!{info.isViewDescript} eq 1)显示 #else不显示#end</td>
+																	<td>#if($!{info.isViewTongji} eq 1)显示 #else不显示#end</td>
+																	<td>#if($!{info.isViewPiaoshu} eq 1)显示 #else不显示#end</td>
+																	<td>#if($!{info.isEnter} eq 1)显示 #else不显示#end</td>
+																	<td>$!{info.checkVoteCount}</td>	
+										                <td class="last">
+							                			<a href="javascript:doUrl('$!{basePath}/toupiao/back/wxActToupiaoConfig/toEdit.do?id=$!{info.id}')" >编辑</a>
+							                			<a href="javascript:delData('$!{basePath}/toupiao/back/wxActToupiaoConfig/doDelete.do?id=$!{info.id}')">删除</a>
+							                			<a href="javascript:doUrl('$!{basePath}/toupiao/back/wxActToupiaoConfig/toDetail.do?id=$!{info.id}')">详情</a>
+						                				</td>
+									           		</tr>
+									             #end
+									    	 #end
+									         </tobody>
+									    </table>
+										<div class="text-right">
+											<!--公用翻页代码-->
+							                #set($attr='formSubmit')
+							            	#showPageList($pageInfos $attr)
+							                <!--END公用翻页代码-->
+										</div>
+								  </div>	
+								</div>
+				</div>  
+				</form>
+		</div>
+	</div>
+</body>
+</html>

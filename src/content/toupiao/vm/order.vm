@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>$!{toupiao.actName}-投票排名</title>
+<meta name="description" content="$!{toupiao.actName}-投票排名">
+<meta name="”format-detection”" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="email=no" name="format-detection">
+<meta content="telephone=no" name="format-detection">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+
+<link href="$!{basePath}/content/toupiao/css/bootstrap.wxvote.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="$!{basePath}/content/toupiao/css/font-awesome.min.css">
+<link href="$!{basePath}/content/toupiao/css/style.css" rel="stylesheet" media="screen">
+<link href="$!{basePath}/content/toupiao/css/wapstyle.css" rel="stylesheet" media="screen">
+
+<link href="$!{basePath}/content/toupiao/css/votestyle.css" rel="stylesheet" media="screen">
+<script async="" src="$!{basePath}/content/toupiao/js/analytics.js"></script>
+<script src="$!{basePath}/content/toupiao/js/jquery.js"></script>
+<script src="$!{basePath}/content/toupiao/js/icheck.min.js"></script>
+<script>
+var editor_lang = "zh-cn";
+var captchtimermax = '5';
+var hideopindex = false;  // 
+var TESTCODEMODE = "0";
+var geetestObj = null;
+var wxvrcode = 0;
+</script>
+<script src="$!{basePath}/content/toupiao/js/config.js"></script>
+<script src="$!{basePath}/content/toupiao/js/bootstrap.min.js"></script>
+
+<link href="$!{basePath}/content/toupiao/css/$!{toupiao.pageViewStyle}" rel="stylesheet" media="screen">
+<style>
+
+.voteorderlist{
+	width: 100%;
+}
+.voteorderlist td.span2{
+	width:72px;
+}
+.voteorderlist td.span3{
+	width:80px;
+}
+.voteorderlist td.span5{
+}
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+[class*="span"] {
+    float: left;
+    margin-left: 20px;
+    min-height: 1px;
+}
+.table th, .table td {
+    border-top: 1px solid #dddddd;
+    line-height: 20px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="span"], .row-fluid table th[class*="span"] {
+    display: table-cell;
+    float: none;
+    margin-left: 0;
+}
+.table td.span2, .table th.span2 {
+    float: none;
+    margin-left: 0; 
+}
+.label, .badge {
+    background-color: #999999;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 11.844px;
+    font-weight: bold;
+    line-height: 14px;
+    padding: 2px 4px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+.label {
+    border-radius: 3px;
+}
+</style>
+
+
+<script>
+var guid = "07b8f886-a6eb-fcf3-9eaa-8f0c40e88e0b";
+var fguid = "df3313b2-7e6d-13c7-d08f-683da36ccdca20170626";
+var maxselectionnum = 10;
+var minselectionnum = 2;
+var qqverified = 0;
+var invitecode = 0;
+</script>
+
+
+</head>
+
+<body class="weixinstyle">
+ 
+<div class="wapwrap">
+
+<div class="topbar" style="position: fixed; opacity: 1;">
+<a href="#" onclick="history.go(-1)"  target="_top"><i class=" icon-angle-left"></i> 返回</a>
+</div>
+
+<div class="container bodycontainer">
+
+<div class="votetitle">
+<h4>$!{toupiao.actName}</h4></div>
+<div class="blockcell">
+<i class="icon-time"></i> 开始时间：$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{toupiao.beginTime})
+</div>
+<div class="blockcell">
+<i class="icon-time"></i> 截止时间：$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{toupiao.endTime})</div>
+<div class="blockcell">
+<i class="icon-warning-sign"></i> #if($!{toupiao.isManyVtoe} eq 0) 每个微信每天能投票1次#end#if($!{toupiao.isManyVtoe} eq 1)  每个微信每天能投$!{toupiao.verydayMaxVotecount}次。#end
+</div>
+<div class="toprulebar">
+<i class="icon-warning-sign"></i>#if($!{toupiao.isManyVtoe} eq 0) 每个微信每天能投票1次#end#if($!{toupiao.isManyVtoe} eq 1)  每个微信每天能投$!{toupiao.verydayMaxVotecount}次，#end每次可选$!{toupiao.checkVoteCount}项, 已选 <b class="hadselnumshow">0</b> 个
+</div>
+
+<h4>最新排名</h4>
+<table class="table voteorderlist">
+<tbody>
+#if($!{pageInfos})
+	#foreach($!{info} in $!{pageInfos})
+<tr>
+<td class="span2">
+<span class="label " style="background-color:#$!{info.image}">第$velocityCount名</span> 
+</td>
+<td class="span5">
+<span class="optt">$!{info.title}</span>
+</td>
+<td class="span3">$!{info.voteCount}票</td>
+</tr>
+	#end
+#end
+</tbody></table>
+
+
+</div>
+
+<div class="footer footerwap" style="position: relative; ">
+
+<p style="color:#666;">
+<a href="" style="color:#0088cc">大悟君逸文化传媒</a>提供技术支持
+</p>
+
+</div>
+</div></body></html>

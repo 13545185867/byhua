@@ -1,0 +1,1090 @@
+﻿<!DOCTYPE HTML>
+<HTML><HEAD> 
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<LINK href="#"  rel="icon" type="image/x-icon">
+<LINK href="$!{basePath}/content/bigwheel/back/files/bootstrap.css" rel="stylesheet">
+<LINK href="$!{basePath}/content/bigwheel/back/files/style.css" rel="stylesheet">
+<LINK href="$!{basePath}/content/bigwheel/back/files/admin.css" rel="stylesheet">
+<LINK href="$!{basePath}/content/bigwheel/back/files/jquery.fileupload.css" rel="stylesheet">
+<LINK href="$!{basePath}/content/bigwheel/back/files/jquery.fileupload-ui.css" rel="stylesheet">
+<LINK href="$!{basePath}/content/bigwheel/back/files/jquery.minicolors.css" rel="stylesheet">
+<LINK href="$!{basePath}/content/bigwheel/back/files/jquery-ui-tooltip.min.css" rel="stylesheet">
+<LINK href="$!{basePath}/content/bigwheel/back/files/jquery-ui-1.10.0.custom.min.css" rel="stylesheet">
+<LINK href="$!{basePath}/content/bigwheel/back/files/gamepage.css" rel="stylesheet">
+<LINK href="$!{basePath}/content/bigwheel/back/files/act_edit.css" rel="stylesheet">
+<LINK href="$!{basePath}/content/bigwheel/back/files/editpage_config.css" rel="stylesheet">
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/jquery-1.7.2.min.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/bootstrap.min.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/operamasks-ui.min.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/jquery.deparam.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/gamepage.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/jquery.template.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/address.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/jquery-ui-1.10.0.custom.min.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/jquery-ui-timepicker-addon.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/jquery-ui-timepicker-zh-CN.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/jquery-ui-sliderAccess.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/jquery.ui.widget.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/jquery.iframe-transport.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/jquery.fileupload.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/jquery.json-2.4.min.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/jquery.minicolors.min.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/aSelect.js" type="text/javascript"></SCRIPT>
+
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/aLocation.js" type="text/javascript"></SCRIPT>
+<STYLE id="_topBar_zoom" type="text/css"></STYLE>
+<SCRIPT>
+var _hasPublish = false;
+var serverroot="$!{basePath}";
+var currentWwwPath=window.document.location.href;  
+//获取主机地址之后的目录，如：/supermarket/user.do(注意：不包括?后面传递的参数)
+var pathName=window.document.location.pathname;  
+//获取/uimcardprj中/的位置(也就是主机地址后面的/)，这里是：21
+var position=currentWwwPath.indexOf(pathName);  
+
+//获取主机地址，如：http://localhost:8080
+var localhostPath=currentWwwPath.substring(0,position); 
+</SCRIPT>
+ 
+<STYLE type="text/css">
+.radio.inline.security-flag::before{
+	color: white;
+	content: "安";
+	background-color: #00cc33;
+	border-width: initial;
+	border-style: none;
+	border-color: initial;
+	border-image: initial;
+	border-radius: 2px;
+	padding: 2px;
+	margin: 0px 20px 0px -43px;
+}
+</STYLE>
+ <TITLE>配置</TITLE> 
+<SCRIPT type="text/javascript"> 
+		window._sendBadjs = null;
+	</SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+		var _orientationChange = function(){
+			var _w=(document.documentElement.clientWidth||document.body.clientWidth)-30;
+			_w=_w<870?870:_w;
+			var _zoom=_w/1332;
+			_zoom = _zoom>1?1:_zoom;
+			var _style=document.getElementById("_topBar_zoom");
+			_style.innerHTML=".topBar {zoom:"+_zoom+";}";
+		};
+		_orientationChange();
+		window.addEventListener("resize", function () {
+			_orientationChange();
+		});
+	</SCRIPT>
+</HEAD> 
+<BODY><!-- 加载页面编辑查看示例 -->	 
+<DIV class="black_maskPage" id="loadPage_example"><IMG src="$!{basePath}/content/bigwheel/back/files/loadPageExample.gif">	</DIV>
+<DIV class="black_maskPage" id="copyRight_example"><IMG src="$!{basePath}/content/bigwheel/back/files/copyright.png"></DIV>
+<DIV class="black_maskPage" id="jumppage_example"><IMG src="$!{basePath}/content/bigwheel/back/files/jumppage.gif"></DIV>
+<DIV class="black_maskPage" id="wxShareIcon_example"><IMG src="$!{basePath}/content/bigwheel/back/files/wxShareIcon.jpg"></DIV>
+<DIV class="black_maskPage" id="wxShareTitle_example"><IMG src="$!{basePath}/content/bigwheel/back/files/wxShareTitle.jpg"></DIV>
+<DIV class="black_maskPage" id="wxShareContent_example"><IMG src="$!{basePath}/content/bigwheel/back/files/wxShareContent.jpg"></DIV><!-- 多选择省市 -->	 
+<DIV class="modal hide fade" id="render_modal" aria-hidden="true" style="z-index: 2000;">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>             
+<H3>选择推广区域</H3></DIV>
+<DIV class="modal-body">
+<DIV class="area-title-wrap">
+<P class="area-title">可选省、市</P>
+<P class="area-title">已选省、市</P></DIV>
+<DIV class="wrap-address clearfix" id="address-list-wrap">
+<DIV class="wrap-address-left">
+<DIV class="address-list" id="address-list-choose"></DIV></DIV>
+<DIV class="wrap-address-right">
+<DIV class="address-list" id="address-list-choosed"></DIV></DIV></DIV></DIV>
+<DIV class="modal-footer"><A class="btn" aria-hidden="true" href="javascript:;" 
+data-dismiss="modal">取消</A>             <A class="btn btn-primary" id="btn_add_area" 
+href="javascript:;">确定</A>         </DIV></DIV><!-- 多省市选择提示 -->     
+<DIV class="modal-confirm" id="j_modal-confirm">
+<DIV class="modal-header"><SPAN class="btn-close tip-btn-close" id="tip-btn-close2">x</SPAN>		 
+   		
+<H4>提示</H4></DIV>
+<DIV class="modal-body">
+<DIV class="content">确认删除吗？</DIV></DIV>
+<DIV class="modal-footer clearfix"><A class="btn tip-btn-close" id="tip_btn_close">关闭</A>		 
+   		<A class="btn btn-primary" id="tip_btn_confirm">确定</A>	    	</DIV></DIV>
+<DIV class="mp_loading_clip" id="loading_clip" style="display: block; z-index: 2002;">
+<DIV class="mp_loading_bar"></DIV></DIV>
+<DIV class="mp_loading_cover" style="display: block; z-index: 2000;"></DIV>
+<DIV class="wrapper" id="game_wrapper">
+<DIV class="topBar" style="min-width: 911px;">
+<DIV class="columnCont"></DIV></DIV>
+<DIV class="editContent">
+<DIV class="previewPhone">
+<DIV class="wxTitle">
+<DIV id="actName"></DIV></DIV>
+<DIV class="changePage" id="changeLeft">
+<DIV class="leftImg img"></DIV></DIV>
+<DIV class="changePage" id="changeRight">
+<DIV class="rightImg img"></DIV></DIV>
+<DIV id="gameContent">
+<DIV></DIV><iframe id="gamePreviewPage" frameborder="0" scrolling="no" style="width: 100%; height: 100%;" src="$!{basePath}/content/bigwheel/back/files/absolutelybigwheel.html"></iframe>			 </DIV>
+<DIV id="moduleLayerBox"></DIV>
+<DIV class="preview-control">
+<P class="control-title">添加内容</P>
+<UL class="control-label">
+  <LI id="label_logo"><A title="" id="label_logo_tips" href="javascript:;" 
+  data-original-title="隐藏" data-trigger="hover" 
+  data-toggle="tooltip">粉丝头像</A></LI>
+  <LI id="label_nickname"><A title="" id="label_nickname_tips" href="javascript:;" 
+  data-original-title="显示" data-trigger="hover" 
+  data-toggle="tooltip">粉丝昵称</A></LI>
+  <LI id="label_poster"><A href="javascript:;">分享文案</A></LI>
+  <LI id="label_actname"><A title="" id="label_actname_tips" href="javascript:;" 
+  data-original-title="显示" data-trigger="hover" 
+  data-toggle="tooltip">活动名称</A></LI></UL></DIV></DIV>
+<DIV class="editDetail">
+<UL class="nav nav-tabs config-tab" id="configTab">
+  <LI class="active"><A href="javascript:;">基础设置</A></LI>
+  <LI class="send_prize_config_tab"><A href="javascript:;">派奖设置</A></LI>
+  <LI class="prize_config_tab"><A href="javascript:;">奖品设置</A></LI>
+  <LI><A href="javascript:;">高级设置</A></LI></UL>
+<DIV class="tab-content config-tab-content">
+<DIV class="config_view" id="panel_1">
+<FORM class="form-horizontal" id="form_activity_config" action="#">
+<DIV class="control-group" id="set_actName_box"><LABEL class="control-label" 
+for="title">活动名称：</LABEL>
+<DIV 
+class="controls"><INPUT name="title" class="span4" id="title" type="text" maxlength="50"><SPAN 
+class="maroon">*</SPAN><SPAN class="help-inline">不能超过50个字</SPAN>
+								 </DIV></DIV>
+<DIV class="control-group" id="set_acttime_box"><LABEL class="control-label" 
+for="startDate">活动时间：</LABEL>
+<DIV class="controls"><!-- TODO:取消默认值 -->
+									 <INPUT name="startDate" class="span2 input" id="startDate" type="text" readonly="" data-editable="false"><SPAN 
+style="padding: 0px 7px;">至</SPAN><INPUT name="endDate" class="span2" id="endDate" type="text" readonly=""><SPAN 
+class="maroon">*</SPAN><SPAN class="help-inline">活动时间不能超过3个月</SPAN>
+								 </DIV></DIV>
+<DIV class="control-group" id="set_participant_box" style="display:none;"><LABEL class="control-label" 
+for="hideParticipant">参与人数：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="hideParticipant" 
+type="radio" value="2">显示									 </LABEL> <LABEL class="radio inline"><INPUT 
+name="hideParticipant" type="radio" value="1">隐藏									 </LABEL>
+								 </DIV>
+<DIV class="controls" style="font-size: 13px; margin-top: 20px;">
+									在实际参与人数基础上增加 <INPUT name="participantVirtualAddCount" class="span1 onlyNum" id="participantVirtualAddCount" type="text" maxlength="5" value="1">人 
+<SPAN class="help-inline" 
+style="color: rgb(153, 153, 153);">（该数据仅用于展现，不计入统计）</SPAN>								 </DIV></DIV>
+<DIV class="control-group" id="set_showdanmu_box"><LABEL class="control-label" 
+for="showDanmu">轮播中奖信息：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="showDanmu" type="radio" 
+value="2">显示									 </LABEL>									 <LABEL class="radio inline"><INPUT name="showDanmu" 
+type="radio" value="1">隐藏									 </LABEL>									 <SPAN class="help-inline" 
+style="padding: 6px 0px 0px 19px;">超过一个粉丝获奖后，活动首页弹幕轮播中奖信息</SPAN>
+								 </DIV></DIV>
+<DIV class="control-group" id="set_ruletext_box"><LABEL class="control-label" 
+for="ruleTips">活动规则：</LABEL>
+<DIV 
+class="controls"><TEXTAREA name="ruleTips" class="span4" id="ruleTips" style="width: 520px;" placeholder="这里填写商家自定义的活动规则" rows="10">这里填写商家自定义的活动规则</TEXTAREA></DIV></DIV>
+<SCRIPT type="text/javascript">
+							$(function () {
+								$('#reDefaultBg').click(function () {
+									$('#bgPicture').val('');
+									$('#bgImgShow').attr('src', 'http://static.resource.youyu.weijuju.com//image/mobile/yyhb/index_bg.jpg');
+								});
+							});
+console.log(186);
+						</SCRIPT>
+						 </FORM></DIV>
+<DIV class="config_view" id="panel_2" style="display: none;">
+<FORM class="form-horizontal" id="form_play_help" action="#">
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="initCount">初始游戏次数：</LABEL>
+<DIV 
+class="controls"><INPUT name="initCount" disabled="disabled" class="span1" id="initCount" type="text" value="99999">次
+									（每个粉丝初始获得的游戏次数）								 </DIV></DIV>
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="dayIncrCount">每日新增次数：</LABEL>
+<DIV class="controls"><INPUT name="dayIncrCount" disabled="disabled" class="span1" id="dayIncrCount" type="text" value="0">次
+									（每个粉丝每天自动新增的游戏次数）								 </DIV></DIV>
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="dayCount">每日参与次数：</LABEL>
+<DIV 
+class="controls"><INPUT name="dayCount" disabled="disabled" class="span1" id="dayCount" type="text" value="99999">次 
+（每个粉丝每天最多参与的游戏次数）								 </DIV></DIV>
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="playCount">累计参与次数：</LABEL>
+<DIV 
+class="controls"><INPUT name="playCount" disabled="disabled" class="span1" id="playCount" type="text" value="99999">次
+									（每位玩家累计最多参与的游戏次数）								 </DIV></DIV>
+<DIV class="control-group" id="set_awardSendType_box"><LABEL class="control-label" 
+for="awardSendType">派奖模式：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="awardSendType" 
+type="radio" value="2" data-editable="false">按抽奖									 </LABEL> <LABEL class="radio inline"><INPUT 
+name="awardSendType" type="radio" value="1" data-editable="false">按排名
+									 </LABEL> <SPAN class="help-inline help-inline-awardSendType2" style="padding: 6px 0px 0px 13px;">在抽奖模式下，活动参与者达到抽奖门槛后就可获得一次抽奖机会，您可自由设置中奖概率以及每人最多中奖次数</SPAN>
+									 <SPAN class="help-inline help-inline-awardSendType1" style="padding: 6px 0px 0px 13px; display: none;">在排名模式下，活动参与者按获取成绩的最高积分排名，商家在活动结束后，根据玩家最终排名高低进行自动奖品派发</SPAN>
+								 </DIV></DIV>
+<DIV id="lucky_award_box">
+<DIV class="control-group" id="set_actlimit_box"><LABEL class="control-label" 
+style="margin-top: 8px;" for="totalLotteryCountRadio">单人总抽奖机会：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="totalLotteryCountRadio" 
+type="radio" value="1">不限										 </LABEL> <LABEL class="radio inline"><INPUT 
+name="totalLotteryCountRadio" style="margin-top: 13px;" type="radio" 
+value="2">限制 <SPAN class="totalLotteryInput">&nbsp;&nbsp;&nbsp;&nbsp;每人最多有
+												 <INPUT name="totalLotteryCount" disabled="disabled" class="span1 onlyNum" id="totalLotteryCount" type="text" maxlength="3" value="5">次
+										 </SPAN>										 </LABEL>									 </DIV></DIV>
+<DIV class="control-group" id="set_daylimit_box"><LABEL class="control-label" 
+for="dayLotteryCount">每日抽奖机会：</LABEL>
+<DIV class="controls">										每人每日有 <INPUT name="dayLotteryCount" class="span1 onlyNum" id="dayLotteryCount" type="text" maxlength="3" value="3">次抽奖机会 
+<BR><SPAN class="maroon">*</SPAN><SPAN 
+class="help-inline help-inline-1">达到最大抽奖机会后，粉丝需要分享助力才能获得更多抽奖机会</SPAN>
+										 <SPAN class="help-inline help-inline-2" 
+style="display: none;">抽奖机会用光后，参与者不能再进行抽奖</SPAN>									 </DIV></DIV>
+<DIV class="control-group" id="set_minscore_box"><LABEL class="control-label" 
+for="passCondition">抽奖门槛：</LABEL>
+<DIV class="controls">										游戏成绩达到 <INPUT name="passCondition" class="span1 onlyNum" id="passCondition" type="text" maxlength="7" value="30">分，即为挑战成功可抽奖 
+<SPAN class="maroon">*</SPAN>										 </DIV></DIV>
+<DIV class="control-group" id="set_singleUserAwards_box"><LABEL class="control-label" 
+for="singleUserAwards">总中奖机会：</LABEL>
+<DIV class="controls"><SPAN class="desc-text">每人最多中奖</SPAN> <INPUT name="singleUserAwards" class="span1 onlyNum" id="singleUserAwards" type="text" maxlength="7" value="1"><SPAN 
+class="num-text">次</SPAN> <SPAN class="maroon">*</SPAN>									 </DIV></DIV>
+<DIV class="control-group" id="set_initialProbability_box"><LABEL class="control-label" 
+for="initialProbability">初始中奖率：</LABEL>
+<DIV 
+class="controls"><INPUT name="initialProbability" class="span1 onlyIntNum" id="initialProbability" type="text" maxlength="3" value="30">
+										% <SPAN class="help-inline">(该值为用户在未经好友助力时的中奖概率)</SPAN>
+									 </DIV></DIV>
+<DIV class="control-group" id="set_percentage_box"><LABEL class="control-label" 
+for="percentage">助力成功率：</LABEL>
+<DIV class="controls"><INPUT name="percentage" class="span1 onlyIntNum" id="percentage" type="text" maxlength="3" value="30">
+										% <SPAN class="help-inline">(好友助力成功的概率，数值越大，助力越容易，也越容易中奖)</SPAN>
+									 </DIV></DIV>
+<DIV class="control-group" id="set_helpNum_box"><LABEL class="control-label" 
+for="helpNum">助力成功人数：</LABEL>
+<DIV class="controls">
+										需要<INPUT name="helpNum" class="span1 onlyIntNum" id="helpNum" type="text" maxlength="3" value="30">个人成功助力才能达到100%中奖
+										 <SPAN 
+class="help-inline">(若需要9人成功助力才能100%中奖，助力成功率设置为30%，那么至少需要30人助力才行)</SPAN>
+									 </DIV></DIV>
+<DIV class="control-group" id="set_probabilityMode_box"><LABEL class="control-label" 
+for="probabilityMode">中奖概率模式：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="probabilityMode" 
+type="radio" value="1">按总中奖概率</LABEL> 										<LABEL class="radio inline" 
+style="position: relative;">
+<DIV class="info field_tips_info">为每个奖项单独设置中奖概率，请前往 &nbsp;<A class="prize_config_tab_link" 
+href="javascript:;">奖品设置</A>											 
+<DIV class="sanjiao"></DIV></DIV><INPUT name="probabilityMode" type="radio" 
+value="2">按单个奖项中奖概率</LABEL> 										<SPAN class="field_tooltip" id="probabilityMode_tooltip"></SPAN>
+									 </DIV>
+<DIV class="controls" style="margin-top: 16px;">										总中奖概率：<INPUT name="globalProbability" class="span1 onlyIntNum" id="globalProbability" type="text" maxlength="3" value="30">
+										% <SPAN class="help-inline">(玩100次游戏，<SPAN class="globalProbabilityText">30</SPAN>次有获奖机会，奖品随机)
+										 </SPAN>									 </DIV><SPAN class="probabilityInfo" style="margin-top: -40px; float: left;"></SPAN>
+								 </DIV>
+<DIV class="control-group" id="set_probabilityType_box"><LABEL class="control-label" 
+for="probabilityType">奖品均匀发放：</LABEL>
+<DIV class="controls"><LABEL class="checkbox inline" 
+for="probabilityType"><INPUT name="probabilityType" id="probabilityType" type="checkbox">
+											开启										 </LABEL>										 <SPAN class="field_tooltip" id="probabilityType_tooltip"></SPAN>
+									 </DIV><SPAN class="probabilityInfo" style="margin-left: -130px; float: left;"></SPAN>
+								 </DIV>
+<DIV class="control-group" id="set_globalAwardVirtualNum_box" style="display: none;"><LABEL 
+class="control-label" for="globalAwardVirtualNum">总虚拟奖品数量：</LABEL>
+<DIV class="controls"><INPUT name="globalAwardVirtualNum" class="span1 onlyIntNum" id="globalAwardVirtualNum" type="text" maxlength="7" value="0"><SPAN 
+class="help-inline">(手机端游戏页面展示奖品数量=剩余奖品数量+总虚拟奖品数量)</SPAN>
+									 </DIV></DIV></DIV>
+<DIV class="control-group" id="set_withHelp_box" style="display:none;"><LABEL class="control-label" 
+for="withHelp">是否开启助力：</LABEL>
+<DIV class="controls"><LABEL class="checkbox inline" for="withHelp"><INPUT name="withHelp" 
+id="withHelp" type="checkbox" checked="checked" data-editable="false"> 开启
+									 </LABEL> <SPAN class="help-inline" 
+style="padding: 5px 0px 0px 20px;">勾选后，助力相关设置才生效，助力设置发布后将不能更改</SPAN>
+									 <SPAN id="withhelp_tooltip">什么是助力</SPAN>								 </DIV></DIV>
+<DIV class="control-group" id="other_cgroup"><LABEL class="control-label" for="helpType">助力效果：</LABEL>
+<DIV class="controls" id="set_helpType_box" style="margin-top: 5px; display: none;"><INPUT name="helpType" id="helpType" type="hidden">
+									 
+<DIV class="helpCount_content">累计获得 
+<INPUT name="helpCount" disabled="disabled" class="span1 onlyNum" id="helpCount" type="text" value="1">次助力，增加
+									 </DIV>									最小积分：<INPUT name="minCount" disabled="disabled" class="span1 onlyNum" id="minCount" type="text" value="1">最大积分<INPUT name="maxCount" disabled="disabled" class="span1 onlyNum" id="maxCount" type="text" value="1"></DIV>
+<DIV class="controls helpType_1_cont"><LABEL class="radio inline"><INPUT name="helpEffect" 
+id="helpEffectForAddPlayCount" type="radio" value="0" 
+data-editable="false">增加抽奖次数									 </LABEL> <LABEL 
+class="radio inline"><INPUT name="helpEffect" title="2^(6-1)" id="helpEffectForHelp" 
+type="radio" value="32" data-editable="false">助力领奖									 </LABEL>									
+									 <!-- 全景红包特殊处理 -->									 
+<DIV id="msBox" style="margin: 10px 0px; display: none;"><LABEL class="radio inline"><INPUT 
+name="helpEffectMs" title="2^(1-1)" id="helpEffectMs1" type="radio" value="1" 
+data-editable="false">动态控制助力人数模式										 </LABEL> 										<LABEL class="radio inline"><INPUT 
+name="helpEffectMs" id="helpEffectMs2" type="radio" value="0" data-editable="false">固定助力人数模式
+										 </LABEL>									 </DIV>
+<DIV id="lotteryCount">										每被助力1次,被助力者增加 
+<INPUT name="lotteryAddCount" title="次数限制为1-10次" class="span1 onlyNum" id="lotteryAddCount" type="text" maxlength="2" value="1" data-editable="false">次抽奖机会
+									 </DIV>
+<DIV class="hide" id="helpAward">
+										中奖后,粉丝需要在<INPUT name="awardCycleTime" title="时间限制为5-1200分钟" class="span1 onlyNum" id="awardCycleTime" type="text" maxlength="4" value="5" data-editable="false">分钟内获得<INPUT name="unlockPrizeCount" title="次数限制为1-10次" class="span1 onlyNum" id="unlockPrizeCount" type="text" maxlength="2" value="3" data-editable="false">次助力才能领奖
+									 </DIV><!-- 全景红包特殊处理 -->									 
+<DIV class="hide" id="helpAward2">										中奖后,1个1元红包需要在<INPUT name="awardCycleTime" title="时间限制为5-1200分钟" class="span1 onlyNum" id="awardCycleTime2" type="text" maxlength="4" value="5" data-editable="false">分钟内获得<INPUT name="unlockPrizeCount" title="次数限制为1-10次" class="span1 onlyNum" id="unlockPrizeCount2" type="text" maxlength="2" value="3" data-editable="false">次助力才能拆开红包
+											 <SPAN class="help-inline" 
+style="margin-top: 5px; display: block;">温馨提示：动态模式下，系统将根据红包金额调整助力人数，此处设定的助力人数将作为基础参考值，例如红包金额1元时需5人助力，那么当红包金额为2元时，系统自动调整为需10人助力。当红包金额有小数的情况下，助力人数将会四舍五入。</SPAN></DIV></DIV>
+<DIV class="controls helpType_2_cont">									每被助力1次,被助力者增加最高游戏积分的<INPUT name="gamePointAddPercent" class="span1 onlyIntNum" id="gamePointAddPercent" type="text" maxlength="3" value="1" data-editable="false">%
+									 <SPAN id="gamescore_tooltip">什么是积分</SPAN>
+								 </DIV></DIV></FORM></DIV>
+<DIV class="config_view" id="panel_3" style="display: none;"><SPAN class="help-inline" 
+id="singleUserAwards-help-inline" 
+style="margin-bottom: 3px;">每个粉丝只可中奖一次，如果设置中奖次数，请前往							 <A style="text-decoration: underline;" 
+onclick="javascript:addFieldCheckBorder('singleUserAwards')" 
+href="javascript:;">派奖设置</A>						 </SPAN> <INPUT name="vehicle" style="display: none;" 
+type="checkbox" value="Bike">						 <SPAN class="help-inline" style="margin-bottom: 10px;">如果设置每个奖项的中奖概率，请前往<A 
+style="text-decoration: underline;" onclick="javascript:addFieldCheckBorder('probabilityMode')" 
+href="javascript:;">派奖设置</A>切换单项中奖概率模式						 </SPAN>						 
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="totalHbMoney">奖项数量：</LABEL>
+<DIV class="controls"><SELECT disabled="disabled" id="awardCount"><OPTION 
+  value="1">1</OPTION>									 <OPTION value="2">2</OPTION>									 <OPTION 
+  value="3">3</OPTION>									 <OPTION value="4">4</OPTION>									 <OPTION 
+  value="5">5</OPTION>									 <OPTION value="6">6</OPTION>									 <OPTION 
+  value="7">7</OPTION>									 <OPTION selected="selected" value="8">8</OPTION>
+  								 </SELECT>							 </DIV></DIV>
+<DIV id="set_actaward_box">
+<UL class="nav nav-tabs ui-nav-tabs clearfix award_tab_item"></UL>
+<DIV class="award_tab_content tab-content"></DIV></DIV></DIV>
+<DIV class="config_view" id="panel_4" style="display: none;">
+<UL class="nav nav-tabs" id="adv_subtab" style="margin-bottom: 5px;">
+  <LI class="active"><A href="#adv_subtab_1" 
+  data-toggle="tab">企业信息</A></LI>
+ 
+  <LI id="game_setting_tab"><A href="#adv_subtab_2" 
+  data-toggle="tab">游戏设置</A></LI>
+  <LI><A href="#adv_subtab_3" 
+  data-toggle="tab">关注设置</A></LI>
+  <LI><A href="#adv_subtab_4" 
+  data-toggle="tab">安全设置</A></LI></UL>
+<FORM class="form-horizontal" id="form_high_setting" action="#">
+<DIV class="tab-content" id="adv_subtab_content">
+<DIV class="tab-pane active" id="adv_subtab_1">
+<DIV class="control-group" id="set_organizer_box"><LABEL class="control-label" 
+for="organizer">主办单位：</LABEL>
+<DIV class="controls"><INPUT name="organizer" class="span4" id="organizer" type="text"></DIV></DIV>
+<DIV class="control-group set_jumpLink_box"><LABEL class="control-label qijianban-label" 
+for="organizerLink">主办单位开启跳转：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="jumpLinkBtn" 
+type="radio" value="1">否											 </LABEL>											 <LABEL class="radio inline"><INPUT 
+name="jumpLinkBtn"  type="radio" value="2">开启
+											 </LABEL>											 </DIV></DIV>
+<DIV class="control-group" id="set_jumpLink2_box" style="display: none;"><LABEL 
+class="control-label" for="organizerLink">跳转链接：</LABEL>
+<DIV class="controls">
+<DIV class="jumpLinkBox"><INPUT name="organizerLink" class="span4" id="organizerLink" type="text"></DIV></DIV></DIV><!-- <div class="control-group">
+										<label class="control-label" for="organizerLink">链接：</label>
+										<div class="controls">
+											<input id="organizerLink" name="organizerLink" class="span4" type="text" value="">
+										</div>
+									</div> -->
+									 
+<DIV class="control-group" id="set_logo_box"><LABEL class="control-label" for="hideOrganizerLogo"><SPAN 
+class="nofree_tips">标</SPAN>企业LOGO：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="hideOrganizerLogo" 
+type="radio" value="1">隐藏											 </LABEL>											 <LABEL class="radio inline"><INPUT 
+name="fakeForFreeUser" disabled="disabled" type="radio" value="2">显示
+											 </LABEL>											 </DIV>
+<DIV class="controls orgLogoControls hide">
+<DIV class="cover-area">
+<DIV class="cover-hd">
+<DIV class="info">														图片像素建议为 <SPAN 
+class="uploadSize">200px*200px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+														 
+<DIV class="sanjiao"></DIV></DIV><SPAN 
+class="btn btn-primary fileinput-button">上传图片														 <INPUT name="fileupload" id="file_upload_orglogo" type="file" data-url="$!{basePath}/system/back/jwSystemProject/doJQUpload.html" data-form-data='{"accountId": "424157"}' data-sizelimit="100">
+													 </SPAN> <INPUT name="organizerLogo" disabled="disabled" class="fileupload_input" id="organizerLogo" type="hidden">
+												 </DIV>
+<P class="upload-tip">请上传jpg、png、gif格式的图片。</P>
+<DIV class="cover-bd img-area" data-from="#organizer_logo">
+<DIV class="imgBox"><IMG class="thumb_img" 
+src="$!{basePath}/content/bigwheel/back/files/def_img_1.png"></DIV></DIV></DIV></DIV></DIV>
+<DIV id="set_copyright_box">
+<DIV class="control-group" id="show_copyright_group"><LABEL class="control-label zhuanyeban-label" 
+for="showCopyright">显示版权：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="fakeForFreeUser" 
+disabled="disabled" type="radio" value="2">隐藏												 </LABEL>
+												 <LABEL class="radio inline"><INPUT name="showCopyright" type="radio" 
+value="1">显示												 </LABEL>												 <A class="view_example" id="copyRightExampleBtn" 
+href="javascript:void(0);">查看示例</A>											 </DIV></DIV>
+<DIV class="control-group" id="set_copyright_group" style="display:none;"><LABEL class="control-label zhuanyeban-label" 
+for="useDefaultCopyright">版权设置：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="useDefaultCopyright" 
+type="radio" value="1">默认												 </LABEL>												 <LABEL class="radio inline"><INPUT 
+name="fakeForFreeUser" disabled="disabled" type="radio" value="2">自定义
+												 </LABEL>												 </DIV>
+<DIV class="controls copyrightPicControls" style="display: none;">
+<DIV class="cover-area">
+<DIV class="cover-hd">
+<DIV class="info">															图片像素建议为 <SPAN 
+class="uploadSize">314px*44px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+															 
+<DIV class="sanjiao"></DIV></DIV><SPAN 
+class="btn btn-primary fileinput-button">上传图片															 <INPUT name="fileupload" id="file_upload_copyrightpic" type="file" data-url="$!{basePath}/system/back/jwSystemProject/doJQUpload.html" data-form-data='{"accountId": "424157"}' data-sizelimit="100">
+														 </SPAN> 
+<INPUT name="customCopyrightPic" disabled="disabled" class="fileupload_input" id="customCopyrightPic" type="hidden">
+													 </DIV>
+<P class="upload-tip">请上传jpg、png、gif格式的图片。</P>
+<DIV class="cover-bd img-area" data-from="#startLogoImg">
+<DIV class="imgBox"><IMG class="thumb_img" 
+src="$!{basePath}/content/bigwheel/back/files/def_img_1.png"></DIV></DIV></DIV>
+<DIV class="copyrightLinkControls" style="margin: 7px 0px 0px 14px;">
+<P style="margin: 7px 7px 0px 0px; float: left;">跳转链接：</P><INPUT name="copyrightLink" class="span4" id="copyrightLink" type="text" placeholder="请输入底部版权的跳转链接" value=""></DIV></DIV></DIV></DIV>
+<DIV id="set_loadPage_group_box"  ><!-- 加载页面 -->										 
+<DIV class="control-group"><LABEL class="control-label control-fufei-label" for="useDefaultLoadPage">加载页面：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="useDefaultLoadPage" 
+type="radio" value="1" checked="true">默认												 </LABEL>		 <LABEL class="radio inline"><INPUT 
+name="useDefaultLoadPage"   type="radio" value="0">自定义
+												 </LABEL>												 <A class="view_example" id="vExampleBtn" href="javascript:void(0);">查看示例</A>
+												 
+											 </DIV></DIV>
+<div class="controls loadPagePicControls hide" style="display: block;">
+<div class="cover-area">
+<div class="cover-hd">
+<div class="info">	 图片像素建议为 <span class="uploadSize">200px*200px</span><br>大小在100k以内，格式为jpg\bmp\png\gif
+																 
+<div class="sanjiao"></div></div><span class="btn btn-primary fileinput-button">上传图片																 <input name="fileupload" id="file_upload_loadPagePic" type="file" data-url="$!{basePath}/system/back/jwSystemProject/doJQUpload.html"  data-form-data='{"accountId": "424157"}' data-sizelimit="100">
+															 </span> <input name="loadPagePic" class="fileupload_input" id="loadPagePic" type="hidden"  >
+														 </div>
+<p class="upload-tip">请上传jpg、png、gif格式的图片。</p>
+<div class="cover-bd img-area" data-from="#loading_banner_bg">
+<div class="imgBox"><img class="thumb_img" src="$!{basePath}/content/bigwheel/back/files/lot/opening_bg2.jpg"></div></div></div></div>
+
+
+<DIV id="set_opening_banner_link" style="display: none;">
+<DIV class="control-group"><LABEL class="control-label qijianban-label" for="open_opening_link">加载页面开启跳转：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="open_opening_link" 
+type="radio" value="0">否													 </LABEL> <LABEL 
+class="radio inline"><INPUT name="open_opening_link" disabled="disabled" type="radio" 
+value="8">是													 </LABEL>													 <A class="view_example" id="jumpPageExampleBtn" 
+href="javascript:void(0);">查看示例</A>												 </DIV></DIV>
+<DIV class="control-group" id="opening_link" style="display: none;"><LABEL 
+class="control-label" for="openingLink">跳转链接：</LABEL>
+<DIV 
+class="controls"><INPUT name="openingLink" class="span4" id="openingLink" type="text"></DIV></DIV>
+<DIV class="control-group" id="set_openClick_box" style="display: none;"><LABEL 
+class="control-label">加载页面开启可点击提示：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="isOpenClick" 
+type="radio" value="0"> 否</LABEL> <LABEL class="radio inline"><INPUT name="isOpenClick" 
+type="radio" value="1"> 是</LABEL>												 </DIV>
+<DIV class="controls openClickControls hide">
+<DIV class="cover-area">
+<DIV class="cover-hd">
+<DIV class="info">	 图片像素建议为 <SPAN 
+class="uploadSize">200px*200px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+																 
+<DIV class="sanjiao"></DIV></DIV><SPAN 
+class="btn btn-primary fileinput-button">上传图片																 <INPUT name="fileupload" id="file_upload_OpenClickPic" type="file" data-url="$!{basePath}/system/back/jwSystemProject/doJQUpload.html" data-form-data='{"accountId": "424157"}' data-sizelimit="100">
+															 </SPAN> <INPUT name="openClickPic" disabled="disabled" class="fileupload_input" id="openClickPic" type="hidden">
+														 </DIV>
+<P class="upload-tip">请上传jpg、png、gif格式的图片。</P>
+<DIV class="cover-bd img-area" data-from="#openClick_pic">
+<DIV class="imgBox"><IMG class="thumb_img" 
+src="$!{basePath}/content/bigwheel/back/files/def_img_1.png"></DIV></DIV></DIV></DIV></DIV></DIV></DIV><!--
+                                <div class="control-group">
+                                  <label class="control-label" for="moreInfo_tel">收集信息：</label>
+                                  <div class="controls">
+                                   <input id="moreInfo_tel" name="moreInfo_tel" class="" type="checkbox"> 手机号
+                                   <input id="moreInfo_name" name="moreInfo_name" class="" type="checkbox"> 姓名
+                                   <input id="moreInfo_addr" name="moreInfo_addr" class="" type="checkbox"> 地址
+                                  </div>
+                                </div>
+                                -->
+								 </DIV>
+
+<DIV class="tab-pane" id="adv_subtab_2">
+<DIV class="control-group"><LABEL class="control-label" style="margin-top: 8px;" 
+for="gameTimeRadio">游戏时间：</LABEL>
+<DIV class="controls"><LABEL class="radio inline" style="display: none;"><INPUT 
+name="gameTimeRadio" id="defaultGameTimeRadio" type="radio" value="0" checked="checked"
+data-editable="false">默认											 </LABEL> <LABEL class="radio inline"><INPUT 
+name="gameTimeRadio" style="margin-top: 13px;" type="radio" value="1" 
+data-editable="false">自定义												 <SPAN 
+class="gameTimeInput">&nbsp;&nbsp;&nbsp;&nbsp;<INPUT name="gameTime" class="span1 onlyNum" id="gameTime" type="text" maxlength="4" value="30">秒
+											 </SPAN>											 </LABEL>										 </DIV></DIV></DIV>
+<DIV class="tab-pane" id="adv_subtab_3">
+<DIV class="control-group"><LABEL class="control-label" 
+for="wxname">承办活动微信公众号：</LABEL>
+<DIV class="controls"><SPAN class="help-inline" 
+style="margin-top: 7px;">选择承办该活动的公众号（绑定公众号后方可选择，可后续绑定）</SPAN>
+												 </DIV></DIV>
+<DIV class="control-group" id="set_subscribe_box"><LABEL class="control-label" 
+for="wxlink">引导关注图文链接：</LABEL>
+<DIV 
+class="controls"><INPUT name="wxlink" class="span4" id="wxlink" type="text" value="http://mp.weixin.qq.com/s?__biz=MjM5ODk5OTUwMQ==&amp;mid=208223992&amp;idx=1&amp;sn=ec55eb1ec8c5e9746bf7564c7248c617"><SPAN 
+class="help-inline">请前往微信公众平台新建图文，如示例<A href="http://mp.weixin.qq.com/s?__biz=MjM5ODk5OTUwMQ==&amp;mid=208223992&amp;idx=1&amp;sn=ec55eb1ec8c5e9746bf7564c7248c617" 
+target="_blank">（点击查看）</A>，将新建好的图文链接填入输入框即可实现一键关注。											 </SPAN> <SPAN 
+class="help-inline" style="margin-top: 12px;">提示：需要填写图文链接，而非预览链接，<A href="http://mp.weixin.qq.com/s?__biz=MzIyMTEwNzA2OA==&amp;mid=507106267&amp;idx=1&amp;sn=8927393cc89002d62262361b2ed2abf8&amp;scene=1&amp;srcid=0810OuAehsqqwzD2zihxEzoy#wechat_redirect" 
+target="_blank">详情请查看帮助</A>。											 </SPAN>										 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="participateLimit">参与限制：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="participateLimit" 
+type="radio" value="1">开启											 </LABEL> <LABEL class="radio inline"><INPUT 
+name="participateLimit" type="radio" value="2">关闭											 </LABEL> <SPAN 
+class="help-inline" style="padding: 6px 0px 0px 13px;">开启后，粉丝需填写手机号方可参与游戏</SPAN>
+										 </DIV></DIV>
+<DIV class="control-group"  ><LABEL class="control-label" 
+for="forceAttent">限制关注后参与：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="forceAttent" 
+type="radio" value="1" disabled>开启											 </LABEL> <LABEL class="radio inline"><INPUT 
+name="forceAttent" type="radio" value="2">关闭											 </LABEL> <SPAN class="help-inline" 
+style="padding: 6px 0px 0px 13px;">提示：微信严厉禁止关注后投票，因此您创建并进行微信关注投票活动就默认您了解进行这样活动的风险，我们不接受因举办此类活动被微信屏蔽或封号、删粉而带来的任何责任，也不接受因此而申请退款的请求。如果您能接受上述风险，您可联系技术支持(13545185867)获得此服务!</SPAN>
+										 </DIV></DIV></DIV>
+<DIV class="tab-pane" id="adv_subtab_4">
+
+<DIV class="control-group"><LABEL class="control-label" 
+for="iscurrent">参与方式限制：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="iscurrent" 
+type="radio" value="0" checked="checked">不限制											 </LABEL><LABEL class="radio inline"><INPUT name="iscurrent" 
+type="radio" value="1">现场										 </LABEL> <LABEL class="radio inline"><INPUT 
+name="iscurrent" type="radio" value="2">网络											 </LABEL> <SPAN 
+class="help-inline" style="padding: 6px 0px 0px 13px;">现场参与的活动只能通过扫描现场二维码参加活动</SPAN>
+										 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="needsex">参与人性别限制：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="needsex" 
+type="radio" value="0" checked="checked">不限制											 </LABEL><LABEL class="radio inline"><INPUT name="needsex" 
+type="radio" value="1">男性参加											 </LABEL> <LABEL class="radio inline"><INPUT 
+name="needsex" type="radio" value="2">女性参加											 </LABEL> <SPAN 
+class="help-inline" style="padding: 6px 0px 0px 13px;">根据参与人的性别判断是否有参与资格</SPAN>
+										 </DIV></DIV>
+
+
+
+<div class="control-group">
+<label class="control-label" for="verfiyPassword">奖品核销密码：</label>
+<div class="controls">
+<input name="verfiyPassword" class="span4" id="verfiyPassword" type="text" value="">
+ <span class="help-inline" style="padding: 6px 0px 0px 13px;">核销奖品时需要输入核销密码</span>
+</div>
+</div>
+
+<DIV class="control-group"><LABEL class="control-label" 
+for="exchangeLimit">联系兑奖：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="exchangeLimit" 
+type="radio" value="1">开启											 </LABEL> <LABEL class="radio inline"><INPUT 
+name="exchangeLimit" type="radio" value="2">关闭											 </LABEL> <SPAN class="help-inline">需要先填写兑奖信息才能领取兑换券或者领取微信红包</SPAN>
+										 </DIV></DIV>
+<DIV class="control-group" id="set_exchangeLimitDetail_box" style="display: none;"><LABEL 
+class="control-label" for="exchangeLimitDetail">兑奖信息：</LABEL>
+<DIV class="controls">
+<DIV class="exchangeLimitDetail-content"><LABEL class="checkbox inline"><INPUT 
+name="exchangeLimitDetail" type="checkbox" value="2">姓名												 </LABEL>
+												 <LABEL class="checkbox inline"><INPUT name="exchangeLimitDetail" 
+disabled="disabled" type="checkbox" checked="checked" value="1">手机号
+												 </LABEL>												 <LABEL class="checkbox inline"><INPUT name="exchangeLimitDetail" 
+type="checkbox" value="4">地址												 </LABEL>									 
+												  
+											 </DIV>
+<DIV class="add-undefind-box hide"><LABEL class="checkbox inline"><A class="add-undefind-btn" 
+href="javascript:;">+添加信息</A>												 </LABEL>												 
+<DIV 
+class="undefind-info-box hide"><INPUT name="undefindTitle" type="text" maxlength="5">
+													 <A class="ex-save" href="javascript:;">保存</A>													 <A 
+class="ex-cancel" href="javascript:;">取消</A>
+												 </DIV></DIV></DIV></DIV>
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="needLimitAddress">是否限制地区：</LABEL>
+<DIV class="controls" style="margin-top: 5px;"><INPUT name="needLimitAddress" 
+id="needLimitAddress" style="margin: 8px;" type="checkbox"> <SPAN 
+class="maroon">*</SPAN><SPAN class="help-inline">限制</SPAN>
+										 </DIV></DIV>
+<DIV class="control-group" id="addressGroup"><LABEL class="control-label" for="addr_prov">参与地区限制：</LABEL><!-- <div class="controls">
+											<select name="addr_prov" class="addr span2" id="addr_prov">
+												<option>请选择</option>
+											</select> <select name="addr_city" class="addr span2" id="addr_city"></select>
+											<span class="help-inline">限制参与地域后，只有选定地域范围内的微信用户才能中奖。</span>
+										</div> -->
+										 <!-- 多选择省市 -->										  
+<DIV class="controls"><A class="btn-add-area" id="show_add_area_new" href="javascript:;">增加地域限制</A>
+										 <!--  <button id="btn_address_modal">弹出地址选择弹框</button> -->										 
+	 <!-- 回显列表 -->										     
+<DIV class="area-list-wrap" id="show_view_area_list" style="display: none;">
+<DIV class="area-list-control"><SPAN class="icon-area-edit" 
+id="show_view_area"></SPAN>										             <SPAN class="icon-area-delete" 
+id="delete_view_area"></SPAN>										         </DIV>
+<DIV class="area-list-items" id="view_area_list"><!-- 地址列表  -->										        
+ </DIV></DIV>
+<P 
+class="help-inline">限制参与区域后,只有选定地域范围内的微信用户才能中奖,以用户网络IP定位作为判断基准。</P></DIV></DIV>
+<!--
+                               <div class="control-group">
+                                 <label class="control-label" for="snValidate">SN核销密码：</label>
+                                 <div class="controls">
+                                  <input id="snValidate" name="snValidate" class="" type="text" checked="checked">
+                                 </div>
+                               </div>
+                                -->
+								 </DIV></DIV></FORM></DIV></DIV></DIV>
+<DIV class="saveBottomBar fixBottombar">
+<DIV class="buttonBox">
+<DIV class="btn" id="cancel_btn">返回</DIV>
+<DIV class="btn btn-primary" id="save_btn">保存</DIV></DIV></DIV></DIV></DIV>
+<DIV class="modal hide fade" id="upload_img_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H3>修改图片</H3></DIV>
+<DIV class="modal-body form-horizontal"></DIV></DIV><!-- 上传音乐免责声明 -->	 
+<DIV class="modal hide fade" id="disclaimer_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H3>用户协议及免责声明</H3></DIV>
+<DIV class="modal-body form-horizontal">
+			有娱平台自定义音乐服务协议由深圳市花儿绽放网络科技股份有限公司和您签订。<BR>
+<H4>一、声明与承诺</H4>1.1 
+声明<BR>&nbsp;&nbsp;&nbsp;&nbsp;在接受本协议使用有娱平台自定义音乐服务之前，请您仔细阅读本协议的全部内容（特别是以粗体标注的内容）。如果您不同意本协议的任意内容，或者无法准确理解本公司对条款的解释，请不要进行后续操作，包括但不限于不要接受本协议，不使用本服务。如果您对本协议的条款有疑问，请通过本公司客服渠道进行询问（客服电话为400-7888-925），本公司将向您解释条款内容。<BR>1.2 
+承诺<BR>&nbsp;&nbsp;&nbsp;&nbsp;您理解并同意，如本公司需要对本协议进行变更或修改的，须通过www.youyu.weijuju.com网站公告的方式提前予以公布，公告期限届满后即时生效；若您在本协议内容公告变更生效后继续使用有娱平台自定义音乐服务的，表示您已充分阅读、理解并接受变更后的协议内容，也将遵循变更后的协议内容使用有娱平台自定义音乐服务；若您不同意变更后的协议内容，您应在变更生效前停止使用自定义音乐服务。<BR>
+<H4>二、【自定义音乐功能】</H4>			该服务为本地上传音乐文件服务，用户可以从本地上传自己的音乐文件，或选择关闭此功能。上传的音乐格式为 mp3 
+/ogg/wav ，大小在100k以内，否者需按要求清理。<BR>
+<H4>三、【功能使用须知】</H4>3.1&nbsp;遵守中国有关的法律和法规；<BR>3.2&nbsp;遵守所有与网络服务有关的网络协议、规定和程序；<BR>3.3&nbsp;不得为任何非法目的而使用网络服务系统；<BR>3.4&nbsp;不得以任何形式使用自定义音乐服务侵犯本平台的商业利益，包括并不限于发布非经本平台许可的商业广告；<BR>3.5&nbsp;不得利用自定义音乐服务服务系统进行任何可能对互联网或移动网正常运转造成不利影响的行为；<BR>3.6&nbsp;不得利用自定义音乐服务服务上传、展示或传播任何虚假的、骚扰性的、中伤他人的、辱骂性的、恐吓性的、庸俗淫秽的或其他任何非法的信息；<BR>3.7&nbsp;不得侵犯其他任何第三方的专利权、著作权、商标权、名誉权或其他任何合法权益；<BR>3.8&nbsp;不得利用自定义音乐服务系统进行任何不利于本平台的行为；<BR>3.9 
+ 
+本平台有权对用户使用自定义音乐服务【该服务包括但不限于收费及免费网络服务（其中包括基于广告模式的免费网络服务）】的情况进行审查和监督（包括但不限于对用户上传的内容进行审核），如用户在使用自定义音乐服务时违反任何上述规定，本平台或其授权的人有权要求用户改正或直接采取一切必要的措施（包括但不限于更改或删除用户使用的内容、暂停或终止用户使用网络服务的权利等）以减轻用户不当行为造成的影响；<BR>3.10 
+本平台针对此服务的使用通过各种方式（包括但不限于网页公告、电子邮件、短信提醒等）作出的任何声明、通知、警示等内容视为本协议的一部分，用户如使用该等服务，视为用户同意该等声明、通知、警示的内容。<BR>
+<H4>四、【免责声明】</H4>
+			用户明确同意其使用自定义音乐服务所存在的风险将完全由其自己承担；因其使用自定义音乐服务而产生的一切后果也由其自己承担，本平台对用户不承担任何责任。<BR><BR>4.1 
+本平台不担保网络服务一定能满足用户的要求，也不担保网络服务不会中断，对网络服务的及时性、安全性、准确性也都不作担保；<BR>4.2 
+本平台不保证为用户提供便利而设置的外部链接的准确性和完整性，同时，对于该等外部链接指向的不由本平台实际控制的任何网页上的内容，本平台不承担任何责任；<BR>4.3 
+对于因不可抗力或不能控制的原因造成的网络服务中断或其它缺陷，本平台不承担任何责任，但将尽力减少因此而给用户造成的损失和影响；<BR>4.4 
+用户同意，对于本平台向用户提供的下列产品或者服务的质量缺陷本身及其引发的任何损失，本平台无需承担任何责任；<BR>4.5 
+本平台作品仅代表用户本人的观点，不代表本平台的观点和看法，与本平台立场无关，相关责任用户自负；<BR>4.6 
+除本平台注明的服务内容外，其他一切因使用本平台而引致之任何意外、疏忽、诽谤、版权或知识产权侵犯及其所造成的损失（包括感染电脑病毒），本网站概不负责，亦不承担任何法律责任；<BR>4.7 
+由于用户将个人密码告知他人或与他人共享注册账户，由此导致的任何资料泄露，本网站不负任何责任；<BR>4.7 
+若因本平台产生任何诉诸于诉讼程序的法律争议，将以本平台所有者所在的法院为管辖法院，除非中国法律对此有强制性规定。<BR>
+<H4>五、【暂停、中断或终止服务】</H4>5.1 公司在本网站公告之系统停机维护期间。<BR>5.2 电信设备出现故障不能正常进行数据传输的。<BR>5.3 
+由于黑客攻击、电信部门技术调整或故障、网站升级、银行方面的问题等原因而造成的服务中断或者延迟。<BR></DIV>
+<DIV class="controls" id="read_over_div"><LABEL class="checkbox inline" for="read_over"><INPUT 
+name="read_over" id="read_over" type="checkbox">				我已仔细阅读并同意此协议的内容。			 </LABEL>
+		 </DIV>
+<DIV class="buttonBox">
+<DIV disabled="disabled" class="btn btn-primary" 
+id="music_agree_btn">确认</DIV></DIV></DIV><!-- 上传音乐 -->	 
+<DIV class="modal hide fade" id="upload_music_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H3>修改音乐</H3></DIV>
+<DIV class="modal-body form-horizontal">
+<DIV class="control-group"><LABEL class="control-label" "="">   背景音乐：  </LABEL>
+					 
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="bgMusicSwitch0" 
+class="music_switch" type="radio" value="0">自定义						 </LABEL>						 <LABEL 
+class="radio inline"><INPUT name="bgMusicSwitch0" class="music_switch" type="radio" 
+value="1">关闭						 </LABEL>						 <SPAN class="help-inline"></SPAN>					 </DIV>
+<DIV class="cover-area music_area"><!-- 音乐文件名字 -->						 <SPAN class="music_name"></SPAN>
+						 
+<DIV class="cover-hd">
+<DIV class="info">音乐建议大小在100k以内，格式为mp3\ogg\wav
+<DIV class="sanjiao"></DIV></DIV><SPAN 
+class="btn btn-primary fileinput-button">上传音乐
+								 <INPUT name="fileupload" class="upload_music_1" type="file" multiple="" data-url="/admin/newgame/musicupload" data-form-data='{"accountId": "1"}' data-sizelimit="100">
+							 </SPAN>							 <INPUT name="hunter_editimg_1" disabled="disabled" class="upload_music_1_1" type="hidden" data-target=".hunter_img1">
+						 </DIV><A class="music_cover-recovery" href="javascript:;">恢复默认</A>
+					 </DIV></DIV>
+<P style="margin-top: 50px;">你已同意<A 
+id="disclaimer_btn">用户协议及免责声明</A>，请勿上传色情，反动等违法音乐。</P></DIV></DIV><!--估价猎人猜测商品图片列表 -->
+	 
+<DIV id="valuationHunter_goodsImg_modal">
+<DIV class="hunter_outerBox" style="position: absolute;"><A id="valuationHunter_closeBtn" 
+href="javascript:void(0)">x</A>			 
+<UL class="hunter_ul">
+  <LI class="cover-area"><SPAN class="hunter_title">第一张</SPAN>					 <IMG class="hunter_img thumb_img" 
+  src="$!{basePath}/content/bigwheel/back/files/good.png">					 
+  <DIV class="cover-hd hunter-cover-hd">
+  <DIV class="info">图片像素建议为 <SPAN 
+  class="uploadSize uploadSize-0">396px*216px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+  <DIV class="sanjiao"></DIV></DIV><SPAN class="btn btn-primary fileinput-button">上传图片
+  							 <INPUT name="fileupload" id="hunter_img_1" type="file" multiple="" data-url="$!{basePath}/system/back/jwSystemProject/doJQUpload.html?imgtype=common" data-form-data='{"accountId": "1"}' data-sizelimit="100">
+  						 </SPAN>						 <INPUT name="hunter_editimg_1" disabled="disabled" class="fileupload_input" id="hunter_himg_1" type="hidden" data-target=".hunter_img1">
+  					 </DIV>
+  <DIV class="hunter_fanwei">估价范围  
+<INPUT class="hunter_minNum" type="number" min="0" value="1">  元至  
+<INPUT class="hunter_maxNum" type="number" min="0" value="300"> 元
+  					 </DIV><A class="hunter_add_btn" href="javascript:void(0);" 
+  data_show="1">添加</A>					 <!-- <a class="hunter_delete_btn" href="javascript:void(0);">删除</a> -->
+  				 </LI>
+  <LI class="cover-area hunter_li_hide"><SPAN class="hunter_title">第二张</SPAN>
+  					 <IMG class="hunter_img thumb_img" src="$!{basePath}/content/bigwheel/back/files/good.png">					 
+  <DIV class="cover-hd hunter-cover-hd">
+  <DIV class="info">图片像素建议为 <SPAN 
+  class="uploadSize uploadSize-0">396px*216px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+  <DIV class="sanjiao"></DIV></DIV><SPAN class="btn btn-primary fileinput-button">上传图片
+  							 <INPUT name="fileupload" id="hunter_img_2" type="file" multiple="" data-url="$!{basePath}/system/back/jwSystemProject/doJQUpload.html?imgtype=common" data-form-data='{"accountId": "1"}' data-sizelimit="100">
+  						 </SPAN>						 <INPUT name="hunter_editimg_2" disabled="disabled" class="fileupload_input" id="hunter_himg_2" type="hidden">
+  					 </DIV>
+  <DIV class="hunter_fanwei">估价范围  
+<INPUT class="hunter_minNum" type="number" min="0" value="1">  元至  
+<INPUT class="hunter_maxNum" type="number" min="0" value="300"> 元
+  					 </DIV><A class="hunter_add_btn" href="javascript:void(0);" 
+  data_show="2">添加</A>					 <A class="hunter_delete_btn" href="javascript:void(0);">删除</A>
+  				 </LI>
+  <LI class="cover-area hunter_li_hide"><SPAN class="hunter_title">第三张</SPAN>
+  					 <IMG class="hunter_img thumb_img" src="$!{basePath}/content/bigwheel/back/files/good.png">					 
+  <DIV class="cover-hd hunter-cover-hd">
+  <DIV class="info">图片像素建议为 <SPAN 
+  class="uploadSize uploadSize-0">396px*216px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+  <DIV class="sanjiao"></DIV></DIV><SPAN class="btn btn-primary fileinput-button">上传图片
+  							 <INPUT name="fileupload" id="hunter_img_3" type="file" multiple="" data-url="$!{basePath}/system/back/jwSystemProject/doJQUpload.html?imgtype=common" data-form-data='{"accountId": "1"}' data-sizelimit="100">
+  						 </SPAN>						 <INPUT name="hunter_editimg_3" disabled="disabled" class="fileupload_input" id="hunter_himg_3" type="hidden">
+  					 </DIV>
+  <DIV class="hunter_fanwei">估价范围  
+<INPUT class="hunter_minNum" type="number" min="0" value="1">  元至  
+<INPUT class="hunter_maxNum" type="number" min="0" value="300"> 元
+  					 </DIV><A class="hunter_add_btn" href="javascript:void(0);" 
+  data_show="3">添加</A>					 <A class="hunter_delete_btn" href="javascript:void(0);">删除</A>
+  				 </LI>
+  <LI class="cover-area hunter_li_hide"><SPAN class="hunter_title">第四张</SPAN>
+  					 <IMG class="hunter_img thumb_img" src="$!{basePath}/content/bigwheel/back/files/good.png">					 
+  <DIV class="cover-hd hunter-cover-hd">
+  <DIV class="info">图片像素建议为 <SPAN 
+  class="uploadSize uploadSize-0">396px*216px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+  <DIV class="sanjiao"></DIV></DIV><SPAN class="btn btn-primary fileinput-button">上传图片
+  							 <INPUT name="fileupload" id="hunter_img_4" type="file" multiple="" data-url="$!{basePath}/system/back/jwSystemProject/doJQUpload.html?imgtype=common" data-form-data='{"accountId": "1"}' data-sizelimit="100">
+  						 </SPAN>						 <INPUT name="hunter_editimg_4" disabled="disabled" class="fileupload_input" id="hunter_himg_4" type="hidden">
+  					 </DIV>
+  <DIV class="hunter_fanwei">估价范围  
+<INPUT class="hunter_minNum" type="number" min="0" value="1">  元至  
+<INPUT class="hunter_maxNum" type="number" min="0" value="300"> 元
+  					 </DIV><A class="hunter_add_btn" href="javascript:void(0);" 
+  data_show="4">添加</A>					 <A class="hunter_delete_btn" href="javascript:void(0);">删除</A>
+  				 </LI>
+  <LI class="cover-area hunter_li_hide"><SPAN class="hunter_title">第五张</SPAN>
+  					 <IMG class="hunter_img thumb_img" src="$!{basePath}/content/bigwheel/back/files/good.png">					 
+  <DIV class="cover-hd hunter-cover-hd">
+  <DIV class="info">图片像素建议为 <SPAN 
+  class="uploadSize uploadSize-0">396px*216px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+  <DIV class="sanjiao"></DIV></DIV><SPAN class="btn btn-primary fileinput-button">上传图片
+  							 <INPUT name="fileupload" id="hunter_img_5" type="file" multiple="" data-url="$!{basePath}/system/back/jwSystemProject/doJQUpload.html?imgtype=common" data-form-data='{"accountId": "1"}' data-sizelimit="100">
+  						 </SPAN>						 <INPUT name="hunter_editimg_5" disabled="disabled" class="fileupload_input" id="hunter_himg_5" type="hidden">
+  					 </DIV>
+  <DIV class="hunter_fanwei">估价范围  
+<INPUT class="hunter_minNum" type="number" min="0" value="1">  元至  
+<INPUT class="hunter_maxNum" type="number" min="0" value="300"> 元					 </DIV><!-- <a class="hunter_add_btn" href="javascript:void(0);">添加</a> -->
+  					 <A class="hunter_delete_btn" href="javascript:void(0);">删除</A>				 </LI>
+  <LI class="hunter_tip">
+  					温馨提示：<BR>1、活动中每位用户所估价的物品都会在以上物品中随机挑选，物品出现的概率相等，估价的范围为对应设定的估价范围。<BR>2、每位用户所猜中的价格有所不同。以防奖品被快速刷走，每一位用户所“猜中的价格（系统生成）”会在所设定的估价范围中，但每位用户所猜中的价格会有所不同。
+  				 </LI></UL></DIV></DIV><!-- 集五福文字自定义 -->	 
+<DIV class="modal hide fade" id="jiwufu_gametext_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H3>自定义集福文字</H3></DIV>
+<FORM class="form-horizontal" id="form_jiwufu_gametext_setting" style="margin: 0px;" 
+action="#">
+<DIV class="modal-body">
+<DIV class="control-group" style="margin-left: 30px;"><LABEL class="radio inline"><INPUT 
+name="jiwufu_slogan_radio" type="radio" value="1">使用默认					 </LABEL> <LABEL 
+class="radio inline"><INPUT name="jiwufu_slogan_radio" type="radio" 
+value="2">自定义<SPAN class="help-inline">(限定在5个字以内)</SPAN>					 </LABEL>
+				 </DIV>
+<DIV id="cus_jiwufu_text_cont" style="padding-top: 15px; border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid; display: none;">
+<DIV class="control-group"><LABEL class="control-label" 
+for="jiwufu_text_1">第一张卡：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_1" class="span2" id="jiwufu_text_1" type="text" maxlength="5" value="国运昌隆福"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="jiwufu_text_2">第二张卡：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_2" class="span2" id="jiwufu_text_2" type="text" maxlength="5" value="国泰民安福"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="jiwufu_text_3">第三张卡：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_3" class="span2" id="jiwufu_text_3" type="text" maxlength="5" value="日新月异福"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="jiwufu_text_4">第四张卡：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_4" class="span2" id="jiwufu_text_4" type="text" maxlength="5" value="锦绣山河福"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="jiwufu_text_5">第五张卡：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_5" class="span2" id="jiwufu_text_5" type="text" maxlength="5" value="人才辈出福"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="jiwufu_text_6">集齐内容：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_6" class="span2" id="jiwufu_text_6" type="text" maxlength="5" value="无"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="jiwufu_text_7">所集内容：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_7" class="span2" id="jiwufu_text_7" type="text" maxlength="5" value="卡片"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV></DIV></DIV>
+<DIV class="modal-footer" style="text-align: center;"><BUTTON class="btn btn-primary" 
+id="save_jiwufu_gametext" type="submit">保存</BUTTON>			 </DIV></FORM></DIV><!-- 摇钱树红包文字自定义 -->
+	 
+<DIV class="modal hide fade" id="newshakeredpack_redpacktext_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H3>自定义红包文字</H3></DIV>
+<FORM class="form-horizontal" id="form_newshakeredpack_redpacktext_setting" 
+style="margin: 0px;" action="#">
+<DIV class="modal-body">
+<DIV class="control-group">					红包自定义文字：<SPAN 
+class="help-inline">(限定在5个字以内)</SPAN>				 </DIV>
+<DIV id="cus_newshakeredpack_redpacktext_cont" style="padding-top: 15px; border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid;">
+<DIV class="control-group"><LABEL class="control-label" for="newshakeredpack_redpacktext_1">第一个红包文字：</LABEL>
+<DIV 
+class="controls"><INPUT name="newshakeredpack_redpacktext_1" class="span2" id="newshakeredpack_redpacktext_1" type="text" maxlength="5" value="我的红包"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" for="newshakeredpack_redpacktext_2">第二个红包文字：</LABEL>
+<DIV 
+class="controls"><INPUT name="newshakeredpack_redpacktext_2" class="span2" id="newshakeredpack_redpacktext_2" type="text" maxlength="5" value="我的红包"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" for="newshakeredpack_redpacktext_3">第三个红包文字：</LABEL>
+<DIV 
+class="controls"><INPUT name="newshakeredpack_redpacktext_3" class="span2" id="newshakeredpack_redpacktext_3" type="text" maxlength="5" value="我的红包"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" for="newshakeredpack_redpacktext_4">第四个红包文字：</LABEL>
+<DIV 
+class="controls"><INPUT name="newshakeredpack_redpacktext_4" class="span2" id="newshakeredpack_redpacktext_4" type="text" maxlength="5" value="我的红包"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV></DIV></DIV>
+<DIV class="modal-footer" style="text-align: center;"><BUTTON class="btn btn-primary" 
+id="save_newshakeredpack_redpacktext" type="submit">保存</BUTTON>
+			 </DIV></FORM></DIV>
+<DIV class="modal hide fade" id="add_redpack_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4>追加红包</H4></DIV>
+<FORM class="form-horizontal" id="form_add_redpack_setting" style="margin: 0px;" 
+action="#">
+<DIV class="modal-body">
+<DIV class="control-group"><LABEL class="control-label" 
+for="add_redpack_num">追加红包数量：</LABEL>
+<DIV class="controls"><INPUT name="add_redpack_num" class="span3 onlyNum" id="add_redpack_num" type="text" maxlength="6"><SPAN 
+class="maroon">*</SPAN>							 <BR><SPAN class="j-awardNum-tips"></SPAN>
+					 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="add_redpack_amount">追加红包金额：</LABEL>
+<DIV class="controls"><INPUT name="add_redpack_amount" class="span3 onlyNum" id="add_redpack_amount" type="text" maxlength="6"><SPAN 
+class="maroon">*</SPAN>					 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="service_charge">平台技术服务费：</LABEL>
+<DIV class="controls money_text" style="font-size: 13px;"><SPAN class="service_charge" 
+style="font-size: 22px;">0</SPAN>&nbsp;<SPAN class="yuan">元</SPAN> <A class="contact_qqbtn_1001" 
+id="service_charge_contact_qqbtn" style="padding-left: 20px; font-size: 14px;" 
+href="javascript:;">免除服务费</A>					 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" for="">当前账户余额：</LABEL>
+<DIV class="controls">
+<P style="color: rgb(25, 174, 255); line-height: 32px; font-size: 13px;"><SPAN 
+style="font-size: 22px;">0</SPAN>&nbsp;元							 &nbsp;&nbsp;<A href="http://youyu.weijuju.com/admin/asset/redpack_recharge.jsp">马上充值</A>
+						 </P></DIV></DIV></DIV>
+<DIV class="modal-footer"><BUTTON class="btn" data-dismiss="modal">取消</BUTTON>
+				 <BUTTON class="btn btn-primary" id="add_redpack_confirm" 
+type="submit">确认追加</BUTTON>			 </DIV></FORM></DIV>
+<DIV class="modal hide fade" id="add_sncode_award_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4>修改奖品数量</H4></DIV>
+<FORM class="form-horizontal" id="form_add_sncode_award_setting" style="margin: 0px;" 
+action="#">
+<DIV class="modal-body">
+<DIV class="control-group"><LABEL class="control-label" 
+for="award_send_num">已发数量：</LABEL>
+<DIV class="controls"><INPUT name="award_send_num" disabled="disabled" class="span2 onlyNum" type="text" maxlength="6"><SPAN 
+class="maroon">*</SPAN>					 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="award_unsend_num">待发数量：</LABEL>
+<DIV class="controls"><INPUT name="award_unsend_num" class="span2 onlyNum" id="add_sncode_award_num" type="text" maxlength="6"><SPAN 
+class="maroon">*</SPAN><BR><SPAN class="j-awardNum-tips"></SPAN>
+					 </DIV></DIV>
+<DIV class="control-group hide j-sncode-cont"><LABEL class="control-label" for="sncodes">手工导入奖券：</LABEL>
+<DIV class="controls sncode-controls j-sncode-controls" 
+style="width: 290px;"><TEXTAREA name="sncodes" disabled="disabled" style="width: 260px; margin-top: 0px;" data-editable="false"></TEXTAREA>
+						 
+<P style="margin-top: 5px;"><SPAN 
+class="j-sncode-msg">一行一个券号，券号数量与奖品数量需一致</SPAN><A class="j-check-sncode" style="margin-top: 5px; float: left;" 
+href="javascript:void(0);">检测格式</A>						 </P></DIV></DIV></DIV>
+<DIV class="modal-footer"><BUTTON class="btn" data-dismiss="modal">取消</BUTTON>
+				 <BUTTON class="btn btn-primary" id="add_sncode_award_confirm" 
+type="submit">确认修改</BUTTON>			 </DIV></FORM></DIV><!-- 内定中奖人数量修改 -->	 
+<DIV class="modal hide fade" id="add_defaultwinner_award_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4>修改内定奖品数量</H4></DIV>
+<FORM class="form-horizontal" id="form_add_defaultwinner_award_setting" style="margin: 0px;" 
+action="#">
+<DIV class="modal-body">
+<DIV class="control-group"><LABEL class="control-label" for="defaultwinner_send_num">已领取数量：</LABEL>
+<DIV 
+class="controls"><INPUT name="defaultwinner_send_num" disabled="disabled" class="span2 onlyNum" type="text" maxlength="4"><SPAN 
+class="maroon">*</SPAN>					 </DIV></DIV>
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="defaultwinner_available_num">可内定数量：</LABEL>
+<DIV class="controls"><INPUT name="defaultwinner_available_num" disabled="disabled" class="span2 onlyNum" type="text" maxlength="4"><SPAN 
+class="maroon">*</SPAN>					 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" for="defaultwinner_left_num">待领取数量：</LABEL>
+<DIV 
+class="controls"><INPUT name="defaultwinner_left_num" class="span2 onlyNum" type="text" maxlength="4"><SPAN 
+class="maroon">*</SPAN>							 <SPAN class="help-inline">最大不能超过<SPAN 
+class="c1">0</SPAN>个</SPAN>					 </DIV></DIV></DIV>
+<DIV class="modal-footer"><BUTTON class="btn" data-dismiss="modal">取消</BUTTON>
+				 <BUTTON class="btn btn-primary" id="add_defaultwinner_award_confirm" type="submit">确认修改</BUTTON>
+			 </DIV></FORM></DIV><!-- 查看内定密码 -->	 
+<DIV class="modal hide fade" id="defaultwinner_pwd_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4>内定密码</H4></DIV>
+<DIV class="modal-body form-horizontal">
+<DIV 
+class="alert alert-error">注：为保障奖品安全，一个内定密码只对应一个奖品，每个密码使用一次后即失效，请妥善保管密码。</DIV>
+<DIV class="control-group"><LABEL class="control-label" for="defaultwinner_pwd_statu">密码使用状态：</LABEL>
+<DIV class="controls"><SELECT name="defaultwinner_pwd_statu" class="span1" 
+style="width: 80px;"><OPTION value="2">全部</OPTION>						 <OPTION 
+  value="0">未使用</OPTION>						 <OPTION value="1">已使用</OPTION>
+					 </SELECT></DIV></DIV>
+<DIV class="defaultwinner_pwd_cont"></DIV></DIV>
+<DIV class="modal-footer"><BUTTON class="btn" data-dismiss="modal">关闭</BUTTON>
+			 <A class="btn btn-primary" id="export_defaultwinner_pwd" href="javascript:;" 
+target="_blank">导出</A>		 </DIV></DIV><!-- 选择关闭领奖验证码的提示框 -->	 
+<DIV class="modal hide" id="trophyValidator-alert-modal" role="dialog" 
+aria-hidden="true" style="top: 20%; width: 460px; margin-left: -230px;">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P style="font-size: 14px;">关闭领奖验证码将会使奖品被恶意刷取的风险大大增加，请详细咨询人工客服后再修改此项。</P><BR>
+<P class="help-inline" style="font-size: 13px;">注：若关闭后出现奖品被盗刷的情况，您须自行承担损失。</P>
+<P><LABEL class="checkbox inline" for="trophyValidator_alert_check"><INPUT name="trophyValidator_alert_check" 
+id="trophyValidator_alert_check" type="checkbox">我已经明确了解其中的风险，确认关闭领奖验证码。	        
+     </LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled trophyValidator-alert-confirm" 
+href="javascript:;">确认关闭</A></P></DIV></DIV><!-- 选择关闭黑名单的提示框 -->	 
+<DIV class="modal hide" id="blacklist-alert-modal" role="dialog" aria-hidden="true" 
+style="top: 20%; width: 460px; margin-left: -230px;">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P 
+style="font-size: 14px;">开启黑名单后，平台会自动分析粉丝行为，智能筛选出异常粉丝并加入黑名单，黑名单用户无法获奖。若关闭此功能，活动奖品将存在风险。</P><BR>
+<P class="help-inline" style="font-size: 13px;">注：若关闭后出现奖品被盗刷的情况，您须自行承担损失。</P>
+<P><LABEL class="checkbox inline" for="blacklist_alert_check"><INPUT name="blacklist_alert_check" 
+id="blacklist_alert_check" type="checkbox">我已经明确了解其中的风险，确认关闭黑名单。	             
+</LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled blacklist-alert-confirm" 
+href="javascript:;">确认关闭</A></P></DIV></DIV><!-- 文字自定义大小和颜色编辑 --> 	 
+<DIV class="modal hide fade" id="edit_text_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>             
+<H3>编辑</H3></DIV>
+<DIV class="modal-body form-horizontal" style="min-height: 300px;">
+<DIV class="control-group"><LABEL class="control-label">内容：</LABEL>
+<DIV class="controls"><INPUT id="range_edit_text" type="text" placeholder="请输入内容" value="">
+					 <A class="btn-reback j-reback-text" href="javascript:void(0)">恢复默认</A>
+				 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label">字体大小：</LABEL>
+<DIV class="controls progress-wrap" id="progress_control">
+<DIV class="progress progress-striped">
+<DIV class="bar j-bar-line" style="width: 0%;"></DIV></DIV><A class="btn-reback j-reback-size" 
+href="javascript:void(0)">恢复默认</A>					 <SPAN 
+class="bar-control j-bar-control"><SPAN 
+class="bar-control-text j-bar-value">10px</SPAN></SPAN>				 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label">字体颜色：</LABEL>
+<DIV class="controls"><INPUT id="range_edit_color" type="text" placeholder="请输入颜色值" value="#eee">
+					 <A class="btn-reback j-reback-color" href="javascript:void(0)">恢复默认</A>
+				 </DIV></DIV></DIV></DIV>
+<DIV class="modal hide fade" id="free_user_tips_modal" aria-hidden="true" 
+data-backdrop="static">
+<DIV class="modal-header"><BUTTON class="close free_user_tips_close" 
+aria-hidden="true" type="button" data-dismiss="modal">×</BUTTON>             
+<H3>温馨提示</H3></DIV>
+<DIV class="modal-body" style="text-align: center;">
+<P>当前可通过创建并发布活动来体验游戏流程，但活动<SPAN 
+style="color: rgb(255, 0, 0);">仅支持30人参与</SPAN></P>
+<P>并不能作为正式游戏运营，请及时联系销售购买套餐！</P><A class="btn btn-primary" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&amp;key=XzgwMDA4NjU0N180NDIyMjZfODAwMDg2NTQ3XzJf" 
+target="_blank">联系销售</A>         </DIV></DIV>
+<SCRIPT type="text/javascript">
+console.log(1143);
+</script>
+#include("content/bigwheel/back/activityBigwheel-template.vm")	 
+	 
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/jquery.template(1).js" type="text/javascript"></SCRIPT>
+<script src="$!{basePath}/content/bigwheel/back/files/bigwheel.js" type="text/javascript"></script>
+<DIV class="modal hide securityLevel-alert-modal" id="securityLevel-alert-modal-1" 
+role="dialog" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P 
+style="font-size: 14px;">初级安全机制仅能提供最基本的红包保障，无法完全避免红包被恶意刷取的情况，并且不能享受有娱平台红包100%赔付的安全保险。</P><BR>
+<P class="help-inline" style="font-size: 13px;">注：强烈建议启用中级或高级红包安全机制。</P>
+<P><LABEL class="checkbox inline" for="securityLevel_alert_check_1"><INPUT name="securityLevel_alert_check" 
+id="securityLevel_alert_check_1" type="checkbox">我已经明确了解其中风险，确认启用初级安全机制。	        
+     </LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled securityLevel-alert-confirm" 
+href="javascript:;">确认开启</A></P></DIV></DIV>
+<DIV class="modal hide securityLevel-alert-modal" id="securityLevel-alert-modal-2" 
+role="dialog" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P 
+style="font-size: 14px;">中级红包安全机制会通过语音验证来校验中奖粉丝的手机。请确保活动过程中有足够的语音验证余额（建议是红包数量的三倍），否则将可能导致粉丝无法正常领取红包。</P><BR>
+<P class="help-inline" 
+style="font-size: 13px;">注：活动发布后修改安全等级，不能享受有娱平台红包100%赔付的安全保险。</P>
+<P><LABEL class="checkbox inline" for="securityLevel_alert_check_2"><INPUT name="securityLevel_alert_check" 
+id="securityLevel_alert_check_2" type="checkbox">我已经明确了解其中风险，确认启用中级安全机制。	        
+     </LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled securityLevel-alert-confirm" 
+href="javascript:;">确认开启</A></P></DIV></DIV>
+<DIV class="modal hide securityLevel-alert-modal" id="securityLevel-alert-modal-3" 
+role="dialog" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P 
+style="font-size: 14px;">高级红包安全机制会校验中奖粉丝关注状态和手机号。请确保活动过程中有足够的语音验证余额（建议是红包数量的三倍），否则将可能导致粉丝无法正常领取红包。</P><BR>
+<P class="help-inline" 
+style="font-size: 13px;">注：活动发布后修改安全等级，不能享受有娱平台红包100%赔付的安全保险。</P>
+<P><LABEL class="checkbox inline" for="securityLevel_alert_check_3"><INPUT name="securityLevel_alert_check" 
+id="securityLevel_alert_check_3" type="checkbox">我已经明确了解其中风险，确认启用高级安全机制。	        
+     </LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled securityLevel-alert-confirm" 
+href="javascript:;">确认开启</A></P></DIV></DIV>
+<DIV class="modal hide securityLevel-alert-modal" id="probabilityMode-alert-modal" 
+role="dialog" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P 
+style="font-size: 14px;">采用概率模式后，奖品将按照所设定的概率进行派发奖品，均匀发放将无效，采用中奖概率可能会出现奖品发放过快，奖品发放过早等情况。</P>
+<P><LABEL class="checkbox inline" for="probabilityMode_alert_check" "=""><INPUT 
+name="probabilityMode_alert_check" id="probabilityMode_alert_check" type="checkbox">我已明确了解概率模式，确认启用中奖概率模式。
+	             </LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled probabilityMode-alert-confirm" 
+href="javascript:;">确认开启</A></P></DIV></DIV>
+<DIV class="modal hide securityLevel-alert-modal" id="probabilityType-alert-modal" 
+role="dialog" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P style="font-size: 14px;">开启均匀发放后，系统将自动按照奖品数量和活动时间派奖，<SPAN 
+style="color: red;">将不会按照概率模式进行派奖，概率模式将失效。</SPAN></P>
+<P><LABEL class="checkbox inline" for="probabilityType_alert_check"><INPUT name="probabilityType_alert_check" 
+id="probabilityType_alert_check" type="checkbox">我已明确了解均匀发放，确认启用均匀发放	            
+ </LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled probabilityType-alert-confirm" 
+href="javascript:;">确认开启</A></P></DIV></DIV>
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/init.js"></SCRIPT>
+	 
+<SCRIPT src="$!{basePath}/content/bigwheel/back/files/edit.js" type="text/javascript"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+	// CRM用户创建活动行为数据统计
+	$(function(){
+		window.hasClickSaveBtn = false;
+		$("#save_btn").on("click",function(){
+			hasClickSaveBtn = true;
+			if(!global_aid){
+
+			}
+		});
+		$("#cancel_btn").on("click",function(){
+			if (confirm("返回后所编辑的内容不能被保存，是否需要返回？")) {
+				window.history.go(-1)
+			}
+		});
+		
+	});
+	</SCRIPT>
+ </BODY></HTML>

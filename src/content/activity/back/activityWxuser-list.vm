@@ -1,0 +1,189 @@
+#parse("content/base/back/common/macro.vm")
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<form role="form" class="form-inline" action="$!{basePath}/activity/back/activityWxuser/list.do" method="post"  id="formSubmit">
+				<div  class="col-md-10" style="width:100%">
+								<div class="panel panel-default">
+								  <div class="panel-heading">砍价活动配置列表</div>
+								  <div class="panel-body">
+								  		<div class="search">
+															 <div class="form-group col-sm-3">
+															    <label for="openid" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="openid" id="openid" value="$!{activityWxuser.openid}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="headpic" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="headpic" id="headpic" value="$!{activityWxuser.headpic}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="nickname" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="nickname" id="nickname" value="$!{activityWxuser.nickname}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="city" class="control-label col-sm-3 line34">城市</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="city" id="city" value="$!{activityWxuser.city}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="province" class="control-label col-sm-3 line34">省</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="province" id="province" value="$!{activityWxuser.province}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="status" class="control-label col-sm-3 line34">0为正常
+1为拉黑</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="status" id="status" value="$!{activityWxuser.status}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="subscribe" class="control-label col-sm-3 line34">是否已关注0为未1</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="subscribe" id="subscribe" value="$!{activityWxuser.subscribe}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="sex" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="sex" id="sex" value="$!{activityWxuser.sex}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="country" class="control-label col-sm-3 line34">国家</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="country" id="country" value="$!{activityWxuser.country}" class="form-control">
+															  	</div>
+															 </div>
+															<div class="form-group col-sm-3">
+															    <label for="subscribeTime" class="control-label col-sm-3 line34">关注时间</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="subscribeTime" id="subscribeTime" value="$!dateTool.format('yyyy-MM-dd',$!{activityWxuser.subscribeTime})" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="activityWxusercol" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="activityWxusercol" id="activityWxusercol" value="$!{activityWxuser.activityWxusercol}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="activityWxusercol1" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="activityWxusercol1" id="activityWxusercol1" value="$!{activityWxuser.activityWxusercol1}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="activityWxusercol2" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="activityWxusercol2" id="activityWxusercol2" value="$!{activityWxuser.activityWxusercol2}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="realname" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="realname" id="realname" value="$!{activityWxuser.realname}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="phonenum" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="phonenum" id="phonenum" value="$!{activityWxuser.phonenum}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="addr" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="addr" id="addr" value="$!{activityWxuser.addr}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="wxappid" class="control-label col-sm-3 line34">活动APPid</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="wxappid" id="wxappid" value="$!{activityWxuser.wxappid}" class="form-control">
+															  	</div>
+															 </div>
+											  <button type="submit" class="btn btn-primary">搜  索</button>
+											  <div class="clearfix"></div>
+								  		</div>
+								  		<div id="legend">
+								          <legend  class="le"><button type="button" class="btn btn-primary" onclick="doUrl('$!{basePath}/activity/back/activityWxuser/toAdd.do')" >新增</button></legend> 
+								        </div>
+								        <table class="table table-striped">
+									        <thead>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th>城市</th>
+													<th>省</th>
+													<th>0为正常
+1为拉黑</th>
+													<th>是否已关注0为未1</th>
+													<th></th>
+													<th>国家</th>
+													<th>关注时间</th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th>活动APPid</th>
+						                			<th>操作</th>
+									        </thead>
+									        <tobody>
+									    	  #if($!{pageInfos})
+								                #foreach($!{info} in $!{pageInfos})
+									            	<tr>			
+																	<td>$!{info.openid}</td>
+																	<td>$!{info.headpic}</td>
+																	<td>$!{info.nickname}</td>
+																	<td>$!{info.city}</td>
+																	<td>$!{info.province}</td>
+																	<td>$!{info.status}</td>
+																	<td>$!{info.subscribe}</td>
+																	<td>$!{info.sex}</td>
+																	<td>$!{info.country}</td>
+																	<td>$!dateTool.format("yyyy-MM-dd",$!{info.subscribeTime})</td>
+																	<td>$!{info.activityWxusercol}</td>
+																	<td>$!{info.activityWxusercol1}</td>
+																	<td>$!{info.activityWxusercol2}</td>
+																	<td>$!{info.realname}</td>
+																	<td>$!{info.phonenum}</td>
+																	<td>$!{info.addr}</td>
+																	<td>$!{info.wxappid}</td>
+										                <td class="last">
+							                			<a href="javascript:doUrl('$!{basePath}/activity/back/activityWxuser/toEdit.do?id=$!{info.id}')" >编辑</a>
+							                			<a href="javascript:delData('$!{basePath}/activity/back/activityWxuser/doDelete.do?id=$!{info.id}')">删除</a>
+							                			<a href="javascript:doUrl('$!{basePath}/activity/back/activityWxuser/toDetail.do?id=$!{info.id}')">详情</a>
+						                				</td>
+									           		</tr>
+									             #end
+									    	 #end
+									         </tobody>
+									    </table>
+										<div class="text-right">
+											<!--公用翻页代码-->
+							                #set($attr='formSubmit')
+							            	#showPageList($pageInfos $attr)
+							                <!--END公用翻页代码-->
+										</div>
+								  </div>	
+								</div>
+				</div>  
+				</form>
+		</div>
+	</div>
+</body>
+</html>

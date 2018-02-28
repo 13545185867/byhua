@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+  <script type="text/javascript"  charset="utf-8" src="$!{basePath}/ueditor/ueditor.config.js"></script>
+  <script type="text/javascript"  charset="utf-8" src="$!{basePath}/ueditor/ueditor.all.min.js"></script>
+      <script type="text/javascript" charset="utf-8" src="$!{basePath}/ueditor/lang/zh-cn/zh-cn.js"></script>
+      <script src="$!{basePath}/content/js/vue.min.js" type="text/javascript"></script>
+                <link href="$!{basePath}/content/houseaOnline/back/css/back.css" rel="stylesheet">
+                <script>
+                var baseinfo={actName:"$!{wxActToupiao.actName}",banner:$!{wxActToupiao.banner},beginTime:"$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{wxActToupiao.beginTime})",endTime:"$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{wxActToupiao.endTime})",endEnterTime:"$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{wxActToupiao.endEnterTime})",attention:"$!{wxActToupiao.attention}",description:"$!{wxActToupiao.description}"};
+                var optionViewStyle='$!{wxActToupiaoConfig.optionViewStyle}';
+                var optionAddr="$!{wxActToupiaoConfig.optionAddr}";
+                var optionClassic="$!{wxActToupiaoConfig.optionClassic}";
+                var isViewSearch="$!{wxActToupiaoConfig.isViewSearch}";
+                var isViewDescript="$!{wxActToupiaoConfig.isViewDescript}";
+                var isViewPiaoshu="$!{wxActToupiaoConfig.isViewPiaoshu}";
+                var isViewTongji="$!{wxActToupiaoConfig.isViewTongji}";
+                var isEnter="$!{wxActToupiaoConfig.isEnter}";
+                
+                    var    viewstyle="$!{wxActToupiaoConfig.pageViewStyle}";
+                    var  configinfo={optionAddr:"$!{wxActToupiaoConfig.optionAddr}",
+        	optionViewStyle:'$!{wxActToupiaoConfig.optionViewStyle}'
+    		,optionClassic:"$!{wxActToupiaoConfig.optionClassic}" ,
+    			isViewSearch:'$!{wxActToupiaoConfig.isViewSearch}'
+    				,isViewDescript:'$!{wxActToupiaoConfig.isViewDescript}'
+    				,isViewPiaoshu:'$!{wxActToupiaoConfig.isViewPiaoshu}'
+    				,isViewTongji:'$!{wxActToupiaoConfig.isViewTongji}'
+    				,isEnter:'$!{wxActToupiaoConfig.isEnter}' } ;
+                </script>
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">编辑</div>
+					<div class="panel-body">
+						<form class="form-horizontal" role="form" id="dailogForm" action="$!{basePath}/toupiao/back/wxActToupiao/doEdit.do" method="POST">
+					  		<input type="hidden" id="btn_sub" class="btn_sub" />
+						 <input type="hidden" value="$!{wxActToupiao.id}" name="id" id="id" />
+        <ul class="nav nav-tabs" style="width: 670px;">
+            <li 
+            v-for="(item,index) in tabs" 
+            :class="{active:index == num}"
+             @click="tab(index)"><a href="#">{{item}}</a></li>
+        </ul>
+        <div class=" col-sm-8 ">
+            <div 
+            v-for='(itemCon,index) in tabContents' 
+            v-show=" index == num"><component :is="itemCon" :viewstyle="viewstyle" :styles="styles"  :configinfo="configinfo"></component></div>
+        </div>
+        <iframe ref="demoframe" class=" col-sm-4 "  style="height: 500px;width: 300px;border: 5px solid;border-radius: 10px;margin: -68px 0px 0px 30px;padding: 0px; " src="$!{basePath}/toupiao/back/wxActToupiao/demo.html" onload="load()">
+		</iframe>
+        
+		 
+		<div> </div>
+										<div class="form-group mno" >
+											<div class="col-sm-12" style="text-align: center;margin-top: 30px;">
+											<button type="button" class="btn btn-primary" id="formLast" v-if="num >0"   @click="last()">上一步</button>
+											<button type="button" class="btn btn-primary" id="formNext" v-if="num <(total-1)"    @click="next()">下一步</button>
+												<button type="button" class="btn btn-primary" id="formCancel"   @click="cancel()">取消</button>
+	        									<button type="button" class="btn btn-primary" v-if="num ==(total-1)"    @click="submit()" >提交</button>
+        									 </div>
+        								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/template" id="uploader">
+    <div class="vue-uploader">
+        <div class="file-list">
+            <section v-for="(file, index) of files" class="file-item draggable-item">
+                <img :src="file.src" alt="" ondragstart="return false;">
+                <p class="file-name" alt="点击修改名称"><input v-model=files[index].name></p>
+                <span class="file-remove" @click="remove(index)">+</span>
+            </section>
+            <section v-if="status == 'ready'" class="file-item">
+                <div @click="add" class="add">
+                    <span>+</span>
+                </div>
+            </section>
+        </div>
+
+        <section v-if="files.length != 0" class="upload-func">
+            <div class="progress-bar">
+                <section v-if="uploading" :width="(percent * 100) + '%'">{{(percent * 100) + '%'}}</section>
+            </div>
+            <div class="operation-box">
+                <input type="button" v-if="status == 'ready'" @click="uploadpic" value="上传"> 
+                <input type="button" v-if="status == 'finished'" @click="finished" value="完成 ">
+            </div>
+        </section>
+        <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="fileChanged" ref="fileopen" multiple="multiple">
+<input type="hidden" v-model="JSON.stringify(files)"  name="banner" id="banner" class="form-control" />	
+    </div>
+</script>
+
+ 
+
+
+<script type="text/template" id="tabcon1">
+	<div id="tabcon1">
+	 											<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">活动切换封面图</label>
+													    <div class="col-sm-8">
+														      <div style="width: 602px;" id="picslide">
+																	<uploader :src="'$!{basePath}/system/back/jwSystemProject/doPlUpload.html'"></uploader>
+																</div>
+													    </div>
+													</div>
+	 												<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">投票标题</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{wxActToupiao.actName}"  name="actName" id="actName" class="form-control" v-model="baseinfo.actName"  #if("$!{wxActToupiao.isActive}" eq "1") disabled #end/>
+													    </div>
+													</div>
+													
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">投票开始时间</label>
+													    <div class="col-sm-8">				   
+													      <input type="text" value="$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{wxActToupiao.beginTime})" name="beginTime" id="beginTime" class="form-control" datatype="*" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"  v-model="baseinfo.beginTime"  #if("$!{wxActToupiao.isActive}" eq "1") disabled #end/>  
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">投票截止时间</label>
+													    <div class="col-sm-8">
+													   	  <input type="text" value="$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{wxActToupiao.endTime})" name="endTime" id="endTime" class="form-control" datatype="*" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"  v-model="baseinfo.endTime"  #if("$!{wxActToupiao.isActive}" eq "1") disabled #end/>
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">报名截止时间</label>
+													    <div class="col-sm-8">
+													       <input type="text" value="$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{wxActToupiao.endEnterTime})" name="endEnterTime" id="endEnterTime" class="form-control" datatype="*" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"  v-model="baseinfo.endEnterTime"  #if("$!{wxActToupiao.isActive}" eq "1") disabled #end/>  
+													    </div>
+													</div>
+
+												
+													<div class="form-group mno">
+														    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">活动参与流程及注意事项</label>
+														 <div class="col-sm-8">
+															<textarea name="attention" id="attention"  v-model="baseinfo.attention">$!{wxActToupiao.attention}</textarea>	
+																			
+														</div>
+													</div>
+													
+													 <div class="form-group mno">
+														     <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">活动介绍</label>
+														<div class="col-sm-8">
+															<textarea name="description" id="description"  v-model="baseinfo.description">$!{wxActToupiao.description}</textarea>
+															
+														</div>
+													</di>
+		</div>
+</script>
+
+<script type="text/template" id="tabcon2">
+	<div id="tabcon2">
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否允许每天多次投票</label>
+													    <div class="col-sm-6">
+													  <select name="isManyVtoe" id="isManyVtoe"  value="$!{wxActToupiaoConfig.isManyVtoe}" class="form-control" >
+												      		<option value="0" #if("0" == "$!{wxActToupiaoConfig.isManyVtoe}")selected#end>否</option>
+												      		<option value="1" #if("1" == "$!{wxActToupiaoConfig.isManyVtoe}")selected#end>是</option>
+												      </select>
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">每天参与投票次数限制</label>
+													    <div class="col-sm-6">
+													      <input type="text" value="#if(""=="$!{wxActToupiaoConfig.verydayMaxVotecount}")1#else$!{wxActToupiaoConfig.verydayMaxVotecount}#end" name="verydayMaxVotecount" id="verydayMaxVotecount" class="form-control" />
+													    </div>
+													    <div class="col-sm-2">次</div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否关注后投票</label>
+													    <div class="col-sm-6">
+													      <select name="foucsUserCanJoin" id="foucsUserCanJoin"  value="$!{wxActToupiaoConfig.foucsUserCanJoin}" class="form-control" >
+												      		<option value="0" #if("0" == "$!{wxActToupiaoConfig.foucsUserCanJoin}")selected#end>否</option>
+												      		<option value="1" #if("1" == "$!{wxActToupiaoConfig.foucsUserCanJoin}")selected#end>是</option>
+												      </select>
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">投票方式 </label>
+													    <div class="col-sm-6">
+													   <select name="voteType" id="voteType"  value="$!{wxActToupiaoConfig.voteType}" class="form-control" >
+												      		<option value="0" #if("0" == "$!{wxActToupiaoConfig.voteType}")selected#end>单选</option>
+												      		<option value="1" #if("1" == "$!{wxActToupiaoConfig.voteType}")selected#end>多选</option>
+												      </select>
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">每次最多可选个数</label>
+													    <div class="col-sm-6">
+													      <input type="text" value="#if(""=="$!{wxActToupiaoConfig.checkVoteCount}")2#else$!{wxActToupiaoConfig.checkVoteCount}#end" name="checkVoteCount" id="checkVoteCount" class="form-control" />
+													    </div>
+													    <div class="col-sm-2">个</div>
+													</div>
+	</div>
+</script>
+
+<script type="text/template" id="tabcon3">
+	<div id="tabcon3">
+	
+	<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">样式风格</label>
+												    <div class="col-sm-8">
+														<div class="form-group mno" v-for="(style,index) in styles"   >
+																<label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">
+																<font v-bind:color="style.color"><i class="icon-star"></i></font>
+																{{style.name}}</label>
+															<div class="col-sm-6">
+														  <input type="radio" v-bind:value="style.file" name="pageViewStyle" id="pageViewStyle"  v-model="viewstyle" @click="setStyle(style.file)"/>
+															</div>
+														</div>
+												    </div>
+	</div>
+	<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">选项显示样式</label>
+													    <div class="col-sm-6">
+													  <select name="optionViewStyle" id="optionViewStyle"  value="$!{wxActToupiaoConfig.optionViewStyle}" class="form-control"  v-model="configinfo.optionViewStyle" @blur="configinfoblur()">
+												      		<option value="1" #if("1" == "$!{wxActToupiaoConfig.optionViewStyle}")selected#end>单列显示</option>
+												      		<option value="2" #if("2" == "$!{wxActToupiaoConfig.optionViewStyle}")selected#end>两列显示</option>
+												      		<option value="3" #if("3" == "$!{wxActToupiaoConfig.optionViewStyle}")selected#end>三列显示</option>
+												      </select>
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">选项称谓</label>
+													    <div class="col-sm-6">
+													      <input type="text" value="#if(""=="$!{wxActToupiaoConfig.optionAddr}")选手#else$!{wxActToupiaoConfig.optionAddr}#end" name="optionAddr" id="optionAddr" class="form-control"  v-model="configinfo.optionAddr" @blur="configinfoblur()"/>
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">选项量词</label>
+													    <div class="col-sm-6">
+													      <input type="text" value="#if(""=="$!{wxActToupiaoConfig.optionClassic}")个#else$!{wxActToupiaoConfig.optionClassic}#end" name="optionClassic" id="optionClassic" class="form-control" v-model="configinfo.optionClassic" @blur="configinfoblur()"/>
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否显示搜索框</label>
+													    <div class="col-sm-6">  
+										  				<select name="isViewSearch" id="isViewSearch"  value="$!{wxActToupiaoConfig.isViewSearch}" class="form-control" v-model="configinfo.isViewSearch" @blur="configinfoblur()">					    
+													  		<option value="1" #if("1" == "$!{wxActToupiaoConfig.isViewSearch}")selected#end>显示</option>
+												      		<option value="0" #if("0" == "$!{wxActToupiaoConfig.isViewSearch}")selected#end>不显示</option>
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否显示活动介绍 </label>
+													    <div class="col-sm-6">
+													  <select name="isViewDescript" id="isViewDescript"  value="$!{wxActToupiaoConfig.isViewDescript}" class="form-control" v-model="configinfo.isViewDescript"  @blur="configinfoblur()">
+												      		<option value="1" #if("1" == "$!{wxActToupiaoConfig.isViewDescript}")selected#end>显示</option>
+												      		<option value="0" #if("0" == "$!{wxActToupiaoConfig.isViewDescript}")selected#end>不显示</option>
+												      </select>
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否显示活动统计</label>
+													    <div class="col-sm-6">
+													  <select name="isViewTongji" id="isViewTongji"  value="$!{wxActToupiaoConfig.isViewTongji}" class="form-control" v-model="configinfo.isViewTongji"  @blur="configinfoblur()">
+												      		<option value="1" #if("1" == "$!{wxActToupiaoConfig.isViewTongji}")selected#end>显示</option>
+												      		<option value="0" #if("0" == "$!{wxActToupiaoConfig.isViewTongji}")selected#end>不显示</option>
+												      		
+												      </select>
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否显示选项票数</label>
+													    <div class="col-sm-6">
+													  <select name="isViewPiaoshu" id="isViewPiaoshu"  value="$!{wxActToupiaoConfig.isViewPiaoshu}" class="form-control" v-model="configinfo.isViewPiaoshu"  @blur="configinfoblur()">
+												      		<option value="1" #if("1" == "$!{wxActToupiaoConfig.isViewPiaoshu}")selected#end>显示</option>
+												      		<option value="0" #if("0" == "$!{wxActToupiaoConfig.isViewPiaoshu}")selected#end>不显示</option>
+												      		
+												      </select>
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否开启报名功能 </label>
+													    <div class="col-sm-6">
+													  <select name="isEnter" id="isEnter"  value="$!{wxActToupiaoConfig.isEnter}" class="form-control" v-model="configinfo.isEnter"  @blur="configinfoblur()">
+													  		<option value="1" #if("1" == "$!{wxActToupiaoConfig.isEnter}")selected#end>显示</option>
+												      		<option value="0" #if("0" == "$!{wxActToupiaoConfig.isEnter}")selected#end>不显示</option>
+												      		
+												      </select>
+													    </div>
+													</div>
+	</div>
+</script>
+
+<script type="text/template" id="tabcon4">
+	<div id="tabcon4">
+	分享标题设置
+	</div>
+</script>
+<script type="text/javascript" src="$!{basePath}/plug-in/js/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="$!{basePath}/plug-in/js/forminit.p3.js"></script>  
+
+<script src="$!{basePath}/content/js/toupiao.js" type="text/javascript"></script>
+<script src="$!{basePath}/content/system/js/jquery.uploadify.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="$!{basePath}/content/system/css/uploadify.css">
+ <script type="text/javascript">
+													       	 var editor = UE.getEditor('attention');
+													    	</script>	
+															<script type="text/javascript">
+													       	 var editor = UE.getEditor('description');
+													    	</script>
+<script >
+
+$(function(){
+    $("#uploadify").uploadify({  
+        'swf'            : '$!{basePath}/content/system/js/uploadify.swf',  
+        'uploader'       : '$!{basePath}/system/back/jwSystemProject/doUpload.do',
+        'queueID'        : 'fileQueue',  
+        'auto'           : true,  
+        'multi'          : true,  
+        'buttonCursor'   : 'hand',  
+        'fileObjName'    : 'file',  
+        'buttonText'     : '上传图片',  
+        'height'         : '25',  
+        'progressData'   : 'percentage',  
+        'fileTypeDesc'   : '支持格式:jpg/gif/jpeg/png/bmp.',    
+        'fileTypeExts': '*.jpg;*.gif;*.jpeg;*.png;*.bmp',//允许的格式         
+        onUploadStart : function(file) {
+
+        },
+        onUploadSuccess  : function(file,data,response) {  
+            //设置图片预览  
+            var a =  JSON.parse(data);
+            $("#banner").val(a.obj);  
+            $("#pic_view").attr("src",'$!{basePath}/upload/img/system/' + a.obj);  
+        }  
+    });  
+});
+</script>
+ 		   
+<!--这里是js代码-->
+
+<script> 
+var serverroot= "$!{basePath}";
+  var vm1=new Vue({
+      el:"#picslide",
+      data:{
+          
+        },
+        created:function(){ 
+    },
+      methods:{ 
+      },
+      components: {  
+         uploader:{    //这个无返回值，不会继续派发  
+                template: "#uploader",  
+				props: {
+				src:{
+					type: String,
+					required: true
+				}
+        }, 
+		data: function () {  
+                   return {
+                status: 'ready',
+                files: baseinfo.banner,
+                point: {},
+                uploading: false,
+                percent: 0
+            } 
+         },  
+        methods:{
+            add(){
+                this.$refs.fileopen.click()
+            },
+            uploadpic(){
+                if (this.files.length === 0) {
+                    console.warn('no file!');
+                    return
+                }
+                const formData = new FormData()
+                this.files.forEach((item) => {
+                    formData.append(item.name, item.file)
+                })
+                const xhr = new XMLHttpRequest()
+                xhr.upload.addEventListener('progress', this.uploadProgress, false)
+                xhr.open('POST', this.src, true)
+                this.uploading = true
+                xhr.send(formData)
+                xhr.onload = () => {
+                    this.uploading = false
+                    if (xhr.status === 200 || xhr.status === 304) {
+                    	var obj = JSON.parse(xhr.responseText);
+                    	if(obj.success){
+                    		 this.status = 'finished'
+                                 console.log('upload success!')
+                                 for (let i = 0; i < this.files.length; i++) {
+					                    if (this.files[i].size) {
+					                    	this.files.splice(i, 1)
+					                    	i = i-1
+					                    }
+					                }
+                                  for (let i = 0; i < obj.obj.length; i++) {
+					                        const item = {
+					                            name: obj.obj[i].name,
+					                            src: obj.obj[i].src,
+					                        }
+					                        this.files.push(item)
+					                }
+					      const vmdemo = vm.$refs.demoframe.contentWindow.vm
+    		 				vmdemo.baseinfo=vm.$data.baseinfo
+    		 				console.log(vm.$data.baseinfo)
+                    	}else{
+                    		
+                    	}
+                       
+                    } else {
+                        console.log(`error：error code ${xhr.status}`)
+                    }
+                }
+            },
+            finished(){
+                
+                this.status = 'ready'
+            },
+            remove(index){
+                this.files.splice(index, 1)
+            },
+            fileChanged(){
+                const list = this.$refs.fileopen.files
+                for (let i = 0; i < list.length; i++) {
+                    if (!this.isContain(list[i])) {
+                        const item = {
+                            name: list[i].name,
+                            size: list[i].size,
+                            file: list[i]
+                        }
+                        this.html5Reader(list[i], item)
+                        this.files.push(item)
+                    }
+                }
+                this.$refs.fileopen.value = ''
+            },
+            // 将图片文件转成BASE64格式
+            html5Reader(file, item){
+                const reader = new FileReader()
+                reader.onload = (e) => {
+                    this.$set(item, 'src', e.target.result)
+                }
+                reader.readAsDataURL(file)
+            },
+            isContain(file){
+                this.files.forEach((item) => {
+                    if(item.name === file.name && item.size === file.size) {
+                        return true
+                    }
+                })
+                return false
+            },
+            uploadProgress(evt){
+                const component = this
+                if (evt.lengthComputable) {
+                    const percentComplete = Math.round((evt.loaded * 100) / evt.total)
+                    component.percent = percentComplete / 100
+                } else {
+                    console.warn('upload progress unable to compute')
+                }
+            }
+        } 
+        }  
+    }
+  });
+  function load(){
+     const vmdemo = vm.$refs.demoframe.contentWindow.vm;
+	 vmdemo.$data.configinfo=configinfo;
+	 vmdemo.$data.baseinfo=baseinfo;
+	 vmdemo.$data.viewstyle=viewstyle;
+  }
+
+	</script>
+ 

@@ -1,0 +1,1 @@
+﻿<Result><ret>0</ret><msg>查询短信账户信息成功</msg><model><simAccount><id>30507</id><uid>424157</uid><tel/><userName/><pwd/><totalNum>0</totalNum><enableNum>0</enableNum><freezeNum>0</freezeNum><createDate>1500803639000</createDate><alipayAccount/><alipayName/><sttr1/><sttr2/></simAccount><isjoin_sms100>true</isjoin_sms100></model></Result>

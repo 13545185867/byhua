@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.houseaOnline.entity.XfCell">
+
+	<!-- Result Map-->
+	<resultMap id="XfCell" type="com.jeecg.p3.houseaOnline.entity.XfCell" >
+		<result column="ID" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="addr" property="addr" jdbcType="VARCHAR"/>
+		<result column="buildingid" property="buildingid" jdbcType="VARCHAR"/>
+		<result column="housecount" property="housecount" jdbcType="INTEGER"/>
+		<result column="is_delete" property="isDelete" jdbcType="VARCHAR"/>
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP"/>
+		<result column="createuser" property="createuser" jdbcType="VARCHAR"/>
+		<result column="xf_cellcol" property="xfCellcol" jdbcType="VARCHAR"/>
+		<result column="xf_cellcol1" property="xfCellcol1" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.name != null and query.name != ''" >
+	  		 		/* 单元名 */
+			    	AND xc.name =  #{query.name,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.addr != null and query.addr != ''" >
+	  		 		/* 单元位置 */
+			    	AND xc.addr =  #{query.addr,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.buildingid != null and query.buildingid != ''" >
+	  		 		/* 楼栋ID */
+			    	AND xc.buildingid =  #{query.buildingid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.housecount != null and query.housecount != ''" >
+	  		 		/* 每层房间数 */
+			    	AND xc.housecount =  #{query.housecount,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.isDelete != null and query.isDelete != ''" >
+	  		 		/* 是否已删除 */
+			    	AND xc.is_delete =  #{query.isDelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.createtime != null and query.createtime != ''" >
+	  		 		/* 创建时间 */
+			    	AND xc.createtime =  #{query.createtime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.createuser != null and query.createuser != ''" >
+	  		 		/* 创建人 */
+			    	AND xc.createuser =  #{query.createuser,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.xfCellcol != null and query.xfCellcol != ''" >
+	  		 		/*  */
+			    	AND xc.xf_cellcol =  #{query.xfCellcol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.xfCellcol1 != null and query.xfCellcol1 != ''" >
+	  		 		/*  */
+			    	AND xc.xf_cellcol1 =  #{query.xfCellcol1,jdbcType=INTEGER}
+				 </if>
+		</trim>
+	</sql>
+
+<sql id="wherecontation1">
+		<trim  suffixOverrides="," >
+				 <if test="name != null and name != ''" >
+	  		 		/* 单元名 */
+			    	AND xc.name =  #{name,jdbcType=VARCHAR}
+				 </if>
+				 <if test="addr != null and addr != ''" >
+	  		 		/* 单元位置 */
+			    	AND xc.addr =  #{addr,jdbcType=VARCHAR}
+				 </if>
+				 <if test="buildingid != null and buildingid != ''" >
+	  		 		/* 楼栋ID */
+			    	AND xc.buildingid =  #{buildingid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="housecount != null and housecount != ''" >
+	  		 		/* 每层房间数 */
+			    	AND xc.housecount =  #{housecount,jdbcType=INTEGER}
+				 </if>
+				 <if test="isDelete != null and isDelete != ''" >
+	  		 		/* 是否已删除 */
+			    	AND xc.is_delete =  #{isDelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="createtime != null and createtime != ''" >
+	  		 		/* 创建时间 */
+			    	AND xc.createtime =  #{createtime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="createuser != null and createuser != ''" >
+	  		 		/* 创建人 */
+			    	AND xc.createuser =  #{createuser,jdbcType=VARCHAR}
+				 </if>
+				 <if test="xfCellcol != null and xfCellcol != ''" >
+	  		 		/*  */
+			    	AND xc.xf_cellcol =  #{xfCellcol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="xfCellcol1 != null and xfCellcol1 != ''" >
+	  		 		/*  */
+			    	AND xc.xf_cellcol1 =  #{xfCellcol1,jdbcType=INTEGER}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfCell.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  xf_cell   /* 在线选房,单元表 */  
+					(	
+                      ID                            /*  */ 
+                     ,name                          /* 单元名 */ 
+                     ,addr                          /* 单元位置 */ 
+                     ,buildingid                    /* 楼栋ID */ 
+                     ,housecount                    /* 每层房间数 */ 
+                     ,is_delete                     /* 是否已删除 */ 
+                     ,createtime                    /* 创建时间 */ 
+                     ,createuser                    /* 创建人 */ 
+                     ,xf_cellcol                    /*  */ 
+                     ,xf_cellcol1                   /*  */ 
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /*  */ 
+                     ,#{name,jdbcType=VARCHAR}                          /* 单元名 */ 
+                     ,#{addr,jdbcType=VARCHAR}                          /* 单元位置 */ 
+                     ,#{buildingid,jdbcType=VARCHAR}                    /* 楼栋ID */ 
+                     ,#{housecount,jdbcType=INTEGER}                    /* 每层房间数 */ 
+                     ,#{isDelete,jdbcType=VARCHAR}                      /* 是否已删除 */ 
+                     ,#{createtime,jdbcType=TIMESTAMP}                    /* 创建时间 */ 
+                     ,#{createuser,jdbcType=VARCHAR}                    /* 创建人 */ 
+                     ,#{xfCellcol,jdbcType=VARCHAR}                     /*  */ 
+                     ,#{xfCellcol1,jdbcType=INTEGER}                    /*  */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfCell.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   xf_cell  	/* 在线选房,单元表 */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="name != null">
+		    		 		/* 单元名 */ 
+	    		 			name = #{name,jdbcType=VARCHAR},
+						 </if>
+						 <if test="addr != null">
+		    		 		/* 单元位置 */ 
+	    		 			addr = #{addr,jdbcType=VARCHAR},
+						 </if>
+						 <if test="buildingid != null">
+		    		 		/* 楼栋ID */ 
+	    		 			buildingid = #{buildingid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="housecount != null">
+		    		 		/* 每层房间数 */ 
+	    		 			housecount = #{housecount,jdbcType=INTEGER},
+						 </if>
+						 <if test="isDelete != null">
+		    		 		/* 是否已删除 */ 
+	    		 			is_delete = #{isDelete,jdbcType=VARCHAR},
+						 </if>
+						 <if test="createtime != null">
+		    		 		/* 创建时间 */ 
+	    		 			createtime = #{createtime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="createuser != null">
+		    		 		/* 创建人 */ 
+	    		 			createuser = #{createuser,jdbcType=VARCHAR},
+						 </if>
+						 <if test="xfCellcol != null">
+		    		 		/*  */ 
+	    		 			xf_cellcol = #{xfCellcol,jdbcType=VARCHAR},
+						 </if>
+						 <if test="xfCellcol1 != null">
+		    		 		/*  */ 
+	    		 			xf_cellcol1 = #{xfCellcol1,jdbcType=INTEGER},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}	and	createuser = #{createuser}	/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfCell.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="XfCell">
+		   SELECT   
+                   xc.ID                            /*  */ 
+                  ,xc.name                          /* 单元名 */ 
+                  ,xc.addr                          /* 单元位置 */ 
+                  ,xc.buildingid                    /* 楼栋ID */ 
+                  ,xc.housecount                    /* 每层房间数 */ 
+                  ,xc.is_delete                     /* 是否已删除 */ 
+                  ,xc.createtime                    /* 创建时间 */ 
+                  ,xc.createuser                    /* 创建人 */ 
+                  ,xc.xf_cellcol                    /*  */ 
+                  ,xc.xf_cellcol1                   /*  */ 
+		   FROM   xf_cell      AS xc      /* 在线选房,单元表 */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfCell.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM xf_cell 	/* 在线选房,单元表 */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfCell.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  xf_cell      AS xc      /* 在线选房,单元表 */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfCell.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="XfCell">
+		    SELECT 
+                   xc.ID                            /*  */ 
+                  ,xc.name                          /* 单元名 */ 
+                  ,xc.addr                          /* 单元位置 */ 
+                  ,xc.buildingid                    /* 楼栋ID */ 
+                  ,xc.housecount                    /* 每层房间数 */ 
+                  ,xc.is_delete                     /* 是否已删除 */ 
+                  ,xc.createtime                    /* 创建时间 */ 
+                  ,xc.createuser                    /* 创建人 */ 
+                  ,xc.xf_cellcol                    /*  */ 
+                  ,xc.xf_cellcol1                   /*  */ 
+		FROM   	 xf_cell      AS xc      /* 在线选房,单元表 */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+	
+		<select id="queryByCondit" parameterType="Object"  resultMap="XfCell">
+		    SELECT 
+                   xc.ID                            /*  */ 
+                  ,xc.name                          /* 单元名 */ 
+                  ,xc.addr                          /* 单元位置 */ 
+                  ,xc.buildingid                    /* 楼栋ID */ 
+                  ,xc.housecount                    /* 每层房间数 */ 
+                  ,xc.is_delete                     /* 是否已删除 */ 
+                  ,xc.createtime                    /* 创建时间 */ 
+                  ,xc.createuser                    /* 创建人 */ 
+                  ,xc.xf_cellcol                    /*  */ 
+                  ,xc.xf_cellcol1                   /*  */ 
+		FROM   	 xf_cell      AS xc      /* 在线选房,单元表 */ 
+		WHERE 1=1 and xc.is_delete='0'
+		   <include refid="wherecontation1"/>  order by  name asc 
+	</select>
+</mapper>

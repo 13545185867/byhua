@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.houseaOnline.entity.XfFollow">
+
+	<!-- Result Map-->
+	<resultMap id="XfFollow" type="com.jeecg.p3.houseaOnline.entity.XfFollow" >
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="resourceid" property="resourceid" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="followuser" property="followuser" jdbcType="VARCHAR"/>
+		<result column="followdate" property="followdate" jdbcType="TIMESTAMP"/>
+		<result column="xf_followcol" property="xfFollowcol" jdbcType="VARCHAR"/>
+		<result column="xf_followcol1" property="xfFollowcol1" jdbcType="INTEGER"/>
+		<result column="resourcename" property="resourcename" jdbcType="VARCHAR"/>
+		<result column="resourceurl" property="resourceurl" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.resourceid != null and query.resourceid != ''" >
+	  		 		/* 关注资源ID */
+			    	AND xf.resourceid =  #{query.resourceid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.type != null and query.type != ''" >
+	  		 		/* 资源类型0：项目， 1：房间 */
+			    	AND xf.type =  #{query.type,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.followuser != null and query.followuser != ''" >
+	  		 		/* 关注人 */
+			    	AND xf.followuser =  #{query.followuser,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.followdate != null and query.followdate != ''" >
+	  		 		/* 关注时间 */
+			    	AND xf.followdate =  #{query.followdate,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.xfFollowcol != null and query.xfFollowcol != ''" >
+	  		 		/*  */
+			    	AND xf.xf_followcol =  #{query.xfFollowcol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.xfFollowcol1 != null and query.xfFollowcol1 != ''" >
+	  		 		/*  */
+			    	AND xf.xf_followcol1 =  #{query.xfFollowcol1,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.resourcename != null and query.resourcename != ''" >
+	  		 		/*  */
+			    	AND xf.resourcename =  #{query.resourcename,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.resourceurl != null and query.resourceurl != ''" >
+	  		 		/*  */
+			    	AND xf.resourceurl =  #{query.resourceurl,jdbcType=VARCHAR}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfFollow.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  xf_follow   /* 在线选房关注表 */  
+					(	
+                      id                            /*  */ 
+                     ,resourceid                    /* 关注资源ID */ 
+                     ,type                          /* 资源类型0：项目， 1：房间 */ 
+                     ,followuser                    /* 关注人 */ 
+                     ,followdate                    /* 关注时间 */ 
+                     ,xf_followcol                  /*  */ 
+                     ,xf_followcol1                 /*  */ 
+                     ,resourcename                  /*  */ 
+                     ,resourceurl                   /*  */ 
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /*  */ 
+                     ,#{resourceid,jdbcType=VARCHAR}                    /* 关注资源ID */ 
+                     ,#{type,jdbcType=VARCHAR}                          /* 资源类型0：项目， 1：房间 */ 
+                     ,#{followuser,jdbcType=VARCHAR}                    /* 关注人 */ 
+                     ,#{followdate,jdbcType=TIMESTAMP}                    /* 关注时间 */ 
+                     ,#{xfFollowcol,jdbcType=VARCHAR}                   /*  */ 
+                     ,#{xfFollowcol1,jdbcType=INTEGER}                  /*  */ 
+                     ,#{resourcename,jdbcType=VARCHAR}                  /*  */ 
+                     ,#{resourceurl,jdbcType=VARCHAR}                   /*  */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfFollow.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   xf_follow  	/* 在线选房关注表 */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="resourceid != null">
+		    		 		/* 关注资源ID */ 
+	    		 			resourceid = #{resourceid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="type != null">
+		    		 		/* 资源类型0：项目， 1：房间 */ 
+	    		 			type = #{type,jdbcType=VARCHAR},
+						 </if>
+						 <if test="followuser != null">
+		    		 		/* 关注人 */ 
+	    		 			followuser = #{followuser,jdbcType=VARCHAR},
+						 </if>
+						 <if test="followdate != null">
+		    		 		/* 关注时间 */ 
+	    		 			followdate = #{followdate,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="xfFollowcol != null">
+		    		 		/*  */ 
+	    		 			xf_followcol = #{xfFollowcol,jdbcType=VARCHAR},
+						 </if>
+						 <if test="xfFollowcol1 != null">
+		    		 		/*  */ 
+	    		 			xf_followcol1 = #{xfFollowcol1,jdbcType=INTEGER},
+						 </if>
+						 <if test="resourcename != null">
+		    		 		/*  */ 
+	    		 			resourcename = #{resourcename,jdbcType=VARCHAR},
+						 </if>
+						 <if test="resourceurl != null">
+		    		 		/*  */ 
+	    		 			resourceurl = #{resourceurl,jdbcType=VARCHAR},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfFollow.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="XfFollow">
+		   SELECT   
+                   xf.id                            /*  */ 
+                  ,xf.resourceid                    /* 关注资源ID */ 
+                  ,xf.type                          /* 资源类型0：项目， 1：房间 */ 
+                  ,xf.followuser                    /* 关注人 */ 
+                  ,xf.followdate                    /* 关注时间 */ 
+                  ,xf.xf_followcol                  /*  */ 
+                  ,xf.xf_followcol1                 /*  */ 
+                  ,xf.resourcename                  /*  */ 
+                  ,xf.resourceurl                   /*  */ 
+		   FROM   xf_follow      AS xf      /* 在线选房关注表 */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfFollow.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM xf_follow 	/* 在线选房关注表 */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+		<delete id="deleteByridAndUser" parameterType="Object">
+		DELETE 	FROM xf_follow 	/* 在线选房关注表 */  
+		WHERE 
+			resourceid = #{resourceid}	 and 	followuser=#{followuser}			/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfFollow.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  xf_follow      AS xf      /* 在线选房关注表 */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfFollow.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="XfFollow">
+		    SELECT 
+                   xf.id                            /*  */ 
+                  ,xf.resourceid                    /* 关注资源ID */ 
+                  ,xf.type                          /* 资源类型0：项目， 1：房间 */ 
+                  ,u.realname as followuser                    /* 关注人 */ 
+                  ,xf.followdate                    /* 关注时间 */ 
+                  ,u.mobile as xf_followcol                  /*  */ 
+                  ,xf.xf_followcol1                 /*  */ 
+                  ,xf.resourcename                  /*  */ 
+                  ,xf.resourceurl                   /*  */ 
+		FROM   	 xf_follow      AS xf      /* 在线选房关注表 */ left join userinfo as u on xf.followuser = u.openid
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+</mapper>

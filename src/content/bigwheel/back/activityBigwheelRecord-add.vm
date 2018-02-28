@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">新增</div>
+					<div class="panel-body">
+						<form class="form-horizontal" role="form" id="dailogForm" action="$!{basePath}/bigwheel/back/activityBigwheelRecord/doAdd.do" method="POST">
+					  		<input type="hidden" id="btn_sub" class="btn_sub" />
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheelRecord.activityid}" name="activityid" id="activityid" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheelRecord.awardid}" name="awardid" id="awardid" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!dateTool.format("yyyy-MM-dd",$!{activityBigwheelRecord.dotime})" name="dotime" id="dotime" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheelRecord.activityRecordcol}" name="activityRecordcol" id="activityRecordcol" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheelRecord.sncode}" name="sncode" id="sncode" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheelRecord.ip}" name="ip" id="ip" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">-1,0未领取
+1已领取待兑换
+2已过期
+3已使用
+4已回收
+5已回收
+6已手动派发</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheelRecord.status}" name="status" id="status" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheelRecord.activityRecordcol1}" name="activityRecordcol1" id="activityRecordcol1" class="form-control" />
+													    </div>
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">为该OPENid的朋友助力</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{activityBigwheelRecord.helpid}" name="helpid" id="helpid" class="form-control" />
+													    </div>
+													</div>
+										<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/bigwheel/back/activityBigwheelRecord/list.do')">返回</button>
+	        									<button type="button" class="btn btn-primary" id="formSubmit">提交</button>
+        									 </div>
+        								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="$!{basePath}/plug-in/js/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="$!{basePath}/plug-in/js/forminit.p3.js"></script> 

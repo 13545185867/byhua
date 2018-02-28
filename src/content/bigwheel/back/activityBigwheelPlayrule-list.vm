@@ -1,0 +1,171 @@
+#parse("content/base/back/common/macro.vm")
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<form role="form" class="form-inline" action="$!{basePath}/bigwheel/back/activityBigwheelPlayrule/list.do" method="post"  id="formSubmit">
+				<div  class="col-md-10" style="width:100%">
+								<div class="panel panel-default">
+								  <div class="panel-heading">砍价活动配置列表</div>
+								  <div class="panel-body">
+								  		<div class="search">
+															 <div class="form-group col-sm-3">
+															    <label for="limitlottery" class="control-label col-sm-3 line34">0为不开启限制1为开启次数限制</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="limitlottery" id="limitlottery" value="$!{activityBigwheelPlayrule.limitlottery}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="totallotterycount" class="control-label col-sm-3 line34">每个人最多参与次数</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="totallotterycount" id="totallotterycount" value="$!{activityBigwheelPlayrule.totallotterycount}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="daylotterycount" class="control-label col-sm-3 line34">每天参与次数值 </label>
+															     <div class="col-sm-8">
+															    <input type="text" name="daylotterycount" id="daylotterycount" value="$!{activityBigwheelPlayrule.daylotterycount}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="singleuserawards" class="control-label col-sm-3 line34">每个人最多中奖次数</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="singleuserawards" id="singleuserawards" value="$!{activityBigwheelPlayrule.singleuserawards}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="initialprobability" class="control-label col-sm-3 line34">初始中奖百分比</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="initialprobability" id="initialprobability" value="$!{activityBigwheelPlayrule.initialprobability}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="percentage" class="control-label col-sm-3 line34">助力成功率</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="percentage" id="percentage" value="$!{activityBigwheelPlayrule.percentage}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="helpnum" class="control-label col-sm-3 line34">助力成功人数</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="helpnum" id="helpnum" value="$!{activityBigwheelPlayrule.helpnum}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="activityid" class="control-label col-sm-3 line34">活动ID</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="activityid" id="activityid" value="$!{activityBigwheelPlayrule.activityid}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="activityPlayrulecol" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="activityPlayrulecol" id="activityPlayrulecol" value="$!{activityBigwheelPlayrule.activityPlayrulecol}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="activityPlayrulecol1" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="activityPlayrulecol1" id="activityPlayrulecol1" value="$!{activityBigwheelPlayrule.activityPlayrulecol1}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="activityPlayrulecol2" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="activityPlayrulecol2" id="activityPlayrulecol2" value="$!{activityBigwheelPlayrule.activityPlayrulecol2}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="exchangelimit" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="exchangelimit" id="exchangelimit" value="$!{activityBigwheelPlayrule.exchangelimit}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="participatelimit" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="participatelimit" id="participatelimit" value="$!{activityBigwheelPlayrule.participatelimit}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="gametime" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="gametime" id="gametime" value="$!{activityBigwheelPlayrule.gametime}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="gametimetype" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="gametimetype" id="gametimetype" value="$!{activityBigwheelPlayrule.gametimetype}" class="form-control">
+															  	</div>
+															 </div>
+											  <button type="submit" class="btn btn-primary">搜  索</button>
+											  <div class="clearfix"></div>
+								  		</div>
+								  		<div id="legend">
+								          <legend  class="le"><button type="button" class="btn btn-primary" onclick="doUrl('$!{basePath}/bigwheel/back/activityBigwheelPlayrule/toAdd.do')" >新增</button></legend> 
+								        </div>
+								        <table class="table table-striped">
+									        <thead>
+													<th>0为不开启限制1为开启次数限制</th>
+													<th>每个人最多参与次数</th>
+													<th>每天参与次数值 </th>
+													<th>每个人最多中奖次数</th>
+													<th>初始中奖百分比</th>
+													<th>助力成功率</th>
+													<th>助力成功人数</th>
+													<th>活动ID</th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th></th>
+						                			<th>操作</th>
+									        </thead>
+									        <tobody>
+									    	  #if($!{pageInfos})
+								                #foreach($!{info} in $!{pageInfos})
+									            	<tr>			
+																	<td>$!{info.limitlottery}</td>
+																	<td>$!{info.totallotterycount}</td>
+																	<td>$!{info.daylotterycount}</td>
+																	<td>$!{info.singleuserawards}</td>
+																	<td>$!{info.initialprobability}</td>
+																	<td>$!{info.percentage}</td>
+																	<td>$!{info.helpnum}</td>
+																	<td>$!{info.activityid}</td>
+																	<td>$!{info.activityPlayrulecol}</td>
+																	<td>$!{info.activityPlayrulecol1}</td>
+																	<td>$!{info.activityPlayrulecol2}</td>
+																	<td>$!{info.exchangelimit}</td>
+																	<td>$!{info.participatelimit}</td>
+																	<td>$!{info.gametime}</td>
+																	<td>$!{info.gametimetype}</td>
+										                <td class="last">
+							                			<a href="javascript:doUrl('$!{basePath}/bigwheel/back/activityBigwheelPlayrule/toEdit.do?id=$!{info.id}')" >编辑</a>
+							                			<a href="javascript:delData('$!{basePath}/bigwheel/back/activityBigwheelPlayrule/doDelete.do?id=$!{info.id}')">删除</a>
+							                			<a href="javascript:doUrl('$!{basePath}/bigwheel/back/activityBigwheelPlayrule/toDetail.do?id=$!{info.id}')">详情</a>
+						                				</td>
+									           		</tr>
+									             #end
+									    	 #end
+									         </tobody>
+									    </table>
+										<div class="text-right">
+											<!--公用翻页代码-->
+							                #set($attr='formSubmit')
+							            	#showPageList($pageInfos $attr)
+							                <!--END公用翻页代码-->
+										</div>
+								  </div>	
+								</div>
+				</div>  
+				</form>
+		</div>
+	</div>
+</body>
+</html>

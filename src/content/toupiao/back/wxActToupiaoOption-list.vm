@@ -1,0 +1,112 @@
+#parse("content/base/back/common/macro.vm")
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<form role="form" class="form-inline" action="$!{basePath}/toupiao/back/wxActToupiaoOption/list.do" method="post"  id="formSubmit">
+				<div  class="col-md-10" style="width:100%">
+								<div class="panel panel-default">
+								  <div class="panel-heading">投票选项列表</div>
+								  <div class="panel-body">
+								  		<div class="search">
+															 <div class="form-group col-sm-3" style="display:none;">
+															    <label for="actId" class="control-label col-sm-3 line34">活动ID</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="actId" id="actId" value="$!{wxActToupiaoOption.actId}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="identifier" class="control-label col-sm-3 line34">选项编号</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="identifier" id="identifier" value="$!{wxActToupiaoOption.identifier}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="title" class="control-label col-sm-3 line34">选项名称</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="title" id="title" value="$!{wxActToupiaoOption.title}" class="form-control">
+															  	</div>
+															 </div>
+															
+															 <div class="form-group col-sm-3">
+															    <label for="isActive" class="control-label col-sm-3 line34">是否启用 </label>
+															     <div class="col-sm-8">
+															     <select name="isActive" id="isActive"  value="$!{wxActToupiaoOption.isActive}" class="form-control" > 
+															     <option value=""  > </option>
+															    	<option value="0" #if("0" == "$!{wxActToupiaoOption.isActive}")selected#end>未启用</option>
+												      				<option value="1" #if("1" == "$!{wxActToupiaoOption.isActive}")selected#end>已启用</option>
+												      			</select>
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="isDelete" class="control-label col-sm-3 line34">是否删除</label>
+															     <div class="col-sm-8">
+															   <select name="isDelete" id="isDelete"  value="$!{wxActToupiaoOption.isDelete}" class="form-control" > 
+															    <option value=""  > </option>
+															 	<option value="0" #if("0" == "$!{wxActToupiaoOption.isDelete}")selected#end>否</option>
+												      			<option value="1" #if("1" == "$!{wxActToupiaoOption.isDelete}")selected#end>是</option>
+												      			</select>
+															  	</div>
+															 </div>
+															 
+												
+											  <button type="submit" class="btn btn-primary">搜  索</button>
+											  <div class="clearfix"></div>
+								  		</div>
+								  		<div id="legend">
+								          <legend  class="le"><button type="button" class="btn btn-primary" onclick="doUrl('$!{basePath}/toupiao/back/wxActToupiaoOption/toAdd.do?actId=$!{wxActToupiaoOption.actId}')" >新增</button></legend> 
+								        </div>
+								        <table class="table table-striped">
+									        <thead>
+													<th>选项编号</th>
+													<th>选项名称</th>
+													<th>联系人姓名</th>
+													<th>电话</th>
+													<th>是否启用 </th>
+													<th>投票次数</th>
+													<th>选项创建时间</th>
+						                			<th>操作</th>
+									        </thead>
+									        <tobody>
+									    	  #if($!{pageInfos})
+								                #foreach($!{info} in $!{pageInfos})
+									            	<tr>			
+																	<td>$!{info.identifier}</td>
+																	<td>$!{info.title}</td>
+																	<td>$!{info.name}</td>
+																	<td>$!{info.tel}</td>
+																	<td>#if($!{info.isActive} eq 1)<span style="background-color:green;">已启用</span>#else<span style="background-color:yellow;">未启用</span>#end</td>
+																	<td>$!{info.voteCount}</td>
+																	<td>$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{info.creatTime})</td>
+										                <td class="last">
+										                <a href="javascript:doUrl('$!{basePath}/toupiao/back/wxActToupiaoOption/toSetImage.do?id=$!{info.id}')">设置选项图片</a>
+							                			<a href="javascript:doUrl('$!{basePath}/toupiao/back/wxActToupiaoOption/toEdit.do?id=$!{info.id}')" >编辑</a>
+							                			#if(!($!{info.isActive} eq 1))
+							                			<a href="javascript:redirectUrl('$!{basePath}/toupiao/back/wxActToupiaoOption/doEdit.do?id=$!{info.id}&isActive=1&actId=$!{wxActToupiaoOption.actId}')" >启用</a>
+							                			#else
+							                			<a href="javascript:redirectUrl('$!{basePath}/toupiao/back/wxActToupiaoOption/doEdit.do?id=$!{info.id}&isActive=0&actId=$!{wxActToupiaoOption.actId}')" >停用</a>
+							                			#end
+							                			#if(!($!{info.isDelete} eq 1))<a href="javascript:delData('$!{basePath}/toupiao/back/wxActToupiaoOption/doDelete.do?id=$!{info.id}')">删除</a>#end
+							                			<a href="javascript:doUrl('$!{basePath}/toupiao/back/wxActToupiaoOption/toDetail.do?id=$!{info.id}')">详情</a>
+						                				</td>
+									           		</tr>
+									             #end
+									    	 #end
+									         </tobody>
+									    </table>
+										<div class="text-right">
+											<!--公用翻页代码-->
+							                #set($attr='formSubmit')
+							            	#showPageList($pageInfos $attr)
+							                <!--END公用翻页代码-->
+										</div>
+								  </div>	
+								</div>
+				</div>  
+				</form>
+		</div>
+	</div>
+</body>
+</html>

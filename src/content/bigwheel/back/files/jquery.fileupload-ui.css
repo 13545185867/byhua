@@ -1,0 +1,54 @@
+.fileupload-buttonbar .btn {
+	margin-bottom: 5px;
+}
+.fileupload-buttonbar .toggle {
+	margin-bottom: 5px;
+}
+.progress-animated .progress-bar {
+	background: url("../img/progressbar.gif") !important; height: 12px; filter: none;
+}
+.progress-animated .bar {
+	background: url("../img/progressbar.gif") !important; height: 12px; filter: none;
+}
+.fileupload-process {
+	height: 12px;
+}
+.fileupload-processing .fileupload-process {
+	background: url("../img/loading.gif") no-repeat center / contain; width: 32px; height: 32px; display: block;
+}
+.files .processing .preview {
+	background: url("../img/loading.gif") no-repeat center / contain; width: 32px; height: 32px; display: block;
+}
+.files audio {
+	max-width: 300px;
+}
+.files video {
+	max-width: 300px;
+}
+@media all and (max-width:767px)
+{
+.fileupload-buttonbar .toggle {
+	display: none;
+}
+.files .toggle {
+	display: none;
+}
+.files .btn span {
+	display: none;
+}
+.files .name {
+	width: 80px; -ms-word-wrap: break-word;
+}
+.files audio {
+	max-width: 80px;
+}
+.files video {
+	max-width: 80px;
+}
+.files img {
+	max-width: 100%;
+}
+.files canvas {
+	max-width: 100%;
+}
+}

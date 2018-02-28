@@ -1,0 +1,695 @@
+@CHARSET "UTF8";
+body{overflow-x:"hidden";margin: 0;
+    padding: 0;}
+
+.votesubmitbutton{
+	
+	font-size: 20px;
+    height: 40px;
+    line-height: 40px;
+    width: 200px;
+}
+
+.weixinstyle .navbar-poll .navbar-inner{
+	min-height:3px;
+    
+}
+.modal{
+	width:320px;
+}
+
+.weixinstyle{
+	
+	backgro/und-color:#ececec;
+	
+}
+.weixinstyle .navbar-poll .navbar-inner{
+    min-height:5px;
+}
+.weixinstyle .wxvoteinfo {
+	 background-color: #ececec;
+	 border-radius: 5px;
+}
+.weixinstyle .wxvoteinfo ul li{
+	
+	width:32%;
+	padding:0px;
+	text-align:center;
+	font-size: 12px;
+	color: #000;
+	margin-bottom: 5px;
+    margin-top: 5px;
+	
+}
+.weixinstyle  .left-border{
+	
+	border-left:1px solid #fff;
+	
+}
+.weixinstyle .votetitle h4{
+	margin: 10px 0 20px;
+	font-size: 16px;
+    font-weight: normal;
+}
+.weixinstyle .blockcell{
+	border-bottom: 1px solid #ececec;
+    hei//ght: 35px;
+    line-height: 35px;
+
+}
+
+ .carousel-items  .active {
+    background-color: #ececec;
+  }
+.weixinstyle  .rightarrow{
+	position: relative;
+}
+.weixinstyle  .rightarrow .arrow{
+	color: #ccc;
+    font-size: 17px;
+    margin-left: 20px;
+    margin-top: 10px;
+    position: absolute;
+}
+.weixinstyle  .rightarrow  .icon-double-angle-up
+{
+	margin-top: 8px;
+}
+.weixinstyle .votedescinfo{
+	margin: 15px;
+	display:none;
+	overflow-wrap: break-word;
+}
+.weixinstyle .voteoplist{
+	
+	margin-top:20px;
+}
+
+.weixinstyle .voteoplist .plistright{
+	float: right;
+}
+.weixinstyle .voteoplist  .wxop .wxopimg .wxopimg img{
+	    width: 100%;
+}
+
+.weixinstyle .voteoplist .wxop{
+	background-color: #ececec;
+    float: left;
+    margin-bottom: 20px;
+   border-radius: 12px;
+   
+}
+
+
+.weixinstyle .voteoplist .rightwxop{
+	float: right;
+	clear: right;
+}
+.weixinstyle .voteoplist .wxop .wxopimg{
+	text-align: center;
+   border-radius: 12px;
+    position: relative;
+    
+}
+.weixinstyle .voteoplist .wxop .wxopimg .rq{
+	background-color: #000;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 10px;
+    left: 5px;
+    opacity: 0.49;
+    padding: 1px 5px;
+    position: absolute;
+    top: 5px;
+}
+ 
+.weixinstyle .voteoplist .wxop  .wxoptxt{
+	margin-top: 5px;
+	line-height: 25px;
+    margin-left: 10px;
+    word-break: break-all;
+    word-wrap: break-word;
+    margin-right: 10px;
+}
+.weixinstyle .voteoplist .wxop  .wxoptxt a{
+	font-size:12px;
+}
+
+.weixinstyle .voteoplist .p3listleft{
+	float: left;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+}
+.weixinstyle .voteoplist .p3listleft .wxop{
+	clear: none;
+    margin-left: 2.4%;
+}
+.weixinstyle .voteoplist .p3listleft .wxop .wxoptxt{
+	line-height:20px;
+}
+.weixinstyle .voteoplist .p3listleft .wxopvotediv{
+	margin-top:0px;
+	line-height:20px;
+}
+.weixinstyle .voteoplist .p3listleft .wxoptxt .wxvinfo{
+	font-size:10px;
+}
+ .wxopimg {
+
+    overflow: hidden;	
+}
+.weixinstyle .voteoplist .p3listleft .wxop .wxopimg img{
+	height: 110px;
+}
+.weixinstyle .wxopvotediv{
+	line-height: 29px;
+	margin:5px 10px 10px 10px;
+}
+.weixinstyle .wxopvotediv .wxvbtn{
+	
+}
+.weixinstyle  .vopagecontentbody{
+	margin-top: 25px;
+}
+.weixinstyle  .topbar {
+	background-color: #3498db;
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+}
+.weixinstyle  .topbar a{
+	color: #fff;
+    margin-left: 10px;
+    font-size: 16px;
+}
+.weixinstyle   .page-header{
+	font-size: 16px;
+    font-weight: bold;
+}
+.weixinstyle  .votebuttons{
+	margin: 20px 0;
+    width: 100%;
+}
+.weixinstyle  .votenuminfo{
+	color: red;
+    font-weight: bold;
+}
+.weixinstyle .pointnuminfo{
+	margin-bottom:10px;
+	margin-top:20px;
+}
+.weixinstyle  .pointnuminfo span{
+	color: orange;
+    font-weight: bold;
+}
+.weixinstyle  .pointnuminfo .votenum{
+	color:red;
+}
+.weixinstyle  .pointnuminfo em{
+	color: #ccc;
+}
+.weixinstyle  .votebuttons button{
+	width: 45%;
+}
+.weixinstyle  .votebuttons .wxvotebutton{
+	float: left;
+    
+}
+.weixinstyle  .votebuttons .giftbutton{
+	float: left;
+	margin-left: 5px;
+    width: 45%;
+    
+}
+.weixinstyle  .votebuttons .giftbutton i{
+	co/lor:orange;
+}
+.weixinstyle  .votebuttons .wxlapiaobutton{
+	float: right;
+   
+}
+.weixinstyle .btn {
+  border: none;
+  background: #34495e;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+  -webkit-backface-visibility: hidden; 
+  width:100%;
+}
+.weixinstyle  .btn:hover, .weixinstyle  .btn:focus {
+    background-color: #4e6d8d;
+    color: white;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+    -webkit-backface-visibility: hidden; }
+.weixinstyle   .btn:active,.weixinstyle  .btn.active {
+    background-color: #2c3e50;
+    color: rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; }
+
+.weixinstyle  .btn.btn-warning{
+	background-color: #f1c40f;
+}
+.weixinstyle  .btn.btn-warning {
+    background-color: #f1c40f; }
+.weixinstyle .btn.btn-warning:hover, .weixinstyle .btn.btn-warning:focus {
+      background-color: #f4d03f; }
+.weixinstyle   .btn.btn-warning:active,.weixinstyle .btn.btn-warning.active {
+      background-color: #cea70c; 
+}
+.weixinstyle .btn.btn-info {
+    background-color: #3498db; }
+.weixinstyle .btn.btn-info:hover,.weixinstyle .btn.btn-info:focus {
+      background-color: #5dade2; }
+.weixinstyle  .btn.btn-info:active,.weixinstyle .btn.btn-info.active {
+      background-color: #2383c4; }
+
+.weixinstyle  .btn.disabled,.weixinstyle  .btn[disabled] {
+    background-color: #95a5a6;
+    color: white; }
+.weixinstyle .wxopvotediv .wxvinfo{
+	
+	 margin-top: 5px;
+	 text-align: center;
+}
+.followalert{
+	display:none;
+	background:url(/images/alphabg.png) ;
+	opac/ity:0.5;
+	filt/er:alpha(opacity=50);
+    color: #fff;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:1000;
+}
+.followalert .falertbox{
+	float: right;
+    font-size: 16px;
+    line-height: 25px;
+    margin-right: 10px;
+    width: 285px;
+}
+
+.helphimwalert .falertbox{
+	width:190px;
+}
+.followalert .falertbox  p{
+	
+}
+.followalert  .arrowimg {
+	text-align: right;
+	margin-right: 15px;
+}
+.followalert  .arrowimg img{
+	width: 100px;
+}
+.followalert .qrcodeimg {
+	float:right;
+	width:200px;
+}
+.followalertnew .falertbox{
+	
+	background-color: #fff;
+    border-radius: 8px;
+    left: 50%;
+    margin-left: -116px;
+    position: absolute;
+    top: 100px;
+    width: 232px;
+}
+.followalertnew .falertbox1{
+	
+	background-color: #fff;
+    border-radius: 8px;
+    left: 50%;
+    margin-left: -116px;
+    position: absolute;
+    top: 100px;
+    width: 232px;
+    z-index:1001;
+}
+
+.followalertnew h3{
+	color: #666;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+}
+.followalertnew h3 img{
+	
+}
+.followalertnew .helpbtns{
+	margin: 10px auto;
+    width: 190px;
+}
+.followalertnew .helpbtns a{
+	margin-bottom: 20px;
+    width: 170px;
+    
+}
+.wapalert {
+	background-color: #000;
+    color: #fff;
+    hei/ght: 50px;
+    left: 50%;
+    margin-left: -150px;
+    position: fixed;
+    text-align: center;
+    top: 35%;
+    width: 300px;
+    border-radius: 14px;
+    opacity:0.8;
+	filter:alpha(opacity=80);
+	display:none;
+	z-index:1000;
+}
+.wapalert p{
+	font-size: 20px;
+    line-height: 30px;
+    margin: 20px 15px 23px;
+}
+.loadingpagealert{
+	margin-top: 30px;
+    text-align: center;
+    display:none;
+}
+.loadingpagealert img{
+	
+}
+
+.followalertnew .falertbox1{
+	
+	background-color: #fff;
+    border-radius: 8px;
+    left: 50%;
+    margin-left: -150px;
+    position: absolute;
+    top: 10px;
+    width: 300px;
+}
+.followalertnew .falertbox1 h3{
+	color: orange;
+    font-size: 20px;
+    margin-bottom: 0;
+   margin-top: 0px;
+}
+.followalertnew .falertbox1 h31{
+	 margin-top: 4px;
+}
+.followalertnew .falertbox1 p{
+	color: #666;
+    margin: 0;
+}
+.followalertnew .falertbox1 p1{
+	
+    margin-bottom: 10px;
+}
+.followalertnew .falertbox1 imgp{
+	
+}
+
+.geetestalert{
+	background: url("/images/alphabg.png") repeat scroll 0 0;
+    color: #fff;
+    display: none;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.geetestbox{
+	color: #fff;
+    height: 235px;
+    left: 50%;
+    margin-left: -150px;
+    position: fixed;
+    text-align: center;
+    top: 17%;
+    width: 300px;
+}
+
+.musicbox{
+	
+	height: 50px;
+    position: fixed;
+    right: 5px;
+    top: 20px;
+    width: 50px;
+	display:none;
+	
+}
+.musicbox .mplaying{position:absolute;left:10px;top:10px;width:30px;height:30px;background-size:100% 100%;background-image:url(/images/music_playing.png);-webkit-animation:rotating 1.2s linear infinite;-moz-animation:rotating 1.2s linear infinite;-o-animation:rotating 1.2s linear infinite;animation:rotating 1.2s linear infinite}
+@-webkit-keyframes rotating{from{-webkit-transform:rotate(0deg)}to{-webkit-transform:rotate(360deg)}}@keyframes rotating{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@-moz-keyframes rotating{from{-moz-transform:rotate(0deg)}to{-moz-transform:rotate(360deg)}}
+
+.musicboxstopped{
+	background-image:url(/images/music_playing.png);
+	background-size:30px 30px;
+	background-repeat:no-repeat;
+	background-position:center center
+}
+
+.bottombar {
+	text-align:center;
+	bottom: 0;
+    position: fixed;
+    z-index:1000;
+    text-align: center;
+    width: 100%;
+    background-color: #000;
+    height:43px;
+    line-height:18px;
+	
+}
+.weixinstyle .bottombar a{
+	color: #fff;
+    float: left;
+    font-size: 12px;
+    margin-top: 3px;
+    text-decoration: none;
+    width: 20%;
+    overflow:hidden;
+}
+.weixinstyle .bottombar a i{
+	 font-size: 18px;
+}
+.searchbar {
+	background-image: url("$!{basePath}/content/toupiao/img/alphabg.png");
+    bottom: 50px;
+    height: 35px;
+    position: fixed;
+    z-index: 1001;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.weixinstyle .searchbar input{
+
+	float: left;
+    margin-top: 10px;
+    
+}
+.weixinstyle .searchbar button{
+
+	float: left;
+    margin-left: 10px;
+    margin-top: 11px;
+    width: 80px;
+}
+.weixinstyle .wxopvotediv .wxopradio{
+	margin-top: 5px;
+	
+}
+.icheckbox_line-grey, .iradio_line-grey{
+	background-color: #3498db;
+	width: 40px;
+	margin: 0 auto;
+}
+.icheckbox_line-grey.checked, .iradio_line-grey.checked{
+	backgro//und-color: #e74c3c;
+}
+.icheckbox_line-grey.hover{
+	background-color: #3498db;
+}
+.wxopradio input{
+	width:10px;
+}
+.wxmoreselsubmit {
+    width: 100%;
+    text-align: center;  
+    bottom: 43px; 
+      position: fixed;  
+      z-index: 1000; */
+     text-align: center;  
+}
+.wxmoreselsubmit .btn {
+	height: 40px!important;
+}
+.weixinstyle .btn-link {
+    border-color: transparent;
+    border-radius: 0;
+    color: #08c;
+    cursor: pointer;
+}
+.weixinstyle .btn-link, .weixinstyle .btn-link:active, .weixinstyle .btn-link[disabled] {
+    background-color: transparent!important;
+    background-image: none!important;
+    box-shadow: none!important;
+}
+.weixinstyle .toprulebar{
+	background-color: #000;
+    color: yellow;
+    display: none;
+    margin-left: -2.5%;
+    opacity: 0.8;
+    position: fixed;
+    top: 0;
+    text-align:center;
+    line-height: 30px;
+    width:100%;
+    z-index:1000;
+    
+}
+.weixinstyle .moreselalert{
+	background-color:#fcf8e3;
+    color: red;
+    text-align:center;
+    line-height: 30px;
+    width:100%;
+    margin-top: 15px;
+}
+.weixinstyle .toprulebar b{
+	font-width:bold;
+}
+.weixinstyle .toprulebar .hadselnumshow{
+	color:red;
+}
+.weixinstyle .giftpagelist{
+	list-style-type:none;
+	margin:0;
+	
+}
+.weixinstyle  .giftpagelist li{
+	float: left;
+    text-align: center;
+    border: 1px solid #ccc;
+    
+    margin-bottom:10px;
+    
+}
+.weixinstyle .giftpagelist li span{
+	 float: left;
+    width: 100%;
+    font-size: 10px;
+}
+.weixinstyle .giftpagelist li span.name{}
+.weixinstyle .giftpagelist li span.point{
+	font-size: 10px;
+}
+.weixinstyle .giftpagelist li span.num{
+	font-size: 10px;
+}
+.weixinstyle .giftpagelist li img{
+	width:80px;
+}
+.weixinstyle .giftpagebox {
+	background/-color: #f5f5f5;
+    height: 500px;
+}
+.weixinstyle .giftpagebox  h4{
+	background-color: #ff9900;
+	color:#fff;
+    font-size: 20px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.buygiftconfirmboxbg {
+	background: rgba(0, 0, 0, 0) url("/images/alphabg.png") repeat scroll 0 0; 
+    height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:999;
+    display:none;
+}
+.buygiftconfirmbox{
+	background-color: #fff;
+    left: 50%;
+    margin-left: -150px;
+    position: absolute;
+    top: 20px;
+    width: 300px;
+    
+}
+
+.buygiftconfirmbox  h4{
+	text-align: center;
+}
+.buygiftconfirmbox .onegiftbox{
+	
+	border: 1px solid #ccc;
+    height: 142px;
+    margin: 0 auto;
+    text-align: center;
+    width: 120px;
+}
+.buygiftconfirmbox .priceinfo{
+	margin-top: 15px;
+    text-align: center;
+}
+.buygiftconfirmbox .priceinfo span{
+	color:red;
+	font-weight:bold;
+	
+}
+.buygiftconfirmbox .onegiftbox span{
+	float: left;
+    width: 100%;
+     font-size: 12px;
+}
+.buygiftconfirmbox .onegiftbox .giftname{}
+.buygiftconfirmbox .onegiftbox .giftpointinfo{}
+.buygiftconfirmbox .onegiftbox img{}
+.buygiftconfirmbox .btns{
+	margin: 0 auto;
+    width: 200px;
+}
+.buygiftconfirmbox .btns button.btn{
+	width: 200px;
+	margin-bottom:15px;
+	height:35px;
+}
+.buygiftconfirmbox .alert{
+	 font-size: 12px;
+	 margin-top: 15px;
+}
+.wxopcol1{
+	width:48%;
+}
+.wxopcol2{
+	width:48%;
+	margin-left:4%;
+}
+.wxopcol3{
+	width:31%;
+	margin-right:3.5%;
+}
+.wxopcol4{
+	width:31%;
+}

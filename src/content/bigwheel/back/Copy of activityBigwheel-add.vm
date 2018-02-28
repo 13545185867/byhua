@@ -1,0 +1,2938 @@
+﻿<!DOCTYPE HTML>
+<HTML><HEAD> 
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<LINK href="#"  rel="icon" type="image/x-icon">
+<LINK href="$!{basePath}/bigwheel/back/files/bootstrap.css" rel="stylesheet">
+<LINK href="$!{basePath}/bigwheel/back/files/style.css" rel="stylesheet">
+<LINK href="$!{basePath}/bigwheel/back/files/admin.css" rel="stylesheet">
+<LINK href="$!{basePath}/bigwheel/back/files/jquery.fileupload.css" rel="stylesheet">
+<LINK href="$!{basePath}/bigwheel/back/files/jquery.fileupload-ui.css" rel="stylesheet">
+<LINK href="$!{basePath}/bigwheel/back/files/jquery.minicolors.css" rel="stylesheet">
+<LINK href="$!{basePath}/bigwheel/back/files/jquery-ui-tooltip.min.css" rel="stylesheet">
+<LINK href="$!{basePath}/bigwheel/back/files/jquery-ui-1.10.0.custom.min.css" rel="stylesheet">
+<LINK href="$!{basePath}/bigwheel/back/files/gamepage.css" rel="stylesheet">
+<LINK href="$!{basePath}/bigwheel/back/files/act_edit.css" rel="stylesheet">
+<LINK href="$!{basePath}/bigwheel/back/files/editpage_config.css" rel="stylesheet">
+<SCRIPT src="$!{basePath}/bigwheel/back/files/jquery-1.7.2.min.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/bootstrap.min.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/operamasks-ui.min.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/jquery.deparam.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/gamepage.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/jquery.template.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/address.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/jquery-ui-1.10.0.custom.min.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/jquery-ui-timepicker-addon.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/jquery-ui-timepicker-zh-CN.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/jquery-ui-sliderAccess.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/jquery.ui.widget.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/jquery.iframe-transport.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/jquery.fileupload.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/jquery.json-2.4.min.js" type="text/javascript"></SCRIPT>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/jquery.minicolors.min.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="$!{basePath}/bigwheel/back/files/aSelect.js" type="text/javascript"></SCRIPT>
+
+<SCRIPT src="$!{basePath}/bigwheel/back/files/aLocation.js" type="text/javascript"></SCRIPT>
+
+<SCRIPT>
+var _hasPublish = false;
+</SCRIPT>
+ 
+<STYLE type="text/css">
+.radio.inline.security-flag::before{
+	color: white;
+	content: "安";
+	background-color: #00cc33;
+	border-width: initial;
+	border-style: none;
+	border-color: initial;
+	border-image: initial;
+	border-radius: 2px;
+	padding: 2px;
+	margin: 0px 20px 0px -43px;
+}
+</STYLE>
+ <TITLE>配置</TITLE> 
+<SCRIPT type="text/javascript">
+		function $getStack(e, d) {
+			if (e && e.stack) {
+				var s = e.stack.replace(/(?:http:)[^:]*:(.*)/g, "$1").replace(/@/g, "at").split("at"), l = d ? d + 1
+						: s.length - 1;
+				return s.slice(1, l).join(":");
+			} else if (arguments.callee.caller.caller) {
+				var curr = arguments.callee.caller.caller, c, o = [];
+				while (curr) {
+					c = curr;
+					o.push(c.toString().substring(0, 100));
+					curr = curr.caller;
+				}
+				return o.join(":");
+			} else {
+				return "";
+			}
+		}
+		;
+		function $initBadjs() {
+			window.onerror = function (msg, url, l, c) {
+				if (document.getElementById("youyu_loading_main")) {
+					document.getElementById("youyu_loading_main").style.display = "none";
+				}
+				if (/WeixinJSBridge/.test(msg)) {
+					return;
+				}
+				var stack = $getStack();
+				$sendBadjs(msg, url, l + ":" + stack, l, c);
+				return false;
+			};
+		}
+		function $sendBadjs(msg, src, d, l, c) {
+			var ua = navigator.userAgent.toLowerCase(), s,
+					bom = (s = ua.match(/msie ([\d.]+)/)) ? "ie:" + s[1] :
+							(s = ua.match(/firefox\/([\d.]+)/)) ? "firefox:" + s[1] :
+									(s = ua.match(/chrome\/([\d.]+)/)) ? "chrome:" + s[1] :
+											(s = ua.match(/opera.([\d.]+)/)) ? "opera:" + s[1] :
+													(s = ua.match(/version\/([\d.]+).*safari/)) ? "safari:" + s[1] : 0;
+
+			var ts = d;
+			var errImg = new Image();
+			var errImgSrc = "/mobile/newgame/jserror?errorMessage=" + msg;
+			errImgSrc += "&scriptURI=" + encodeURIComponent(src || window.location.href);
+			errImgSrc += "&lineNumber=" + (l || 0);
+			errImgSrc += "&columnNumber=" + (c || 0);
+			errImgSrc += "&errorObj=" + ts;
+			errImgSrc += "&bowserType=" + ua;
+			errImgSrc += "&type=0";
+			errImgSrc += "&_=" + new Date().getTime();
+			errImg.src = errImgSrc;
+			errImg.imageSrcKey = errImgSrc;
+		}
+		;
+		$initBadjs();
+		window._sendBadjs = $sendBadjs;
+	</SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+		var _orientationChange = function(){
+			var _w=(document.documentElement.clientWidth||document.body.clientWidth)-30;
+			_w=_w<870?870:_w;
+			var _zoom=_w/1332;
+			_zoom = _zoom>1?1:_zoom;
+			var _style=document.getElementById("_topBar_zoom");
+			_style.innerHTML=".topBar {zoom:"+_zoom+";}";
+		};
+		_orientationChange();
+		window.addEventListener("resize", function () {
+			_orientationChange();
+		});
+	</SCRIPT>
+</HEAD> 
+<BODY><!-- 加载页面编辑查看示例 -->	 
+<DIV class="black_maskPage" id="loadPage_example"><IMG src="$!{basePath}/bigwheel/back/files/loadPageExample.gif">	</DIV>
+<DIV class="black_maskPage" id="copyRight_example"><IMG src="$!{basePath}/bigwheel/back/files/copyright.png"></DIV>
+<DIV class="black_maskPage" id="jumppage_example"><IMG src="$!{basePath}/bigwheel/back/files/jumppage.gif"></DIV>
+<DIV class="black_maskPage" id="wxShareIcon_example"><IMG src="$!{basePath}/bigwheel/back/files/wxShareIcon.jpg"></DIV>
+<DIV class="black_maskPage" id="wxShareTitle_example"><IMG src="$!{basePath}/bigwheel/back/files/wxShareTitle.jpg"></DIV>
+<DIV class="black_maskPage" id="wxShareContent_example"><IMG src="$!{basePath}/bigwheel/back/files/wxShareContent.jpg"></DIV><!-- 多选择省市 -->	 
+<DIV class="modal hide fade" id="render_modal" aria-hidden="true" style="z-index: 2000;">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>             
+<H3>选择推广区域</H3></DIV>
+<DIV class="modal-body">
+<DIV class="area-title-wrap">
+<P class="area-title">可选省、市</P>
+<P class="area-title">已选省、市</P></DIV>
+<DIV class="wrap-address clearfix" id="address-list-wrap">
+<DIV class="wrap-address-left">
+<DIV class="address-list" id="address-list-choose"></DIV></DIV>
+<DIV class="wrap-address-right">
+<DIV class="address-list" id="address-list-choosed"></DIV></DIV></DIV></DIV>
+<DIV class="modal-footer"><A class="btn" aria-hidden="true" href="javascript:;" 
+data-dismiss="modal">取消</A>             <A class="btn btn-primary" id="btn_add_area" 
+href="javascript:;">确定</A>         </DIV></DIV><!-- 多省市选择提示 -->     
+<DIV class="modal-confirm" id="j_modal-confirm">
+<DIV class="modal-header"><SPAN class="btn-close tip-btn-close" id="tip-btn-close2">x</SPAN>		 
+   		
+<H4>提示</H4></DIV>
+<DIV class="modal-body">
+<DIV class="content">确认删除吗？</DIV></DIV>
+<DIV class="modal-footer clearfix"><A class="btn tip-btn-close" id="tip_btn_close">关闭</A>		 
+   		<A class="btn btn-primary" id="tip_btn_confirm">确定</A>	    	</DIV></DIV>
+<DIV class="mp_loading_clip" id="loading_clip" style="display: block; z-index: 2002;">
+<DIV class="mp_loading_bar"></DIV></DIV>
+<DIV class="mp_loading_cover" style="display: block; z-index: 2000;"></DIV>
+<DIV class="wrapper" id="game_wrapper">
+<DIV class="topBar" style="min-width: 911px;">
+<DIV class="columnCont"></DIV></DIV>
+<DIV class="editContent">
+<DIV class="previewPhone">
+<DIV class="wxTitle">
+<DIV id="actName"></DIV></DIV>
+<DIV class="changePage" id="changeLeft">
+<DIV class="leftImg img"></DIV></DIV>
+<DIV class="changePage" id="changeRight">
+<DIV class="rightImg img"></DIV></DIV>
+<DIV id="gameContent">
+<DIV></DIV><iframe id="gamePreviewPage" frameborder="0" scrolling="no" style="width: 100%; height: 100%;" src="$!{basePath}/bigwheel/back/files/absolutelybigwheel.html"></iframe>			 </DIV>
+<DIV id="moduleLayerBox"></DIV>
+<DIV class="preview-control">
+<P class="control-title">添加内容</P>
+<UL class="control-label">
+  <LI id="label_logo"><A title="" id="label_logo_tips" href="javascript:;" 
+  data-original-title="隐藏" data-trigger="hover" 
+  data-toggle="tooltip">粉丝头像</A></LI>
+  <LI id="label_nickname"><A title="" id="label_nickname_tips" href="javascript:;" 
+  data-original-title="显示" data-trigger="hover" 
+  data-toggle="tooltip">粉丝昵称</A></LI>
+  <LI id="label_poster"><A href="javascript:;">分享文案</A></LI>
+  <LI id="label_actname"><A title="" id="label_actname_tips" href="javascript:;" 
+  data-original-title="显示" data-trigger="hover" 
+  data-toggle="tooltip">活动名称</A></LI></UL></DIV></DIV>
+<DIV class="editDetail">
+<UL class="nav nav-tabs config-tab" id="configTab">
+  <LI class="active"><A href="javascript:;">基础设置</A></LI>
+  <LI class="send_prize_config_tab"><A href="javascript:;">派奖设置</A></LI>
+  <LI class="prize_config_tab"><A href="javascript:;">奖品设置</A></LI>
+  <LI><A href="javascript:;">高级设置</A></LI></UL>
+<DIV class="tab-content config-tab-content">
+<DIV class="config_view" id="panel_1">
+<FORM class="form-horizontal" id="form_activity_config" action="#">
+<DIV class="control-group" id="set_actName_box"><LABEL class="control-label" 
+for="title">活动名称：</LABEL>
+<DIV 
+class="controls"><INPUT name="title" class="span4" id="title" type="text" maxlength="50"><SPAN 
+class="maroon">*</SPAN><SPAN class="help-inline">不能超过50个字</SPAN>
+								 </DIV></DIV>
+<DIV class="control-group" id="set_acttime_box"><LABEL class="control-label" 
+for="startDate">活动时间：</LABEL>
+<DIV class="controls"><!-- TODO:取消默认值 -->
+									 <INPUT name="startDate" class="span2 input" id="startDate" type="text" readonly="" data-editable="false"><SPAN 
+style="padding: 0px 7px;">至</SPAN><INPUT name="endDate" class="span2" id="endDate" type="text" readonly=""><SPAN 
+class="maroon">*</SPAN><SPAN class="help-inline">活动时间不能超过3个月</SPAN>
+								 </DIV></DIV>
+<DIV class="control-group" id="set_participant_box"><LABEL class="control-label" 
+for="hideParticipant">参与人数：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="hideParticipant" 
+type="radio" value="2">显示									 </LABEL> <LABEL class="radio inline"><INPUT 
+name="hideParticipant" type="radio" value="1">隐藏									 </LABEL>
+								 </DIV>
+<DIV class="controls" style="font-size: 13px; margin-top: 20px;">
+									在实际参与人数基础上增加 <INPUT name="participantVirtualAddCount" class="span1 onlyNum" id="participantVirtualAddCount" type="text" maxlength="5" value="1">人 
+<SPAN class="help-inline" 
+style="color: rgb(153, 153, 153);">（该数据仅用于展现，不计入统计）</SPAN>								 </DIV></DIV>
+<DIV class="control-group" id="set_showdanmu_box"><LABEL class="control-label" 
+for="showDanmu">轮播中奖信息：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="showDanmu" type="radio" 
+value="2">显示									 </LABEL>									 <LABEL class="radio inline"><INPUT name="showDanmu" 
+type="radio" value="1">隐藏									 </LABEL>									 <SPAN class="help-inline" 
+style="padding: 6px 0px 0px 19px;">超过一个粉丝获奖后，活动首页弹幕轮播中奖信息</SPAN>
+								 </DIV></DIV>
+<DIV class="control-group" id="set_ruletext_box"><LABEL class="control-label" 
+for="ruleTips">活动规则：</LABEL>
+<DIV 
+class="controls"><TEXTAREA name="ruleTips" class="span4" id="ruleTips" style="width: 520px;" placeholder="这里填写商家自定义的活动规则" rows="10">这里填写商家自定义的活动规则</TEXTAREA></DIV></DIV>
+<SCRIPT type="text/javascript">
+							$(function () {
+								$('#reDefaultBg').click(function () {
+									$('#bgPicture').val('');
+									$('#bgImgShow').attr('src', 'http://static.resource.youyu.weijuju.com//image/mobile/yyhb/index_bg.jpg');
+								});
+							});
+						</SCRIPT>
+						 </FORM></DIV>
+<DIV class="config_view" id="panel_2" style="display: none;">
+<FORM class="form-horizontal" id="form_play_help" action="#">
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="initCount">初始游戏次数：</LABEL>
+<DIV 
+class="controls"><INPUT name="initCount" disabled="disabled" class="span1" id="initCount" type="text" value="99999">次
+									（每个粉丝初始获得的游戏次数）								 </DIV></DIV>
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="dayIncrCount">每日新增次数：</LABEL>
+<DIV class="controls"><INPUT name="dayIncrCount" disabled="disabled" class="span1" id="dayIncrCount" type="text" value="0">次
+									（每个粉丝每天自动新增的游戏次数）								 </DIV></DIV>
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="dayCount">每日参与次数：</LABEL>
+<DIV 
+class="controls"><INPUT name="dayCount" disabled="disabled" class="span1" id="dayCount" type="text" value="99999">次 
+（每个粉丝每天最多参与的游戏次数）								 </DIV></DIV>
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="playCount">累计参与次数：</LABEL>
+<DIV 
+class="controls"><INPUT name="playCount" disabled="disabled" class="span1" id="playCount" type="text" value="99999">次
+									（每位玩家累计最多参与的游戏次数）								 </DIV></DIV>
+<DIV class="control-group" id="set_awardSendType_box"><LABEL class="control-label" 
+for="awardSendType">派奖模式：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="awardSendType" 
+type="radio" value="2" data-editable="false">按抽奖									 </LABEL> <LABEL class="radio inline"><INPUT 
+name="awardSendType" type="radio" value="1" data-editable="false">按排名
+									 </LABEL> <SPAN class="help-inline help-inline-awardSendType2" style="padding: 6px 0px 0px 13px;">在抽奖模式下，活动参与者达到抽奖门槛后就可获得一次抽奖机会，您可自由设置中奖概率以及每人最多中奖次数</SPAN>
+									 <SPAN class="help-inline help-inline-awardSendType1" style="padding: 6px 0px 0px 13px; display: none;">在排名模式下，活动参与者按获取成绩的最高积分排名，商家在活动结束后，根据玩家最终排名高低进行自动奖品派发</SPAN>
+								 </DIV></DIV>
+<DIV id="lucky_award_box">
+<DIV class="control-group" id="set_actlimit_box"><LABEL class="control-label" 
+style="margin-top: 8px;" for="totalLotteryCountRadio">单人总抽奖机会：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="totalLotteryCountRadio" 
+type="radio" value="1">不限										 </LABEL> <LABEL class="radio inline"><INPUT 
+name="totalLotteryCountRadio" style="margin-top: 13px;" type="radio" 
+value="2">限制 <SPAN class="totalLotteryInput">&nbsp;&nbsp;&nbsp;&nbsp;每人最多有
+												 <INPUT name="totalLotteryCount" disabled="disabled" class="span1 onlyNum" id="totalLotteryCount" type="text" maxlength="3" value="5">次
+										 </SPAN>										 </LABEL>									 </DIV></DIV>
+<DIV class="control-group" id="set_daylimit_box"><LABEL class="control-label" 
+for="dayLotteryCount">每日抽奖机会：</LABEL>
+<DIV class="controls">										每人每日有 <INPUT name="dayLotteryCount" class="span1 onlyNum" id="dayLotteryCount" type="text" maxlength="3" value="3">次抽奖机会 
+<BR><SPAN class="maroon">*</SPAN><SPAN 
+class="help-inline help-inline-1">达到最大抽奖机会后，粉丝需要分享助力才能获得更多抽奖机会</SPAN>
+										 <SPAN class="help-inline help-inline-2" 
+style="display: none;">抽奖机会用光后，参与者不能再进行抽奖</SPAN>									 </DIV></DIV>
+<DIV class="control-group" id="set_minscore_box"><LABEL class="control-label" 
+for="passCondition">抽奖门槛：</LABEL>
+<DIV class="controls">										游戏成绩达到 <INPUT name="passCondition" class="span1 onlyNum" id="passCondition" type="text" maxlength="7" value="30">分，即为挑战成功可抽奖 
+<SPAN class="maroon">*</SPAN>										 </DIV></DIV>
+<DIV class="control-group" id="set_singleUserAwards_box"><LABEL class="control-label" 
+for="singleUserAwards">总中奖机会：</LABEL>
+<DIV class="controls"><SPAN class="desc-text">每人最多中奖</SPAN> <INPUT name="singleUserAwards" class="span1 onlyNum" id="singleUserAwards" type="text" maxlength="7" value="1"><SPAN 
+class="num-text">次</SPAN> <SPAN class="maroon">*</SPAN>									 </DIV></DIV>
+<DIV class="control-group" id="set_initialProbability_box"><LABEL class="control-label" 
+for="initialProbability">初始中奖率：</LABEL>
+<DIV 
+class="controls"><INPUT name="initialProbability" class="span1 onlyIntNum" id="initialProbability" type="text" maxlength="3" value="30">
+										% <SPAN class="help-inline">(该值为用户在未经好友助力时的中奖概率)</SPAN>
+									 </DIV></DIV>
+<DIV class="control-group" id="set_percentage_box"><LABEL class="control-label" 
+for="percentage">助力成功率：</LABEL>
+<DIV class="controls"><INPUT name="percentage" class="span1 onlyIntNum" id="percentage" type="text" maxlength="3" value="30">
+										% <SPAN class="help-inline">(好友助力成功的概率，数值越大，助力越容易，也越容易中奖)</SPAN>
+									 </DIV></DIV>
+<DIV class="control-group" id="set_helpNum_box"><LABEL class="control-label" 
+for="helpNum">助力成功人数：</LABEL>
+<DIV class="controls">
+										需要<INPUT name="helpNum" class="span1 onlyIntNum" id="helpNum" type="text" maxlength="3" value="30">个人成功助力才能达到100%中奖
+										 <SPAN 
+class="help-inline">(若需要9人成功助力才能100%中奖，助力成功率设置为30%，那么至少需要30人助力才行)</SPAN>
+									 </DIV></DIV>
+<DIV class="control-group" id="set_probabilityMode_box"><LABEL class="control-label" 
+for="probabilityMode">中奖概率模式：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="probabilityMode" 
+type="radio" value="1">按总中奖概率</LABEL> 										<LABEL class="radio inline" 
+style="position: relative;">
+<DIV class="info field_tips_info">为每个奖项单独设置中奖概率，请前往 &nbsp;<A class="prize_config_tab_link" 
+href="javascript:;">奖品设置</A>											 
+<DIV class="sanjiao"></DIV></DIV><INPUT name="probabilityMode" type="radio" 
+value="2">按单个奖项中奖概率</LABEL> 										<SPAN class="field_tooltip" id="probabilityMode_tooltip"></SPAN>
+									 </DIV>
+<DIV class="controls" style="margin-top: 16px;">										总中奖概率：<INPUT name="globalProbability" class="span1 onlyIntNum" id="globalProbability" type="text" maxlength="3" value="30">
+										% <SPAN class="help-inline">(玩100次游戏，<SPAN class="globalProbabilityText">30</SPAN>次有获奖机会，奖品随机)
+										 </SPAN>									 </DIV><SPAN class="probabilityInfo" style="margin-top: -40px; float: left;"></SPAN>
+								 </DIV>
+<DIV class="control-group" id="set_probabilityType_box"><LABEL class="control-label" 
+for="probabilityType">奖品均匀发放：</LABEL>
+<DIV class="controls"><LABEL class="checkbox inline" 
+for="probabilityType"><INPUT name="probabilityType" id="probabilityType" type="checkbox">
+											开启										 </LABEL>										 <SPAN class="field_tooltip" id="probabilityType_tooltip"></SPAN>
+									 </DIV><SPAN class="probabilityInfo" style="margin-left: -130px; float: left;"></SPAN>
+								 </DIV>
+<DIV class="control-group" id="set_globalAwardVirtualNum_box" style="display: none;"><LABEL 
+class="control-label" for="globalAwardVirtualNum">总虚拟奖品数量：</LABEL>
+<DIV class="controls"><INPUT name="globalAwardVirtualNum" class="span1 onlyIntNum" id="globalAwardVirtualNum" type="text" maxlength="7" value="0"><SPAN 
+class="help-inline">(手机端游戏页面展示奖品数量=剩余奖品数量+总虚拟奖品数量)</SPAN>
+									 </DIV></DIV></DIV>
+<DIV class="control-group" id="set_withHelp_box"><LABEL class="control-label" 
+for="withHelp">是否开启助力：</LABEL>
+<DIV class="controls"><LABEL class="checkbox inline" for="withHelp"><INPUT name="withHelp" 
+id="withHelp" type="checkbox" checked="checked" data-editable="false"> 开启
+									 </LABEL> <SPAN class="help-inline" 
+style="padding: 5px 0px 0px 20px;">勾选后，助力相关设置才生效，助力设置发布后将不能更改</SPAN>
+									 <SPAN id="withhelp_tooltip">什么是助力</SPAN>								 </DIV></DIV>
+<DIV class="control-group" id="other_cgroup"><LABEL class="control-label" for="helpType">助力效果：</LABEL>
+<DIV class="controls" id="set_helpType_box" style="margin-top: 5px; display: none;"><INPUT name="helpType" id="helpType" type="hidden">
+									 
+<DIV class="helpCount_content">累计获得 
+<INPUT name="helpCount" disabled="disabled" class="span1 onlyNum" id="helpCount" type="text" value="1">次助力，增加
+									 </DIV>									最小积分：<INPUT name="minCount" disabled="disabled" class="span1 onlyNum" id="minCount" type="text" value="1">最大积分<INPUT name="maxCount" disabled="disabled" class="span1 onlyNum" id="maxCount" type="text" value="1"></DIV>
+<DIV class="controls helpType_1_cont"><LABEL class="radio inline"><INPUT name="helpEffect" 
+id="helpEffectForAddPlayCount" type="radio" value="0" 
+data-editable="false">增加抽奖次数									 </LABEL> <LABEL 
+class="radio inline"><INPUT name="helpEffect" title="2^(6-1)" id="helpEffectForHelp" 
+type="radio" value="32" data-editable="false">助力领奖									 </LABEL>									
+									 <!-- 全景红包特殊处理 -->									 
+<DIV id="msBox" style="margin: 10px 0px; display: none;"><LABEL class="radio inline"><INPUT 
+name="helpEffectMs" title="2^(1-1)" id="helpEffectMs1" type="radio" value="1" 
+data-editable="false">动态控制助力人数模式										 </LABEL> 										<LABEL class="radio inline"><INPUT 
+name="helpEffectMs" id="helpEffectMs2" type="radio" value="0" data-editable="false">固定助力人数模式
+										 </LABEL>									 </DIV>
+<DIV id="lotteryCount">										每被助力1次,被助力者增加 
+<INPUT name="lotteryAddCount" title="次数限制为1-10次" class="span1 onlyNum" id="lotteryAddCount" type="text" maxlength="2" value="1" data-editable="false">次抽奖机会
+									 </DIV>
+<DIV class="hide" id="helpAward">
+										中奖后,粉丝需要在<INPUT name="awardCycleTime" title="时间限制为5-1200分钟" class="span1 onlyNum" id="awardCycleTime" type="text" maxlength="4" value="5" data-editable="false">分钟内获得<INPUT name="unlockPrizeCount" title="次数限制为1-10次" class="span1 onlyNum" id="unlockPrizeCount" type="text" maxlength="2" value="3" data-editable="false">次助力才能领奖
+									 </DIV><!-- 全景红包特殊处理 -->									 
+<DIV class="hide" id="helpAward2">										中奖后,1个1元红包需要在<INPUT name="awardCycleTime" title="时间限制为5-1200分钟" class="span1 onlyNum" id="awardCycleTime2" type="text" maxlength="4" value="5" data-editable="false">分钟内获得<INPUT name="unlockPrizeCount" title="次数限制为1-10次" class="span1 onlyNum" id="unlockPrizeCount2" type="text" maxlength="2" value="3" data-editable="false">次助力才能拆开红包
+											 <SPAN class="help-inline" 
+style="margin-top: 5px; display: block;">温馨提示：动态模式下，系统将根据红包金额调整助力人数，此处设定的助力人数将作为基础参考值，例如红包金额1元时需5人助力，那么当红包金额为2元时，系统自动调整为需10人助力。当红包金额有小数的情况下，助力人数将会四舍五入。</SPAN></DIV></DIV>
+<DIV class="controls helpType_2_cont">									每被助力1次,被助力者增加最高游戏积分的<INPUT name="gamePointAddPercent" class="span1 onlyIntNum" id="gamePointAddPercent" type="text" maxlength="3" value="1" data-editable="false">%
+									 <SPAN id="gamescore_tooltip">什么是积分</SPAN>
+								 </DIV></DIV></FORM></DIV>
+<DIV class="config_view" id="panel_3" style="display: none;"><SPAN class="help-inline" 
+id="singleUserAwards-help-inline" 
+style="margin-bottom: 3px;">每个粉丝只可中奖一次，如果设置中奖次数，请前往							 <A style="text-decoration: underline;" 
+onclick="javascript:addFieldCheckBorder('singleUserAwards')" 
+href="javascript:;">派奖设置</A>						 </SPAN> <INPUT name="vehicle" style="display: none;" 
+type="checkbox" value="Bike">						 <SPAN class="help-inline" style="margin-bottom: 10px;">如果设置每个奖项的中奖概率，请前往<A 
+style="text-decoration: underline;" onclick="javascript:addFieldCheckBorder('probabilityMode')" 
+href="javascript:;">派奖设置</A>切换单项中奖概率模式						 </SPAN>						 
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="totalHbMoney">奖项数量：</LABEL>
+<DIV class="controls"><SELECT disabled="disabled" id="awardCount"><OPTION 
+  value="1">1</OPTION>									 <OPTION value="2">2</OPTION>									 <OPTION 
+  value="3">3</OPTION>									 <OPTION value="4">4</OPTION>									 <OPTION 
+  value="5">5</OPTION>									 <OPTION value="6">6</OPTION>									 <OPTION 
+  value="7">7</OPTION>									 <OPTION selected="selected" value="8">8</OPTION>
+  								 </SELECT>							 </DIV></DIV>
+<DIV id="set_actaward_box">
+<UL class="nav nav-tabs ui-nav-tabs clearfix award_tab_item"></UL>
+<DIV class="award_tab_content tab-content"></DIV></DIV></DIV>
+<DIV class="config_view" id="panel_4" style="display: none;">
+<UL class="nav nav-tabs" id="adv_subtab" style="margin-bottom: 5px;">
+  <LI class="active"><A href="http://youyu.weijuju.com/admin/newgame/config.jsp?templateId=34#adv_subtab_1" 
+  data-toggle="tab">企业信息</A></LI>
+  <LI><A href="http://youyu.weijuju.com/admin/newgame/config.jsp?templateId=34#adv_subtab_2" 
+  data-toggle="tab">分享设置</A></LI>
+  <LI id="game_setting_tab"><A href="http://youyu.weijuju.com/admin/newgame/config.jsp?templateId=34#adv_subtab_3" 
+  data-toggle="tab">游戏设置</A></LI>
+  <LI><A href="http://youyu.weijuju.com/admin/newgame/config.jsp?templateId=34#adv_subtab_4" 
+  data-toggle="tab">关注设置</A></LI>
+  <LI><A href="http://youyu.weijuju.com/admin/newgame/config.jsp?templateId=34#adv_subtab_5" 
+  data-toggle="tab">安全设置</A></LI></UL>
+<FORM class="form-horizontal" id="form_high_setting" action="#">
+<DIV class="tab-content" id="adv_subtab_content">
+<DIV class="tab-pane active" id="adv_subtab_1">
+<DIV class="control-group" id="set_organizer_box"><LABEL class="control-label" 
+for="organizer">主办单位：</LABEL>
+<DIV class="controls"><INPUT name="organizer" class="span4" id="organizer" type="text"></DIV></DIV>
+<DIV class="control-group set_jumpLink_box"><LABEL class="control-label qijianban-label" 
+for="organizerLink">主办单位开启跳转：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="jumpLinkBtn" 
+type="radio" value="1">否											 </LABEL>											 <LABEL class="radio inline"><INPUT 
+name="jumpLinkBtn" disabled="disabled" type="radio" value="2">开启
+											 </LABEL>											 </DIV></DIV>
+<DIV class="control-group" id="set_jumpLink2_box" style="display: none;"><LABEL 
+class="control-label" for="organizerLink">跳转链接：</LABEL>
+<DIV class="controls">
+<DIV class="jumpLinkBox"><INPUT name="organizerLink" class="span4" id="organizerLink" type="text"></DIV></DIV></DIV><!-- <div class="control-group">
+										<label class="control-label" for="organizerLink">链接：</label>
+										<div class="controls">
+											<input id="organizerLink" name="organizerLink" class="span4" type="text" value="">
+										</div>
+									</div> -->
+									 
+<DIV class="control-group" id="set_logo_box"><LABEL class="control-label" for="hideOrganizerLogo"><SPAN 
+class="nofree_tips">标</SPAN>企业LOGO：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="hideOrganizerLogo" 
+type="radio" value="1">隐藏											 </LABEL>											 <LABEL class="radio inline"><INPUT 
+name="fakeForFreeUser" disabled="disabled" type="radio" value="2">显示
+											 </LABEL>											 </DIV>
+<DIV class="controls orgLogoControls hide">
+<DIV class="cover-area">
+<DIV class="cover-hd">
+<DIV class="info">														图片像素建议为 <SPAN 
+class="uploadSize">200px*200px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+														 
+<DIV class="sanjiao"></DIV></DIV><SPAN 
+class="btn btn-primary fileinput-button">上传图片														 <INPUT name="fileupload" id="file_upload_orglogo" type="file" data-url="/admin/newgame/imgupload" data-form-data='{"accountId": "424157"}' data-sizelimit="100">
+													 </SPAN> <INPUT name="organizerLogo" disabled="disabled" class="fileupload_input" id="organizerLogo" type="hidden">
+												 </DIV>
+<P class="upload-tip">请上传jpg、png、gif格式的图片。</P>
+<DIV class="cover-bd img-area" data-from="#organizer_logo">
+<DIV class="imgBox"><IMG class="thumb_img" 
+src="$!{basePath}/bigwheel/back/files/def_img_1.png"></DIV></DIV></DIV></DIV></DIV>
+<DIV id="set_copyright_box">
+<DIV class="control-group" id="show_copyright_group"><LABEL class="control-label zhuanyeban-label" 
+for="showCopyright">显示版权：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="fakeForFreeUser" 
+disabled="disabled" type="radio" value="2">隐藏												 </LABEL>
+												 <LABEL class="radio inline"><INPUT name="showCopyright" type="radio" 
+value="1">显示												 </LABEL>												 <A class="view_example" id="copyRightExampleBtn" 
+href="javascript:void(0);">查看示例</A>											 </DIV></DIV>
+<DIV class="control-group" id="set_copyright_group"><LABEL class="control-label zhuanyeban-label" 
+for="useDefaultCopyright">版权设置：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="useDefaultCopyright" 
+type="radio" value="1">默认												 </LABEL>												 <LABEL class="radio inline"><INPUT 
+name="fakeForFreeUser" disabled="disabled" type="radio" value="2">自定义
+												 </LABEL>												 </DIV>
+<DIV class="controls copyrightPicControls" style="display: none;">
+<DIV class="cover-area">
+<DIV class="cover-hd">
+<DIV class="info">															图片像素建议为 <SPAN 
+class="uploadSize">314px*44px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+															 
+<DIV class="sanjiao"></DIV></DIV><SPAN 
+class="btn btn-primary fileinput-button">上传图片															 <INPUT name="fileupload" id="file_upload_copyrightpic" type="file" data-url="/admin/newgame/imgupload" data-form-data='{"accountId": "424157"}' data-sizelimit="100">
+														 </SPAN> 
+<INPUT name="customCopyrightPic" disabled="disabled" class="fileupload_input" id="customCopyrightPic" type="hidden">
+													 </DIV>
+<P class="upload-tip">请上传jpg、png、gif格式的图片。</P>
+<DIV class="cover-bd img-area" data-from="#startLogoImg">
+<DIV class="imgBox"><IMG class="thumb_img" 
+src="$!{basePath}/bigwheel/back/files/def_img_1.png"></DIV></DIV></DIV>
+<DIV class="copyrightLinkControls" style="margin: 7px 0px 0px 14px;">
+<P style="margin: 7px 7px 0px 0px; float: left;">跳转链接：</P><INPUT name="copyrightLink" class="span4" id="copyrightLink" type="text" placeholder="请输入底部版权的跳转链接" value=""></DIV></DIV></DIV></DIV>
+<DIV id="set_loadPage_group_box"><!-- 加载页面 -->										 
+<DIV class="control-group"><LABEL class="control-label control-fufei-label" for="useDefaultLoadPage">加载页面：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="useDefaultLoadPage" 
+type="radio" value="1">默认												 </LABEL>												 <LABEL class="radio inline"><INPUT 
+name="fakeForFreeUser" disabled="disabled" type="radio" value="-1">自定义
+												 </LABEL>												 <A class="view_example" id="vExampleBtn" href="javascript:void(0);">查看示例</A>
+											 </DIV></DIV>
+<DIV id="set_opening_banner_link" style="display: none;">
+<DIV class="control-group"><LABEL class="control-label qijianban-label" for="open_opening_link">加载页面开启跳转：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="open_opening_link" 
+type="radio" value="0">否													 </LABEL> <LABEL 
+class="radio inline"><INPUT name="open_opening_link" disabled="disabled" type="radio" 
+value="8">是													 </LABEL>													 <A class="view_example" id="jumpPageExampleBtn" 
+href="javascript:void(0);">查看示例</A>												 </DIV></DIV>
+<DIV class="control-group" id="opening_link" style="display: none;"><LABEL 
+class="control-label" for="openingLink">跳转链接：</LABEL>
+<DIV 
+class="controls"><INPUT name="openingLink" class="span4" id="openingLink" type="text"></DIV></DIV>
+<DIV class="control-group" id="set_openClick_box" style="display: none;"><LABEL 
+class="control-label">加载页面开启可点击提示：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="isOpenClick" 
+type="radio" value="0"> 否</LABEL> <LABEL class="radio inline"><INPUT name="isOpenClick" 
+type="radio" value="1"> 是</LABEL>												 </DIV>
+<DIV class="controls openClickControls hide">
+<DIV class="cover-area">
+<DIV class="cover-hd">
+<DIV class="info">																图片像素建议为 <SPAN 
+class="uploadSize">200px*200px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+																 
+<DIV class="sanjiao"></DIV></DIV><SPAN 
+class="btn btn-primary fileinput-button">上传图片																 <INPUT name="fileupload" id="file_upload_OpenClickPic" type="file" data-url="/admin/newgame/imgupload" data-form-data='{"accountId": "424157"}' data-sizelimit="100">
+															 </SPAN> <INPUT name="openClickPic" disabled="disabled" class="fileupload_input" id="openClickPic" type="hidden">
+														 </DIV>
+<P class="upload-tip">请上传jpg、png、gif格式的图片。</P>
+<DIV class="cover-bd img-area" data-from="#openClick_pic">
+<DIV class="imgBox"><IMG class="thumb_img" 
+src="$!{basePath}/bigwheel/back/files/def_img_1.png"></DIV></DIV></DIV></DIV></DIV></DIV></DIV><!--
+                                <div class="control-group">
+                                  <label class="control-label" for="moreInfo_tel">收集信息：</label>
+                                  <div class="controls">
+                                   <input id="moreInfo_tel" name="moreInfo_tel" class="" type="checkbox"> 手机号
+                                   <input id="moreInfo_name" name="moreInfo_name" class="" type="checkbox"> 姓名
+                                   <input id="moreInfo_addr" name="moreInfo_addr" class="" type="checkbox"> 地址
+                                  </div>
+                                </div>
+                                -->
+								 </DIV>
+<DIV class="tab-pane" id="adv_subtab_2">
+<DIV class="control-group"><LABEL class="control-label" 
+for="shareType">分享形式：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="shareType" type="radio" 
+value="0">图片分享											 </LABEL>											 <LABEL class="radio inline"><INPUT 
+name="shareType" title="2^(8-1)" type="radio" value="128">短图文分享
+											 </LABEL>											 <SPAN id="sharetype_tooltip">两种分享形式有什么区别</SPAN>
+											 </DIV></DIV><!-- 
+									<div class="control-group" id="set_qrcodebg_box" style="display: none;">
+										<label class="control-label" for="useDefaultQrcodeBg">分享二维码背景图：</label>
+										<div class="controls">
+											<label class="radio inline"> <input type="radio"
+												name="useDefaultQrcodeBg" checked="checked" value="1">默认
+											</label> <label class="radio inline"> <input type="radio"
+												name="useDefaultQrcodeBg" value="2">自定义
+											</label>
+										</div>
+										<div class="controls qrcodeBgControls hide">
+											<div class="cover-area" style="height: 78px;">
+												<div class="cover-hd">
+													<span class="btn btn-primary fileinput-button">上传图片
+														<input id="file_upload_qrcodebg" data-naturalwidth="520"
+														data-naturalheight="680" data-sizelimit="500"
+														data-form-data='{"accountId": "424157"}' type="file"
+														name="fileupload" data-url="/admin/newgame/imgupload">
+													</span> <input id="shareQrcodeBg" type="hidden"
+														class="fileupload_input" name="shareQrcodeBg"
+														disabled="disabled">
+												</div>
+												<p class="upload-tip">
+													图片像素建议为 <span class="uploadSize">520px*680px</span><br>大小在500k以内，格式为jpg\bmp\png\gif
+												</p>
+												<div class="cover-bd img-area" data-from="#help_qrcode_img">
+													<div class="imgBox">
+														<img class="thumb_img"
+															src="http://static.resource.youyu.weijuju.com//image/admin/newgame/def_img_1.png" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									 -->
+									 
+<DIV class="hide" id="wxshare_box"><!-- 微信分享图标 B! -->										 
+<DIV class="control-group"><LABEL class="control-label" 
+for="useShareIco">微信分享图标：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="useShareIco" 
+type="radio" value="1">默认													 <A id="wxShareIconExampleBtn" href="javascript:void(0);">(查看)</A>
+												 </LABEL> <LABEL class="radio inline"><INPUT name="useShareIco" 
+type="radio" value="2">自定义												 </LABEL>											 </DIV>
+<DIV class="controls hide" id="share_ico_controls">
+<DIV class="cover-area">
+<DIV class="cover-hd">
+<DIV class="info">															图片像素建议为 <SPAN 
+class="uploadSize">200px*200px</SPAN><BR>大小在30k以内，格式为jpg\bmp\png\gif
+															 
+<DIV class="sanjiao"></DIV></DIV><SPAN 
+class="btn btn-primary fileinput-button">上传图片															 <INPUT name="fileupload" id="file_upload_share_icon" type="file" data-url="/admin/newgame/imgupload" data-form-data='{"accountId": "424157"}' data-sizelimit="30">
+														 </SPAN> <INPUT name="shareIco" disabled="disabled" class="fileupload_input" id="shareIco" type="hidden">
+													 </DIV>
+<P class="upload-tip">请上传jpg、png、gif格式的图片。</P>
+<DIV class="cover-bd img-area" data-from="#help_share_ico_img">
+<DIV class="imgBox"><IMG class="thumb_img" 
+src="$!{basePath}/bigwheel/back/files/def_img_1.png"></DIV></DIV></DIV></DIV></DIV><!-- WXD微信分享标题 B! -->
+										 
+<DIV class="control-group"><LABEL class="control-label" 
+for="useShareTitle">微信分享标题：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="useShareTitle" 
+type="radio" value="1">默认													 <A id="wxShareTitleExampleBtn" href="javascript:void(0);">(查看)</A>
+												 </LABEL> 												<LABEL class="radio inline"><INPUT name="useShareTitle" 
+type="radio" value="2">自定义												 </LABEL> 												<INPUT name="checkShareTxt" type="hidden" value="1">
+											 </DIV>
+<DIV class="controls hide share-txt-controls" id="share_title_controls">
+<DIV class="share-txt-box j-share-txt-box">
+<DIV class="share-txt-header">
+<DIV class="share-txt-titel">分享标题</DIV>
+<DIV class="share-txt-insert"><SPAN></SPAN>插入															 
+<UL class="hide">
+  <LI class="j-insert-tag">玩家名称</LI></UL></DIV></DIV>
+<DIV class="share-txt-content j-share-txt-content j-share-title-content" id="j-share-title-content" 
+contenteditable="true"><SPAN class="tag" 
+contenteditable="false">玩家名称</SPAN>想要你的吻，你不吻一下吗？													 </DIV>
+<P class="share-msg j-share-msg"></P></DIV></DIV></DIV><!-- 微信分享标题 E! -->
+										 <!-- 微信分享内容 B!-->										 
+<DIV class="control-group"><LABEL class="control-label" 
+for="useShareTxt">微信分享内容：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="useShareTxt" 
+type="radio" value="1">默认													 <A id="wxShareContentExampleBtn" href="javascript:void(0);">(查看)</A>
+												 </LABEL> 												<LABEL class="radio inline"><INPUT name="useShareTxt" 
+type="radio" value="2">自定义												 </LABEL> 												<INPUT name="checkShareTxt" type="hidden" value="1">
+											 </DIV>
+<DIV class="controls hide share-txt-controls" id="share_txt_controls">
+<DIV class="share-txt-box j-share-txt-box">
+<DIV class="share-txt-header">
+<DIV class="share-txt-titel">分享内容（没有获奖有成绩的玩家）</DIV>
+<DIV class="share-txt-insert"><SPAN></SPAN>插入															 
+<UL class="hide">
+  <LI class="j-insert-tag">玩家名称</LI>
+  <LI class="j-insert-tag">游戏成绩</LI><!-- <li class="j-insert-tag">游戏排名</li> -->
+  															 </UL></DIV></DIV>
+<DIV class="share-txt-content j-share-txt-content" contenteditable="true"><SPAN 
+class="tag" contenteditable="false">玩家名称</SPAN>在活动中即将问鼎大奖，你敢挑战Ta吗？丰厚奖品等着你哦！
+													 </DIV>
+<P class="share-msg j-share-msg"></P></DIV>
+<DIV class="share-txt-box j-share-txt-box">
+<DIV class="share-txt-header">
+<DIV class="share-txt-titel">分享内容（获奖的玩家）</DIV>
+<DIV class="share-txt-insert"><SPAN></SPAN>插入															 
+<UL class="hide">
+  <LI class="j-insert-tag">玩家名称</LI>
+  <LI class="j-insert-tag">游戏成绩</LI><!-- <li class="j-insert-tag">游戏排名</li> -->
+  																 
+  <LI class="j-insert-tag">奖项等级</LI>
+  <LI class="j-insert-tag">奖品名称</LI></UL></DIV></DIV>
+<DIV class="share-txt-content j-share-txt-content" contenteditable="true"><SPAN 
+class="tag" contenteditable="false">玩家名称</SPAN>已经在活动中赢得了奖品，你也快来玩游戏赢大奖吧！
+													 </DIV>
+<P class="share-msg j-share-msg"></P></DIV>
+<P class="help-inline">注：若奖品名称、奖项等级中含有敏感词如“红包”，分享时系统会自动屏蔽敏感词。</P></DIV></DIV><!-- 微信分享内容 E! -->
+									 </DIV></DIV>
+<DIV class="tab-pane" id="adv_subtab_3">
+<DIV class="control-group"><LABEL class="control-label" style="margin-top: 8px;" 
+for="gameTimeRadio">游戏时间：</LABEL>
+<DIV class="controls"><LABEL class="radio inline" style="display: none;"><INPUT 
+name="gameTimeRadio" id="defaultGameTimeRadio" type="radio" value="0" checked="checked"
+data-editable="false">默认											 </LABEL> <LABEL class="radio inline"><INPUT 
+name="gameTimeRadio" style="margin-top: 13px;" type="radio" value="1" 
+data-editable="false">自定义												 <SPAN 
+class="gameTimeInput">&nbsp;&nbsp;&nbsp;&nbsp;<INPUT name="gameTime" class="span1 onlyNum" id="gameTime" type="text" maxlength="4" value="30">秒
+											 </SPAN>											 </LABEL>										 </DIV></DIV></DIV>
+<DIV class="tab-pane" id="adv_subtab_4">
+<DIV class="control-group"><LABEL class="control-label" 
+for="wxname">承办活动微信公众号：</LABEL>
+<DIV class="controls"><SPAN class="help-inline" 
+style="margin-top: 7px;">选择承办该活动的公众号（绑定公众号后方可选择，可后续绑定）</SPAN>
+												 </DIV></DIV>
+<DIV class="control-group" id="set_subscribe_box"><LABEL class="control-label" 
+for="wxlink">引导关注图文链接：</LABEL>
+<DIV 
+class="controls"><INPUT name="wxlink" class="span4" id="wxlink" type="text" value="http://mp.weixin.qq.com/s?__biz=MjM5ODk5OTUwMQ==&amp;mid=208223992&amp;idx=1&amp;sn=ec55eb1ec8c5e9746bf7564c7248c617"><SPAN 
+class="help-inline">请前往微信公众平台新建图文，如示例<A href="http://mp.weixin.qq.com/s?__biz=MjM5ODk5OTUwMQ==&amp;mid=208223992&amp;idx=1&amp;sn=ec55eb1ec8c5e9746bf7564c7248c617" 
+target="_blank">（点击查看）</A>，将新建好的图文链接填入输入框即可实现一键关注。											 </SPAN> <SPAN 
+class="help-inline" style="margin-top: 12px;">提示：需要填写图文链接，而非预览链接，<A href="http://mp.weixin.qq.com/s?__biz=MzIyMTEwNzA2OA==&amp;mid=507106267&amp;idx=1&amp;sn=8927393cc89002d62262361b2ed2abf8&amp;scene=1&amp;srcid=0810OuAehsqqwzD2zihxEzoy#wechat_redirect" 
+target="_blank">详情请查看帮助</A>。											 </SPAN>										 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="participateLimit">参与限制：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="participateLimit" 
+type="radio" value="1">开启											 </LABEL> <LABEL class="radio inline"><INPUT 
+name="participateLimit" type="radio" value="2">关闭											 </LABEL> <SPAN 
+class="help-inline" style="padding: 6px 0px 0px 13px;">开启后，粉丝需填写手机号方可参与游戏</SPAN>
+										 </DIV></DIV>
+<DIV class="control-group"  ><LABEL class="control-label" 
+for="forceAttent">限制关注后参与：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="forceAttent" 
+type="radio" value="1">开启											 </LABEL> <LABEL class="radio inline"><INPUT 
+name="forceAttent" type="radio" value="2">关闭											 </LABEL> <SPAN class="help-inline" 
+style="padding: 6px 0px 0px 13px;">开启后，用户需要先关注商家公众号才能参与活动。</SPAN>
+										 </DIV></DIV></DIV>
+<DIV class="tab-pane" id="adv_subtab_5">
+
+<DIV class="control-group"><LABEL class="control-label" 
+for="iscurrent">参与方式限制：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="iscurrent" 
+type="radio" value="0" checked="checked">不限制											 </LABEL><LABEL class="radio inline"><INPUT name="iscurrent" 
+type="radio" value="1">现场										 </LABEL> <LABEL class="radio inline"><INPUT 
+name="iscurrent" type="radio" value="2">网络											 </LABEL> <SPAN 
+class="help-inline" style="padding: 6px 0px 0px 13px;">现场参与的活动只能通过扫描现场二维码参加活动</SPAN>
+										 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="needsex">参与人性别限制：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="needsex" 
+type="radio" value="0" checked="checked">不限制											 </LABEL><LABEL class="radio inline"><INPUT name="needsex" 
+type="radio" value="1">男性参加											 </LABEL> <LABEL class="radio inline"><INPUT 
+name="needsex" type="radio" value="2">女性参加											 </LABEL> <SPAN 
+class="help-inline" style="padding: 6px 0px 0px 13px;">根据参与人的性别判断是否有参与资格</SPAN>
+										 </DIV></DIV>
+
+
+
+<DIV class="control-group"><LABEL class="control-label" 
+for="trophyValidator">领奖验证码：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="trophyValidator" 
+type="radio" value="1">开启											 </LABEL> <LABEL class="radio inline"><INPUT 
+name="trophyValidator" type="radio" value="2">关闭											 </LABEL> <SPAN 
+class="help-inline" style="padding: 6px 0px 0px 13px;">粉丝在领奖前需要输入图片验证码</SPAN>
+										 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="blacklist">开启黑名单：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="blacklist" title="2^(5-1)" 
+type="radio" value="16">开启											 </LABEL>											 <LABEL class="radio inline"><INPUT 
+name="blacklist" type="radio" value="0">关闭											 </LABEL>											 <SPAN 
+class="help-inline">开启黑名单后，黑名单用户将不会获奖。</SPAN>	
+</DIV></DIV>
+<div class="control-group">
+<label class="control-label" for="verfiyPassword">奖品核销密码：</label>
+<div class="controls">
+<input name="verfiyPassword" class="span4" id="verfiyPassword" type="text" value="">
+ <span class="help-inline" style="padding: 6px 0px 0px 13px;">核销奖品时需要输入核销密码</span>
+</div>
+</div>
+
+<DIV class="control-group"><LABEL class="control-label" 
+for="exchangeLimit">联系兑奖：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="exchangeLimit" 
+type="radio" value="1">开启											 </LABEL> <LABEL class="radio inline"><INPUT 
+name="exchangeLimit" type="radio" value="2">关闭											 </LABEL> <SPAN class="help-inline">需要先填写兑奖信息才能领取兑换券或者领取微信红包</SPAN>
+										 </DIV></DIV>
+<DIV class="control-group" id="set_exchangeLimitDetail_box" style="display: none;"><LABEL 
+class="control-label" for="exchangeLimitDetail">兑奖信息：</LABEL>
+<DIV class="controls">
+<DIV class="exchangeLimitDetail-content"><LABEL class="checkbox inline"><INPUT 
+name="exchangeLimitDetail" type="checkbox" value="2">姓名												 </LABEL>
+												 <LABEL class="checkbox inline"><INPUT name="exchangeLimitDetail" 
+disabled="disabled" type="checkbox" checked="checked" value="1">手机号
+												 </LABEL>												 <LABEL class="checkbox inline"><INPUT name="exchangeLimitDetail" 
+type="checkbox" value="4">地址												 </LABEL>												 <!-- <div class="exchange-content">
+													<label class="checkbox inline">
+														<input type="checkbox" name="exchangeLimitDetail" value="4">微信号
+													</label>
+													<span class="close-btn">&times;</span>
+												</div> -->
+												 <!-- <label class="checkbox inline" style="display: none;"> <input
+													type="checkbox" name="exchangeLimitDetail" value="6">扩展信息
+												</label>
+												 -->
+											 </DIV>
+<DIV class="add-undefind-box hide"><LABEL class="checkbox inline"><A class="add-undefind-btn" 
+href="javascript:;">+添加信息</A>												 </LABEL>												 
+<DIV 
+class="undefind-info-box hide"><INPUT name="undefindTitle" type="text" maxlength="5">
+													 <A class="ex-save" href="javascript:;">保存</A>													 <A 
+class="ex-cancel" href="javascript:;">取消</A>
+												 </DIV></DIV></DIV></DIV>
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="needLimitAddress">是否限制地区：</LABEL>
+<DIV class="controls" style="margin-top: 5px;"><INPUT name="needLimitAddress" 
+id="needLimitAddress" style="margin: 8px;" type="checkbox"> <SPAN 
+class="maroon">*</SPAN><SPAN class="help-inline">限制</SPAN>
+										 </DIV></DIV>
+<DIV class="control-group" id="addressGroup"><LABEL class="control-label" for="addr_prov">参与地区限制：</LABEL><!-- <div class="controls">
+											<select name="addr_prov" class="addr span2" id="addr_prov">
+												<option>请选择</option>
+											</select> <select name="addr_city" class="addr span2" id="addr_city"></select>
+											<span class="help-inline">限制参与地域后，只有选定地域范围内的微信用户才能中奖。</span>
+										</div> -->
+										 <!-- 多选择省市 -->										  
+<DIV class="controls"><A class="btn-add-area" id="show_add_area_new" href="javascript:;">增加地域限制</A>
+										 <!--  <button id="btn_address_modal">弹出地址选择弹框</button> -->										 
+	 <!-- 回显列表 -->										     
+<DIV class="area-list-wrap" id="show_view_area_list" style="display: none;">
+<DIV class="area-list-control"><SPAN class="icon-area-edit" 
+id="show_view_area"></SPAN>										             <SPAN class="icon-area-delete" 
+id="delete_view_area"></SPAN>										         </DIV>
+<DIV class="area-list-items" id="view_area_list"><!-- 地址列表  -->										        
+ </DIV></DIV>
+<P 
+class="help-inline">限制参与区域后,只有选定地域范围内的微信用户才能中奖,以用户网络IP定位作为判断基准。</P></DIV></DIV>
+<DIV class="control-group" id="security_choice_group"><LABEL class="control-label" 
+for="securityLevel">红包安全机制：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="securityLevel" 
+type="radio" value="1">初级											 </LABEL> <LABEL class="radio inline security-flag" 
+style="margin-left: 35px;"><INPUT name="securityLevel" type="radio" value="2">中级
+											 </LABEL> <LABEL class="radio inline"><INPUT name="securityLevel" 
+disabled="disabled" type="radio" value="3">高级											 </LABEL>
+										 </DIV></DIV>
+<DIV class="control-group" id="security_type_group"><LABEL class="control-label" 
+for="securityType">验证方式：</LABEL>
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="securityType" 
+type="radio" value="1">短信验证码											 </LABEL>											 <LABEL class="radio inline"><INPUT 
+name="securityType" type="radio" value="2">语音验证码											 </LABEL>
+										 </DIV></DIV>
+<DIV id="securityLevel_1_tips" style="display: none;">
+<P>											温馨提示：初级红包安全机制仅提供最基本的安全保障。为确保您的活动能达到预期效果，建议启用中级或高级红包安全机制。<A href="http://youyu.weijuju.com/market/safety_brush.jsp" 
+target="_blank">了解详情&gt;&gt;&gt;</A>										 </P></DIV>
+<DIV id="securityLevel_2_tips">
+<DIV class="control-group"><LABEL class="control-label" 
+for="smsfreeze_total">预计语音验证量：</LABEL>
+<DIV class="controls money_text"><SPAN class="smsfreeze_total" id="smsfreeze_total">10</SPAN><SPAN 
+class="yuan">条</SPAN>											 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="sms_total">账户语音余额：</LABEL>
+<DIV class="controls money_text"><SPAN class="sms_total" 
+id="sms_total">10</SPAN><SPAN class="yuan">条</SPAN> <A class="sms_free_join" 
+style="color: red; padding-left: 20px; font-size: 14px;" href="http://youyu.weijuju.com/admin/asset/message_info.jsp">领取免费语音验证包</A>
+												 <A style="padding-left: 20px; font-size: 14px;" href="http://youyu.weijuju.com/admin/asset/message_info.jsp">充值语音验证包</A>
+											 </DIV></DIV>
+<P class="tips2">
+											温馨提示：中级红包安全机制会通过语音验证来校验中奖粉丝的手机。请确保活动过程中有足够的语音验证余额（建议是红包数量的三倍），否则将可能导致粉丝无法正常领取红包。<A 
+href="http://youyu.weijuju.com/market/safety_brush.jsp" 
+target="_blank">了解详情&gt;&gt;&gt;</A>										 </P>
+<P class="tips3" 
+style="display: none;">温馨提示：高级红包安全机制会校验中奖粉丝关注状态和手机号。请确保活动过程中有足够的语音验证余额（建议是红包数量的三倍），否则将可能导致粉丝无法正常领取红包。<A 
+href="http://youyu.weijuju.com/market/safety_brush.jsp" 
+target="_blank">了解详情&gt;&gt;&gt;</A>										 </P></DIV>
+<P class="tips_bind_wx">您尚未使用<SPAN style="color: red;">认证服务号</SPAN>进行<SPAN 
+style="color: red;">服务授权</SPAN>，请授权后再启用高级红包安全机制。<A href="http://youyu.weijuju.com/admin/remotelogin?page=%2Fadmin%2Fai%2Fyouyu_open_bind_new.jsp">马上去开启&gt;&gt;&gt;</A>
+									 </P><!--
+                               <div class="control-group">
+                                 <label class="control-label" for="snValidate">SN核销密码：</label>
+                                 <div class="controls">
+                                  <input id="snValidate" name="snValidate" class="" type="text" checked="checked">
+                                 </div>
+                               </div>
+                                -->
+								 </DIV></DIV></FORM></DIV></DIV></DIV>
+<DIV class="saveBottomBar fixBottombar">
+<DIV class="buttonBox">
+<DIV class="btn" id="cancel_btn">返回</DIV>
+<DIV class="btn btn-primary" id="save_btn">保存</DIV></DIV></DIV></DIV></DIV>
+<DIV class="modal hide fade" id="upload_img_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H3>修改图片</H3></DIV>
+<DIV class="modal-body form-horizontal"></DIV></DIV><!-- 上传音乐免责声明 -->	 
+<DIV class="modal hide fade" id="disclaimer_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H3>用户协议及免责声明</H3></DIV>
+<DIV class="modal-body form-horizontal">
+			有娱平台自定义音乐服务协议由深圳市花儿绽放网络科技股份有限公司和您签订。<BR>
+<H4>一、声明与承诺</H4>1.1 
+声明<BR>&nbsp;&nbsp;&nbsp;&nbsp;在接受本协议使用有娱平台自定义音乐服务之前，请您仔细阅读本协议的全部内容（特别是以粗体标注的内容）。如果您不同意本协议的任意内容，或者无法准确理解本公司对条款的解释，请不要进行后续操作，包括但不限于不要接受本协议，不使用本服务。如果您对本协议的条款有疑问，请通过本公司客服渠道进行询问（客服电话为400-7888-925），本公司将向您解释条款内容。<BR>1.2 
+承诺<BR>&nbsp;&nbsp;&nbsp;&nbsp;您理解并同意，如本公司需要对本协议进行变更或修改的，须通过www.youyu.weijuju.com网站公告的方式提前予以公布，公告期限届满后即时生效；若您在本协议内容公告变更生效后继续使用有娱平台自定义音乐服务的，表示您已充分阅读、理解并接受变更后的协议内容，也将遵循变更后的协议内容使用有娱平台自定义音乐服务；若您不同意变更后的协议内容，您应在变更生效前停止使用自定义音乐服务。<BR>
+<H4>二、【自定义音乐功能】</H4>			该服务为本地上传音乐文件服务，用户可以从本地上传自己的音乐文件，或选择关闭此功能。上传的音乐格式为 mp3 
+/ogg/wav ，大小在100k以内，否者需按要求清理。<BR>
+<H4>三、【功能使用须知】</H4>3.1&nbsp;遵守中国有关的法律和法规；<BR>3.2&nbsp;遵守所有与网络服务有关的网络协议、规定和程序；<BR>3.3&nbsp;不得为任何非法目的而使用网络服务系统；<BR>3.4&nbsp;不得以任何形式使用自定义音乐服务侵犯本平台的商业利益，包括并不限于发布非经本平台许可的商业广告；<BR>3.5&nbsp;不得利用自定义音乐服务服务系统进行任何可能对互联网或移动网正常运转造成不利影响的行为；<BR>3.6&nbsp;不得利用自定义音乐服务服务上传、展示或传播任何虚假的、骚扰性的、中伤他人的、辱骂性的、恐吓性的、庸俗淫秽的或其他任何非法的信息；<BR>3.7&nbsp;不得侵犯其他任何第三方的专利权、著作权、商标权、名誉权或其他任何合法权益；<BR>3.8&nbsp;不得利用自定义音乐服务系统进行任何不利于本平台的行为；<BR>3.9 
+ 
+本平台有权对用户使用自定义音乐服务【该服务包括但不限于收费及免费网络服务（其中包括基于广告模式的免费网络服务）】的情况进行审查和监督（包括但不限于对用户上传的内容进行审核），如用户在使用自定义音乐服务时违反任何上述规定，本平台或其授权的人有权要求用户改正或直接采取一切必要的措施（包括但不限于更改或删除用户使用的内容、暂停或终止用户使用网络服务的权利等）以减轻用户不当行为造成的影响；<BR>3.10 
+本平台针对此服务的使用通过各种方式（包括但不限于网页公告、电子邮件、短信提醒等）作出的任何声明、通知、警示等内容视为本协议的一部分，用户如使用该等服务，视为用户同意该等声明、通知、警示的内容。<BR>
+<H4>四、【免责声明】</H4>
+			用户明确同意其使用自定义音乐服务所存在的风险将完全由其自己承担；因其使用自定义音乐服务而产生的一切后果也由其自己承担，本平台对用户不承担任何责任。<BR><BR>4.1 
+本平台不担保网络服务一定能满足用户的要求，也不担保网络服务不会中断，对网络服务的及时性、安全性、准确性也都不作担保；<BR>4.2 
+本平台不保证为用户提供便利而设置的外部链接的准确性和完整性，同时，对于该等外部链接指向的不由本平台实际控制的任何网页上的内容，本平台不承担任何责任；<BR>4.3 
+对于因不可抗力或不能控制的原因造成的网络服务中断或其它缺陷，本平台不承担任何责任，但将尽力减少因此而给用户造成的损失和影响；<BR>4.4 
+用户同意，对于本平台向用户提供的下列产品或者服务的质量缺陷本身及其引发的任何损失，本平台无需承担任何责任；<BR>4.5 
+本平台作品仅代表用户本人的观点，不代表本平台的观点和看法，与本平台立场无关，相关责任用户自负；<BR>4.6 
+除本平台注明的服务内容外，其他一切因使用本平台而引致之任何意外、疏忽、诽谤、版权或知识产权侵犯及其所造成的损失（包括感染电脑病毒），本网站概不负责，亦不承担任何法律责任；<BR>4.7 
+由于用户将个人密码告知他人或与他人共享注册账户，由此导致的任何资料泄露，本网站不负任何责任；<BR>4.7 
+若因本平台产生任何诉诸于诉讼程序的法律争议，将以本平台所有者所在的法院为管辖法院，除非中国法律对此有强制性规定。<BR>
+<H4>五、【暂停、中断或终止服务】</H4>5.1 公司在本网站公告之系统停机维护期间。<BR>5.2 电信设备出现故障不能正常进行数据传输的。<BR>5.3 
+由于黑客攻击、电信部门技术调整或故障、网站升级、银行方面的问题等原因而造成的服务中断或者延迟。<BR></DIV>
+<DIV class="controls" id="read_over_div"><LABEL class="checkbox inline" for="read_over"><INPUT 
+name="read_over" id="read_over" type="checkbox">				我已仔细阅读并同意此协议的内容。			 </LABEL>
+		 </DIV>
+<DIV class="buttonBox">
+<DIV disabled="disabled" class="btn btn-primary" 
+id="music_agree_btn">确认</DIV></DIV></DIV><!-- 上传音乐 -->	 
+<DIV class="modal hide fade" id="upload_music_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H3>修改音乐</H3></DIV>
+<DIV class="modal-body form-horizontal">
+<DIV class="control-group"><LABEL class="control-label" "="">   背景音乐：  </LABEL>
+					 
+<DIV class="controls"><LABEL class="radio inline"><INPUT name="bgMusicSwitch0" 
+class="music_switch" type="radio" value="0">自定义						 </LABEL>						 <LABEL 
+class="radio inline"><INPUT name="bgMusicSwitch0" class="music_switch" type="radio" 
+value="1">关闭						 </LABEL>						 <SPAN class="help-inline"></SPAN>					 </DIV>
+<DIV class="cover-area music_area"><!-- 音乐文件名字 -->						 <SPAN class="music_name"></SPAN>
+						 
+<DIV class="cover-hd">
+<DIV class="info">音乐建议大小在100k以内，格式为mp3\ogg\wav
+<DIV class="sanjiao"></DIV></DIV><SPAN 
+class="btn btn-primary fileinput-button">上传音乐
+								 <INPUT name="fileupload" class="upload_music_1" type="file" multiple="" data-url="/admin/newgame/musicupload" data-form-data='{"accountId": "1"}' data-sizelimit="100">
+							 </SPAN>							 <INPUT name="hunter_editimg_1" disabled="disabled" class="upload_music_1_1" type="hidden" data-target=".hunter_img1">
+						 </DIV><A class="music_cover-recovery" href="javascript:;">恢复默认</A>
+					 </DIV></DIV>
+<P style="margin-top: 50px;">你已同意<A 
+id="disclaimer_btn">用户协议及免责声明</A>，请勿上传色情，反动等违法音乐。</P></DIV></DIV><!--估价猎人猜测商品图片列表 -->
+	 
+<DIV id="valuationHunter_goodsImg_modal">
+<DIV class="hunter_outerBox" style="position: absolute;"><A id="valuationHunter_closeBtn" 
+href="javascript:void(0)">x</A>			 
+<UL class="hunter_ul">
+  <LI class="cover-area"><SPAN class="hunter_title">第一张</SPAN>					 <IMG class="hunter_img thumb_img" 
+  src="$!{basePath}/bigwheel/back/files/good.png">					 
+  <DIV class="cover-hd hunter-cover-hd">
+  <DIV class="info">图片像素建议为 <SPAN 
+  class="uploadSize uploadSize-0">396px*216px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+  <DIV class="sanjiao"></DIV></DIV><SPAN class="btn btn-primary fileinput-button">上传图片
+  							 <INPUT name="fileupload" id="hunter_img_1" type="file" multiple="" data-url="/admin/newgame/imgupload?imgtype=common" data-form-data='{"accountId": "1"}' data-sizelimit="100">
+  						 </SPAN>						 <INPUT name="hunter_editimg_1" disabled="disabled" class="fileupload_input" id="hunter_himg_1" type="hidden" data-target=".hunter_img1">
+  					 </DIV>
+  <DIV class="hunter_fanwei">估价范围  
+<INPUT class="hunter_minNum" type="number" min="0" value="1">  元至  
+<INPUT class="hunter_maxNum" type="number" min="0" value="300"> 元
+  					 </DIV><A class="hunter_add_btn" href="javascript:void(0);" 
+  data_show="1">添加</A>					 <!-- <a class="hunter_delete_btn" href="javascript:void(0);">删除</a> -->
+  				 </LI>
+  <LI class="cover-area hunter_li_hide"><SPAN class="hunter_title">第二张</SPAN>
+  					 <IMG class="hunter_img thumb_img" src="$!{basePath}/bigwheel/back/files/good.png">					 
+  <DIV class="cover-hd hunter-cover-hd">
+  <DIV class="info">图片像素建议为 <SPAN 
+  class="uploadSize uploadSize-0">396px*216px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+  <DIV class="sanjiao"></DIV></DIV><SPAN class="btn btn-primary fileinput-button">上传图片
+  							 <INPUT name="fileupload" id="hunter_img_2" type="file" multiple="" data-url="/admin/newgame/imgupload?imgtype=common" data-form-data='{"accountId": "1"}' data-sizelimit="100">
+  						 </SPAN>						 <INPUT name="hunter_editimg_2" disabled="disabled" class="fileupload_input" id="hunter_himg_2" type="hidden">
+  					 </DIV>
+  <DIV class="hunter_fanwei">估价范围  
+<INPUT class="hunter_minNum" type="number" min="0" value="1">  元至  
+<INPUT class="hunter_maxNum" type="number" min="0" value="300"> 元
+  					 </DIV><A class="hunter_add_btn" href="javascript:void(0);" 
+  data_show="2">添加</A>					 <A class="hunter_delete_btn" href="javascript:void(0);">删除</A>
+  				 </LI>
+  <LI class="cover-area hunter_li_hide"><SPAN class="hunter_title">第三张</SPAN>
+  					 <IMG class="hunter_img thumb_img" src="$!{basePath}/bigwheel/back/files/good.png">					 
+  <DIV class="cover-hd hunter-cover-hd">
+  <DIV class="info">图片像素建议为 <SPAN 
+  class="uploadSize uploadSize-0">396px*216px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+  <DIV class="sanjiao"></DIV></DIV><SPAN class="btn btn-primary fileinput-button">上传图片
+  							 <INPUT name="fileupload" id="hunter_img_3" type="file" multiple="" data-url="/admin/newgame/imgupload?imgtype=common" data-form-data='{"accountId": "1"}' data-sizelimit="100">
+  						 </SPAN>						 <INPUT name="hunter_editimg_3" disabled="disabled" class="fileupload_input" id="hunter_himg_3" type="hidden">
+  					 </DIV>
+  <DIV class="hunter_fanwei">估价范围  
+<INPUT class="hunter_minNum" type="number" min="0" value="1">  元至  
+<INPUT class="hunter_maxNum" type="number" min="0" value="300"> 元
+  					 </DIV><A class="hunter_add_btn" href="javascript:void(0);" 
+  data_show="3">添加</A>					 <A class="hunter_delete_btn" href="javascript:void(0);">删除</A>
+  				 </LI>
+  <LI class="cover-area hunter_li_hide"><SPAN class="hunter_title">第四张</SPAN>
+  					 <IMG class="hunter_img thumb_img" src="$!{basePath}/bigwheel/back/files/good.png">					 
+  <DIV class="cover-hd hunter-cover-hd">
+  <DIV class="info">图片像素建议为 <SPAN 
+  class="uploadSize uploadSize-0">396px*216px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+  <DIV class="sanjiao"></DIV></DIV><SPAN class="btn btn-primary fileinput-button">上传图片
+  							 <INPUT name="fileupload" id="hunter_img_4" type="file" multiple="" data-url="/admin/newgame/imgupload?imgtype=common" data-form-data='{"accountId": "1"}' data-sizelimit="100">
+  						 </SPAN>						 <INPUT name="hunter_editimg_4" disabled="disabled" class="fileupload_input" id="hunter_himg_4" type="hidden">
+  					 </DIV>
+  <DIV class="hunter_fanwei">估价范围  
+<INPUT class="hunter_minNum" type="number" min="0" value="1">  元至  
+<INPUT class="hunter_maxNum" type="number" min="0" value="300"> 元
+  					 </DIV><A class="hunter_add_btn" href="javascript:void(0);" 
+  data_show="4">添加</A>					 <A class="hunter_delete_btn" href="javascript:void(0);">删除</A>
+  				 </LI>
+  <LI class="cover-area hunter_li_hide"><SPAN class="hunter_title">第五张</SPAN>
+  					 <IMG class="hunter_img thumb_img" src="$!{basePath}/bigwheel/back/files/good.png">					 
+  <DIV class="cover-hd hunter-cover-hd">
+  <DIV class="info">图片像素建议为 <SPAN 
+  class="uploadSize uploadSize-0">396px*216px</SPAN><BR>大小在100k以内，格式为jpg\bmp\png\gif
+  <DIV class="sanjiao"></DIV></DIV><SPAN class="btn btn-primary fileinput-button">上传图片
+  							 <INPUT name="fileupload" id="hunter_img_5" type="file" multiple="" data-url="/admin/newgame/imgupload?imgtype=common" data-form-data='{"accountId": "1"}' data-sizelimit="100">
+  						 </SPAN>						 <INPUT name="hunter_editimg_5" disabled="disabled" class="fileupload_input" id="hunter_himg_5" type="hidden">
+  					 </DIV>
+  <DIV class="hunter_fanwei">估价范围  
+<INPUT class="hunter_minNum" type="number" min="0" value="1">  元至  
+<INPUT class="hunter_maxNum" type="number" min="0" value="300"> 元					 </DIV><!-- <a class="hunter_add_btn" href="javascript:void(0);">添加</a> -->
+  					 <A class="hunter_delete_btn" href="javascript:void(0);">删除</A>				 </LI>
+  <LI class="hunter_tip">
+  					温馨提示：<BR>1、活动中每位用户所估价的物品都会在以上物品中随机挑选，物品出现的概率相等，估价的范围为对应设定的估价范围。<BR>2、每位用户所猜中的价格有所不同。以防奖品被快速刷走，每一位用户所“猜中的价格（系统生成）”会在所设定的估价范围中，但每位用户所猜中的价格会有所不同。
+  				 </LI></UL></DIV></DIV><!-- 集五福文字自定义 -->	 
+<DIV class="modal hide fade" id="jiwufu_gametext_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H3>自定义集福文字</H3></DIV>
+<FORM class="form-horizontal" id="form_jiwufu_gametext_setting" style="margin: 0px;" 
+action="#">
+<DIV class="modal-body">
+<DIV class="control-group" style="margin-left: 30px;"><LABEL class="radio inline"><INPUT 
+name="jiwufu_slogan_radio" type="radio" value="1">使用默认					 </LABEL> <LABEL 
+class="radio inline"><INPUT name="jiwufu_slogan_radio" type="radio" 
+value="2">自定义<SPAN class="help-inline">(限定在5个字以内)</SPAN>					 </LABEL>
+				 </DIV>
+<DIV id="cus_jiwufu_text_cont" style="padding-top: 15px; border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid; display: none;">
+<DIV class="control-group"><LABEL class="control-label" 
+for="jiwufu_text_1">第一张卡：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_1" class="span2" id="jiwufu_text_1" type="text" maxlength="5" value="国运昌隆福"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="jiwufu_text_2">第二张卡：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_2" class="span2" id="jiwufu_text_2" type="text" maxlength="5" value="国泰民安福"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="jiwufu_text_3">第三张卡：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_3" class="span2" id="jiwufu_text_3" type="text" maxlength="5" value="日新月异福"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="jiwufu_text_4">第四张卡：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_4" class="span2" id="jiwufu_text_4" type="text" maxlength="5" value="锦绣山河福"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="jiwufu_text_5">第五张卡：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_5" class="span2" id="jiwufu_text_5" type="text" maxlength="5" value="人才辈出福"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="jiwufu_text_6">集齐内容：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_6" class="span2" id="jiwufu_text_6" type="text" maxlength="5" value="无"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="jiwufu_text_7">所集内容：</LABEL>
+<DIV class="controls"><INPUT name="jiwufu_text_7" class="span2" id="jiwufu_text_7" type="text" maxlength="5" value="卡片"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV></DIV></DIV>
+<DIV class="modal-footer" style="text-align: center;"><BUTTON class="btn btn-primary" 
+id="save_jiwufu_gametext" type="submit">保存</BUTTON>			 </DIV></FORM></DIV><!-- 摇钱树红包文字自定义 -->
+	 
+<DIV class="modal hide fade" id="newshakeredpack_redpacktext_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H3>自定义红包文字</H3></DIV>
+<FORM class="form-horizontal" id="form_newshakeredpack_redpacktext_setting" 
+style="margin: 0px;" action="#">
+<DIV class="modal-body">
+<DIV class="control-group">					红包自定义文字：<SPAN 
+class="help-inline">(限定在5个字以内)</SPAN>				 </DIV>
+<DIV id="cus_newshakeredpack_redpacktext_cont" style="padding-top: 15px; border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid;">
+<DIV class="control-group"><LABEL class="control-label" for="newshakeredpack_redpacktext_1">第一个红包文字：</LABEL>
+<DIV 
+class="controls"><INPUT name="newshakeredpack_redpacktext_1" class="span2" id="newshakeredpack_redpacktext_1" type="text" maxlength="5" value="我的红包"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" for="newshakeredpack_redpacktext_2">第二个红包文字：</LABEL>
+<DIV 
+class="controls"><INPUT name="newshakeredpack_redpacktext_2" class="span2" id="newshakeredpack_redpacktext_2" type="text" maxlength="5" value="我的红包"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" for="newshakeredpack_redpacktext_3">第三个红包文字：</LABEL>
+<DIV 
+class="controls"><INPUT name="newshakeredpack_redpacktext_3" class="span2" id="newshakeredpack_redpacktext_3" type="text" maxlength="5" value="我的红包"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" for="newshakeredpack_redpacktext_4">第四个红包文字：</LABEL>
+<DIV 
+class="controls"><INPUT name="newshakeredpack_redpacktext_4" class="span2" id="newshakeredpack_redpacktext_4" type="text" maxlength="5" value="我的红包"><SPAN 
+class="maroon">*</SPAN>						 </DIV></DIV></DIV></DIV>
+<DIV class="modal-footer" style="text-align: center;"><BUTTON class="btn btn-primary" 
+id="save_newshakeredpack_redpacktext" type="submit">保存</BUTTON>
+			 </DIV></FORM></DIV>
+<DIV class="modal hide fade" id="add_redpack_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4>追加红包</H4></DIV>
+<FORM class="form-horizontal" id="form_add_redpack_setting" style="margin: 0px;" 
+action="#">
+<DIV class="modal-body">
+<DIV class="control-group"><LABEL class="control-label" 
+for="add_redpack_num">追加红包数量：</LABEL>
+<DIV class="controls"><INPUT name="add_redpack_num" class="span3 onlyNum" id="add_redpack_num" type="text" maxlength="6"><SPAN 
+class="maroon">*</SPAN>							 <BR><SPAN class="j-awardNum-tips"></SPAN>
+					 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="add_redpack_amount">追加红包金额：</LABEL>
+<DIV class="controls"><INPUT name="add_redpack_amount" class="span3 onlyNum" id="add_redpack_amount" type="text" maxlength="6"><SPAN 
+class="maroon">*</SPAN>					 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="service_charge">平台技术服务费：</LABEL>
+<DIV class="controls money_text" style="font-size: 13px;"><SPAN class="service_charge" 
+style="font-size: 22px;">0</SPAN>&nbsp;<SPAN class="yuan">元</SPAN> <A class="contact_qqbtn_1001" 
+id="service_charge_contact_qqbtn" style="padding-left: 20px; font-size: 14px;" 
+href="javascript:;">免除服务费</A>					 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" for="">当前账户余额：</LABEL>
+<DIV class="controls">
+<P style="color: rgb(25, 174, 255); line-height: 32px; font-size: 13px;"><SPAN 
+style="font-size: 22px;">0</SPAN>&nbsp;元							 &nbsp;&nbsp;<A href="http://youyu.weijuju.com/admin/asset/redpack_recharge.jsp">马上充值</A>
+						 </P></DIV></DIV></DIV>
+<DIV class="modal-footer"><BUTTON class="btn" data-dismiss="modal">取消</BUTTON>
+				 <BUTTON class="btn btn-primary" id="add_redpack_confirm" 
+type="submit">确认追加</BUTTON>			 </DIV></FORM></DIV>
+<DIV class="modal hide fade" id="add_sncode_award_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4>修改奖品数量</H4></DIV>
+<FORM class="form-horizontal" id="form_add_sncode_award_setting" style="margin: 0px;" 
+action="#">
+<DIV class="modal-body">
+<DIV class="control-group"><LABEL class="control-label" 
+for="award_send_num">已发数量：</LABEL>
+<DIV class="controls"><INPUT name="award_send_num" disabled="disabled" class="span2 onlyNum" type="text" maxlength="6"><SPAN 
+class="maroon">*</SPAN>					 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" 
+for="award_unsend_num">待发数量：</LABEL>
+<DIV class="controls"><INPUT name="award_unsend_num" class="span2 onlyNum" id="add_sncode_award_num" type="text" maxlength="6"><SPAN 
+class="maroon">*</SPAN><BR><SPAN class="j-awardNum-tips"></SPAN>
+					 </DIV></DIV>
+<DIV class="control-group hide j-sncode-cont"><LABEL class="control-label" for="sncodes">手工导入奖券：</LABEL>
+<DIV class="controls sncode-controls j-sncode-controls" 
+style="width: 290px;"><TEXTAREA name="sncodes" disabled="disabled" style="width: 260px; margin-top: 0px;" data-editable="false"></TEXTAREA>
+						 
+<P style="margin-top: 5px;"><SPAN 
+class="j-sncode-msg">一行一个券号，券号数量与奖品数量需一致</SPAN><A class="j-check-sncode" style="margin-top: 5px; float: left;" 
+href="javascript:void(0);">检测格式</A>						 </P></DIV></DIV></DIV>
+<DIV class="modal-footer"><BUTTON class="btn" data-dismiss="modal">取消</BUTTON>
+				 <BUTTON class="btn btn-primary" id="add_sncode_award_confirm" 
+type="submit">确认修改</BUTTON>			 </DIV></FORM></DIV><!-- 内定中奖人数量修改 -->	 
+<DIV class="modal hide fade" id="add_defaultwinner_award_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4>修改内定奖品数量</H4></DIV>
+<FORM class="form-horizontal" id="form_add_defaultwinner_award_setting" style="margin: 0px;" 
+action="#">
+<DIV class="modal-body">
+<DIV class="control-group"><LABEL class="control-label" for="defaultwinner_send_num">已领取数量：</LABEL>
+<DIV 
+class="controls"><INPUT name="defaultwinner_send_num" disabled="disabled" class="span2 onlyNum" type="text" maxlength="4"><SPAN 
+class="maroon">*</SPAN>					 </DIV></DIV>
+<DIV class="control-group" style="display: none;"><LABEL class="control-label" 
+for="defaultwinner_available_num">可内定数量：</LABEL>
+<DIV class="controls"><INPUT name="defaultwinner_available_num" disabled="disabled" class="span2 onlyNum" type="text" maxlength="4"><SPAN 
+class="maroon">*</SPAN>					 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label" for="defaultwinner_left_num">待领取数量：</LABEL>
+<DIV 
+class="controls"><INPUT name="defaultwinner_left_num" class="span2 onlyNum" type="text" maxlength="4"><SPAN 
+class="maroon">*</SPAN>							 <SPAN class="help-inline">最大不能超过<SPAN 
+class="c1">0</SPAN>个</SPAN>					 </DIV></DIV></DIV>
+<DIV class="modal-footer"><BUTTON class="btn" data-dismiss="modal">取消</BUTTON>
+				 <BUTTON class="btn btn-primary" id="add_defaultwinner_award_confirm" type="submit">确认修改</BUTTON>
+			 </DIV></FORM></DIV><!-- 查看内定密码 -->	 
+<DIV class="modal hide fade" id="defaultwinner_pwd_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4>内定密码</H4></DIV>
+<DIV class="modal-body form-horizontal">
+<DIV 
+class="alert alert-error">注：为保障奖品安全，一个内定密码只对应一个奖品，每个密码使用一次后即失效，请妥善保管密码。</DIV>
+<DIV class="control-group"><LABEL class="control-label" for="defaultwinner_pwd_statu">密码使用状态：</LABEL>
+<DIV class="controls"><SELECT name="defaultwinner_pwd_statu" class="span1" 
+style="width: 80px;"><OPTION value="2">全部</OPTION>						 <OPTION 
+  value="0">未使用</OPTION>						 <OPTION value="1">已使用</OPTION>
+					 </SELECT></DIV></DIV>
+<DIV class="defaultwinner_pwd_cont"></DIV></DIV>
+<DIV class="modal-footer"><BUTTON class="btn" data-dismiss="modal">关闭</BUTTON>
+			 <A class="btn btn-primary" id="export_defaultwinner_pwd" href="javascript:;" 
+target="_blank">导出</A>		 </DIV></DIV><!-- 选择关闭领奖验证码的提示框 -->	 
+<DIV class="modal hide" id="trophyValidator-alert-modal" role="dialog" 
+aria-hidden="true" style="top: 20%; width: 460px; margin-left: -230px;">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P style="font-size: 14px;">关闭领奖验证码将会使奖品被恶意刷取的风险大大增加，请详细咨询人工客服后再修改此项。</P><BR>
+<P class="help-inline" style="font-size: 13px;">注：若关闭后出现奖品被盗刷的情况，您须自行承担损失。</P>
+<P><LABEL class="checkbox inline" for="trophyValidator_alert_check"><INPUT name="trophyValidator_alert_check" 
+id="trophyValidator_alert_check" type="checkbox">我已经明确了解其中的风险，确认关闭领奖验证码。	        
+     </LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled trophyValidator-alert-confirm" 
+href="javascript:;">确认关闭</A></P></DIV></DIV><!-- 选择关闭黑名单的提示框 -->	 
+<DIV class="modal hide" id="blacklist-alert-modal" role="dialog" aria-hidden="true" 
+style="top: 20%; width: 460px; margin-left: -230px;">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P 
+style="font-size: 14px;">开启黑名单后，平台会自动分析粉丝行为，智能筛选出异常粉丝并加入黑名单，黑名单用户无法获奖。若关闭此功能，活动奖品将存在风险。</P><BR>
+<P class="help-inline" style="font-size: 13px;">注：若关闭后出现奖品被盗刷的情况，您须自行承担损失。</P>
+<P><LABEL class="checkbox inline" for="blacklist_alert_check"><INPUT name="blacklist_alert_check" 
+id="blacklist_alert_check" type="checkbox">我已经明确了解其中的风险，确认关闭黑名单。	             
+</LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled blacklist-alert-confirm" 
+href="javascript:;">确认关闭</A></P></DIV></DIV><!-- 文字自定义大小和颜色编辑 --> 	 
+<DIV class="modal hide fade" id="edit_text_modal" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>             
+<H3>编辑</H3></DIV>
+<DIV class="modal-body form-horizontal" style="min-height: 300px;">
+<DIV class="control-group"><LABEL class="control-label">内容：</LABEL>
+<DIV class="controls"><INPUT id="range_edit_text" type="text" placeholder="请输入内容" value="">
+					 <A class="btn-reback j-reback-text" href="javascript:void(0)">恢复默认</A>
+				 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label">字体大小：</LABEL>
+<DIV class="controls progress-wrap" id="progress_control">
+<DIV class="progress progress-striped">
+<DIV class="bar j-bar-line" style="width: 0%;"></DIV></DIV><A class="btn-reback j-reback-size" 
+href="javascript:void(0)">恢复默认</A>					 <SPAN 
+class="bar-control j-bar-control"><SPAN 
+class="bar-control-text j-bar-value">10px</SPAN></SPAN>				 </DIV></DIV>
+<DIV class="control-group"><LABEL class="control-label">字体颜色：</LABEL>
+<DIV class="controls"><INPUT id="range_edit_color" type="text" placeholder="请输入颜色值" value="#eee">
+					 <A class="btn-reback j-reback-color" href="javascript:void(0)">恢复默认</A>
+				 </DIV></DIV></DIV></DIV>
+<DIV class="modal hide fade" id="free_user_tips_modal" aria-hidden="true" 
+data-backdrop="static">
+<DIV class="modal-header"><BUTTON class="close free_user_tips_close" 
+aria-hidden="true" type="button" data-dismiss="modal">×</BUTTON>             
+<H3>温馨提示</H3></DIV>
+<DIV class="modal-body" style="text-align: center;">
+<P>当前可通过创建并发布活动来体验游戏流程，但活动<SPAN 
+style="color: rgb(255, 0, 0);">仅支持30人参与</SPAN></P>
+<P>并不能作为正式游戏运营，请及时联系销售购买套餐！</P><A class="btn btn-primary" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&amp;key=XzgwMDA4NjU0N180NDIyMjZfODAwMDg2NTQ3XzJf" 
+target="_blank">联系销售</A>         </DIV></DIV>
+<SCRIPT id="upload_img_field_tpl" type="text/x-template">
+	<div class="control-group" {{#if extend.disable}}style="display:none;" {{/if}}>
+	<label class="control-label">
+		{{#if noForFree}}
+		<div class="info nofree_tips_info">修改{{title}}为付费套餐功能 &nbsp;&nbsp;<a
+				href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzgwMDA4NjU0N180NDIyMjZfODAwMDg2NTQ3XzJf:;"
+				target="_blank" class="contact_qqbtn_1001">立即升级>></a>
+			<div class="sanjiao"></div>
+		</div>
+		<span class="nofree_tips">付费</span>{{/if}}{{title}}：
+	</label>
+	<div class="controls">
+		<div class="cover-area" style="padding-top:0px;position: relative;margin-top:0px;">
+			<p class="upload-tip"></p>
+			<div class="cover-hd">
+				<div class="info">{{infoText}}</div>
+					<span class="btn btn-primary fileinput-button {{#if noForFree}}disabled{{/if}}">上传图片
+						<input id="file_upload_editimg_{{index}}" data-sizelimit="{{parseInt(limit)}}"
+							   data-form-data='{"accountId": "424157","imgtype":"{{imgtype}}"}' {{#if noForFree}}disabled="disabled" {{/if}} type="file" name="fileupload" data-url="/admin/newgame/imgupload?imgtype={{imgtype}}" multiple>
+					</span>
+				<input id="editimg_{{index}}" type="hidden" class="fileupload_input" name="editimg_{{index}}"
+					   disabled="disabled">
+			</div>
+			<div class="cover-bd img-area" data-from="{{from}}" data-defsrc="{{defSrc}}">
+				<div class="imgBox"><img class="thumb_img" src="{{img_src}}"/></div>
+				{{#if recover}}
+				<a href="javascript:;" class="vb cover-recovery">恢复默认</a>
+				{{/if}}
+				{{#if !recover}}
+				<a href="javascript:;" class="vb cover-recovery" style="display:none;">恢复默认</a>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+	</div>
+</SCRIPT>
+	 
+<SCRIPT id="award_tab_item_tpl" type="text/x-template">
+	{{#each items as item idx}}
+	<li class="prize_tab_item {{#if idx == 0}}active{{/if}}{{#if item.hidden}} hide{{/if}}"><a href="javascript:;"
+																							   class="award_tab_item_link"
+																							   data-idx="{{idx}}">{{getAwardName(idx+1)}}</a>
+	</li>
+	{{/each}}
+	<li><a href="javascript:;" class="del_award_tab_item">-</a></li>
+	<li><a href="javascript:;" class="add_award_tab_item">+</a></li>
+</SCRIPT>
+	 
+<SCRIPT id="award_tab_content_tpl" type="text/x-template">
+	{{#each items as item idx}}
+	<div class="award_tab award_tab_{{idx}}" data-id={{idx}} data-awardid="{{item.awardId || ''}}" {{#if
+		 idx!=0}}style="display:none;"{{/if}}>
+		<input type="hidden" name="awardId" value="{{item.awardId || ''}}"/>
+		<input type="hidden" name="trophyId" value="{{item.trophyId || ''}}"/>
+		<form action="#" class="form-horizontal award_detail_form" data-awardid="{{item.awardId || ''}}"
+			  id="award_detail_form_{{idx}}">
+			<div class="control-group" style="display:none;">
+				<label class="control-label">奖项等级：</label>
+				<div class="controls">
+					<select name="awardLevel" data-value="{{idx + 1}}">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+					</select>
+					<br/>
+					<span class="maroon">*</span><span class="help-inline">奖项等级按小排到大</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">奖项等级：</label>
+				<div class="controls">
+					<input name="awardName" class="span2" type="text" value="{{item.awardName}}" data-editable="false">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">奖品名字：</label>
+				<div class="controls">
+					<input name="trophyName" class="span2" type="text" value="{{item.trophyName}}">
+					<span class="maroon">*</span><span class="help-inline">活动发布后，奖品名字不能更改</span>
+				</div>
+				<div class="controls" style="">
+					<span class="help-inline">若启用微信卡券功能，限制填写9个字以内的文字，且建议填写“减免金额”及自定义内容，描述微信卡券具体优惠，如“卡布奇诺5元咖啡券“</span>
+				</div>
+			</div>
+
+			<!-- 图片上传 -->
+			<div class="control-group">
+				<label class="control-label">奖品图片</label>
+				<div class="controls">
+					<div class="cover-area">
+						<div class="cover-hd">
+							<div class="info">图片像素建议为 <span class="uploadSize">200px*200px</span><br>大小在100k以内，格式为jpg\bmp\png\gif
+								<div class="sanjiao"></div>
+							</div>
+	    															<span class="btn btn-primary fileinput-button">上传图片
+	        															<input id="file_upload_{{idx}}"
+																			   data-sizelimit="100"
+																			   data-form-data='{"accountId": "424157"}'
+																			   type="file" name="fileupload"
+																			   data-url="/admin/newgame/imgupload">
+	    															</span>
+							<input id="prize_image_{{idx}}" type="hidden" class="fileupload_input" name="prize_image"
+								   disabled="disabled">
+						</div>
+						<p class="upload-tip">请上传jpg、png、gif格式的图片。</p>
+						<div class="cover-bd img-area" data-from="#organizer_logo">
+							<div class="imgBox">
+								<img class="thumb_img prize_thumb_img"
+									 src="http://static.resource.youyu.weijuju.com//image/admin/newgame/def_img_1.png"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">奖品类型：</label>
+				<div class="controls">
+					<select name="awardType" class="span2" data-editable="false">
+						<option value="1">实物礼品（奖券）</option>
+						<option value="4">优惠券（奖券）</option>
+						<option value="5">抵扣券（奖券）</option>
+						<option value="2">微信红包</option>
+						<!-- <option>流量</option> -->
+						<!-- <option>优惠券</option> -->
+					</select>
+					<span class="maroon">*</span><span class="help-inline">活动发布后，奖品类型不能更改</span>
+				</div>
+			</div>
+			<div class="control-group trophy_datetime">
+				<label class="control-label">兑奖时间：</label>
+				<div class="controls">
+					<input name="validityStart" class="span2" type="text" value=""> 到 <input name="validityStop"
+																							 class="span2" type="text"
+																							 value="">
+					<span class="maroon">*</span><span class="help-inline">活动发布后，兑奖时间无法修改，且超过兑奖时间奖券将失效。</span>
+				</div>
+			</div>
+			<div class="control-group redpack_award_type">
+				<label class="control-label awardNumLabel">奖品数量： </label>
+				<div class="controls">
+					<input name="awardRealNum" class="span1 onlyNum" type="text" value="1" maxlength="6"><span class="maroon">*</span>
+					<span class="awardLoseBox hide">&nbsp;已领：&nbsp;<input name="awardLoseNum" class="span1 onlyNum"
+																		  type="text" value="0"
+																		  disabled="disabled"></span>
+					<span class="awardDefaultWinnerBox hide">&nbsp;已内定：&nbsp;<input name="awardDefaultWinnerNum" class="span1 onlyNum"
+																		  type="text" value="0"
+																		  disabled="disabled"></span>
+					<span class="j-awardNum-tips"></span>
+					<a href="javascript:;" class="add_sncode_award hide" data-awardid="{{item.awardId || ''}}">修改数量</a>
+				</div>
+			</div>
+			<div class="control-group set_defaultWinner_box">
+				<label class="control-label qijianban-label" for="defaultWinner">内定中奖：</label>
+				<div class="controls">
+					<label class="radio inline">
+						<input type="radio" name="defaultWinner" value="1" checked="checked" data-editable="false">关闭
+					</label>
+					<label class="radio inline">
+						<input type="radio" disabled="disabled" name="defaultWinner" value="2" data-editable="false">开启
+					</label>
+					</div>
+			</div>
+			<div class="control-group set_defaultWinnerAmount_box">
+				<label class="control-label">内定奖品数量：</label>
+				<div class="controls">
+					<input name="defaultWinnerAmount" class="span1 onlyIntNum" type="text" disabled="disabled" value="0" maxlength="4"><span class="maroon">*</span>
+					<span class="defaultWinnerLoseBox hide">&nbsp;已领：&nbsp;<input name="defaultWinnerLoseNum" class="span1 onlyNum"
+						type="text" value="0" disabled="disabled"></span>
+					<a href="javascript:;" class="add_defaultwinner_award hide" data-awardid="{{item.awardId || ''}}" data-trophyid="{{item.trophyId || ''}}">修改数量</a>
+					<span class="defaultWinnerAmount-tips help-inline">已内定<span class="c1">0</span>个奖品，可正常发放<span class="c2">0</span>个奖品</span>
+					<span class="defaultWinnerAmount-tips-error error help-inline" style="display:none;">内定奖品数量超过奖品数量</span>
+				</div>
+				<div class="controls">
+					<div class="default-winner-area fn-clear">
+						<div class="area_left">
+							<img class="qrcode_img" />
+							<a class="qrcode_down_link" target="_blank" href="javascript:;">下载二维码</a>
+						</div>
+						<div class="area_right">
+							<p class="default_winner_verifycode" style="display:none;">内定密码：<span class="verifycode"></span></p>
+							<p class="verify_tips help-inline">活动发布后，内定中奖人扫一扫二维码并输入内定密码，即可跳过游戏环节直接中奖。</p>
+							<p class="verify_tips help-inline" style="display:none;">注：为保障奖品安全，一个内定密码只对应一个奖品，领奖后密码将重置。</p>
+							<a class="btn get_default_winner_pwd" data-disabled="true" href="javascript:;">
+								<div class="info field_tips_info">发布后才可查看密码
+									<div class="sanjiao"></div>
+								</div>查看内定密码</a>
+							</div>
+					</div>
+				</div>
+			</div>
+			<div class="control-group set_operationTip_box" style="">
+				<label class="control-label">操作提示： </label>
+				<div class="controls">
+					<input name="operationTip" class="span4" type="text" value="{{item.operationTip}}" maxlength="100">
+					<span class="maroon">*</span><span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group j-sncode-type">
+				<label class="control-label" for="sncodeType">生成券号：</label>
+				<div class="controls">
+					<label class="radio inline">
+						<input type="radio" name="sncodeType" value="1" checked="checked" data-editable="false">系统生成
+					</label>
+					<label class="radio inline">
+						<input type="radio" name="sncodeType" value="3" data-editable="false">手工导入
+					</label>
+				</div>
+				<div class="controls hide sncode-controls j-sncode-controls">
+					<textarea name="sncodes" disabled="disabled" data-editable="false"></textarea>
+					<p><span class="j-sncode-msg">一行一个券号，券号数量与奖品数量需一致</span><a href="javascript:void(0);"
+																			   class="j-check-sncode">检测格式</a></p>
+				</div>
+			</div>
+			<div class="control-group set_isWxCard_box">
+				<label class="control-label" for="isWxCard">同步发布至微信卡券（包）：</label>
+				<div class="controls">
+					<label class="radio inline">
+						<input type="radio" name="isWxCard" disabled="disabled" value="1"
+							   data-editable="false">是
+					</label>
+					<label class="radio inline">
+						<input type="radio" name="isWxCard" value="2" checked="checked" data-editable="false">否
+					</label>
+				</div>
+				<div class="controls">
+					<p>（你还没有进行公众号服务授权，使用微信卡券需绑定认证微信公众号，且公众号需开通卡券功能，点击<a
+							style="text-decoration:underline;padding: 0 2px;"
+							href="/admin/remotelogin?page=%2Fadmin%2Fai%2Fyouyu_open_bind_new.jsp">服务授权</a>进行绑定。若没有进行绑定及开通卡券功能，将仍采用有娱平台优惠券，不同步至微信卡券）
+					</p>
+					</div>
+			</div>
+			
+			<div class="control-group trophy_redpack_text" style="display:none;">
+				<label class="control-label">红包总金额：</label>
+				<div class="controls">
+					<input name="totalCount" class="span1 onlyNum" maxlength="6" type="text" value="1"><span
+						class="maroon">*</span> <span
+						class="help-inline">10元以下不收取服务费，先体验试试吧！</span><a href="javascript:;"
+																			  class="add_redpack_award hide"
+																			  data-awardid="{{item.awardId || ''}}">追加红包</a>
+					</div>
+				<div class="controls" style="padding-top:5px;">平台技术服务费：<span
+						class="service_charge">0</span>元 &nbsp;&nbsp; 当前账户余额：0元 <a
+						href="/admin/asset/redpack_recharge.jsp">马上充值</a></div>
+			</div>
+			<div class="control-group trophy_redpack_text" style="display:none;">
+				<label class="control-label">每个红包金额范围：</label>
+				<div class="controls">
+					<input name="singleMin" class="span1 onlyNum" type="text" value="1"> 元 至
+					<input name="singleMax" class="span1 onlyNum" type="text" value="10"> 元<span class="money_fw_text">（最大金额范围1～200元）</span>
+				</div>
+			</div>
+			<div class="control-group redpack_award_type award_virtual_num"  style="display:none;">
+				<label class="control-label">虚拟奖品数量：</label>
+				<div class="controls">
+					<input name="awardVirtualNum" class="span1 onlyNum" type="text" value="0">
+				</div>
+			</div>
+			<div class="control-group redpack_award_type" style="display:none;">
+				<label class="control-label">中奖概率：</label>
+				<div class="controls">
+					<input style="margin: 8px;" type="radio" class="probabilityType" name="probabilityType{{idx}}"
+						   checked="checked" data-value="1"> 动态概率 <input style="margin: 8px;" type="radio"
+																		 class="probabilityType"
+																		 name="probabilityType{{idx}}" data-value="2">
+					固定概率 
+					<br/>
+					<span class="help-inline"> 传统概率模式下，易出现奖品发放过快或过慢的情况，启用动态概率调整功能，系统将自动调整中奖概率，使奖品在整个活动周期中均匀发放。</span><br/>
+				</div>
+			</div>
+			<div class="awardSettingLine" style="">
+				<span style="margin-left: 17px;">详情设置</span>
+				<div class="detailIcon awardDetailIcon"></div>
+			</div>
+			<div class="awardDetailSetting" style="">
+				<div class="control-group set_subhead_box">
+					<label class="control-label">副标题：</label>
+					<div class="controls">
+						<input name="subhead" class="span4" type="text" value="{{item.subhead}}" maxlength="20">
+					</div>
+				</div>
+				<div class="control-group set_storeAddress_box">
+					<label class="control-label">兑奖地址： </label>
+					<div class="controls">
+						<input name="storeAddress" class="span4" type="text" value="{{item.storeAddress}}"
+							   maxlength="120">
+					</div>
+				</div>
+				<div class="control-group set_serviceTel_box">
+					<label class="control-label">客服电话： </label>
+					<div class="controls">
+						<input name="serviceTel" class="span4" type="text" value="{{item.serviceTel}}" maxlength="30">
+					</div>
+				</div>
+				<div class="control-group set_description_box">
+					<label class="control-label">兑奖须知： </label>
+					<div class="controls">
+						<textarea name="description" style="height:100px;" class="span4" maxlength="220">{{item.description}}</textarea>
+					</div>
+				</div>
+				
+				<div class="control-group set_jumpBtn_box">
+					<label class="control-label qijianban-label">跳转按钮： </label>
+					<div class="controls">
+						<label class="radio inline">
+							<input type="radio" name="guanwanJumpBtn" value="1" checked="checked">关闭
+						</label>
+						<label class="radio inline">
+							<input type="radio" name="guanwanJumpBtn" value="2" disabled="disabled">开启
+						</label>
+						<div class="jumpBtnNameBox" style="margin: 7px 0 0 14px;display:none;">
+							<p style="float: left; margin: 7px 7px 0 0;">按钮名字：</p>
+							<input class="jumpBtnName" disabled="disabled" name="jumpBtnName" placeholder="企业官网" class="span4" type="text" value="">
+						</div>
+						<div class="jumpLinkBox" style="margin: 7px 0 0 14px;display:none;">
+							<p style="float: left; margin: 7px 7px 0 0;">跳转链接：</p>
+							<input class="jumpLink" disabled="disabled" name="jumpLink" placeholder="跳转链接" class="span4" type="text" value="">
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+		<!--
+        <div class="control-group sn_award_type">
+            <label class="control-label">奖品发放数量：</label>
+            <div class="controls">
+                <span>即将开放</span>
+            </div>
+        </div>
+        <div class="control-group coupon_award_type">
+            <label class="control-label">优惠券发放数量：</label>
+            <div class="controls">
+                <span>即将开放</span>
+            </div>
+        </div>
+        <div class="control-group flow_award_type">
+            <label class="control-label">流量包数量：</label>
+            <div class="controls">
+                <span>即将开放</span>
+            </div>
+        </div>
+         -->
+	</div>
+	{{/each}}
+</SCRIPT>
+	 
+<SCRIPT id="award_convert_limit_tpl" type="text/x-template">
+	{{#each items as item idx}}
+	<div class="control-group convert_limit convert_limit_{{idx}} {{#if item.hidden}} hide{{/if}}">
+		<label class="control-label">{{getAwardName(idx+1)}}：</label>
+		<div class="controls">
+			需要 <input class="span1 onlyIntNum" name="integralConvert{{idx}}" type="text" {{#if item.hidden}}
+					  disabled="disabled" {{/if}} value="{{item.integralConvert?item.integralConvert:""}}"
+			maxlength="3"> 个人成功助力
+		</div>
+	</div>
+	{{/each}}
+</SCRIPT>
+	 
+<SCRIPT type="text/javascript">
+	window.www_domain = "http://youyu.weijuju.com";
+	window.www_game = "http://youyu.365huaer.com";
+	window.static_res_prefix = "http://static.resource.youyu.weijuju.com/";
+	window.res_path_prefix = "http://static.resource.youyu.weijuju.com/";
+	window.global_uid = 424157;
+	var _resRoot = 'http://static.resource.youyu.weijuju.com//image/mobile/newgame';
+	var _hasBindWx = 'false';
+	var _packageType = -1;
+	var _verifyAvailable = 'false';
+	var _isQixi = false;
+	var _isZqJiZi = false;
+	var _isZqPinTu = false;
+	var _isZqBoBing = false;
+	var _isNewBargain = false;
+	var _isJiWuFu = false;
+	var _isGuangGun = false;
+	var _isWanSheng = false;
+	var _isQiangHuo = false;
+	var _isNewZrhb = false;
+	var _isNewPzhb = false;
+	var _isFromHb = false;
+	var _isNewShakeRedpack = false;
+	var _isXiuyixiu = false;
+	var _isBigWheel = false;
+	var _isExciteLottery = false;
+	var _isKlhb = false;
+	var _isNewYyhb = false;
+	var _isAbsolutelyBigWheel = true;
+	var _isYyttl = false;
+	var _isParkour = false;
+	var _isGolden_eggs = false;
+	var _isFuDan = false;
+	var _isZcqc = false;
+	var _isShakeRedEnvelope = false;
+	var _isPanoredpack = false;
+	var _isValuationHunter = false;
+	var _isHeartbeatMatch = false;
+	var _isTruthOrDare = false;
+	var _isRiddle = false;
+	var _isVoiceRiddle = false;
+	var _isChangeClothes = false;
+	var _isYanzhihb = false;
+	var _isFoolvoice = false;
+	var _isXiaoXiaoLe = false;
+	var _isDaFuWeng = false;
+	var _isClassicsBargain = false;
+	var _isJiaWaWa = false;
+	var _isSayToTheWorld = false;
+	var _isDaZhuanKuai = false;
+	var _isGunZiHero = false;
+	var _isImgMatch = false;
+	var _isThreeDPan = false;
+	var _isStarWar = false;
+	var _isObjectsFighting = false;
+	
+	var _qiniuResRoot = 'http://static.resource.youyu.weijuju.com//image/mobile/newgame';
+	var params = $.deparam(window.location.search.substring(1));
+	var pageTemplateId = params["templateId"] || 34;
+	
+	var global_aid = params["aid"];
+	// 是否复制并重新创建
+	var isReCreate = params["recreate"] || false;
+	var isTest = params["isTest"] || false;
+	// 当前页面是否是编辑，若没有aid参数，则默认为新増
+	var isEdit = false;
+	if (global_aid && !isReCreate) {
+		isEdit = true;
+	}
+</SCRIPT>
+     
+<SCRIPT type="text/javascript">
+        var showFreeUserTips = true;
+        if (showFreeUserTips && !isEdit) {
+            $("#free_user_tips_modal").modal("show");
+        }
+        $(".free_user_tips_close").on("click", function(){
+            $("#free_user_tips_modal").modal("hide");
+        });
+    </SCRIPT>
+	 
+<SCRIPT type="text/javascript">
+	//BizQQWPA.addCustom({aty: '1', a: '1001', nameAccount: 800086547, selector: 'contact_us_footer'});
+	//获取游戏的window对象
+	var reviewPageWin = null;
+	var previewWinHasLoad = false;
+	function getPreviewWin() {
+		if (!reviewPageWin) {
+			var reviewPageFrame = document.getElementById("gamePreviewPage");
+			reviewPageWin = !reviewPageFrame ? window : reviewPageFrame.contentWindow;
+		}
+		return reviewPageWin;
+	}
+
+	function $$(selector) {
+		if (typeof selector === 'function') {
+			//if()
+		}
+		return getPreviewWin().$(selector);
+	}
+	function showTabByStyle(gameType) {
+		// 默认是按抽奖模式
+		gameType = gameType || 2;
+		var $topBar = $('.topBar');
+		var lastName = $('.topBar .column.checked .name').html();
+		var $columnCont = $('.topBar .columnCont').html("");
+		var columnConfig = [
+			["加载页面", reviewPageWin.game._showFireLoading],
+			["封面", reviewPageWin.game._showStartPage],
+			["活动说明", reviewPageWin.game._showRule],
+			["游戏环节", reviewPageWin.game._showGamePage],
+			["我的奖品", reviewPageWin.game._showMyPrize],
+			["奖品详情", reviewPageWin.game._showAwardInfo],
+			["挑战成功", reviewPageWin.game._showFireSucc],
+			["挑战失败", reviewPageWin.game._showFireFail],
+			["助力环节", reviewPageWin.game._showQrcodeEdit],
+			["抽奖页面", reviewPageWin.game._showLottoPage],
+			["中奖", reviewPageWin.game._showFirePrizeSucc],
+			["未中奖", reviewPageWin.game._showFirePrizeFail]
+		];
+		// 七夕活动特殊处理
+		if (templateId == 13) {
+			columnConfig.splice(6, 3);
+		}
+		// 奥运火炬活动特殊处理
+		if (templateId == 14) {
+			columnConfig.splice(6, 2);
+		}
+		// 中秋集字活动特殊处理
+		if (_isZqJiZi) {
+			columnConfig.splice(6, 2);
+		}
+		// 集五福活动特殊处理
+		if (_isJiWuFu) {
+			columnConfig.splice(6, 2);
+			columnConfig.splice(3, 1, ["未集满页", reviewPageWin.game._showWjmPage], ["助力排行榜", reviewPageWin.game._showPhbPage], ["集齐五福页", reviewPageWin.game._showJqwfPage]);
+		}
+		// 新版砍价活动特殊处理
+		if (_isNewBargain) {
+			columnConfig.splice(1, 1);
+			columnConfig.splice(5, 6, ["助力环节", reviewPageWin.game._showQrcodeEdit]);
+		}
+		// 光棍节活动特殊处理
+		if (_isGuangGun) {
+			columnConfig.splice(3,1,["游戏页",reviewPageWin.game._showGame],["弹出框",reviewPageWin.game._showPopup]);
+			columnConfig.splice(7);
+		}
+		// 万圣节活动特殊处理
+		if (_isWanSheng) {
+			columnConfig.splice(6, 6);
+			// ["整蛊成功页",reviewPageWin.game._showZhengguSuccessPage],["整蛊失败页",reviewPageWin.game._showZhengguFailPage]
+			columnConfig.splice(3, 1, ["游戏主页", reviewPageWin.game._showIndexPage], ["助力页", reviewPageWin.game._showZhuliPage], ["领奖页", reviewPageWin.game._showLinjiangPage], ["择奖页", reviewPageWin.game._showZejiangPage], ["分享页", reviewPageWin.game._showFenxiangPage], ["温馨提示页", reviewPageWin.game._showWenxinPage]);
+			//columnConfig.splice(3,1);
+		}
+		// 合伙抢货活动特殊处理
+		if (_isQiangHuo) {
+			columnConfig.splice(6, 6);
+			columnConfig.splice(3, 1, ["游戏主页", reviewPageWin.game._showIndexPage], ["助力页", reviewPageWin.game._showZhuliPage]/*,["择奖页",reviewPageWin.game._showZejiangPage],["分享页",reviewPageWin.game._showFenxiangPage],["温馨提示页",reviewPageWin.game._showWenxinPage] */);
+		}
+		// 新版自燃红包
+		if (_isNewZrhb) {
+			columnConfig.splice(1, 1);
+			columnConfig.splice(5, 2);
+			columnConfig.splice(6, 1);
+			columnConfig.splice(6, 2);
+		}
+		// 新版拼字红包
+		if (_isNewPzhb) {
+			columnConfig.splice(10, 2);
+			columnConfig.splice(6, 2);
+			columnConfig.splice(4, 2);
+			columnConfig.splice(3, 1);
+			columnConfig.splice(4, 1);
+		}
+		// 摇一摇红包雨
+		if (_isNewShakeRedpack) {
+			columnConfig.splice(6, 3);
+			columnConfig.splice(1, 1);
+		}
+		// 咻一咻红包活动
+		if (_isXiuyixiu) {
+			columnConfig.splice(5, 3);
+			columnConfig.splice(5, 1);
+			columnConfig.splice(1, 1);
+		}
+		// 幸运大转盘活动
+		if (_isBigWheel) {
+			columnConfig.splice(1, 1);
+			columnConfig.splice(7, 1);
+			columnConfig.splice(5, 2);
+		}
+		// 百分百大转盘活动
+		if (_isAbsolutelyBigWheel) {
+			columnConfig.splice(1, 1);
+			// columnConfig.splice(7, 1);
+			columnConfig.splice(5, 2);
+		}
+		// 圣诞跑酷
+		if (_isParkour) {
+			//columnConfig.splice(3, 1);
+		}
+		// 砸金蛋
+		if (_isGolden_eggs) {
+			columnConfig.splice(10, 2);
+			columnConfig.splice(6, 2);
+			//columnConfig.splice(3, 1);
+			columnConfig.splice(3, 1,["游戏环节", reviewPageWin.game._showMyGamePage],["中奖页面", reviewPageWin.game._showChouJianSuccessPage], ["没中奖页面", reviewPageWin.game._showChouJianFailPage]);
+		}
+		// 狂欢大抽奖
+		if (_isExciteLottery) {
+			columnConfig.splice(6, 3);
+			columnConfig.splice(1, 1);
+		}
+		// 口令红包
+		if (_isKlhb) {
+			columnConfig.splice(5);
+			columnConfig.splice(1, 1);
+			columnConfig.splice(2, 1, ["游戏环节", reviewPageWin.game._showMyGamePage], ["领取环节", reviewPageWin.game._showReceivePage]);
+		}
+		// 新语音红包
+		if(_isNewYyhb){
+			columnConfig.splice(5, 3);
+			columnConfig.splice(6, 3);
+			columnConfig.splice(3, 1,["游戏环节", reviewPageWin.game._showMyGamePage], ["中奖", reviewPageWin.game._showReceivePage],["未中奖", reviewPageWin.game._showSorry],["没有机会", reviewPageWin.game._showShare]);
+		}
+	 
+		// 3d大转盘
+		if(_isThreeDPan){
+			columnConfig.splice(1,1);
+			columnConfig.splice(5,4);
+		}
+		
+	 
+		// 经典砍价
+		if (_isClassicsBargain){
+			columnConfig.splice(11, 1);
+			columnConfig.splice(9, 1);
+			columnConfig.splice(6, 2);
+			columnConfig.splice(6, 2);
+			columnConfig.splice(1, 1);
+		}
+		  
+		 
+		if (_isFromHb) {
+			// 红包活动统一隐藏奖品详情页签
+			for (var ci = 0; ci < columnConfig.length; ci++) {
+				if (columnConfig[ci][0] === "奖品详情") {
+					columnConfig.splice(ci, 1);
+					break;
+				}
+			}
+		}
+		var z_index = 20;
+		for (var i = 0, n = columnConfig.length; i < n; i++) {
+			var thisName = columnConfig[i][0];
+			var checked = '';
+			if (!lastName && i == 0) {
+				checked = 'checked';
+			} else if (lastName == thisName) {
+				checked = 'checked';
+			}
+			$columnCont.append('<div class="column ' + checked + (i === 0 ? ' first-column' : '') + (i === n - 1 ? ' last-column' : '') + '" style="z-index:' + (z_index--) + '"><span class="name">' + columnConfig[i][0] + '</span></div>')
+		}
+		//$topBar.append('<div class="slideBar"><div class="slideBarTip transitionPanel" style="left:12px"></div></div>').css('min-width',columnConfig.length*$('.topBar .column').outerWidth() + 10);
+/* 		setTimeout(function(){
+			$('.topBar .column').eq(1).click();
+		},0); */		
+		
+		$topBar.off("click", ".column").on('click', '.column', function () {
+          
+			if ($(this).index() == 1 || $(this).index() == 2) {
+				$('#awardDetailBox').hide();
+			}
+			$('#homeBgmoduleLayer').hide();
+			columnConfig[$(this).index()][1]();
+			$('.topBar .transitionPanel').css('left', ($(this).offset().left + 2) + 'px');
+			$('.topBar .column').removeClass('checked');
+			$(this).addClass('checked');
+			if ($(this).find('.name').html() == '奖品详情' && !$('.tabSetting').eq(1).hasClass('checked')) {
+				$('.tabSetting').eq(1).click();
+			}
+			if ($(this).find('.name').html() == '助力环节') {
+				$('.preview-control').show();
+			} else {
+				$('.preview-control').hide();
+			}
+		});
+
+		var column = $('.topBar .column');
+		var columnNum = column.length;
+		$('#changeRight').off("click").click(function () {
+			var index = column.index($('.topBar .checked')) + 1;
+			index = index >= columnNum ? 0 : index;
+			column.eq(index).click();
+		});
+		$('#changeLeft').off("click").click(function () {
+			var index = column.index($('.topBar .checked')) - 1;
+			index = index < 0 ? (columnNum - 1) : index;
+			column.eq(index).click();
+		})
+		if ($('.topBar .column.checked').length == 0) {
+			$('.topBar .column').eq(0).click();
+		}
+	}
+
+	// 初始化页面导航条
+	$('#gamePreviewPage').load(function () {
+		//获取游戏的window对象
+		var reviewPageWin = getPreviewWin();
+		previewWinHasLoad = true;
+		//showTabByStyle();
+	});
+	$(function () {
+		HdGame.initModuleLayer('#actName', 0, "actName", true);
+		$("#configTab li").click(function () {
+			var $li = $(this);
+			var index = $li.index();
+			if ($li.hasClass(".active")) {
+
+			} else {
+				var curIndex = $("#configTab li.active").index();
+				var validFlag = true;
+				$(".config_view").eq(curIndex).find("form").each(function (index, item) {
+					// 特殊处理，被隐藏的奖项表单不校验
+					if ($(item).is(".award_detail_form")) {
+						var index = $(item).parent().index();
+						if ($(".award_tab_item .prize_tab_item").eq(index).is(":hidden")) {
+							return true;
+						}
+					}
+					var valid = $(item).validate().form();
+					if (!valid) {
+						validFlag = false;
+						return true;
+					}
+				});
+				if (validFlag) {
+					$("#configTab li.active").removeClass("active");
+					$(".config_view").hide();
+					$li.addClass("active")
+					$(".config_view").eq(index).show();
+				} else {
+					alert("尚有信息未填写或填写错误，请先填写或修改");
+				}
+			}
+		});
+		$("#adv_subtab li").click(function () {
+			var $li = $(this);
+			var index = $li.index();
+			if ($li.hasClass(".active")) {
+
+			} else {
+				var valid = $("#panel_4").find("form").validate().form();
+				if (!valid) {
+					alert("尚有信息未填写或填写错误，请先填写或修改");
+					return false;
+				}
+			}
+		});
+		
+		// 分享设置点击关联分享页面
+		$("#adv_subtab").find("li").eq(1).on("click",function(){
+			reviewPageWin.game._showQrcodeEdit();
+			$('.preview-control').show();
+			$('.topBar .column').removeClass('checked');
+			for( var i=0; i<$(".topBar").find(".column").length; i++ ){
+				if( $(".topBar").find(".column").eq(i).find('.name').html() == '助力环节' ){
+					$(".topBar").find(".column").eq(i).addClass('checked');	
+					break;
+				}
+			}
+
+			
+		});
+		
+	});
+</SCRIPT>
+	 
+<SCRIPT type="text/javascript">
+	
+	$(function(){
+		// 点击加载页面编辑查看示例
+		$("#vExampleBtn").on("click",function(){
+			$("#loadPage_example").show();
+		});
+		$("#loadPage_example").on("click",function(){
+			$(this).hide();
+		});
+		//点击显示版权查看示例
+        $("#copyRightExampleBtn").on("click",function(){
+            $("#copyRight_example").show();
+        });
+        $("#copyRight_example").on("click",function(){
+            $(this).hide();
+        });
+        //点击显示跳转示例
+        $("#jumpPageExampleBtn").on("click",function(){
+            $("#jumppage_example").show();
+        });
+        $("#jumppage_example").on("click",function(){
+            $(this).hide();
+        });
+
+        //点击显示微信分享图标
+		$('#wxShareIconExampleBtn').on('click',function(){
+            $("#wxShareIcon_example").show();
+		})
+		$('#wxShareIcon_example').on('click',function(){
+            $(this).hide();
+		})
+        //点击显示微信分享标题
+        $('#wxShareTitleExampleBtn').on('click',function(){
+            $("#wxShareTitle_example").show();
+        })
+        $('#wxShareTitle_example').on('click',function(){
+            $(this).hide();
+        })
+		//点击显示微信分享内容
+        $('#wxShareContentExampleBtn').on('click',function(){
+            $("#wxShareContent_example").show();
+        })
+        $('#wxShareContent_example').on('click',function(){
+            $(this).hide();
+        })
+	});
+	
+	
+	// 上传图片
+	/*
+	*	upload_type : 1(默认图片)，2（音乐）
+	*/
+	function initFileUpload($fileUpload, sucCallback, upload_type){
+		// 上传文件类型
+		upload_type = upload_type ? upload_type : 1;
+
+		$fileUpload.fileupload({
+			dataType: 'json',
+			progressall: function (e, data) {
+				var $cont = $(this).closest(".cover-area");
+				var progress = parseInt(data.loaded / data.total * 100, 10);
+				var $progress = $cont.find(".fileupload-process");
+				if ($progress.size() == 0) {
+					$progress = $("<div class='fileupload-process progress-animated'><div class='bar' style='width: 0%;''></div></div>").appendTo($cont);
+				}
+				$progress.find(".bar").css(
+						'width',
+						progress + '%'
+				);
+			},
+			change: function (e, data) {
+
+				var flag = true;
+				var $cont = $(this).closest(".cover-area");
+				$.each(data.files, function (index, file) {
+					var fileName = file.name;
+					var fileSize = file.size;
+					var $fileInput = $(data.fileInputClone[index]);
+					var extStart = fileName.lastIndexOf(".");
+					var ext = fileName.substring(extStart, fileName.length).toUpperCase();
+					if( upload_type == 1 ){
+						if (ext != ".BMP" && ext != ".PNG" && ext != ".GIF" && ext != ".JPG" && ext != ".JPEG") {
+							alert("图片限于bmp,png,gif,jpeg,jpg格式");
+							flag = false;
+							return false;
+						}
+					}else if( upload_type == 2 ){
+						console.log(ext)
+						if (ext != ".MP3" && ext != ".OGG" && ext != ".WAV") {
+							alert("音乐限于mp3,ogg,wav格式");
+							flag = false;
+							return false;
+						}
+					}
+					
+					var sizeLimit = 200;
+					if ($fileInput.data("sizelimit")) {
+						sizeLimit = $fileInput.data("sizelimit");
+					}
+					if (fileSize > sizeLimit * 1024) {
+						if( upload_type == 1 ){
+							alert("图片大小不能超过" + sizeLimit + "KB");
+						}else if( upload_type == 2 ){
+							alert("音乐大小不能超过" + sizeLimit + "KB");
+						}
+						
+						flag = false;
+						return false;
+					}
+				});
+				if (!flag) {
+					return false;
+				}
+			},
+			done: function (e, data) {
+				var result = data._response.result;
+				
+				var $cont = $(this).closest(".cover-area");
+				var $progress = $cont.find(".fileupload-process");
+				if (result.error == "filetype" && upload_type == 1 ) {
+					
+					alert("只能上传图片格式：" + result.allowtype);
+					$progress.remove();
+					return false;
+				}
+									
+				var $fileInput = $cont.find(".fileupload_input");
+				
+				// 加载页面图片编辑特殊处理
+				if( upload_type == 1 ){
+					// 图片
+					if($fileInput.attr("data-target")){
+						 $$($fileInput.attr("data-target")).css("background-image","url("+result.fileUrl+")");
+					}
+					console.log(result.fileUrl)
+					$cont.find(".thumb_img").attr("src", result.fileUrl);
+				}else if( upload_type == 2 ){
+					// 音乐
+					$cont.find(".music_name").html( result.fileUrl );
+					$cont.find(".music_cover-recovery").show();
+					$cont.find(".upload_music_1_1").val(result.fileUrl )
+				}
+				
+				$cont.find(".huifuBtn").show();
+				
+				$cont.find(".cover-del").show();
+				$cont.find(".upload_text").hide();
+				$progress.remove();
+				$fileInput.val(result.fileName);
+				setJqSrc($$($cont.find(".cover-bd").data("from")), result.fileUrl);
+					
+				GameImgReady(result.fileUrl,function(){
+					$$($cont.find(".cover-bd").data("from")).attr("data-rawwidth",this.width);
+					$$($cont.find(".cover-bd").data("from")).attr("data-rawheight",this.height);
+				});
+				
+				sucCallback && sucCallback(data, $cont);
+			}
+		});
+	}
+	$(function () {
+		$("input[name='fileupload']").each(function (index, item) {
+			var $fileUpload = $(item);
+
+			if( $fileUpload.parents("#upload_music_modal").length > 0 ){
+				initFileUpload($fileUpload,function(){},2);		
+			}else{
+				// 大转盘奖品图片上传
+				if (_isBigWheel || _isAbsolutelyBigWheel) {
+					initFileUpload($fileUpload, function (data, $cont) {
+						$$("#prizeList").find("li").eq(index).find(".prize_img").attr("src", data._response.result.fileUrl);
+					});
+
+				} else{
+					initFileUpload($fileUpload , function(data , $cont){
+						window.uploadFileCallback && window.uploadFileCallback.call(this , data , $cont);
+					});
+				}
+			}
+	
+		});
+	});
+	
+	// 估价猎人上传商品图片特殊处理
+	$(function(){
+		
+		$(".hunter_add_btn").hide();
+		$(".hunter_delete_btn").hide();
+		
+		$(".hunter_add_btn").eq(0).show();
+		
+		$("#valuationHunter_closeBtn").on("click",function(){
+			var li_1 = $(".hunter_ul").find("li").eq(0);
+			$$(".vh_good").attr("src", li_1.find(".hunter_img").attr("src") );
+			$$(".vh_tip2_1").text("以上物品价格为"+li_1.find(".hunter_minNum").val()+"~"+li_1.find(".hunter_maxNum").val()+"元" );
+			$("#valuationHunter_goodsImg_modal").hide();
+		});
+		
+		// 点击添加按钮
+		$("#valuationHunter_goodsImg_modal").on("click",".hunter_add_btn", function(e){
+			 e.stopPropagation();  
+			$("#valuationHunter_goodsImg_modal").find("li").eq($(this).attr("data_show")).removeClass("hunter_li_hide");			
+			resetBtn();
+		});
+		
+		// 点击删除按钮
+		$("#valuationHunter_goodsImg_modal").on("click",".hunter_delete_btn", function(e){
+			 e.stopPropagation();  
+			$(this).closest(".cover-area").addClass("hunter_li_hide");
+			resetBtn();
+		});
+		
+		// 监听输入框为空的情况
+		$(".hunter_minNum").on("blur",function(){
+			
+			var parentEle = $(this).parents("li");
+			
+			if( $(this).val() == "" ){
+				$(this).val(0);
+			}else{
+				var minNum = parseInt( $(this).val() );
+				var maxNum = parseInt( parentEle.find(".hunter_maxNum").val() );
+				if(  minNum >  maxNum ){
+					alert("低区间的值不能高于高区间的值！");
+					parentEle.find(".hunter_maxNum").val( ++minNum );
+				}
+			}
+			
+		});	
+		$(".hunter_maxNum").on("blur",function(){
+			
+			var parentEle = $(this).parents("li");
+			
+			if( $(this).val() == "" ){
+				$(this).val(0);
+			}else{
+				var maxNum = parseInt( $(this).val() );
+				var minNum = parseInt( parentEle.find(".hunter_minNum").val() );
+				if(  minNum >  maxNum ){
+					alert("低区间的值不能高于高区间的值！");
+					$(this).val( ++minNum );
+				}
+			}
+		});
+		
+		function resetBtn(){
+			$(".hunter_add_btn").hide();
+			$(".hunter_delete_btn").hide();
+			var v_length = $("#valuationHunter_goodsImg_modal").find("li").length-1;
+			var v_length2 = $(".hunter_li_hide").length;
+			$("#valuationHunter_goodsImg_modal").find("li").eq( v_length - v_length2 -1 ).find(".hunter_delete_btn").show();
+					
+			if( (v_length - v_length2) < 5 ){
+				$("#valuationHunter_goodsImg_modal").find("li").eq( v_length - v_length2 -1 ).find(".hunter_add_btn").show();
+			}
+		}
+		
+	});
+	
+	window.skinId = "1";
+	$(".skin_list li[data-id="+window.skinId+"]").addClass("selected");
+	$(".skin_list li").click(function () {
+		var skinId = $(this).data("id");
+		window.skinId = skinId;
+		if (isEdit) {
+			window.location.href = "config.jsp?aid=" + global_aid + "&skinId=" + skinId;
+		} else {
+			window.location.href = "config.jsp?templateId=" + params.templateId + "&skinId=" + skinId;
+		}
+	});
+	$("#sharetype_tooltip").popover({
+		title: "什么是分享形式",
+		trigger: "hover",
+		content: "图片分享是保存图片后，以二维码的形式展示给好友，好友需要通过微信扫二维码的方式进入链接；图文分享是通过微信链接分享，好友可以直接点击分享的链接进入活动。"
+	});
+	$('#withhelp_tooltip').popover({
+		title: "什么是助力",
+		trigger: "hover",
+		content: "助力是一种为活动参与者增加抽奖机会或积分的方式。活动参与者通过分享助力链接或者二维码，邀请好友为自己助力，好友通过点击邀请页面或者页面中的相关按钮完成助力，被助力者根据“被助力效果”的设置，增加抽奖次数或者游戏积分。"
+	});
+	$('#probabilityMode_tooltip').popover({
+		title: "什么是单个奖项中奖概率？",
+		trigger: "hover",
+		content: "与总中奖概率不同，需要单独设置每个奖项的中奖概率。此时不中奖概率=100% - 所有奖项中奖概率之和。所有奖项中奖概率相加应不大于100%。"
+	});
+	$('#probabilityType_tooltip').popover({
+		title: "什么是奖品均匀发放？",
+		trigger: "hover",
+		content: "设置总中奖概率后，易出现奖品发放速度过快、贵重奖品过早被抽走的情况。启用“奖品均匀发放”功能，将根据活动的持续时间和奖品数量调整粉丝抽中的奖品，可有效避免上述两种情况"
+	});
+	$('#gamescore_tooltip').popover({
+		title: "什么是积分",
+		html: true,
+		trigger: "hover",
+		content: "<p>积分高低是排名派奖模式中排名的依据，活动参与者获得积分的途径有两种</p><p>1、参与游戏，获得最高分</p><p>2、邀请好友助力，助力后获得相应积分</p><p>最终积分=参与者的最高游戏积分+好友助力积分</p><p>好友助力积分按助力时参与者的最高积分的百分比计算。</p><p>例如活动参与者当前最高积分为100分，助力积分按1%计算，那么当有一名好友为其助力时，这名活动参与者的排名积分为100+1=101分。</p>"
+	});
+</SCRIPT>
+	 
+<SCRIPT src="$!{basePath}/bigwheel/back/files/jquery.template(1).js" type="text/javascript"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+	var user_balance = 0;
+	var user_img_domain = "http://imgcdn.youyu.365huaer.com/";
+	var _resRoot = 'http://static.resource.youyu.weijuju.com//image/mobile/newgame';
+	var _isFreeUser = true;
+	var _qiniuResRoot = 'http://imgcdn.youyu.365huaer.com/';
+	window.templateId = 34;
+		// 免费用户提示文字
+		if (_isFreeUser) {
+			$(".nofree_tips").show();
+		} else {
+			$(".nofree_tips").hide();
+		}
+
+		// 三体活动特殊处理
+		if (templateId == 12) {
+			$("#set_awardSendType_box label.radio.inline").eq(1).hide();
+			$("#set_minscore_box").hide();
+		}
+		// 七夕活动，奥运火炬活动特殊处理
+		if (templateId == 13 || templateId == 14) {
+			$("#set_awardSendType_box label.radio.inline").eq(1).hide();
+			//$("#adv_subtab_2 .control-group").eq(0).find(".radio.inline").eq(1).hide();
+			if(templateId == 13){
+				$("#adv_subtab_2 .control-group").eq(1).find(".radio.inline").eq(1).hide();
+			}
+			$(".helpType_1_cont").parent().hide();
+			$("#set_minscore_box").hide();
+			$("#set_withHelp_box").hide();
+			$("#adv_subtab>li").eq(2).hide();
+		}
+		// 奥运火炬活动特殊处理
+		if (templateId == 14) {
+			$("#set_globalProbability_box").hide();
+			$("#set_probabilityType_box").hide();
+			if(window.global_uid != 363443){
+				$("#set_probabilityMode_box").hide();
+			}
+		}
+		// 中秋拼图活动特殊处理
+		if (_isZqPinTu) {
+			$("#set_awardSendType_box label.radio.inline").eq(1).hide();
+			//$("#adv_subtab_2 .control-group").eq(0).find(".radio.inline").eq(1).hide();
+			//$("#adv_subtab_2 .control-group").eq(1).find(".radio.inline").eq(1).hide();
+			$("#set_minscore_box").hide();
+			$("#set_withHelp_box").hide();
+			$("#set_daylimit_box").hide();
+			$("#set_actlimit_box").hide();
+			//$("#adv_subtab>li").eq(2).hide();
+		}
+		//新版拼字红包活动特殊处理
+		if (_isNewPzhb) {
+			$("#set_daylimit_box").hide();
+			$("#set_actlimit_box").hide();
+		}
+		// 新版砍价活动特殊处理
+		if (_isNewBargain) {
+			$("#set_participant_box").hide();
+			$("#set_logo_box").hide();
+			$("#set_copyright_box>.control-group").hide();
+			$("#adv_subtab>li").eq(2).hide();
+			$(".j-share-txt-box").eq(1).hide();
+			$(".j-share-txt-box").eq(0).find(".share-txt-titel").text("分享内容");
+			$(".j-share-txt-box").eq(0).find(".j-insert-tag").eq(1).hide();
+			$("#singleUserAwards-help-inline").hide();
+		}
+		// 集五福活动特殊处理
+		if (_isJiWuFu) {
+			$("#singleUserAwards-help-inline").hide();
+			$("#adv_subtab>li").eq(2).hide();
+			$("input[name='jiwufu_slogan_radio']").on(
+					"change",
+					function() {
+						var sloganType = $(this).val();
+						if (sloganType == 1) {
+							$("#cus_jiwufu_text_cont").hide();
+							$("#cus_jiwufu_text_cont").find("input").attr("disabled", "disabled");
+						} else {
+							$("#cus_jiwufu_text_cont").show();
+							$("#cus_jiwufu_text_cont").find("input").removeAttr("disabled");
+						}
+					});
+			var jiwufu_text_setting_validator = $("#form_jiwufu_gametext_setting").validate(
+					{
+						onfocusout : false,
+						rules : {
+							jiwufu_text_1 : {
+								required : true,
+								maxlength : 5
+							},
+							jiwufu_text_2 : {
+								required : true,
+								maxlength : 5
+							},
+							jiwufu_text_3 : {
+								required : true,
+								maxlength : 5
+							},
+							jiwufu_text_4 : {
+								required : true,
+								maxlength : 5
+							},
+							jiwufu_text_5 : {
+								required : true,
+								maxlength : 5
+							},
+							jiwufu_text_6 : {
+								required : true,
+								maxlength : 5
+							},
+							jiwufu_text_7 : {
+								required : true,
+								maxlength : 5
+							}
+						},
+						messages : {
+							jiwufu_text_1 : {
+								required : "不能为空",
+								maxlength : "长度不能大于5"
+							},
+							jiwufu_text_2 : {
+								required : "不能为空",
+								maxlength : "长度不能大于5"
+							},
+							jiwufu_text_3 : {
+								required : "不能为空",
+								maxlength : "长度不能大于5"
+							},
+							jiwufu_text_4 : {
+								required : "不能为空",
+								maxlength : "长度不能大于5"
+							},
+							jiwufu_text_5 : {
+								required : "不能为空",
+								maxlength : "长度不能大于5"
+							},
+							jiwufu_text_6 : {
+								required : "不能为空",
+								maxlength : "长度不能大于5"
+							},
+							jiwufu_text_7 : {
+								required : "不能为空",
+								maxlength : "长度不能大于5"
+							}
+						},
+						showErrors : function(errorMap, errorList) {
+							if (errorList && errorList.length > 0) {
+								$.each(errorList, function(index, obj) {
+									var item = $(obj.element);
+									if (item.is(".cover")) {
+										alert(obj.message);
+									}
+									// 给输入框添加出错样式
+									item.closest(".control-group").addClass(
+											'error');
+									item.attr("title", obj.message);
+								});
+							} else {
+								var item = $(this.currentElements);
+								item.closest(".control-group").removeClass(
+										'error');
+								item.removeAttr("title");
+							}
+						},
+						submitHandler : function() {
+							$("#jiwufu_gametext_modal").modal("hide");
+							$$("#fiveFu").text($("#jiwufu_text_6").val());
+							$$("#first_fuWorld").text($("#jiwufu_text_1").val());
+							for (var i = 0; i < 5; i++) {
+								$$(".listWord").eq(i).text($("#jiwufu_text_" + (i + 1)).val());
+							}
+							$$(".jifu").text($("#jiwufu_text_7").val());
+							return false;
+						}
+					});
+		}
+		//摇钱树红包活动特殊处理
+		if (_isNewShakeRedpack) {
+			//$("#singleUserAwards-help-inline").hide();
+			//$("#adv_subtab>li").eq(2).hide();
+			var newshakeredpack_redpacktext_setting_validator = $("#form_newshakeredpack_redpacktext_setting").validate(
+					{
+						onfocusout : false,
+						rules : {
+							newshakeredpack_redpacktext_1 : {
+								required : true,
+								maxlength : 5
+							},
+							newshakeredpack_redpacktext_2 : {
+								required : true,
+								maxlength : 5
+							},
+							newshakeredpack_redpacktext_3 : {
+								required : true,
+								maxlength : 5
+							},
+							newshakeredpack_redpacktext_4 : {
+								required : true,
+								maxlength : 5
+							}
+
+						},
+						messages : {
+							newshakeredpack_redpacktext_1 : {
+								required : "不能为空",
+								maxlength : "长度不能大于5"
+							},
+							newshakeredpack_redpacktext_2 : {
+								required : "不能为空",
+								maxlength : "长度不能大于5"
+							},
+							newshakeredpack_redpacktext_3 : {
+								required : "不能为空",
+								maxlength : "长度不能大于5"
+							},
+							newshakeredpack_redpacktext_4 : {
+								required : "不能为空",
+								maxlength : "长度不能大于5"
+							}
+						},
+						showErrors : function(errorMap, errorList) {
+							if (errorList && errorList.length > 0) {
+								$.each(errorList, function(index, obj) {
+									var item = $(obj.element);
+									if (item.is(".cover")) {
+										alert(obj.message);
+									}
+									// 给输入框添加出错样式
+									item.closest(".control-group").addClass(
+											'error');
+									item.attr("title", obj.message);
+								});
+							} else {
+								var item = $(this.currentElements);
+								item.closest(".control-group").removeClass(
+										'error');
+								item.removeAttr("title");
+							}
+						},
+						submitHandler : function() {
+							$("#newshakeredpack_redpacktext_modal").modal(
+									"hide");
+							for (var i = 0; i < 4; i++) {
+								$$(".newshakeredpack_redpack_text").eq(i).text(
+										$("#newshakeredpack_redpacktext_" + (i + 1)).val());
+							}
+							return false;
+						}
+					});
+		}
+		// 万圣节活动和合伙抢货和真心话大冒险特殊处理
+		if (_isWanSheng || _isQiangHuo || _isNewZrhb || _isTruthOrDare) {
+			$("#adv_subtab>li").eq(2).hide();
+		}
+		// 亲子鉴定后台配置特殊处理
+		if(_isImgMatch){
+			// 隐藏按排名抽奖
+			$("#set_awardSendType_box label.radio.inline").eq(1).hide();
+			// 隐藏游戏设置选项卡
+			$("#game_setting_tab").hide();
+		}
+		// 3d大转盘后台配置特殊处理
+		if(_isThreeDPan){
+			// 隐藏按排名抽奖
+			$("#set_awardSendType_box label.radio.inline").eq(1).hide();
+			$("#set_withHelp_box,#other_cgroup,#set_logo_box,#set_copyright_box,#sharetype_tooltip,#set_minscore_box,#set_participant_box,#set_showdanmu_box").hide();
+		}
+		
+		
+		if (_isBigWheel) {
+			$("#set_awardSendType_box").find(".radio").eq(1).hide();
+			$("#set_minscore_box,#set_withHelp_box,#other_cgroup,#game_setting_tab").hide();
+		}
+		// 特殊游戏不支持单项中奖概率
+		if(_isQiangHuo || _isJiWuFu || _isNewBargain || _isGuangGun || _isWanSheng || _isZqJiZi || _isTruthOrDare){
+			$("#set_probabilityMode_box .controls").eq(0).hide();
+			$("#set_probabilityMode_box .controls").eq(1).css("margin-top","0");
+		}
+		// 特殊游戏不支持弹幕消息轮播
+		if(_isYyttl || _isAbsolutelyBigWheel || _isBigWheel || _isKlhb || _isExciteLottery || _isNewShakeRedpack || _isXiuyixiu || _isNewZrhb || _isZcqc){
+			$("#set_showdanmu_box").hide().find("input").attr("disabled","disabled");
+		}
+		if(_isFuDan){
+	      $("#singleUserAwards-help-inline").hide();
+	      $("#singleUserAwards-help-inline").siblings(".help-inline").hide();
+	    }
+		if(_isZcqc){
+			$("#set_probabilityType_box").hide();
+		}
+	</SCRIPT>
+			 
+<SCRIPT>
+		// 多选择省市
+		var pageData = {
+            addressList: []  // 地址数据
+        };
+
+
+        /*具体的操作*/
+        $(function(){
+        	
+        	window.save_needArea = false;
+        	window.save_addressList = null; // 回写数据
+        	window.save_province = ""; // 省
+            window.save_city = ""; // 市
+        	
+            /*****************地址交互组***************/
+			
+            if( window.save_pageData ){
+            	 renderAddressList( pageData.addressList );
+            	 $("#show_add_area_new").hide();
+             	$("#show_view_area_list").show();
+            }
+            
+            // 点击“增加区域限制”按钮
+            $("#show_add_area_new").on("click", function(){
+                $("#render_modal").modal("show");
+                // 加载省
+                $("#address-list-choose").html(getAddressOption("province"));
+                renderAddressList( pageData.addressList );
+            });
+            
+            // 点击修改区域限制按钮
+            $("#show_view_area").on("click", function(){
+                $("#render_modal").modal("show");
+                // 加载省
+                $("#address-list-choose").html(getAddressOption("province"));
+                renderAddressList( pageData.addressList );
+            });
+            
+            // 点击确认删除按钮
+            $("#tip_btn_confirm").on("click",function(){
+            	$("#j_modal-confirm").modal("hide");
+            	window.save_needArea = false;
+            	window.save_addressList = null; // 回写数据
+            	 window.save_province = ""; // 省
+                 window.save_city = ""; // 市
+            	$("#show_add_area_new").show();
+            	$("#show_view_area_list").hide();
+				alert($(".address-text").text());
+				$(".address-text").text("");
+            });
+            
+         	// 点击取消删除按钮
+            $("#tip_btn_close,#tip-btn-close2").on("click",function(){
+            	$("#j_modal-confirm").modal("hide");
+				renderAddressText(getAddressItems());
+            })
+            
+            // 点击删除按钮
+            $("#delete_view_area").on("click",function(){            	
+            	$("#j_modal-confirm").modal("show");
+				renderAddressText('');
+            });
+
+            // 点击更新地址
+            $("#btn_add_area").on("click", function(){
+                var newAddress = getAddressItems();
+                if(newAddress.length && newAddress.length > 0){
+                    pageData.addressList = newAddress;  // 这里就是最终的数据
+                    
+                    // 保存数据
+                    window.save_needArea = true;
+                    window.save_addressList = JSON.stringify( pageData.addressList );  // 回写数据
+                    window.save_province = ""; // 省
+                    window.save_city = ""; // 市
+                    
+                    for( var i=0; i<pageData.addressList.length; i++ ){
+                    	  window.save_province += addressFullList[ pageData.addressList[i]["province"] ] + ",";
+                    	  for( var j=0; j<pageData.addressList[i]["city"].length; j++ ){
+                    		  window.save_city += addressFullList[ pageData.addressList[i]["city"][j] ] + ",";
+                    	  }
+                    }
+                    console.log( window.save_province )
+                    console.log( window.save_city )
+                    console.log(  window.save_addressList );
+                    console.log( JSON.parse( window.save_addressList ) );
+                    
+                    renderAddressText(newAddress);
+                    $("#show_add_area_new").hide();
+                    $("#show_view_area_list").show();
+                    $("#render_modal").modal("hide");
+                    
+          
+                }
+            });
+
+
+            // 展开省
+            $("#address-list-choose").on("click", ".province", function(){
+                var id = $(this).data("id");
+                if($(this).find("ul").length > 0){
+                    $(this).find(".check-icon-add").html("+");
+                    $(this).find("ul").remove();
+                }else{
+                    $(this).find(".check-icon-add").html("&minus;");
+                    $(this).append(getAddressOption("city",id));
+                    $(this).find("ul").slideDown();
+                }
+            });
+
+            // 展开省
+            $("#address-list-choosed").on("click", ".province", function(){
+                var state = $(this).find("ul").css("display");
+                if(state == "none"){
+                    $(this).find("ul").slideDown();
+                    $(this).find(".check-icon-add").html("&minus;");
+                }else{
+                    $(this).find(".check-icon-add").html("+");
+                    $(this).find("ul").hide();
+                }
+            });
+            // 阻止点击市事件冒泡
+            $("#address-list-choosed").on("click", ".wrap-city", function(){
+                return false;
+            });
+
+            $("#address-list-choose").on("click", ".city", function(){
+                return false;
+            });
+
+            // 选择省
+            $("#address-list-choose").on("click", ".province>.check-icon", function(){
+                var id = $(this).closest(".province").data("id");
+                var data_add = getAddressList(id, "province");
+                var newAddress = getAddressItems(data_add);
+                renderAddressList(newAddress);
+                return false;
+            });
+
+            // 控制选中效果
+            $("#address-list-choose").on("mouseover", ".province", function(){
+                if($(this).find("ul").length > 0){
+                    $(this).css("backgroundColor", "#fff");
+                }else{
+                    $(this).css("backgroundColor", "#f5f6f8");
+                }
+                return false;
+            });
+
+            $("#address-list-choose").on("mouseout", ".province", function(){
+                $(this).css("backgroundColor", "#fff");
+                return false;
+            });
+            $("#address-list-choosed").on("mouseover", ".province", function(){
+                if($(this).find("ul").css("display") == "none"){
+                    $(this).css("backgroundColor", "#f5f6f8");
+                }else{
+                    $(this).css("backgroundColor", "#fff");
+                }
+                return false;
+            });
+            $("#address-list-choosed").on("mouseout", ".province", function(){
+                $(this).css("backgroundColor", "#fff");
+                return false;
+            });
+
+            // 选择市
+            $("#address-list-choose").on("click", ".city>.check-icon", function(){
+                var id = $(this).closest(".city").data("id");
+                var province_id =  $(this).closest(".province").data("id");
+                var data_add = getAddressList(id, "city", province_id);
+                var newAddress = getAddressItems(data_add);
+                renderAddressList(newAddress);
+                return false;
+            });
+            // 删除省
+            $("#address-list-choosed").on("click", ".province>.check-icon", function(){
+                $(this).closest(".province").remove();
+                return false;
+            });
+
+            // 删除市
+            $("#address-list-choosed").on("click", ".city>.check-icon", function(){
+                if($(this).closest(".wrap-city").find("li").length == 1){
+                    $(this).closest(".province").remove();
+                }else{
+                    $(this).closest(".city").remove();
+                }
+                return false;
+            });
+        });
+
+        // 一些函数
+        // 根据数据进行渲染已选地址
+        function renderAddressList (dataList){
+            var data_list = dataList || {};
+            var html_tpl = [];
+            if(data_list.length > 0){
+                html_tpl.push('<ul class="wrap-province" data-id="parent">');
+                for(var dataIndex= 0;  dataIndex < data_list.length ; dataIndex++){
+                    if(data_list[dataIndex].city.length == addressFullPro[data_list[dataIndex].province]){
+                        html_tpl.push('<li class="province" data-id="'+ data_list[dataIndex].province +'"><span class="check-icon-add">+</span><span>'+ addressFullList[data_list[dataIndex].province] +'</span><span class="check-icon"></span>');
+                        html_tpl.push('<ul class="wrap-city" style="display: none;">');
+                    }else{
+                        html_tpl.push('<li class="province" data-id="'+ data_list[dataIndex].province +'"><span class="check-icon-add">&minus;</span><span>'+ addressFullList[data_list[dataIndex].province] +'</span><span class="check-icon"></span>');
+                        html_tpl.push('<ul class="wrap-city">');
+
+                    }
+                    for(var cityItem = 0;  cityItem < data_list[dataIndex].city.length; cityItem++){
+                        html_tpl.push('<li class="city" data-id="'+ data_list[dataIndex].city[cityItem] +'"><span>'+ addressFullList[data_list[dataIndex].city[cityItem]] +'</span><span class="check-icon"></span></li>');
+                    }
+                    html_tpl.push('</ul>');
+                    html_tpl.push('</li>');
+                }
+                html_tpl.push('</ul>');
+                $("#address-list-choosed").html(html_tpl.join(""));
+            }else{
+                $("#address-list-choosed").html('<p class="address-empty-text">暂未选择推广区域</p>');
+            }
+
+        }
+
+        // 渲染地址文本概览
+        function renderAddressText (dataList){
+            var data_list = dataList || [];
+            var html_tpl = [];
+            var html_tpl_pro = [];
+            html_tpl_pro.push('<p class="address-text">');
+            if(data_list.length > 0){
+                for(var dataIndex= 0;  dataIndex < data_list.length ; dataIndex++){
+                    if(data_list[dataIndex].city.length == addressFullPro[data_list[dataIndex].province]){
+                        html_tpl_pro.push(addressFullList[data_list[dataIndex].province] + "&nbsp;");
+                    }else{
+                        html_tpl.push('<p class="address-text">'+ addressFullList[data_list[dataIndex].province] +'：&nbsp;');
+                        for(var cityItem = 0;  cityItem < data_list[dataIndex].city.length; cityItem++){
+                            if(cityItem == 0){
+                                html_tpl.push(addressFullList[data_list[dataIndex].city[cityItem]]);
+                            }else{
+                                html_tpl.push('、' + addressFullList[data_list[dataIndex].city[cityItem]]);
+                            }
+                        }
+                        html_tpl.push('</p>');
+                    }
+                }
+            }
+            html_tpl_pro.push('</p>');
+
+            // 统一
+            html_tpl_pro = html_tpl_pro.concat(html_tpl);
+            $("#view_area_list").html(html_tpl_pro.join(""));
+
+        }
+
+        // 数组去重
+        function uniqueList(data_list){
+            var n = []; //一个新的临时数组
+            // 为确保数据类型统一，先遍历一次转换类型
+            for(var i = 0; i < data_list.length; i++) //遍历当前数组
+            {
+                data_list[i] = data_list[i] + "";
+            }
+
+            for(var i = 0; i < data_list.length; i++) //遍历当前数组
+            {
+                //如果当前数组的第i已经保存进了临时数组，那么跳过，
+                //否则把当前项push到临时数组里面
+                if (n.indexOf(data_list[i]) == -1) n.push(data_list[i]);
+            }
+            return n;
+        };
+
+        // 构造地址数组（接受新增数据）
+        function getAddressItems (dataList){
+            var $province = $("#address-list-choosed .province");
+            var address_list = [];
+            var _dataList = dataList || {}; // 默认传入新增的内容
+            var address_type = "new";
+            if($province.length > 0){
+                $province.each(function(){
+                    var id = $(this).data("id");
+                    var $city = $(this).find(".city");
+                    var city_list =[];
+                    var province_object = {};
+
+                    $city.each(function(){
+                        var id = $(this).data("id") +"";
+                        city_list.push(id);
+                    });
+
+                    if(_dataList.province && _dataList.province == id){
+                        address_type = "province";
+                        city_list = city_list.concat(_dataList.city);
+                        city_list= uniqueList(city_list);
+                    }
+                    province_object.province = id;
+                    province_object.city = city_list;
+
+                    address_list.push(province_object);
+                });
+            }
+
+            if(address_type == "new" && _dataList.province){
+                address_list.push(_dataList);
+            }
+            return address_list;
+        }	
+	</SCRIPT>
+		 
+<DIV class="modal hide securityLevel-alert-modal" id="securityLevel-alert-modal-1" 
+role="dialog" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P 
+style="font-size: 14px;">初级安全机制仅能提供最基本的红包保障，无法完全避免红包被恶意刷取的情况，并且不能享受有娱平台红包100%赔付的安全保险。</P><BR>
+<P class="help-inline" style="font-size: 13px;">注：强烈建议启用中级或高级红包安全机制。</P>
+<P><LABEL class="checkbox inline" for="securityLevel_alert_check_1"><INPUT name="securityLevel_alert_check" 
+id="securityLevel_alert_check_1" type="checkbox">我已经明确了解其中风险，确认启用初级安全机制。	        
+     </LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled securityLevel-alert-confirm" 
+href="javascript:;">确认开启</A></P></DIV></DIV>
+<DIV class="modal hide securityLevel-alert-modal" id="securityLevel-alert-modal-2" 
+role="dialog" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P 
+style="font-size: 14px;">中级红包安全机制会通过语音验证来校验中奖粉丝的手机。请确保活动过程中有足够的语音验证余额（建议是红包数量的三倍），否则将可能导致粉丝无法正常领取红包。</P><BR>
+<P class="help-inline" 
+style="font-size: 13px;">注：活动发布后修改安全等级，不能享受有娱平台红包100%赔付的安全保险。</P>
+<P><LABEL class="checkbox inline" for="securityLevel_alert_check_2"><INPUT name="securityLevel_alert_check" 
+id="securityLevel_alert_check_2" type="checkbox">我已经明确了解其中风险，确认启用中级安全机制。	        
+     </LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled securityLevel-alert-confirm" 
+href="javascript:;">确认开启</A></P></DIV></DIV>
+<DIV class="modal hide securityLevel-alert-modal" id="securityLevel-alert-modal-3" 
+role="dialog" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P 
+style="font-size: 14px;">高级红包安全机制会校验中奖粉丝关注状态和手机号。请确保活动过程中有足够的语音验证余额（建议是红包数量的三倍），否则将可能导致粉丝无法正常领取红包。</P><BR>
+<P class="help-inline" 
+style="font-size: 13px;">注：活动发布后修改安全等级，不能享受有娱平台红包100%赔付的安全保险。</P>
+<P><LABEL class="checkbox inline" for="securityLevel_alert_check_3"><INPUT name="securityLevel_alert_check" 
+id="securityLevel_alert_check_3" type="checkbox">我已经明确了解其中风险，确认启用高级安全机制。	        
+     </LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled securityLevel-alert-confirm" 
+href="javascript:;">确认开启</A></P></DIV></DIV>
+<DIV class="modal hide securityLevel-alert-modal" id="probabilityMode-alert-modal" 
+role="dialog" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P 
+style="font-size: 14px;">采用概率模式后，奖品将按照所设定的概率进行派发奖品，均匀发放将无效，采用中奖概率可能会出现奖品发放过快，奖品发放过早等情况。</P>
+<P><LABEL class="checkbox inline" for="probabilityMode_alert_check" "=""><INPUT 
+name="probabilityMode_alert_check" id="probabilityMode_alert_check" type="checkbox">我已明确了解概率模式，确认启用中奖概率模式。
+	             </LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled probabilityMode-alert-confirm" 
+href="javascript:;">确认开启</A></P></DIV></DIV>
+<DIV class="modal hide securityLevel-alert-modal" id="probabilityType-alert-modal" 
+role="dialog" aria-hidden="true">
+<DIV class="modal-header"><BUTTON class="close" aria-hidden="true" type="button" 
+data-dismiss="modal">×</BUTTON>			 
+<H4 class="modal-title">温馨提示</H4></DIV>
+<DIV class="modal-body">
+<P style="font-size: 14px;">开启均匀发放后，系统将自动按照奖品数量和活动时间派奖，<SPAN 
+style="color: red;">将不会按照概率模式进行派奖，概率模式将失效。</SPAN></P>
+<P><LABEL class="checkbox inline" for="probabilityType_alert_check"><INPUT name="probabilityType_alert_check" 
+id="probabilityType_alert_check" type="checkbox">我已明确了解均匀发放，确认启用均匀发放	            
+ </LABEL>			 </P>
+<P style="text-align: center;"><A class="btn btn-primary disabled probabilityType-alert-confirm" 
+href="javascript:;">确认开启</A></P></DIV></DIV>
+<SCRIPT src="$!{basePath}/bigwheel/back/files/init.js"></SCRIPT>
+	 
+<SCRIPT src="$!{basePath}/bigwheel/back/files/edit.js" type="text/javascript"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+	// CRM用户创建活动行为数据统计
+	$(function(){
+		window.hasClickSaveBtn = false;
+		$("#save_btn").on("click",function(){
+			hasClickSaveBtn = true;
+			if(!global_aid){
+
+			}
+		});
+		$("#cancel_btn").on("click",function(){
+			if (confirm("返回后所编辑的内容不能被保存，是否需要返回？")) {
+				window.history.go(-1)
+			}
+		});
+		
+	});
+	</SCRIPT>
+ </BODY></HTML>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">编辑</div>
+				<div class="panel-body">
+					<form class="form-horizontal" role="form" id="dailogForm" action="$!{basePath}/bigwheel/back/activityBigwheelAward/doEdit.do" method="POST">
+						 <input type="hidden" id="btn_sub" class="btn_sub" />
+						 <input type="hidden" value="$!{activityBigwheelAward.id}" name="id" id="id" />
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.activityid}" name="activityid" id="activityid" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">奖项名称</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.awardname}" name="awardname" id="awardname" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">奖品名称</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.trophyname}" name="trophyname" id="trophyname" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">奖品图片</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.awardpic}" name="awardpic" id="awardpic" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">奖品类型1:实物礼品（奖券）
+2:微信红包
+5抵扣券（奖券）
+4优惠券（奖券）</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.awardtype}" name="awardtype" id="awardtype" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">对奖开始时间</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!dateTool.format("yyyy-MM-dd",$!{activityBigwheelAward.validitystart})" name="validitystart" id="validitystart" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">兑奖结束时间</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!dateTool.format("yyyy-MM-dd",$!{activityBigwheelAward.validitystop})" name="validitystop" id="validitystop" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">奖品数量</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.awardrealnum}" name="awardrealnum" id="awardrealnum" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">中奖详情页操作提示</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.operationtip}" name="operationtip" id="operationtip" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">0为系统生成券号
+1为手动输入</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.sngeneratetype}" name="sngeneratetype" id="sngeneratetype" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">手动输入的券号</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.sncodes}" name="sncodes" id="sncodes" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否是微信卡券
+0为否 
+1为是</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.iswxcard}" name="iswxcard" id="iswxcard" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">副标题</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.subhead}" name="subhead" id="subhead" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">兑奖地址</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.storeaddress}" name="storeaddress" id="storeaddress" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">服务电话</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.servicetel}" name="servicetel" id="servicetel" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">兑奖须知</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.description}" name="description" id="description" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.activityAwardcol}" name="activityAwardcol" id="activityAwardcol" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.activityAwardcol1}" name="activityAwardcol1" id="activityAwardcol1" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.activityAwardcol2}" name="activityAwardcol2" id="activityAwardcol2" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">奖项等级</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.awardlevel}" name="awardlevel" id="awardlevel" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.activityAwardcol3}" name="activityAwardcol3" id="activityAwardcol3" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">红包最小金额</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.singlemin}" name="singlemin" id="singlemin" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">红包最大金额</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.singlemax}" name="singlemax" id="singlemax" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">总金额</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.totalcount}" name="totalcount" id="totalcount" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.awardvirtualnum}" name="awardvirtualnum" id="awardvirtualnum" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;"></label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{activityBigwheelAward.deleted}" name="deleted" id="deleted" class="form-control"/>
+												    </div>
+												</div>
+									<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/bigwheel/back/activityBigwheelAward/list.do')">返回</button>
+	        									<button type="button" class="btn btn-primary" id="formSubmit">提交</button>
+        									 </div>
+        							</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="$!{basePath}/plug-in/js/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="$!{basePath}/plug-in/js/forminit.p3.js"></script>  

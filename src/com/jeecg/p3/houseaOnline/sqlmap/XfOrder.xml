@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.houseaOnline.entity.XfOrder">
+
+	<!-- Result Map-->
+	<resultMap id="XfOrder" type="com.jeecg.p3.houseaOnline.entity.XfOrder" >
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="houseid" property="houseid" jdbcType="VARCHAR"/>
+		<result column="houseprice" property="houseprice" jdbcType="DECIMAL"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="createuser" property="createuser" jdbcType="VARCHAR"/>
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP"/>
+		<result column="is_delete" property="isDelete" jdbcType="VARCHAR"/>
+		<result column="payuserid" property="payuserid" jdbcType="VARCHAR"/>
+		<result column="xf_ordercol" property="xfOrdercol" jdbcType="VARCHAR"/>
+		<result column="xf_ordercol1" property="xfOrdercol1" jdbcType="INTEGER"/>
+		<result column="expiretime" property="expiretime" jdbcType="TIMESTAMP"/>
+		<result column="payresult" property="payresult" jdbcType="VARCHAR"/>
+		<result column="paytime" property="paytime" jdbcType="TIMESTAMP"/>
+		<result column="paycodeurl" property="paycodeurl" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.houseid != null and query.houseid != ''" >
+	  		 		/*  */
+			    	AND xo.houseid =  #{query.houseid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.houseprice != null and query.houseprice != ''" >
+	  		 		/*  */
+			    	AND xo.houseprice =  #{query.houseprice,jdbcType=DECIMAL}
+				 </if>
+				 <if test="query.status != null and query.status != ''" >
+	  		 		/* 0未支付定金 1已支付 2签定合同 3 购房成功 */
+			    	AND xo.status =  #{query.status,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.createuser != null and query.createuser != ''" >
+	  		 		/*  */
+			    	AND xo.createuser =  #{query.createuser,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.createtime != null and query.createtime != ''" >
+	  		 		/*  */
+			    	AND xo.createtime =  #{query.createtime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.isDelete != null and query.isDelete != ''" >
+	  		 		/*  */
+			    	AND xo.is_delete =  #{query.isDelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.payuserid != null and query.payuserid != ''" >
+	  		 		/*  */
+			    	AND xo.payuserid =  #{query.payuserid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.xfOrdercol != null and query.xfOrdercol != ''" >
+	  		 		/*  */
+			    	AND xo.xf_ordercol =  #{query.xfOrdercol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.xfOrdercol1 != null and query.xfOrdercol1 != ''" >
+	  		 		/*  */
+			    	AND xo.xf_ordercol1 =  #{query.xfOrdercol1,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.expiretime != null and query.expiretime != ''" >
+	  		 		/*  */
+			    	AND xo.expiretime =  #{query.expiretime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.payresult != null and query.payresult != ''" >
+	  		 		/*  */
+			    	AND xo.payresult =  #{query.payresult,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.paytime != null and query.paytime != ''" >
+	  		 		/*  */
+			    	AND xo.paytime =  #{query.paytime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.paycodeurl != null and query.paycodeurl != ''" >
+	  		 		/*  */
+			    	AND xo.paycodeurl =  #{query.paycodeurl,jdbcType=VARCHAR}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfOrder.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object"    keyProperty="id" useGeneratedKeys="true" >
+	  INSERT  INTO  xf_order   /* 在线选房订单 */  
+					(	
+                      id                            /*  */ 
+                     ,houseid                       /*  */ 
+                     ,houseprice                    /*  */ 
+                     ,status                        /* 0未支付定金 1已支付 2签定合同 3 购房成功 */ 
+                     ,createuser                    /*  */ 
+                     ,createtime                    /*  */ 
+                     ,is_delete                     /*  */ 
+                     ,payuserid                     /*  */ 
+                     ,xf_ordercol                   /*  */ 
+                     ,xf_ordercol1                  /*  */ 
+                     ,expiretime                    /*  */ 
+                     ,payresult                     /*  */ 
+                     ,paytime                       /*  */ 
+                     ,paycodeurl                    /*  */ 
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /*  */ 
+                     ,#{houseid,jdbcType=VARCHAR}                       /*  */ 
+                     ,#{houseprice,jdbcType=DECIMAL}                    /*  */ 
+                     ,#{status,jdbcType=VARCHAR}                        /* 0未支付定金 1已支付 2签定合同 3 购房成功 */ 
+                     ,#{createuser,jdbcType=VARCHAR}                    /*  */ 
+                     ,#{createtime,jdbcType=TIMESTAMP}                    /*  */ 
+                     ,#{isDelete,jdbcType=VARCHAR}                      /*  */ 
+                     ,#{payuserid,jdbcType=VARCHAR}                     /*  */ 
+                     ,#{xfOrdercol,jdbcType=VARCHAR}                    /*  */ 
+                     ,#{xfOrdercol1,jdbcType=INTEGER}                   /*  */ 
+                     ,#{expiretime,jdbcType=TIMESTAMP}                    /*  */ 
+                     ,#{payresult,jdbcType=VARCHAR}                     /*  */ 
+                     ,#{paytime,jdbcType=TIMESTAMP}                       /*  */ 
+                     ,#{paycodeurl,jdbcType=VARCHAR}                    /*  */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfOrder.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   xf_order  	/* 在线选房订单 */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="houseid != null">
+		    		 		/*  */ 
+	    		 			houseid = #{houseid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="houseprice != null">
+		    		 		/*  */ 
+	    		 			houseprice = #{houseprice,jdbcType=DECIMAL},
+						 </if>
+						 <if test="status != null">
+		    		 		/* 0未支付定金 1已支付 2签定合同 3 购房成功 */ 
+	    		 			status = #{status,jdbcType=VARCHAR},
+						 </if>
+						 <if test="createuser != null">
+		    		 		/*  */ 
+	    		 			createuser = #{createuser,jdbcType=VARCHAR},
+						 </if>
+						 <if test="createtime != null">
+		    		 		/*  */ 
+	    		 			createtime = #{createtime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="isDelete != null">
+		    		 		/*  */ 
+	    		 			is_delete = #{isDelete,jdbcType=VARCHAR},
+						 </if>
+						 <if test="payuserid != null">
+		    		 		/*  */ 
+	    		 			payuserid = #{payuserid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="xfOrdercol != null">
+		    		 		/*  */ 
+	    		 			xf_ordercol = #{xfOrdercol,jdbcType=VARCHAR},
+						 </if>
+						 <if test="xfOrdercol1 != null">
+		    		 		/*  */ 
+	    		 			xf_ordercol1 = #{xfOrdercol1,jdbcType=INTEGER},
+						 </if>
+						 <if test="expiretime != null">
+		    		 		/*  */ 
+	    		 			expiretime = #{expiretime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="payresult != null">
+		    		 		/*  */ 
+	    		 			payresult = #{payresult,jdbcType=VARCHAR},
+						 </if>
+						 <if test="paytime != null">
+		    		 		/*  */ 
+	    		 			paytime = #{paytime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="paycodeurl != null">
+		    		 		/*  */ 
+	    		 			paycodeurl = #{paycodeurl,jdbcType=VARCHAR},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		and createuser=#{createuser}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfOrder.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="XfOrder">
+		   SELECT   
+                   xo.id                            /*  */ 
+                  ,xo.houseid                       /*  */ 
+                  ,xo.houseprice                    /*  */ 
+                  ,xo.status                        /* 0未支付定金 1已支付 2签定合同 3 购房成功 */ 
+                  ,xo.createuser                    /*  */ 
+                  ,xo.createtime                    /*  */ 
+                  ,xo.is_delete                     /*  */ 
+                  ,xo.payuserid                     /*  */ 
+                  ,xo.xf_ordercol                   /*  */ 
+                  ,xo.xf_ordercol1                  /*  */ 
+                  ,xo.expiretime                    /*  */ 
+                  ,xo.payresult                     /*  */ 
+                  ,xo.paytime                       /*  */ 
+                  ,xo.paycodeurl                    /*  */ 
+		   FROM   xf_order      AS xo      /* 在线选房订单 */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfOrder.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM xf_order 	/* 在线选房订单 */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfOrder.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  xf_order      AS xo      /* 在线选房订单 */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfOrder.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="XfOrder">
+		    SELECT 
+                   xo.id                            /*  */ 
+                  ,xo.houseid                       /*  */ 
+                  ,xo.houseprice                    /*  */ 
+                  ,xo.status                        /* 0未支付定金 1已支付 2签定合同 3 购房成功 */ 
+                  ,u.realname as createuser                    /*  */ 
+                  ,xo.createtime                    /*  */ 
+                  ,xo.is_delete                     /*  */ 
+                  ,xo.payuserid                     /*  */ 
+                  ,xo.xf_ordercol                   /*  */ 
+                  ,xo.xf_ordercol1                  /*  */ 
+                  ,xo.expiretime                    /*  */ 
+                  ,xo.payresult                     /*  */ 
+                  ,xo.paytime                       /*  */ 
+                  ,u.mobile as paycodeurl                    /*  */ 
+		FROM   	 xf_order      AS xo      /* 在线选房订单 */ left join userinfo as u on xo.createuser = u.openid
+		WHERE 1=1 
+		   <include refid="wherecontation"/> order by xo.createtime desc
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+</mapper>

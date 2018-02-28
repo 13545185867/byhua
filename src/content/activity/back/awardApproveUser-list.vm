@@ -1,0 +1,102 @@
+#parse("content/base/back/common/macro.vm")
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<form role="form" class="form-inline" action="$!{basePath}/activity/back/awardApproveUser/list.do?activityid=$!{activityid}" method="post"  id="formSubmit">
+				<div  class="col-md-10" style="width:100%">
+								<div class="panel panel-default">
+								  <div class="panel-heading">核销人员管理</div>
+								  <div class="panel-body">
+								  		<div class="search">
+															 <div class="form-group col-sm-3">
+															    <label for="nickname" class="control-label col-sm-3 line34">微信名称</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="nickname" id="nickname" value="$!{awardApproveUser.nickname}" class="form-control">
+															  	</div>
+															 </div>
+															 
+											  <button type="submit" class="btn btn-primary">搜  索</button>
+											  <div class="clearfix"></div>
+								  		</div>
+								  		<div id="legend">
+								          <legend  class="le"><button type="button" class="btn btn-primary" onclick="javascript:dialogDiv('myModal','扫描二维码添加核销人',window.location.protocol+'//'+window.location.host+'$!{basePath}/activity/awardApproveUser/doAddApprover.do?activityid=$!{activityid}')" >新增</button></legend> 
+								        </div>
+								        <table class="table table-striped">
+									        <thead>
+													<th>图像</th>
+													<th>微信名称</th>
+						                			<th>操作</th>
+									        </thead>
+									        <tobody>
+									    	  #if($!{pageInfos})
+								                #foreach($!{info} in $!{pageInfos})
+									            	<tr>			
+																	<td><img src="$!{info.headpic}" style="border-radius: 50px;width:55px;height:55px;"></td>
+																	<td>$!{info.nickname}</td>
+																	
+										                <td class="last">
+							                			<a href="javascript:delData('$!{basePath}/activity/back/awardApproveUser/doDelete.do?id=$!{info.id}')">删除</a>
+							                			 </td>
+									           		</tr>
+									             #end
+									    	 #end
+									         </tobody>
+									    </table>
+										<div class="text-right">
+											<!--公用翻页代码-->
+							                #set($attr='formSubmit')
+							            	#showPageList($pageInfos $attr)
+							                <!--END公用翻页代码-->
+										</div>
+								  </div>	
+								</div>
+				</div>  
+				</form>
+		</div>
+	</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+	   aria-labelledby="myModalLabel" aria-hidden="true">
+	   <div class="modal-dialog">
+	      <div class="modal-content">
+	         <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" 
+	               aria-hidden="true">×
+	            </button>
+	            <h4 class="modal-title" id="myModalLabel">
+	               模态框（Modal）标题
+	            </h4>
+	         </div>
+	         	         <img id="qrcode" src="#" style="position: relative;top:50%;left:50%;margin-left:-157px">
+	         <div class="modal-body" id="myModalContent"  style="word-break:break-all;text-align:center; >
+	            使用微信扫一扫即可设置为奖品核销人员，按下 ESC 按钮退出。
+	         </div>
+	         <div class="modal-footer">
+	            <button type="button" class="btn btn-default" 
+	               data-dismiss="modal">关闭
+	            </button>
+	            <button type="button" class="btn btn-primary" style="display:none;">
+	              复制
+	            </button>
+	         </div>
+	      </div><!-- /.modal-content -->
+	   </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</body>
+<script>
+function dialogDiv(modalId,title,content){ 
+ 	$('#'+modalId+'Label').html(title);
+ 	 //	alert(encodeURIComponent(content));
+ 	//$('#myModalContent').html(content);
+ 	$('#qrcode').attr('src','$!{basePath}/qrcode/getQRCode.do?url='+(encodeURIComponent(content)));
+	$('#'+modalId).modal({show:true,backdrop:false}); 
+}
+
+$('#myModal').on('hide.bs.modal', function () {
+  // 执行一些动作...
+  window.location.reload();
+})
+</script>
+</html>

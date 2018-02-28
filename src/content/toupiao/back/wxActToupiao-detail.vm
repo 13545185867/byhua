@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">详情</div>
+				  	<div class="panel-body">
+				   		<form class="form-horizontal" role="form">
+							  <fieldset disabled>
+							  																 <div class="form-group mno">
+													   <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">投票标题</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{wxActToupiao.actName}" name="actName" id="actName" class="form-control" />
+													    </div>
+													  </div>
+													  <div class="form-group mno">
+													     <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">投票开始时间</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!dateTool.format("yyyy-MM-dd",$!{wxActToupiao.beginTime})" name="beginTime" id="beginTime" class="form-control" />
+													    </div>
+													  </div>
+													  <div class="form-group mno">
+													     <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">投票截止时间</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{wxActToupiao.endTime})" name="endTime" id="endTime" class="form-control" />
+													    </div>
+													  </div>
+													  <div class="form-group mno">
+													     <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">投票创建时间</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{wxActToupiao.creatTime})" name="creatTime" id="creatTime" class="form-control" />
+													    </div>
+													  </div>
+													  
+													  <div class="form-group mno">
+													     <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">报名截止时间</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{wxActToupiao.endEnterTime})" name="endEnterTime" id="endEnterTime" class="form-control" />
+													    </div>
+													  </div>
+													  
+												<div class="form-group mno">
+												     <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">活动介绍</label>
+																		    <div class="col-sm-8">
+													 $!{wxActToupiao.description} 
+												</div>
+												</div>
+													
+												<div class="form-group mno">
+												     <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">活动参与流程及注意事项</label>
+																		    <div class="col-sm-8">
+													$!{wxActToupiao.attention}
+												</div>
+												</div>
+												
+													 <div class="form-group mno">
+													   <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">图文消息封面</label>
+													  <div class="col-sm-8">
+													   <img src="$!{basePath}/upload/img/system/$!{wxActToupiao.banner}" width="640px" height="350px"  id="pic_view"> 
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													   <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否已删除 </label>
+													  <div class="col-sm-8">
+													  #if($!{wxActToupiao.isDelete} eq 0)
+													  未删除
+													  #else
+													  已删除
+													  #end
+													      </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">是否启动</label>
+											
+													      #if($!{wxActToupiao.isActive} eq 0)
+													  未启用
+													  #else
+													  已启用
+													  #end
+													  </div>
+							  </fieldset>
+							  			<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/toupiao/back/wxActToupiao/list.do')">返回</button>
+        									 </div>
+        							    </div>
+						</form>
+					</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

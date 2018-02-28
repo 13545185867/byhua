@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.houseaOnline.entity.XfHouse">
+
+	<!-- Result Map-->
+	<resultMap id="XfHouse" type="com.jeecg.p3.houseaOnline.entity.XfHouse" >
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="cellid" property="cellid" jdbcType="VARCHAR"/>
+		<result column="buildingid" property="buildingid" jdbcType="VARCHAR"/>
+		<result column="hxid" property="hxid" jdbcType="VARCHAR"/>
+		<result column="pid" property="pid" jdbcType="VARCHAR"/>
+		<result column="is_delete" property="isDelete" jdbcType="VARCHAR"/>
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP"/>
+		<result column="deliverydate" property="deliverydate" jdbcType="TIMESTAMP"/>
+		<result column="createuser" property="createuser" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="price" property="price" jdbcType="VARCHAR"/>
+		<result column="zhuangxiustatus" property="zhuangxiustatus" jdbcType="VARCHAR"/>
+		<result column="floor" property="floor" jdbcType="INTEGER"/>
+		<result column="elevator" property="elevator" jdbcType="VARCHAR"/>
+		<result column="chaoxiang" property="chaoxiang" jdbcType="VARCHAR"/>
+		<result column="content" property="content" jdbcType="VARCHAR"/>
+		<result column="orderprice" property="orderprice" jdbcType="DECIMAL"/>
+		<result column="xf_housecol" property="xfHousecol" jdbcType="VARCHAR"/>
+		<result column="xf_housecol1" property="xfHousecol1" jdbcType="INTEGER"/>
+			<result column="projectname" property="projectname" jdbcType="VARCHAR"/>
+		<result column="buildingname" property="buildingname" jdbcType="VARCHAR"/>
+		<result column="cellname" property="cellname" jdbcType="VARCHAR"/>
+		<result column="hxname" property="hxname" jdbcType="VARCHAR"/>
+		<result column="floorcount" property="floorcount" jdbcType="INTEGER"/>
+				<result column="area" property="area" jdbcType="DECIMAL"/>
+		 <result column="pic" property="hxpic" jdbcType="VARCHAR"/>
+		<result column="hx_content" property="hxcontent" jdbcType="VARCHAR"/>
+		<result column="viewcount" property="viewcount" jdbcType="INTEGER"/>
+		<result column="kaipan_date" property="kaipanDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.name != null and query.name != ''" >
+	  		 		/* 房间编号 */
+			    	AND xh.name =  #{query.name,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.cellid != null and query.cellid != ''" >
+	  		 		/* 单元ID */
+			    	AND xh.cellid =  #{query.cellid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.buildingid != null and query.buildingid != ''" >
+	  		 		/* 楼栋ID */
+			    	AND xh.buildingid =  #{query.buildingid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.hxid != null and query.hxid != ''" >
+	  		 		/* 户型 ID */
+			    	AND xh.hxid =  #{query.hxid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.pid != null and query.pid != ''" >
+	  		 		/* 项目ID */
+			    	AND xh.pid =  #{query.pid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isDelete != null and query.isDelete != ''" >
+	  		 		/*  */
+			    	AND xh.is_delete =  #{query.isDelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.createtime != null and query.createtime != ''" >
+	  		 		/* 创建时间 */
+			    	AND xh.createtime =  #{query.createtime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.deliverydate != null and query.deliverydate != ''" >
+	  		 		/* 创建时间 */
+			    	AND xh.deliverydate =  #{query.deliverydate,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.createuser != null and query.createuser != ''" >
+	  		 		/* 创建人 */
+			    	AND xh.createuser =  #{query.createuser,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.status != null and query.status != ''" >
+	  		 		/* 状态：待售 在售 已被预定未支付订金 已支付定金 已售  */
+			    	AND xh.status =  #{query.status,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.price != null and query.price != ''" >
+	  		 		/* 报价 */
+			    	AND xh.price =  #{query.price,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.zhuangxiustatus != null and query.zhuangxiustatus != ''" >
+	  		 		/* 装修情况 */
+			    	AND xh.zhuangxiustatus =  #{query.zhuangxiustatus,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.floor != null and query.floor != ''" >
+	  		 		/* 楼层 */
+			    	AND xh.floor =  #{query.floor,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.elevator != null and query.elevator != ''" >
+	  		 		/* 电梯情况 */
+			    	AND xh.elevator =  #{query.elevator,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.chaoxiang != null and query.chaoxiang != ''" >
+	  		 		/* 房屋朝向 */
+			    	AND xh.chaoxiang =  #{query.chaoxiang,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.content != null and query.content != ''" >
+	  		 		/* 详情 */
+			    	AND xh.content =  #{query.content,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.orderprice != null and query.orderprice != ''" >
+	  		 		/* 网上定金 */
+			    	AND xh.orderprice =  #{query.orderprice,jdbcType=DECIMAL}
+				 </if>
+				 <if test="query.xfHousecol != null and query.xfHousecol != ''" >
+	  		 		/*  */
+			    	AND xh.xf_housecol =  #{query.xfHousecol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.xfHousecol1 != null and query.xfHousecol1 != ''" >
+	  		 		/*  */
+			    	AND xh.xf_housecol1 =  #{query.xfHousecol1,jdbcType=INTEGER}
+				 </if>
+		</trim>
+	</sql>
+
+<!-- 查询条件 -->
+	<sql id="wherecontation1">
+		<trim  suffixOverrides="," >
+				 <if test="name != null and name != ''" >
+	  		 		/* 房间编号 */
+			    	AND xh.name =  #{name,jdbcType=VARCHAR}
+				 </if>
+				 <if test="cellid != null and cellid != ''" >
+	  		 		/* 单元ID */
+			    	AND xh.cellid =  #{cellid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="buildingid != null and buildingid != ''" >
+	  		 		/* 楼栋ID */
+			    	AND xh.buildingid =  #{buildingid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="hxid != null and hxid != ''" >
+	  		 		/* 户型 ID */
+			    	AND xh.hxid =  #{hxid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="pid != null and pid != ''" >
+	  		 		/* 项目ID */
+			    	AND xh.pid =  #{pid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="isDelete != null and isDelete != ''" >
+	  		 		/*  */
+			    	AND xh.is_delete =  #{isDelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="createtime != null and createtime != ''" >
+	  		 		/* 创建时间 */
+			    	AND xh.createtime =  #{createtime,jdbcType=TIMESTAMP}
+				 </if>
+				 
+				 <if test="deliverydate != null and deliverydate != ''" >
+	  		 		/* 创建时间 */
+			    	AND xh.deliverydate =  #{deliverydate,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="createuser != null and createuser != ''" >
+	  		 		/* 创建人 */
+			    	AND xh.createuser =  #{createuser,jdbcType=VARCHAR}
+				 </if>
+				 <if test="status != null and status != ''" >
+	  		 		/* 状态：待售 在售 已被预定未支付订金 已支付定金 已售  */
+			    	AND xh.status =  #{status,jdbcType=VARCHAR}
+				 </if>
+				 <if test="price != null and price != ''" >
+	  		 		/* 报价 */
+			    	AND xh.price =  #{price,jdbcType=VARCHAR}
+				 </if>
+				 <if test="zhuangxiustatus != null and zhuangxiustatus != ''" >
+	  		 		/* 装修情况 */
+			    	AND xh.zhuangxiustatus =  #{zhuangxiustatus,jdbcType=VARCHAR}
+				 </if>
+				 <if test="floor != null and floor != ''" >
+	  		 		/* 楼层 */
+			    	AND xh.floor =  #{floor,jdbcType=INTEGER}
+				 </if>
+				 <if test="elevator != null and elevator != ''" >
+	  		 		/* 电梯情况 */
+			    	AND xh.elevator =  #{elevator,jdbcType=VARCHAR}
+				 </if>
+				 <if test="chaoxiang != null and chaoxiang != ''" >
+	  		 		/* 房屋朝向 */
+			    	AND xh.chaoxiang =  #{chaoxiang,jdbcType=VARCHAR}
+				 </if>
+				 <if test="content != null and content != ''" >
+	  		 		/* 详情 */
+			    	AND xh.content =  #{content,jdbcType=VARCHAR}
+				 </if>
+				 <if test="orderprice != null and orderprice != ''" >
+	  		 		/* 网上定金 */
+			    	AND xh.orderprice =  #{orderprice,jdbcType=DECIMAL}
+				 </if>
+				 <if test="xfHousecol != null and xfHousecol != ''" >
+	  		 		/*  */
+			    	AND xh.xf_housecol =  #{xfHousecol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="xfHousecol1 != null and xfHousecol1 != ''" >
+	  		 		/*  */
+			    	AND xh.xf_housecol1 =  #{xfHousecol1,jdbcType=INTEGER}
+				 </if>
+		</trim>
+	</sql>
+
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfHouse.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  xf_house   /*  */  
+					(	
+                      id                            /*  */ 
+                     ,name                          /* 房间编号 */ 
+                     ,cellid                        /* 单元ID */ 
+                     ,buildingid                    /* 楼栋ID */ 
+                     ,hxid                          /* 户型 ID */ 
+                     ,pid                           /* 项目ID */ 
+                     ,is_delete                     /*  */ 
+                     ,createtime                    /* 创建时间 */ 
+                     ,deliverydate
+                     ,createuser                    /* 创建人 */ 
+                     ,status                        /* 状态：待售 在售 已被预定未支付订金 已支付定金 已售  */ 
+                     ,price                         /* 报价 */ 
+                     ,zhuangxiustatus               /* 装修情况 */ 
+                     ,floor                         /* 楼层 */ 
+                     ,elevator                      /* 电梯情况 */ 
+                     ,chaoxiang                     /* 房屋朝向 */ 
+                     ,content                       /* 详情 */ 
+                     ,orderprice                    /* 网上定金 */ 
+                     ,xf_housecol                   /*  */ 
+                     ,xf_housecol1                  /*  */ 
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /*  */ 
+                     ,#{name,jdbcType=VARCHAR}                          /* 房间编号 */ 
+                     ,#{cellid,jdbcType=VARCHAR}                        /* 单元ID */ 
+                     ,#{buildingid,jdbcType=VARCHAR}                    /* 楼栋ID */ 
+                     ,#{hxid,jdbcType=VARCHAR}                          /* 户型 ID */ 
+                     ,#{pid,jdbcType=VARCHAR}                           /* 项目ID */ 
+                     ,#{isDelete,jdbcType=VARCHAR}                      /*  */ 
+                     ,#{createtime,jdbcType=TIMESTAMP}                    /* 创建时间 */ 
+                      ,#{deliverydate,jdbcType=TIMESTAMP} 
+                     ,#{createuser,jdbcType=VARCHAR}                    /* 创建人 */ 
+                     ,#{status,jdbcType=VARCHAR}                        /* 状态：待售 在售 已被预定未支付订金 已支付定金 已售  */ 
+                     ,#{price,jdbcType=VARCHAR}                         /* 报价 */ 
+                     ,#{zhuangxiustatus,jdbcType=VARCHAR}               /* 装修情况 */ 
+                     ,#{floor,jdbcType=INTEGER}                         /* 楼层 */ 
+                     ,#{elevator,jdbcType=VARCHAR}                      /* 电梯情况 */ 
+                     ,#{chaoxiang,jdbcType=VARCHAR}                     /* 房屋朝向 */ 
+                     ,#{content,jdbcType=VARCHAR}                       /* 详情 */ 
+                     ,#{orderprice,jdbcType=DECIMAL}                    /* 网上定金 */ 
+                     ,#{xfHousecol,jdbcType=VARCHAR}                    /*  */ 
+                     ,#{xfHousecol1,jdbcType=INTEGER}                   /*  */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfHouse.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   xf_house  	/*  */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="name != null">
+		    		 		/* 房间编号 */ 
+	    		 			name = #{name,jdbcType=VARCHAR},
+						 </if>
+						 <if test="cellid != null">
+		    		 		/* 单元ID */ 
+	    		 			cellid = #{cellid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="buildingid != null">
+		    		 		/* 楼栋ID */ 
+	    		 			buildingid = #{buildingid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="hxid != null">
+		    		 		/* 户型 ID */ 
+	    		 			hxid = #{hxid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="pid != null">
+		    		 		/* 项目ID */ 
+	    		 			pid = #{pid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isDelete != null">
+		    		 		/*  */ 
+	    		 			is_delete = #{isDelete,jdbcType=VARCHAR},
+						 </if>
+						 <if test="createtime != null">
+		    		 		/* 创建时间 */ 
+	    		 			createtime = #{createtime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="deliverydate != null">
+		    		 		/* 创建时间 */ 
+	    		 			deliverydate = #{deliverydate,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="createuser != null">
+		    		 		/* 创建人 */ 
+	    		 			createuser = #{createuser,jdbcType=VARCHAR},
+						 </if>
+						 <if test="status != null">
+		    		 		/* 状态：待售 在售 已被预定未支付订金 已支付定金 已售  */ 
+	    		 			status = #{status,jdbcType=VARCHAR},
+						 </if>
+						 <if test="price != null">
+		    		 		/* 报价 */ 
+	    		 			price = #{price,jdbcType=VARCHAR},
+						 </if>
+						 <if test="zhuangxiustatus != null">
+		    		 		/* 装修情况 */ 
+	    		 			zhuangxiustatus = #{zhuangxiustatus,jdbcType=VARCHAR},
+						 </if>
+						 <if test="floor != null">
+		    		 		/* 楼层 */ 
+	    		 			floor = #{floor,jdbcType=INTEGER},
+						 </if>
+						 <if test="elevator != null">
+		    		 		/* 电梯情况 */ 
+	    		 			elevator = #{elevator,jdbcType=VARCHAR},
+						 </if>
+						 <if test="chaoxiang != null">
+		    		 		/* 房屋朝向 */ 
+	    		 			chaoxiang = #{chaoxiang,jdbcType=VARCHAR},
+						 </if>
+						 <if test="content != null">
+		    		 		/* 详情 */ 
+	    		 			content = #{content,jdbcType=VARCHAR},
+						 </if>
+						 <if test="orderprice != null">
+		    		 		/* 网上定金 */ 
+	    		 			orderprice = #{orderprice,jdbcType=DECIMAL},
+						 </if>
+						 <if test="xfHousecol != null">
+		    		 		/*  */ 
+	    		 			xf_housecol = #{xfHousecol,jdbcType=VARCHAR},
+						 </if>
+						 <if test="xfHousecol1 != null">
+		    		 		/*  */ 
+	    		 			xf_housecol1 = #{xfHousecol1,jdbcType=INTEGER},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}	/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfHouse.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="XfHouse">
+		   SELECT   
+                   xh.id                            /*  */ 
+                  ,xh.name                          /* 房间编号 */ 
+                  ,xh.cellid                        /* 单元ID */ 
+                  ,xh.buildingid                    /* 楼栋ID */ 
+                  ,xh.hxid                          /* 户型 ID */ 
+                  ,xh.pid                           /* 项目ID */ 
+                  ,xh.is_delete                     /*  */ 
+                  ,xh.createtime                    /* 创建时间 */ 
+                  ,xh.deliverydate
+                  ,xh.createuser                    /* 创建人 */ 
+                  ,xh.status                        /* 状态：待售 在售 已被预定未支付订金 已支付定金 已售  */ 
+                  ,xh.price                         /* 报价 */ 
+                  ,xh.zhuangxiustatus               /* 装修情况 */ 
+                  ,xh.floor                         /* 楼层 */ 
+                  ,xh.elevator                      /* 电梯情况 */ 
+                  ,xh.chaoxiang                     /* 房屋朝向 */ 
+                  ,xh.content                       /* 详情 */ 
+                  ,xh.orderprice                    /* 网上定金 */ 
+                  ,xh.xf_housecol                   /*  */ 
+                  ,xh.xf_housecol1                  /*  */ 
+		   FROM   xf_house      AS xh      /*  */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfHouse.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM xf_house 	/*  */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfHouse.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  xf_house      AS xh      /*  */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfHouse.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="XfHouse">
+		    SELECT 
+                   xh.id                            /*  */ 
+                  ,xh.name                          /* 房间编号 */ 
+                  ,xh.cellid                        /* 单元ID */ 
+                  ,xh.buildingid                    /* 楼栋ID */ 
+                  ,xh.hxid                          /* 户型 ID */ 
+                  ,xh.pid                           /* 项目ID */ 
+                  ,xh.is_delete                     /*  */ 
+                  ,xh.createtime                    /* 创建时间 */ 
+                  ,xh.deliverydate
+                  ,xh.createuser                    /* 创建人 */ 
+                  ,xh.status                        /* 状态：待售 在售 已被预定未支付订金 已支付定金 已售  */ 
+                  ,xh.price                         /* 报价 */ 
+                  ,xh.zhuangxiustatus               /* 装修情况 */ 
+                  ,xh.floor                         /* 楼层 */ 
+                  ,xh.elevator                      /* 电梯情况 */ 
+                  ,xh.chaoxiang                     /* 房屋朝向 */ 
+                  ,xh.content                       /* 详情 */ 
+                  ,xh.orderprice                    /* 网上定金 */ 
+                  ,xh.xf_housecol                   /*  */ 
+                  ,xh.xf_housecol1                  /*  */ 
+		FROM   	 xf_house      AS xh      /*  */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+		<select id="getAllbyId" parameterType="Object"  resultMap="XfHouse">
+	select a.* ,v.viewcount  from (select p.name as projectname,b.name as buildingname,b.floorcount,b.kaipan_date,c.name as cellname , x.name as hxname ,x.area, x.pic ,x.hx_content ,h.*  from xf_house as h , xf_hx as x,xf_cell  as c,xf_building as b , xf_project  as p 
+where h.pid =p.id and h.cellid = c.id and h.buildingid=b.id and x.id = h.hxid and h.id= #{id}) as a left join viewcount v on a.id=v.resourceid	
+	</select>
+	
+	
+	
+		<select id="queryByCondit" parameterType="Object"  resultMap="XfHouse">
+		    SELECT 
+                   xh.id                            /*  */ 
+                  ,xh.name                          /* 房间编号 */ 
+                  ,xh.cellid                        /* 单元ID */ 
+                  ,xh.buildingid                    /* 楼栋ID */ 
+                  ,xh.hxid                          /* 户型 ID */ 
+                  ,xh.pid                           /* 项目ID */ 
+                  ,xh.is_delete                     /*  */ 
+                  ,xh.createtime                    /* 创建时间 */ 
+                  ,xh.deliverydate
+                  ,xh.createuser                    /* 创建人 */ 
+                  ,xh.status                        /* 状态：待售 在售 已被预定未支付订金 已支付定金 已售  */ 
+                  ,xh.price                         /* 报价 */ 
+                  ,xh.zhuangxiustatus               /* 装修情况 */ 
+                  ,xh.floor                         /* 楼层 */ 
+                  ,xh.elevator                      /* 电梯情况 */ 
+                  ,xh.chaoxiang                     /* 房屋朝向 */ 
+                  ,xh.content                       /* 详情 */ 
+                  ,xh.orderprice                    /* 网上定金 */ 
+                  ,xh.xf_housecol                   /*  */ 
+                  ,xh.xf_housecol1                  /*  */ 
+		FROM   	 xf_house      AS xh      /*  */ 
+		WHERE 1=1  and is_delete='0'
+		   <include refid="wherecontation1"/> 
+		 order by floor desc ,name asc 
+	</select>
+</mapper>

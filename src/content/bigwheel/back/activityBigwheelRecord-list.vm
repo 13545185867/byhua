@@ -1,0 +1,112 @@
+#parse("content/base/back/common/macro.vm")
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<form role="form" class="form-inline" action="$!{basePath}/bigwheel/back/activityBigwheelRecord/list.do" method="post"  id="formSubmit">
+				<div  class="col-md-10" style="width:100%">
+								<div class="panel panel-default">
+								  <div class="panel-heading">砍价活动配置列表</div>
+								  <div class="panel-body">
+								  		<div class="search">
+															 <div class="form-group col-sm-3">
+															    <label for="activityid" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="activityid" id="activityid" value="$!{activityBigwheelRecord.activityid}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="awardid" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="awardid" id="awardid" value="$!{activityBigwheelRecord.awardid}" class="form-control">
+															  	</div>
+															 </div>
+															<div class="form-group col-sm-3">
+															    <label for="dotime" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="dotime" id="dotime" value="$!dateTool.format('yyyy-MM-dd',$!{activityBigwheelRecord.dotime})" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="sncode" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="sncode" id="sncode" value="$!{activityBigwheelRecord.sncode}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="status" class="control-label col-sm-3 line34">-1,0未领取
+1已领取待兑换
+2已过期
+3已使用
+4已回收
+5已回收
+6已手动派发</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="status" id="status" value="$!{activityBigwheelRecord.status}" class="form-control">
+															  	</div>
+															 </div>
+															 
+											  <button type="submit" class="btn btn-primary">搜  索</button>
+											  <div class="clearfix"></div>
+								  		</div>
+								  		<div id="legend">
+								          <legend  class="le"><button type="button" class="btn btn-primary" onclick="doUrl('$!{basePath}/bigwheel/back/activityBigwheelRecord/toAdd.do')" >新增</button></legend> 
+								        </div>
+								        <table class="table table-striped">
+									        <thead>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th>-1,0未领取
+1已领取待兑换
+2已过期
+3已使用
+4已回收
+5已回收
+6已手动派发</th>
+													<th></th>
+													<th>为该OPENid的朋友助力</th>
+						                			<th>操作</th>
+									        </thead>
+									        <tobody>
+									    	  #if($!{pageInfos})
+								                #foreach($!{info} in $!{pageInfos})
+									            	<tr>			
+																	<td>$!{info.activityid}</td>
+																	<td>$!{info.awardid}</td>
+																	<td>$!dateTool.format("yyyy-MM-dd",$!{info.dotime})</td>
+																	<td>$!{info.activityRecordcol}</td>
+																	<td>$!{info.sncode}</td>
+																	<td>$!{info.ip}</td>
+																	<td>$!{info.status}</td>
+																	<td>$!{info.activityRecordcol1}</td>
+																	<td>$!{info.helpid}</td>
+										                <td class="last">
+							                			<a href="javascript:doUrl('$!{basePath}/bigwheel/back/activityBigwheelRecord/toEdit.do?id=$!{info.id}')" >编辑</a>
+							                			<a href="javascript:delData('$!{basePath}/bigwheel/back/activityBigwheelRecord/doDelete.do?id=$!{info.id}')">删除</a>
+							                			<a href="javascript:doUrl('$!{basePath}/bigwheel/back/activityBigwheelRecord/toDetail.do?id=$!{info.id}')">详情</a>
+						                				</td>
+									           		</tr>
+									             #end
+									    	 #end
+									         </tobody>
+									    </table>
+										<div class="text-right">
+											<!--公用翻页代码-->
+							                #set($attr='formSubmit')
+							            	#showPageList($pageInfos $attr)
+							                <!--END公用翻页代码-->
+										</div>
+								  </div>	
+								</div>
+				</div>  
+				</form>
+		</div>
+	</div>
+</body>
+</html>

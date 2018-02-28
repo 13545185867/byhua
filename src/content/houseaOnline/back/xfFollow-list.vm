@@ -1,0 +1,68 @@
+#parse("content/base/back/common/macro.vm")
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<form role="form" class="form-inline" action="$!{basePath}/houseaOnline/back/xfFollow/list.html" method="post"  id="formSubmit">
+				<div  class="col-md-10" style="width:100%">
+								<div class="panel panel-default">
+								  <div class="panel-heading">关注列表</div>
+								  <div class="panel-body">
+								  		<div class="search">
+															 <div class="form-group col-sm-3">
+															    <label for="type" class="control-label col-sm-3 line34">类型</label>
+															     <div class="col-sm-8">
+															    	  	  <select name="type" id="type"  value="$!{xfFollow.type}" class="form-control"  >
+															    <option value="" >根据类型查询</option>
+															    <option value="0" #if('0' eq $!{xfFollow.type})selected#end>楼盘项目</option>
+															    <option value="1" #if('1' eq $!{xfFollow.type})selected#end>房产房号</option>
+														   			</select>
+															  	</div>
+															 </div>
+											  <button type="submit" class="btn btn-primary">搜  索</button>
+											  <div class="clearfix"></div>
+								  		</div>
+								        <table class="table table-striped">
+									        <thead>
+													<th>关注人</th>
+													<th>关注人电话</th>
+													<th>资源类型</th>
+													<th>关注时间</th>
+													<th>资源名称</th>
+						                			<th>操作</th>
+									        </thead>
+									        <tobody>
+									    	  #if($!{pageInfos})
+								                #foreach($!{info} in $!{pageInfos})
+									            	<tr>			<td>$!{info.followuser}</td>
+																	<td>$!{info.xfFollowcol}</td>
+																	<td>
+																	     #if('0' eq $!{info.type})楼盘项目#end
+															    		 #if('1' eq $!{info.type})房产房号#end
+																	</td>
+																	<td>$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{info.followdate})</td>
+																	<td><a href="#if(!('$!{basePath}' eq '/'))$!{basePath}#end #if('0' eq $!{info.type})/houseaOnline/back/xfProject/toDetail.html#end#if('1' eq $!{info.type})/houseaOnline/back/xfHouse/toDetail.html#end?id=$!{info.resourceid}" target="_blank">$!{info.resourcename}</a></td>
+										                <td class="last">
+							                			<a href="javascript:delData('$!{basePath}/houseaOnline/back/xfFollow/doDelete.html?id=$!{info.id}')">删除</a>
+						                				</td>
+									           		</tr>
+									             #end
+									    	 #end
+									         </tobody>
+									    </table>
+										<div class="text-right">
+											<!--公用翻页代码-->
+							                #set($attr='formSubmit')
+							            	#showPageList($pageInfos $attr)
+							                <!--END公用翻页代码-->
+										</div>
+								  </div>	
+								</div>
+				</div>  
+				</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+#parse("content/base/back/common/macro.vm")
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<form role="form" class="form-inline" action="$!{basePath}/toupiao/back/wxCatToupiaoRecord/list.do" method="post"  id="formSubmit">
+				<div  class="col-md-10" style="width:100%">
+								<div class="panel panel-default">
+								  <div class="panel-heading">投票记录列表</div>
+								  <div class="panel-body">
+								  		<div class="search">
+															 <div class="form-group col-sm-3" style="display:none;">
+															    <label for="actId" class="control-label col-sm-3 line34">活动ID</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="actId" id="actId" value="$!{wxCatToupiaoRecord.actId}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="ip" class="control-label col-sm-3 line34">投票IP</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="ip" id="ip" value="$!{wxCatToupiaoRecord.ip}" class="form-control">
+															  	</div>
+															 </div>
+															
+															 <div class="form-group col-sm-3">
+															    <label for="nickname" class="control-label col-sm-3 line34">投票人名称</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="nickname" id="nickname" value="$!{wxCatToupiaoRecord.nickname}" class="form-control">
+															  	</div>
+															 </div>
+															
+											  <button type="submit" class="btn btn-primary">搜  索</button>
+											  <div class="clearfix"></div>
+								  		</div>
+								  		<div id="legend">
+								          <legend  class="le"><button type="button" class="btn btn-primary" onclick="doUrl('$!{basePath}/toupiao/back/wxCatToupiaoRecord/toAdd.do?actId=$!{wxCatToupiaoRecord.actId}')" >新增</button></legend> 
+								        </div>
+								        <table class="table table-striped">
+									        <thead>
+													<th>投票IP</th>
+													<th>投票人ID</th>
+													<th>投票人名称</th>
+													<th>投票人真实名字</th>
+													<th>投票人电话</th>
+													<th>投票人地址</th>
+													<th>投票时间</th>
+													<th>已投票的选项</th>
+						                			<th>操作</th>
+									        </thead>
+									        <tobody>
+									    	  #if($!{pageInfos})
+								                #foreach($!{info} in $!{pageInfos})
+									            	<tr>			
+																	<td>$!{info.ip}</td>
+																	<td>$!{info.openid}</td>
+																	<td>$!{info.nickname}</td>
+																	<td>$!{info.realname}</td>
+																	<td>$!{info.phone}</td>
+																	<td>$!{info.address}</td>
+																	<td>$!dateTool.format("yyyy-MM-dd",$!{info.voteTime})</td>
+																	<td>$!{info.optionId}</td>
+										                <td class="last">
+							                			<a href="javascript:doUrl('$!{basePath}/toupiao/back/wxCatToupiaoRecord/toEdit.do?id=$!{info.id}')" >编辑</a>
+							                			<a href="javascript:delData('$!{basePath}/toupiao/back/wxCatToupiaoRecord/doDelete.do?id=$!{info.id}')">删除</a>
+							                			<a href="javascript:doUrl('$!{basePath}/toupiao/back/wxCatToupiaoRecord/toDetail.do?id=$!{info.id}')">详情</a>
+						                				</td>
+									           		</tr>
+									             #end
+									    	 #end
+									         </tobody>
+									    </table>
+										<div class="text-right">
+											<!--公用翻页代码-->
+							                #set($attr='formSubmit')
+							            	#showPageList($pageInfos $attr)
+							                <!--END公用翻页代码-->
+										</div>
+								  </div>	
+								</div>
+				</div>  
+				</form>
+		</div>
+	</div>
+</body>
+</html>

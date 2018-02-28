@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.toupiao.entity.WxActToupiaoConfig">
+
+	<!-- Result Map-->
+	<resultMap id="WxActToupiaoConfig" type="com.jeecg.p3.toupiao.entity.WxActToupiaoConfig" >
+		<result column="ID" property="id" jdbcType="VARCHAR"/>
+		<result column="act_id" property="actId" jdbcType="VARCHAR"/>
+		<result column="is_many_vtoe" property="isManyVtoe" jdbcType="VARCHAR"/>
+		<result column="veryday_max_votecount" property="verydayMaxVotecount" jdbcType="INTEGER"/>
+		<result column="foucs_user_can_join" property="foucsUserCanJoin" jdbcType="VARCHAR"/>
+		<result column="vote_type" property="voteType" jdbcType="VARCHAR"/>
+		<result column="option_view_style" property="optionViewStyle" jdbcType="VARCHAR"/>
+		<result column="option_addr" property="optionAddr" jdbcType="VARCHAR"/>
+		<result column="option_classic" property="optionClassic" jdbcType="VARCHAR"/>
+		<result column="is_view_search" property="isViewSearch" jdbcType="VARCHAR"/>
+		<result column="is_view_descript" property="isViewDescript" jdbcType="VARCHAR"/>
+		<result column="is_enter" property="isEnter" jdbcType="VARCHAR"/>
+		<result column="is_view_tongji" property="isViewTongji" jdbcType="VARCHAR"/>
+		<result column="is_view_piaoshu" property="isViewPiaoshu" jdbcType="VARCHAR"/>
+		<result column="check_vote_count" property="checkVoteCount" jdbcType="VARCHAR"/>
+		<result column="page_view_style" property="pageViewStyle" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.actId != null and query.actId != ''" >
+	  		 		/* 活动ID */
+			    	AND watc.act_id =  #{query.actId,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isManyVtoe != null and query.isManyVtoe != ''" >
+	  		 		/* 是否允许多次投票 0为否 1为是 */
+			    	AND watc.is_many_vtoe =  #{query.isManyVtoe,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.verydayMaxVotecount != null and query.verydayMaxVotecount != ''" >
+	  		 		/* 每天投票次数 */
+			    	AND watc.veryday_max_votecount =  #{query.verydayMaxVotecount,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.foucsUserCanJoin != null and query.foucsUserCanJoin != ''" >
+	  		 		/* 是否关注后投票，0为否 1为是 */
+			    	AND watc.foucs_user_can_join =  #{query.foucsUserCanJoin,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.voteType != null and query.voteType != ''" >
+	  		 		/* 投票方式：单选、多选  0为单选 1为多选 */
+			    	AND watc.vote_type =  #{query.voteType,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.optionViewStyle != null and query.optionViewStyle != ''" >
+	  		 		/* 选项显示样式，1为每行一个 2为每行2个  3为每行三个 */
+			    	AND watc.option_view_style =  #{query.optionViewStyle,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.optionAddr != null and query.optionAddr != ''" >
+	  		 		/* 选项称谓 */
+			    	AND watc.option_addr =  #{query.optionAddr,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.optionClassic != null and query.optionClassic != ''" >
+	  		 		/* 选项量词 */
+			    	AND watc.option_classic =  #{query.optionClassic,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isViewSearch != null and query.isViewSearch != ''" >
+	  		 		/* 是否显示搜索 0为否 1为是 */
+			    	AND watc.is_view_search =  #{query.isViewSearch,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isViewDescript != null and query.isViewDescript != ''" >
+	  		 		/* 是否显示活动介绍 0为否 1为是 */
+			    	AND watc.is_view_descript =  #{query.isViewDescript,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isViewTongji != null and query.isViewTongji != ''" >
+	  		 		/* 是否显示活动统计 */
+			    	AND watc.is_view_tongji =  #{query.isViewTongji,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isViewPiaoshu != null and query.isViewPiaoshu != ''" >
+	  		 		/* 是否显示选项票数 */
+			    	AND watc.is_view_piaoshu =  #{query.isViewPiaoshu,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.checkVoteCount != null and query.checkVoteCount != ''" >
+	  		 		/* 最多可选项 */
+			    	AND watc.check_vote_count =  #{query.checkVoteCount,jdbcType=VARCHAR}
+				 </if>
+				<if test="query.isEnter != null and query.isEnter != ''" >
+	  		 		/* 最多可选项 */
+			    	AND watc.is_enter =  #{query.isEnter,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.pageViewStyle != null and query.pageViewStyle != ''" >
+	  		 		/* 最多可选项 */
+			    	AND watc.page_view_style =  #{query.pageViewStyle,jdbcType=VARCHAR}
+				 </if>
+			 
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoConfig.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  wx_act_toupiao_config   /* 投票配置 */  
+					(	
+                      ID                            /* 配置信息ID */ 
+                     ,act_id                        /* 活动ID */ 
+                     ,is_many_vtoe                  /* 是否允许多次投票 0为否 1为是 */ 
+                     ,veryday_max_votecount         /* 每天投票次数 */ 
+                     ,foucs_user_can_join           /* 是否关注后投票，0为否 1为是 */ 
+                     ,vote_type                     /* 投票方式：单选、多选  0为单选 1为多选 */ 
+                     ,option_view_style             /* 选项显示样式，1为每行一个 2为每行2个  3为每行三个 */ 
+                     ,option_addr                   /* 选项称谓 */ 
+                     ,option_classic                /* 选项量词 */ 
+                     ,is_view_search                /* 是否显示搜索 0为否 1为是 */ 
+                     ,is_view_descript              /* 是否显示活动介绍 0为否 1为是 */ 
+                     ,is_view_tongji                /* 是否显示活动统计 */ 
+                     ,is_view_piaoshu               /* 是否显示选项票数 */ 
+                     ,check_vote_count               /* 最多一次选选几票 */ 
+                     ,is_enter
+                     ,page_view_style
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /* 配置信息ID */ 
+                     ,#{actId,jdbcType=VARCHAR}                         /* 活动ID */ 
+                     ,#{isManyVtoe,jdbcType=VARCHAR}                    /* 是否允许多次投票 0为否 1为是 */ 
+                     ,#{verydayMaxVotecount,jdbcType=INTEGER}           /* 每天投票次数 */ 
+                     ,#{foucsUserCanJoin,jdbcType=VARCHAR}              /* 是否关注后投票，0为否 1为是 */ 
+                     ,#{voteType,jdbcType=VARCHAR}                      /* 投票方式：单选、多选  0为单选 1为多选 */ 
+                     ,#{optionViewStyle,jdbcType=VARCHAR}               /* 选项显示样式，1为每行一个 2为每行2个  3为每行三个 */ 
+                     ,#{optionAddr,jdbcType=VARCHAR}                    /* 选项称谓 */ 
+                     ,#{optionClassic,jdbcType=VARCHAR}                 /* 选项量词 */ 
+                     ,#{isViewSearch,jdbcType=VARCHAR}                  /* 是否显示搜索 0为否 1为是 */ 
+                     ,#{isViewDescript,jdbcType=VARCHAR}                /* 是否显示活动介绍 0为否 1为是 */ 
+                     ,#{isViewTongji,jdbcType=VARCHAR}                  /* 是否显示活动统计 */ 
+                     ,#{isViewPiaoshu,jdbcType=VARCHAR}                 /* 是否显示选项票数 */ 
+                     ,#{checkVoteCount,jdbcType=VARCHAR}                 /*最多一次选选几票*/ 
+                     ,#{isEnter,jdbcType=VARCHAR}
+                     ,#{pageViewStyle,jdbcType=VARCHAR}
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoConfig.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   wx_act_toupiao_config  	/* 投票配置 */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="actId != null">
+		    		 		/* 活动ID */ 
+	    		 			act_id = #{actId,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isManyVtoe != null">
+		    		 		/* 是否允许多次投票 0为否 1为是 */ 
+	    		 			is_many_vtoe = #{isManyVtoe,jdbcType=VARCHAR},
+						 </if>
+						 <if test="verydayMaxVotecount != null">
+		    		 		/* 每天投票次数 */ 
+	    		 			veryday_max_votecount = #{verydayMaxVotecount,jdbcType=INTEGER},
+						 </if>
+						 <if test="foucsUserCanJoin != null">
+		    		 		/* 是否关注后投票，0为否 1为是 */ 
+	    		 			foucs_user_can_join = #{foucsUserCanJoin,jdbcType=VARCHAR},
+						 </if>
+						 <if test="voteType != null">
+		    		 		/* 投票方式：单选、多选  0为单选 1为多选 */ 
+	    		 			vote_type = #{voteType,jdbcType=VARCHAR},
+						 </if>
+						 <if test="optionViewStyle != null">
+		    		 		/* 选项显示样式，1为每行一个 2为每行2个  3为每行三个 */ 
+	    		 			option_view_style = #{optionViewStyle,jdbcType=VARCHAR},
+						 </if>
+						 <if test="optionAddr != null">
+		    		 		/* 选项称谓 */ 
+	    		 			option_addr = #{optionAddr,jdbcType=VARCHAR},
+						 </if>
+						 <if test="optionClassic != null">
+		    		 		/* 选项量词 */ 
+	    		 			option_classic = #{optionClassic,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isViewSearch != null">
+		    		 		/* 是否显示搜索 0为否 1为是 */ 
+	    		 			is_view_search = #{isViewSearch,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isViewDescript != null">
+		    		 		/* 是否显示活动介绍 0为否 1为是 */ 
+	    		 			is_view_descript = #{isViewDescript,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isViewTongji != null">
+		    		 		/* 是否显示活动统计 */ 
+	    		 			is_view_tongji = #{isViewTongji,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isViewPiaoshu != null">
+		    		 		/* 是否显示选项票数 */ 
+	    		 			is_view_piaoshu = #{isViewPiaoshu,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isViewPiaoshu != null">
+		    		 		/* 是否显示选项票数 */ 
+	    		 			is_view_piaoshu = #{isViewPiaoshu,jdbcType=VARCHAR},
+						 </if>
+						 <if test="checkVoteCount != null">
+		    		 		/* 是否显示选项票数 */ 
+	    		 			check_vote_count = #{checkVoteCount,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isEnter != null">
+		    		 		/* 是否显示选项票数 */ 
+	    		 			is_enter = #{isEnter,jdbcType=VARCHAR},
+						 </if>
+						  <if test="pageViewStyle != null">
+		    		 		/* 是否显示选项票数 */ 
+	    		 			page_view_style = #{pageViewStyle,jdbcType=VARCHAR},
+						 </if>
+
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+		 <update id="updateByActId" parameterType="Object" >
+	  UPDATE   wx_act_toupiao_config  	/* 投票配置 */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="actId != null">
+		    		 		/* 活动ID */ 
+	    		 			act_id = #{actId,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isManyVtoe != null">
+		    		 		/* 是否允许多次投票 0为否 1为是 */ 
+	    		 			is_many_vtoe = #{isManyVtoe,jdbcType=VARCHAR},
+						 </if>
+						 <if test="verydayMaxVotecount != null">
+		    		 		/* 每天投票次数 */ 
+	    		 			veryday_max_votecount = #{verydayMaxVotecount,jdbcType=INTEGER},
+						 </if>
+						 <if test="foucsUserCanJoin != null">
+		    		 		/* 是否关注后投票，0为否 1为是 */ 
+	    		 			foucs_user_can_join = #{foucsUserCanJoin,jdbcType=VARCHAR},
+						 </if>
+						 <if test="voteType != null">
+		    		 		/* 投票方式：单选、多选  0为单选 1为多选 */ 
+	    		 			vote_type = #{voteType,jdbcType=VARCHAR},
+						 </if>
+						 <if test="optionViewStyle != null">
+		    		 		/* 选项显示样式，1为每行一个 2为每行2个  3为每行三个 */ 
+	    		 			option_view_style = #{optionViewStyle,jdbcType=VARCHAR},
+						 </if>
+						 <if test="optionAddr != null">
+		    		 		/* 选项称谓 */ 
+	    		 			option_addr = #{optionAddr,jdbcType=VARCHAR},
+						 </if>
+						 <if test="optionClassic != null">
+		    		 		/* 选项量词 */ 
+	    		 			option_classic = #{optionClassic,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isViewSearch != null">
+		    		 		/* 是否显示搜索 0为否 1为是 */ 
+	    		 			is_view_search = #{isViewSearch,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isViewDescript != null">
+		    		 		/* 是否显示活动介绍 0为否 1为是 */ 
+	    		 			is_view_descript = #{isViewDescript,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isViewTongji != null">
+		    		 		/* 是否显示活动统计 */ 
+	    		 			is_view_tongji = #{isViewTongji,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isViewPiaoshu != null">
+		    		 		/* 是否显示选项票数 */ 
+	    		 			is_view_piaoshu = #{isViewPiaoshu,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isViewPiaoshu != null">
+		    		 		/* 是否显示选项票数 */ 
+	    		 			is_view_piaoshu = #{isViewPiaoshu,jdbcType=VARCHAR},
+						 </if>
+						 <if test="checkVoteCount != null">
+		    		 		/* 是否显示选项票数 */ 
+	    		 			check_vote_count = #{checkVoteCount,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isEnter != null">
+		    		 		/* 是否显示选项票数 */ 
+	    		 			is_enter = #{isEnter,jdbcType=VARCHAR},
+						 </if>
+						  <if test="pageViewStyle != null">
+		    		 		/* 是否显示选项票数 */ 
+	    		 			page_view_style = #{pageViewStyle,jdbcType=VARCHAR},
+						 </if>
+
+	  	  		</trim>
+				WHERE
+	  	 		 		act_id = #{actId}		/* 序号 */ 
+	 </update>
+	
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoConfig.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="WxActToupiaoConfig">
+		   SELECT   
+                   watc.ID                            /* 配置信息ID */ 
+                  ,watc.act_id                        /* 活动ID */ 
+                  ,watc.is_many_vtoe                  /* 是否允许多次投票 0为否 1为是 */ 
+                  ,watc.veryday_max_votecount         /* 每天投票次数 */ 
+                  ,watc.foucs_user_can_join           /* 是否关注后投票，0为否 1为是 */ 
+                  ,watc.vote_type                     /* 投票方式：单选、多选  0为单选 1为多选 */ 
+                  ,watc.option_view_style             /* 选项显示样式，1为每行一个 2为每行2个  3为每行三个 */ 
+                  ,watc.option_addr                   /* 选项称谓 */ 
+                  ,watc.option_classic                /* 选项量词 */ 
+                  ,watc.is_view_search                /* 是否显示搜索 0为否 1为是 */ 
+                  ,watc.is_view_descript              /* 是否显示活动介绍 0为否 1为是 */ 
+                  ,watc.is_view_tongji                /* 是否显示活动统计 */ 
+                  ,watc.is_view_piaoshu               /* 是否显示选项票数 */ 
+                  ,watc.check_vote_count               /* 多选时选票设置 */ 
+                  ,watc.is_enter
+                  ,watc.page_view_style
+		   FROM   wx_act_toupiao_config      AS watc      /* 投票配置 */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+					
+					
+						<select id="getByActId" parameterType="Object"  resultMap="WxActToupiaoConfig">
+		   SELECT   
+                   watc.ID                            /* 配置信息ID */ 
+                  ,watc.act_id                        /* 活动ID */ 
+                  ,watc.is_many_vtoe                  /* 是否允许多次投票 0为否 1为是 */ 
+                  ,watc.veryday_max_votecount         /* 每天投票次数 */ 
+                  ,watc.foucs_user_can_join           /* 是否关注后投票，0为否 1为是 */ 
+                  ,watc.vote_type                     /* 投票方式：单选、多选  0为单选 1为多选 */ 
+                  ,watc.option_view_style             /* 选项显示样式，1为每行一个 2为每行2个  3为每行三个 */ 
+                  ,watc.option_addr                   /* 选项称谓 */ 
+                  ,watc.option_classic                /* 选项量词 */ 
+                  ,watc.is_view_search                /* 是否显示搜索 0为否 1为是 */ 
+                  ,watc.is_view_descript              /* 是否显示活动介绍 0为否 1为是 */ 
+                  ,watc.is_view_tongji                /* 是否显示活动统计 */ 
+                  ,watc.is_view_piaoshu               /* 是否显示选项票数 */ 
+                  ,watc.check_vote_count               /* 多选时选票设置 */ 
+                  ,watc.is_enter
+                  ,watc.page_view_style
+		   FROM   wx_act_toupiao_config      AS watc      /* 投票配置 */ 
+		   WHERE
+				act_id = #{actId}				/* 序号 */ 
+	</select>		 
+
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoConfig.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM wx_act_toupiao_config 	/* 投票配置 */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+		<delete id="deleteByActId" parameterType="Object">
+		DELETE 	FROM wx_act_toupiao_config 	/* 投票配置 */  
+		WHERE 
+			act_id = #{actId}					/* 序号 */ 
+	</delete>
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoConfig.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  wx_act_toupiao_config      AS watc      /* 投票配置 */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiaoConfig.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="WxActToupiaoConfig">
+		    SELECT 
+                   watc.ID                            /* 配置信息ID */ 
+                  ,watc.act_id                        /* 活动ID */ 
+                  ,watc.is_many_vtoe                  /* 是否允许多次投票 0为否 1为是 */ 
+                  ,watc.veryday_max_votecount         /* 每天投票次数 */ 
+                  ,watc.foucs_user_can_join           /* 是否关注后投票，0为否 1为是 */ 
+                  ,watc.vote_type                     /* 投票方式：单选、多选  0为单选 1为多选 */ 
+                  ,watc.option_view_style             /* 选项显示样式，1为每行一个 2为每行2个  3为每行三个 */ 
+                  ,watc.option_addr                   /* 选项称谓 */ 
+                  ,watc.option_classic                /* 选项量词 */ 
+                  ,watc.is_view_search                /* 是否显示搜索 0为否 1为是 */ 
+                  ,watc.is_view_descript              /* 是否显示活动介绍 0为否 1为是 */ 
+                  ,watc.is_view_tongji                /* 是否显示活动统计 */ 
+                  ,watc.is_view_piaoshu               /* 是否显示选项票数 */ 
+                  ,watc.check_vote_count               /* 多选时最多可选项*/ 
+                  ,watc.is_enter
+                  ,watc.page_view_style
+		FROM   	 wx_act_toupiao_config      AS watc      /* 投票配置 */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+</mapper>

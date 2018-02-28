@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+ <script type="text/javascript"  charset="utf-8" src="$!{basePath}/ueditor/ueditor.config.js"></script>
+  <script type="text/javascript"  charset="utf-8" src="$!{basePath}/ueditor/ueditor.all.min.js"></script>
+      <script type="text/javascript" charset="utf-8" src="$!{basePath}/ueditor/lang/zh-cn/zh-cn.js"></script>
+                <link href="$!{basePath}/content/houseaOnline/back/css/back.css" rel="stylesheet">
+<script src="$!{basePath}/content/js/vue.min.js" type="text/javascript"></script>
+<script type="text/template" id="uploader">
+    <div class="vue-uploader">
+        <div class="file-list">
+            <section v-for="(file, index) of files" class="file-item draggable-item">
+                <img :src="file.src" alt="" ondragstart="return false;">
+                <p class="file-name" alt="点击修改名称"><input v-model=files[index].name></p>
+                <span class="file-remove" @click="remove(index)">+</span>
+            </section>
+            <section v-if="status == 'ready'" class="file-item">
+                <div @click="add" class="add">
+                    <span>+</span>
+                </div>
+            </section>
+        </div>
+
+        <section v-if="files.length != 0" class="upload-func">
+            <div class="progress-bar">
+                <section v-if="uploading" :width="(percent * 100) + '%'">{{(percent * 100) + '%'}}</section>
+            </div>
+            <div class="operation-box">
+                <input type="button" v-if="status == 'ready'" @click="uploadpic" value="上传"> 
+                <input type="button" v-if="status == 'finished'" @click="finished" value="完成 ">
+            </div>
+        </section>
+        <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" @change="fileChanged" ref="fileopen" multiple="multiple">
+<input type="hidden" v-model="JSON.stringify(files)"  name="pic" id="pic" class="form-control" />	
+    </div>
+</script>
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">编辑</div>
+				<div class="panel-body">
+					<form class="form-horizontal" role="form" id="dailogForm" action="$!{basePath}/houseaOnline/back/xfHx/doEdit.html" method="POST">
+						 <input type="hidden" id="btn_sub" class="btn_sub" />
+						 <input type="hidden" value="$!{xfHx.id}" name="id" id="id" />
+												<div class="form-group mno"  style="display:none;">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">楼盘项目ID </label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{xfHx.pid}" name="pid" id="pid" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">户型 名称</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{xfHx.name}" name="name" id="name" class="form-control"   datatype="*"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;  ">面积</label>
+												    <div class="col-sm-8"   style="text-align:left; width:130px">
+													      <input type="text" value="$!{xfHx.area}" name="area" id="area" class="form-control"   datatype="*" />
+													    </div>
+													    m²
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">户型缩略图</label>
+												    <div class="col-sm-8">
+														      <div style="width: 602px;" id="picslide">
+																	<uploader :src="'$!{basePath}/system/back/jwSystemProject/doPlUpload.html'"></uploader>
+																</div>
+													    </div>
+												</div>
+												 
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">户型介绍</label>
+												    <div class="col-sm-8">
+													       <textarea name="hxContent" id="hxContent" datatype="*">$!{xfHx.hxContent}</textarea>
+															<script type="text/javascript">
+													        var editor = UE.getEditor('hxContent');
+													    </script>
+												</div>
+												 
+									<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/houseaOnline/back/xfHx/list.html')">返回</button>
+	        									<button type="button" class="btn btn-primary" id="formSubmit">提交</button>
+        									 </div>
+        							</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="$!{basePath}/plug-in/js/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="$!{basePath}/plug-in/js/forminit.p3.js"></script>  
+ <script> 
+  var vm=new Vue({
+      el:"#picslide",
+      data:{
+          
+        },
+        created:function(){ 
+    },
+      methods:{ 
+      },
+      components: {  
+         uploader:{    //这个无返回值，不会继续派发  
+                template: "#uploader",  
+				props: {
+				src:{
+					type: String,
+					required: true
+				}
+        }, 
+		data: function () {  
+                   return {
+                status: 'ready',
+                files: $!{xfHx.pic},
+                point: {},
+                uploading: false,
+                percent: 0
+            } 
+         },  
+        methods:{
+            add(){
+                this.$refs.fileopen.click()
+            },
+            uploadpic(){
+                if (this.files.length === 0) {
+                    console.warn('no file!');
+                    return
+                }
+                const formData = new FormData()
+                this.files.forEach((item) => {
+                    formData.append(item.name, item.file)
+                })
+                const xhr = new XMLHttpRequest()
+                xhr.upload.addEventListener('progress', this.uploadProgress, false)
+                xhr.open('POST', this.src, true)
+                this.uploading = true
+                xhr.send(formData)
+                xhr.onload = () => {
+                    this.uploading = false
+                    if (xhr.status === 200 || xhr.status === 304) {
+                    	var obj = JSON.parse(xhr.responseText);
+                    	if(obj.success){
+                    		 this.status = 'finished'
+                                 console.log('upload success!')
+                                 for (let i = 0; i < this.files.length; i++) {
+					                    if (this.files[i].size) {
+					                    	this.files.splice(i, 1)
+					                    	i = i-1
+					                    }
+					                }
+                                  for (let i = 0; i < obj.obj.length; i++) {
+					                        const item = {
+					                            name: obj.obj[i].name,
+					                            src: obj.obj[i].src,
+					                        }
+					                        this.files.push(item)
+					                }
+                    	}else{
+                    		
+                    	}
+                       
+                    } else {
+                        console.log(`error：error code ${xhr.status}`)
+                    }
+                }
+            },
+            finished(){
+                
+                this.status = 'ready'
+            },
+            remove(index){
+                this.files.splice(index, 1)
+            },
+            fileChanged(){
+                const list = this.$refs.fileopen.files
+                for (let i = 0; i < list.length; i++) {
+                    if (!this.isContain(list[i])) {
+                        const item = {
+                            name: list[i].name,
+                            size: list[i].size,
+                            file: list[i]
+                        }
+                        this.html5Reader(list[i], item)
+                        this.files.push(item)
+                    }
+                }
+                this.$refs.fileopen.value = ''
+            },
+            // 将图片文件转成BASE64格式
+            html5Reader(file, item){
+                const reader = new FileReader()
+                reader.onload = (e) => {
+                    this.$set(item, 'src', e.target.result)
+                }
+                reader.readAsDataURL(file)
+            },
+            isContain(file){
+                this.files.forEach((item) => {
+                    if(item.name === file.name && item.size === file.size) {
+                        return true
+                    }
+                })
+                return false
+            },
+            uploadProgress(evt){
+                const component = this
+                if (evt.lengthComputable) {
+                    const percentComplete = Math.round((evt.loaded * 100) / evt.total)
+                    component.percent = percentComplete / 100
+                } else {
+                    console.warn('upload progress unable to compute')
+                }
+            }
+        } 
+        }  
+    }
+  });
+	</script>

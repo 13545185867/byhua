@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.toupiao.entity.WxCatToupiaoRecord">
+
+	<!-- Result Map-->
+	<resultMap id="WxCatToupiaoRecord" type="com.jeecg.p3.toupiao.entity.WxCatToupiaoRecord" >
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="act_id" property="actId" jdbcType="VARCHAR"/>
+		<result column="ip" property="ip" jdbcType="VARCHAR"/>
+		<result column="openid" property="openid" jdbcType="VARCHAR"/>
+		<result column="nickname" property="nickname" jdbcType="VARCHAR"/>
+		<result column="realname" property="realname" jdbcType="VARCHAR"/>
+		<result column="phone" property="phone" jdbcType="VARCHAR"/>
+		<result column="address" property="address" jdbcType="VARCHAR"/>
+		<result column="vote_time" property="voteTime" jdbcType="TIMESTAMP"/>
+		<result column="jwid" property="jwid" jdbcType="VARCHAR"/>
+		<result column="option_id" property="optionId" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.actId != null and query.actId != ''" >
+	  		 		/* 活动ID */
+			    	AND wctr.act_id =  #{query.actId,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.ip != null and query.ip != ''" >
+	  		 		/* 投票IP */
+			    	AND wctr.ip =  #{query.ip,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.openid != null and query.openid != ''" >
+	  		 		/* 投票人ID */
+			    	AND wctr.openid =  #{query.openid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.nickname != null and query.nickname != ''" >
+	  		 		/* 投票人名称 */
+			    	AND wctr.nickname =  #{query.nickname,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.realname != null and query.realname != ''" >
+	  		 		/* 投票人真实名字 */
+			    	AND wctr.realname =  #{query.realname,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.phone != null and query.phone != ''" >
+	  		 		/* 投票人电话 */
+			    	AND wctr.phone =  #{query.phone,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.address != null and query.address != ''" >
+	  		 		/* 投票人地址 */
+			    	AND wctr.address =  #{query.address,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.voteTime != null and query.voteTime != ''" >
+	  		 		/* 投票时间 */
+			    	AND wctr.vote_time =  #{query.voteTime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.jwid != null and query.jwid != ''" >
+	  		 		/* 微信APP ID */
+			    	AND wctr.jwid =  #{query.jwid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.optionId != null and query.optionId != ''" >
+	  		 		/* 已投票的选项 */
+			    	AND wctr.option_id =  #{query.optionId,jdbcType=VARCHAR}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.toupiao.entity.WxCatToupiaoRecord.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  wx_cat_toupiao_record   /*  */  
+					(	
+                      id                            /* 投票记录ID */ 
+                     ,act_id                        /* 活动ID */ 
+                     ,ip                            /* 投票IP */ 
+                     ,openid                        /* 投票人ID */ 
+                     ,nickname                      /* 投票人名称 */ 
+                     ,realname                      /* 投票人真实名字 */ 
+                     ,phone                         /* 投票人电话 */ 
+                     ,address                       /* 投票人地址 */ 
+                     ,vote_time                     /* 投票时间 */ 
+                     ,jwid                          /* 微信APP ID */ 
+                     ,option_id                     /* 已投票的选项 */ 
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /* 投票记录ID */ 
+                     ,#{actId,jdbcType=VARCHAR}                         /* 活动ID */ 
+                     ,#{ip,jdbcType=VARCHAR}                            /* 投票IP */ 
+                     ,#{openid,jdbcType=VARCHAR}                        /* 投票人ID */ 
+                     ,#{nickname,jdbcType=VARCHAR}                      /* 投票人名称 */ 
+                     ,#{realname,jdbcType=VARCHAR}                      /* 投票人真实名字 */ 
+                     ,#{phone,jdbcType=VARCHAR}                         /* 投票人电话 */ 
+                     ,#{address,jdbcType=VARCHAR}                       /* 投票人地址 */ 
+                     ,#{voteTime,jdbcType=TIMESTAMP}                      /* 投票时间 */ 
+                     ,#{jwid,jdbcType=VARCHAR}                          /* 微信APP ID */ 
+                     ,#{optionId,jdbcType=VARCHAR}                      /* 已投票的选项 */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.toupiao.entity.WxCatToupiaoRecord.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   wx_cat_toupiao_record  	/*  */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="actId != null">
+		    		 		/* 活动ID */ 
+	    		 			act_id = #{actId,jdbcType=VARCHAR},
+						 </if>
+						 <if test="ip != null">
+		    		 		/* 投票IP */ 
+	    		 			ip = #{ip,jdbcType=VARCHAR},
+						 </if>
+						 <if test="openid != null">
+		    		 		/* 投票人ID */ 
+	    		 			openid = #{openid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="nickname != null">
+		    		 		/* 投票人名称 */ 
+	    		 			nickname = #{nickname,jdbcType=VARCHAR},
+						 </if>
+						 <if test="realname != null">
+		    		 		/* 投票人真实名字 */ 
+	    		 			realname = #{realname,jdbcType=VARCHAR},
+						 </if>
+						 <if test="phone != null">
+		    		 		/* 投票人电话 */ 
+	    		 			phone = #{phone,jdbcType=VARCHAR},
+						 </if>
+						 <if test="address != null">
+		    		 		/* 投票人地址 */ 
+	    		 			address = #{address,jdbcType=VARCHAR},
+						 </if>
+						 <if test="voteTime != null">
+		    		 		/* 投票时间 */ 
+	    		 			vote_time = #{voteTime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="jwid != null">
+		    		 		/* 微信APP ID */ 
+	    		 			jwid = #{jwid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="optionId != null">
+		    		 		/* 已投票的选项 */ 
+	    		 			option_id = #{optionId,jdbcType=VARCHAR},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.toupiao.entity.WxCatToupiaoRecord.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="WxCatToupiaoRecord">
+		   SELECT   
+                   wctr.id                            /* 投票记录ID */ 
+                  ,wctr.act_id                        /* 活动ID */ 
+                  ,wctr.ip                            /* 投票IP */ 
+                  ,wctr.openid                        /* 投票人ID */ 
+                  ,wctr.nickname                      /* 投票人名称 */ 
+                  ,wctr.realname                      /* 投票人真实名字 */ 
+                  ,wctr.phone                         /* 投票人电话 */ 
+                  ,wctr.address                       /* 投票人地址 */ 
+                  ,wctr.vote_time                     /* 投票时间 */ 
+                  ,wctr.jwid                          /* 微信APP ID */ 
+                  ,wctr.option_id                     /* 已投票的选项 */ 
+		   FROM   wx_cat_toupiao_record      AS wctr      /*  */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.toupiao.entity.WxCatToupiaoRecord.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM wx_cat_toupiao_record 	/*  */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.toupiao.entity.WxCatToupiaoRecord.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  wx_cat_toupiao_record      AS wctr      /*  */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.toupiao.entity.WxCatToupiaoRecord.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="WxCatToupiaoRecord">
+		    SELECT 
+                   wctr.id                            /* 投票记录ID */ 
+                  ,wctr.act_id                        /* 活动ID */ 
+                  ,wctr.ip                            /* 投票IP */ 
+                  ,wctr.openid                        /* 投票人ID */ 
+                  ,wctr.nickname                      /* 投票人名称 */ 
+                  ,wctr.realname                      /* 投票人真实名字 */ 
+                  ,wctr.phone                         /* 投票人电话 */ 
+                  ,wctr.address                       /* 投票人地址 */ 
+                  ,wctr.vote_time                     /* 投票时间 */ 
+                  ,wctr.jwid                          /* 微信APP ID */ 
+                  ,wctr.option_id                     /* 已投票的选项 */ 
+		FROM   	 wx_cat_toupiao_record      AS wctr      /*  */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.toupiao.entity.WxCatToupiaoRecord.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="getByOpenIDATime" parameterType="Object"  resultMap="WxCatToupiaoRecord">
+		   SELECT   
+                   wctr.id                            /* 投票记录ID */ 
+                  ,wctr.act_id                        /* 活动ID */ 
+                  ,wctr.ip                            /* 投票IP */ 
+                  ,wctr.openid                        /* 投票人ID */ 
+                  ,wctr.nickname                      /* 投票人名称 */ 
+                  ,wctr.realname                      /* 投票人真实名字 */ 
+                  ,wctr.phone                         /* 投票人电话 */ 
+                  ,wctr.address                       /* 投票人地址 */ 
+                  ,wctr.vote_time                     /* 投票时间 */ 
+                  ,wctr.jwid                          /* 微信APP ID */ 
+                  ,wctr.option_id                     /* 已投票的选项 */ 
+		   FROM   wx_cat_toupiao_record      AS wctr      /*  */ 
+		   WHERE
+				openid = #{openid}		and 	vote_time>=	 #{voteTime}/* 序号 */  and act_id=#{actId}
+	</select>
+	
+	
+</mapper>

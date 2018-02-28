@@ -1,0 +1,92 @@
+#parse("content/base/back/common/macro.vm")
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<form role="form" class="form-inline" action="$!{basePath}/houseaOnline/back/xfBuilding/list.html" method="post"  id="formSubmit">
+				<div  class="col-md-10" style="width:100%">
+								<div class="panel panel-default">
+								  <div class="panel-heading">项目楼栋列表</div>
+								  <div class="panel-body">
+								  		<div class="search">
+															 <div class="form-group col-sm-3">
+															    <label for="name" class="control-label col-sm-3 line34">名称</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="name" id="name" value="$!{xfBuilding.name}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3" style="display:none;">
+															    <label for="pid" class="control-label col-sm-3 line34">楼盘项目ID</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="pid" id="pid" value="$!{pid}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="floorcount" class="control-label col-sm-3 line34">楼层</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="floorcount" id="floorcount" value="$!{xfBuilding.floorcount}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="type" class="control-label col-sm-3 line34"></label>
+															  	  <select name="type" id="type"  value="$!{xfBuilding.type}" class="form-control"  datatype="*">
+															    <option value="" >根据楼栋类型查询</option>
+															    <option value="0" #if('0' eq $!{xfBuilding.type})selected#end>低层（1-3层）</option>
+															    <option value="1" #if('1' eq $!{xfBuilding.type})selected#end>多层（4-6层）</option>
+															    <option value="2" #if('2' eq $!{xfBuilding.type})selected#end>中高层（7-9层）</option>
+															    <option value="3" #if('3' eq $!{xfBuilding.type})selected#end>小高层（9-12层）</option>
+															    <option value="4" #if('4' eq $!{xfBuilding.type})selected#end>高层（12层以上）</option>
+														   			</select>
+															 </div>
+															  
+											  <button type="submit" class="btn btn-primary">搜  索</button>
+											  <div class="clearfix"></div>
+								  		</div>
+								  		<div id="legend">
+								          <legend  class="le"><button type="button" class="btn btn-primary" onclick="doUrl('$!{basePath}/houseaOnline/back/xfBuilding/toAdd.html?pid=$!{pid}')" >新增</button>
+								          &nbsp;<button type="button" class="btn btn-primary" onclick="doUrl('$!{basePath}/houseaOnline/back/xfProject/list.html')" >返回项目页</button></legend> 
+								        </div>
+								        <table class="table table-striped">
+									        <thead>
+													<th>楼栋名称</th>
+													<th>楼栋位置</th>
+													<th>楼层</th>
+													<th>楼栋类型 </th> 
+													<th>开盘时间</th>
+						                			<th>操作</th>
+									        </thead>
+									        <tobody>
+									    	  #if($!{pageInfos})
+								                #foreach($!{info} in $!{pageInfos})
+									            	<tr>			
+																	<td>$!{info.name}栋</td>
+																	<td>$!{info.addr}</td>
+																	<td>$!{info.floorcount}层</td>
+																	<td>#if('0' eq $!{info.type})低层#end #if('1' eq $!{info.type})多层#end #if('2' eq $!{info.type})中高层#end #if('3' eq $!{info.type})小高层#end #if('4' eq $!{info.type})高层#end</td>
+																	<td>$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{info.kaipanDate})</td>
+										                <td class="last">
+							                			<a href="javascript:doUrl('$!{basePath}/houseaOnline/back/xfBuilding/toEdit.html?id=$!{info.id}')" >编辑</a>
+							                			<a href="javascript:delData('$!{basePath}/houseaOnline/back/xfBuilding/doDelete.html?id=$!{info.id}')">删除</a>
+							                			<a href="javascript:doUrl('$!{basePath}/houseaOnline/back/xfCell/list.html?buildingid=$!{info.id}&pid=$!{pid}')">单元</a>
+						                				</td>
+									           		</tr>
+									             #end
+									    	 #end
+									         </tobody>
+									    </table>
+										<div class="text-right">
+											<!--公用翻页代码-->
+							                #set($attr='formSubmit')
+							            	#showPageList($pageInfos $attr)
+							                <!--END公用翻页代码-->
+										</div>
+								  </div>	
+								</div>
+				</div>  
+				</form>
+		</div>
+	</div>
+</body>
+</html>

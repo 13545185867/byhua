@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.bigwheel.entity.ActivityBigwheelRecord">
+
+	<!-- Result Map-->
+	<resultMap id="ActivityBigwheelRecord" type="com.jeecg.p3.bigwheel.entity.ActivityBigwheelRecord" >
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="activityId" property="activityid" jdbcType="INTEGER"/>
+		<result column="awardid" property="awardid" jdbcType="INTEGER"/>
+		<result column="dotime" property="dotime" jdbcType="TIMESTAMP"/>
+		<result column="activity_recordcol" property="activityRecordcol" jdbcType="VARCHAR"/>
+		<result column="sncode" property="sncode" jdbcType="VARCHAR"/>
+		<result column="ip" property="ip" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="openid" property="openid" jdbcType="VARCHAR"/>
+		<result column="helpid" property="helpid" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+		<resultMap id="UserAwardRecord" type="com.jeecg.p3.bigwheel.entity.UserAwardRecord" >
+		
+		<result column="id" property="id" jdbcType="INTEGER"/>
+				<result column="awardid" property="awardid" jdbcType="INTEGER"/>
+		<result column="platformId" property="platformId" jdbcType="INTEGER"/>
+		<result column="activityId" property="activityId" jdbcType="INTEGER"/>
+		<result column="openid" property="openid" jdbcType="VARCHAR"/>
+		<result column="headPic" property="headPic" jdbcType="VARCHAR"/>
+		<result column="nickName" property="nickName" jdbcType="VARCHAR"/>
+		<result column="awardTypeId" property="awardTypeId" jdbcType="INTEGER"/>
+		<result column="awardName" property="awardName" jdbcType="VARCHAR"/>
+		<result column="trophyName" property="trophyName" jdbcType="VARCHAR"/>
+		<result column="awardSendType" property="awardSendType" jdbcType="INTEGER"/>
+		<result column="score" property="score" jdbcType="INTEGER"/>
+		<result column="awardValue" property="awardValue" jdbcType="INTEGER"/>
+		<result column="sncode" property="sncode" jdbcType="VARCHAR"/>
+		<result column="date" property="date" jdbcType="TIMESTAMP"/>
+		<result column="activity_recordcol" property="activityRecordcol" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="validityStart" property="validityStart" jdbcType="TIMESTAMP"/>
+		<result column="validityStop" property="validityStop" jdbcType="TIMESTAMP"/>
+		<result column="awardLevel" property="awardLevel" jdbcType="INTEGER"/>
+		<result column="ip" property="ip" jdbcType="VARCHAR"/>
+		<result column="checked" property="checked" jdbcType="VARCHAR"/>
+		<result column="awardType" property="awardtype" jdbcType="INTEGER"/>
+		<result column="telphone" property="telphone" jdbcType="VARCHAR"/>
+		<result column="awardPic" property="awardPic" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				  <if test="query.id != null and query.id != ''" >
+	  		 		/*  */
+			    	AND abr.id =  #{query.id,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.activityid != null and query.activityid != ''" >
+	  		 		/*  */
+			    	AND abr.activityId =  #{query.activityid,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.awardid != null and query.awardid != ''" >
+	  		 		/*  */
+			    	AND abr.awardid =  #{query.awardid,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.dotime != null and query.dotime != ''" >
+	  		 		/*  */
+			    	AND abr.dotime =  #{query.dotime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.activityRecordcol != null and query.activityRecordcol != ''" >
+	  		 		/*  */
+			    	AND abr.activity_recordcol =  #{query.activityRecordcol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.sncode != null and query.sncode != ''" >
+	  		 		/*  */
+			    	AND abr.sncode =  #{query.sncode,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.ip != null and query.ip != ''" >
+	  		 		/*  */
+			    	AND abr.ip =  #{query.ip,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.status != null and query.status != ''" >
+	  		 		/* -1,0未领取
+1已领取待兑换
+2已过期
+3已使用
+4已回收
+5已回收
+6已手动派发 */
+			    	AND abr.status =  #{query.status,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.openid != null and query.openid != ''" >
+	  		 		/*  */
+			    	AND abr.openid =  #{query.openid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.helpid != null and query.helpid != ''" >
+	  		 		/* 为该OPENid的朋友助力 */
+			    	AND abr.helpid =  #{query.helpid,jdbcType=VARCHAR}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelRecord.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object"  keyProperty="id" useGeneratedKeys="true">
+	  INSERT  INTO  activity_bigwheel_record   /*  */  
+					(	
+                      id                            /*  */ 
+                     ,activityId                    /*  */ 
+                     ,awardid                       /*  */ 
+                     ,dotime                        /*  */ 
+                     ,activity_recordcol            /*  */ 
+                     ,sncode                        /*  */ 
+                     ,ip                            /*  */ 
+                     ,status                        /* -1,0未领取
+1已领取待兑换
+2已过期
+3已使用
+4已回收
+5已回收
+6已手动派发 */ 
+                     ,openid           /*  */ 
+                     ,helpid                        /* 为该OPENid的朋友助力 */ 
+					)
+			values (
+                      #{id,jdbcType=INTEGER}                            /*  */ 
+                     ,#{activityid,jdbcType=INTEGER}                    /*  */ 
+                     ,#{awardid,jdbcType=INTEGER}                       /*  */ 
+                     ,#{dotime,jdbcType=TIMESTAMP}                        /*  */ 
+                     ,#{activityRecordcol,jdbcType=VARCHAR}             /*  */ 
+                     ,#{sncode,jdbcType=VARCHAR}                        /*  */ 
+                     ,#{ip,jdbcType=VARCHAR}                            /*  */ 
+                     ,#{status,jdbcType=VARCHAR}                        /* -1,0未领取
+1已领取待兑换
+2已过期
+3已使用
+4已回收
+5已回收
+6已手动派发 */ 
+                     ,#{openid,jdbcType=VARCHAR}            /*  */ 
+                     ,#{helpid,jdbcType=VARCHAR}                        /* 为该OPENid的朋友助力 */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelRecord.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   activity_bigwheel_record  	/*  */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="activityid != null">
+		    		 		/*  */ 
+	    		 			activityId = #{activityid,jdbcType=INTEGER},
+						 </if>
+						 <if test="awardid != null">
+		    		 		/*  */ 
+	    		 			awardid = #{awardid,jdbcType=INTEGER},
+						 </if>
+						 <if test="dotime != null">
+		    		 		/*  */ 
+	    		 			dotime = #{dotime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="activityRecordcol != null">
+		    		 		/*  */ 
+	    		 			activity_recordcol = #{activityRecordcol,jdbcType=VARCHAR},
+						 </if>
+						 <if test="sncode != null">
+		    		 		/*  */ 
+	    		 			sncode = #{sncode,jdbcType=VARCHAR},
+						 </if>
+						 <if test="ip != null">
+		    		 		/*  */ 
+	    		 			ip = #{ip,jdbcType=VARCHAR},
+						 </if>
+						 <if test="status != null">
+		    		 		/* -1,0未领取
+1已领取待兑换
+2已过期
+3已使用
+4已回收
+5已回收
+6已手动派发 */ 
+	    		 			status = #{status,jdbcType=VARCHAR},
+						 </if>
+						 <if test="openid != null">
+		    		 		/*  */ 
+	    		 			openid = #{openid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="helpid != null">
+		    		 		/* 为该OPENid的朋友助力 */ 
+	    		 			helpid = #{helpid,jdbcType=VARCHAR},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelRecord.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="ActivityBigwheelRecord">
+		   SELECT   
+                   abr.id                            /*  */ 
+                  ,abr.activityId                    /*  */ 
+                  ,abr.awardid                       /*  */ 
+                  ,abr.dotime                        /*  */ 
+                  ,abr.activity_recordcol            /*  */ 
+                  ,abr.sncode                        /*  */ 
+                  ,abr.ip                            /*  */ 
+                  ,abr.status                        /* -1,0未领取
+1已领取待兑换
+2已过期
+3已使用
+4已回收
+5已回收
+6已手动派发 */ 
+                  ,abr.openid           /*  */ 
+                  ,abr.helpid                        /* 为该OPENid的朋友助力 */ 
+		   FROM   activity_bigwheel_record      AS abr      /*  */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelRecord.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM activity_bigwheel_record 	/*  */  
+		WHERE 
+			activityId = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelRecord.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  activity_bigwheel_record      AS abr      /*  */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<select id="helpcount" resultType="java.lang.Integer"  parameterType="Object">
+		select count(t.openid) from (select openid from  activity_bigwheel_record where helpid=#{helpid} and activityId = #{activityid}	 group by openid) t
+	</select>
+  	
+
+  	
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelRecord.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="ActivityBigwheelRecord">
+		    SELECT 
+                   abr.id                            /*  */ 
+                  ,abr.activityId                    /*  */ 
+                  ,abr.awardid                       /*  */ 
+                  ,abr.dotime                        /*  */ 
+                  ,abr.activity_recordcol            /*  */ 
+                  ,abr.sncode                        /*  */ 
+                  ,abr.ip                            /*  */ 
+                  ,abr.status                        /* -1,0未领取
+1已领取待兑换
+2已过期
+3已使用
+4已回收
+5已回收
+6已手动派发 */ 
+                  ,abr.openid           /*  */ 
+                  ,abr.helpid                        /* 为该OPENid的朋友助力 */ 
+		FROM   	 activity_bigwheel_record      AS abr      /*  */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+		<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelRecord.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="selectByOpenIDAndDate" parameterType="Object"  resultMap="ActivityBigwheelRecord">
+		   SELECT   
+                   abr.id                            /*  */ 
+                  ,abr.activityId                    /*  */ 
+                  ,abr.awardid                       /*  */ 
+                  ,abr.dotime                        /*  */ 
+                  ,abr.activity_recordcol            /*  */ 
+                  ,abr.sncode                        /*  */ 
+                  ,abr.ip                            /*  */ 
+                  ,abr.status                        /* -1,0未领取
+1已领取待兑换
+2已过期
+3已使用
+4已回收
+5已回收
+6已手动派发 */ 
+                  ,abr.openid           /*  */ 
+                  ,abr.helpid                        /* 为该OPENid的朋友助力 */ 
+		   FROM   activity_bigwheel_record      AS abr      /*  */ 
+		   WHERE
+				openid = #{openid}		and activityId  =#{activityid}	and 	dotime>=	 #{dotime}/* 序号 */ 	/* 序号 */ 
+	</select>
+	
+	
+		<select id="getAwardList" parameterType="Object"  resultMap="ActivityBigwheelRecord">
+		   SELECT   
+                   abr.id                            /*  */ 
+                  ,abr.activityId                    /*  */ 
+                  ,abr.awardid                       /*  */ 
+                  ,abr.dotime                        /*  */ 
+                  ,abr.activity_recordcol            /*  */ 
+                  ,abr.sncode                        /*  */ 
+                  ,abr.ip                            /*  */ 
+                  ,abr.status                        /* -1,0未领取
+1已领取待兑换
+2已过期
+3已使用
+4已回收
+5已回收
+6已手动派发 */ 
+                  ,abr.openid           /*  */ 
+                  ,abr.helpid                        /* 为该OPENid的朋友助力 */ 
+		   FROM   activity_bigwheel_record      AS abr      /*  */ 
+		   WHERE awardid != ''
+				   <include refid="wherecontation"/> 
+	</select>
+	
+			<select id="getUserAwardRecord" parameterType="Object"  resultMap="UserAwardRecord">
+	  SELECT 
+                   abr.id                            /*  */ 
+                  ,abr.activityId                    /*  */ 
+                  ,abr.awardid
+                  ,abr.openid
+                  ,aw.headPic
+                  ,aw.nickName   
+                  ,aba.awardName /* 奖项名称 */ 
+                  ,aba.trophyName                    /* 奖品名称 */ 
+                  ,aba.awardType                    
+                  ,abr.sncode   
+                  ,abr.dotime as date
+                  ,abr.status
+                  ,aba.validityStart                 /* 对奖开始时间 */ 
+                  ,aba.validityStop   /* 手动输入的券号 */ 
+                  ,aba.awardLevel                    /* 奖项等级 */ 
+                  ,abr.ip
+                  ,aw.phonenum  as telphone
+                  ,aba.awardType
+                  ,aba.awardPic
+                     /*  */ 
+		from activity_bigwheel_record as abr left join activity_bigwheel_award as aba on abr.awardid=aba.id,activity_wxuser aw
+		 where abr.openid=aw.openid and abr.awardid !=''  <include refid="wherecontation"/> order by abr.id desc LIMIT  0 ,20
+		 	</select>
+		 	
+		 				<select id="getAwardCount" parameterType="Object"  resultMap="ActivityBigwheelRecord">
+		   SELECT   
+                  count(*)                     /* 为该OPENid的朋友助力 */ 
+		   FROM   activity_bigwheel_record      AS abr      /*  */ 
+		   WHERE awardid != ''
+				   <include refid="wherecontation"/> 
+	</select>
+</mapper>

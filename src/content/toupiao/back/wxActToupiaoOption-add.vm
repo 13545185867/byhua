@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+  <script type="text/javascript"  charset="utf-8" src="$!{basePath}/ueditor/ueditor.config.js"></script>
+  <script type="text/javascript"  charset="utf-8" src="$!{basePath}/ueditor/ueditor.all.min.js"></script>
+      <script type="text/javascript" charset="utf-8" src="$!{basePath}/ueditor/lang/zh-cn/zh-cn.js"></script>
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">新增</div>
+					<div class="panel-body">
+						<form class="form-horizontal" role="form" id="dailogForm" action="$!{basePath}/toupiao/back/wxActToupiaoOption/doAdd.do" method="POST">
+					  		<input type="hidden" id="btn_sub" class="btn_sub" />
+													      <input type="hidden" value="$!{wxActToupiaoOption.actId}" name="actId" id="actId" class="form-control" />
+
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">选项名称</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{wxActToupiaoOption.title}" name="title" id="title" class="form-control" />
+													    </div>
+													    
+													    												
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">联系人姓名</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{wxActToupiaoOption.name}" name="name" id="name" class="form-control"/>
+													    </div>
+													</div>
+												
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">联系人电话</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{wxActToupiaoOption.tel}" name="tel" id="tel" class="form-control"/>
+													    </div>
+													</div>
+												
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">联系人地址</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{wxActToupiaoOption.addr}" name="addr" id="addr" class="form-control"/>
+													    </div>
+													</div>
+												
+													    
+													</div>
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">选项视频</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{wxActToupiaoOption.video}" name="video" id="video" class="form-control" />
+													    </div>
+													</div>
+
+													 <div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">选项描述</label>
+																		    <div class="col-sm-8">
+														<textarea name="description" id="description"  >$!{wxActToupiaoOption.description}</textarea>
+														    <script type="text/javascript">
+													       	 var editor = UE.getEditor('description');
+													    	</script>
+													</div>
+													
+													<div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">选项链接地址</label>
+													    <div class="col-sm-8">
+													      <input type="text" value="$!{wxActToupiaoOption.link}" name="link" id="link" class="form-control" />
+													    </div>
+													</div>
+
+										<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/toupiao/back/wxActToupiaoOption/list.do?actId=$!{wxActToupiaoOption.actId}')">返回</button>
+	        									<button type="button" class="btn btn-primary" id="formSubmit">提交</button>
+        									 </div>
+        								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+		
+	
+</body>
+</html>
+<script type="text/javascript" src="$!{basePath}/plug-in/js/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="$!{basePath}/plug-in/js/forminit.p3.js"></script>  
+<script src="$!{basePath}/content/system/js/jquery.uploadify.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="$!{basePath}/content/system/css/uploadify.css">
+<script >
+$(function(){
+    $("#uploadify").uploadify({  
+        'swf'            : '$!{basePath}/content/system/js/uploadify.swf',  
+        'uploader'       : '$!{basePath}/system/back/jwSystemProject/doUpload.do',
+        'queueID'        : 'fileQueue',  
+        'auto'           : true,  
+        'multi'          : true,  
+        'buttonCursor'   : 'hand',  
+        'fileObjName'    : 'file',  
+        'buttonText'     : '上传图片',  
+        'height'         : '25',  
+        'progressData'   : 'percentage',  
+        'fileTypeDesc'   : '支持格式:jpg/gif/jpeg/png/bmp.',    
+        'fileTypeExts': '*.jpg;*.gif;*.jpeg;*.png;*.bmp',//允许的格式         
+        onUploadStart : function(file) {
+
+        },
+        onUploadSuccess  : function(file,data,response) {  
+            //设置图片预览  
+            var a =  JSON.parse(data);
+            $("#image").val(a.obj);  
+            $("#pic_view").attr("src",'$!{basePath}/upload/img/system/' + a.obj);  
+        }  
+    });  
+});
+</script>	
+

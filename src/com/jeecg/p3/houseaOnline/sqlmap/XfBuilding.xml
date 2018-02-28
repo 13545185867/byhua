@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.houseaOnline.entity.XfBuilding">
+
+	<!-- Result Map-->
+	<resultMap id="XfBuilding" type="com.jeecg.p3.houseaOnline.entity.XfBuilding" >
+		<result column="ID" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="addr" property="addr" jdbcType="VARCHAR"/>
+		<result column="pid" property="pid" jdbcType="VARCHAR"/>
+		<result column="is_delete" property="isDelete" jdbcType="VARCHAR"/>
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP"/>
+		<result column="createuser" property="createuser" jdbcType="VARCHAR"/>
+		<result column="floorCount" property="floorcount" jdbcType="INTEGER"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="xf_buildingcol" property="xfBuildingcol" jdbcType="VARCHAR"/>
+		<result column="xf_buildingcol1" property="xfBuildingcol1" jdbcType="INTEGER"/>
+		<result column="kaipan_date" property="kaipanDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.name != null and query.name != ''" >
+	  		 		/* 楼栋名称 */
+			    	AND xb.name =  #{query.name,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.addr != null and query.addr != ''" >
+	  		 		/* 楼栋位置 */
+			    	AND xb.addr =  #{query.addr,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.pid != null and query.pid != ''" >
+	  		 		/* 楼盘项目ID */
+			    	AND xb.pid =  #{query.pid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isDelete != null and query.isDelete != ''" >
+	  		 		/*  */
+			    	AND xb.is_delete =  #{query.isDelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.createtime != null and query.createtime != ''" >
+	  		 		/*  */
+			    	AND xb.createtime =  #{query.createtime,jdbcType=TIMESTAMP}
+				 </if>
+				  <if test="query.kaipanDate != null and query.kaipanDate != ''" >
+	  		 		/*  */
+			    	AND xb.kaipan_date =  #{query.kaipanDate,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.createuser != null and query.createuser != ''" >
+	  		 		/*  */
+			    	AND xb.createuser =  #{query.createuser,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.floorcount != null and query.floorcount != ''" >
+	  		 		/*  */
+			    	AND xb.floorCount =  #{query.floorcount,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.type != null and query.type != ''" >
+	  		 		/* 楼栋类型:高层（12层以上） 小高层（9-12） 洋房 低层（1-3层） 多层（4-6
+层）中高层（7-9）） */
+			    	AND xb.type =  #{query.type,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.xfBuildingcol != null and query.xfBuildingcol != ''" >
+	  		 		/*  */
+			    	AND xb.xf_buildingcol =  #{query.xfBuildingcol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.xfBuildingcol1 != null and query.xfBuildingcol1 != ''" >
+	  		 		/*  */
+			    	AND xb.xf_buildingcol1 =  #{query.xfBuildingcol1,jdbcType=INTEGER}
+				 </if>
+		</trim>
+	</sql>
+
+	<sql id="wherecontation1">
+		<trim  suffixOverrides="," >
+				 <if test="name != null and name != ''" >
+	  		 		/* 楼栋名称 */
+			    	AND xb.name =  #{name,jdbcType=VARCHAR}
+				 </if>
+				 <if test="addr != null and addr != ''" >
+	  		 		/* 楼栋位置 */
+			    	AND xb.addr =  #{addr,jdbcType=VARCHAR}
+				 </if>
+				 <if test="pid != null and pid != ''" >
+	  		 		/* 楼盘项目ID */
+			    	AND xb.pid =  #{pid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="isDelete != null and isDelete != ''" >
+	  		 		/*  */
+			    	AND xb.is_delete =  #{isDelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="createtime != null and createtime != ''" >
+	  		 		/*  */
+			    	AND xb.createtime =  #{createtime,jdbcType=TIMESTAMP}
+				 </if>
+				  <if test="kaipanDate != null and kaipanDate != ''" >
+	  		 		/*  */
+			    	AND xb.kaipan_date =  #{kaipanDate,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="createuser != null and createuser != ''" >
+	  		 		/*  */
+			    	AND xb.createuser =  #{createuser,jdbcType=VARCHAR}
+				 </if>
+				 <if test="floorcount != null and floorcount != ''" >
+	  		 		/*  */
+			    	AND xb.floorCount =  #{floorcount,jdbcType=INTEGER}
+				 </if>
+				 <if test="type != null and type != ''" >
+	  		 		/* 楼栋类型:高层（12层以上） 小高层（9-12） 洋房 低层（1-3层） 多层（4-6
+层）中高层（7-9）） */
+			    	AND xb.type =  #{type,jdbcType=VARCHAR}
+				 </if>
+				 <if test="xfBuildingcol != null and xfBuildingcol != ''" >
+	  		 		/*  */
+			    	AND xb.xf_buildingcol =  #{xfBuildingcol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="xfBuildingcol1 != null and xfBuildingcol1 != ''" >
+	  		 		/*  */
+			    	AND xb.xf_buildingcol1 =  #{xfBuildingcol1,jdbcType=INTEGER}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfBuilding.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  xf_building   /* 选房 楼栋表 */  
+					(	
+                      ID                            /* 楼栋ID */ 
+                     ,name                          /* 楼栋名称 */ 
+                     ,addr                          /* 楼栋位置 */ 
+                     ,pid                           /* 楼盘项目ID */ 
+                     ,is_delete                     /*  */ 
+                     ,createtime                    /*  */ 
+                     ,kaipan_date
+                     ,createuser                    /*  */ 
+                     ,floorCount                    /*  */ 
+                     ,type                          /* 楼栋类型:高层（12层以上） 小高层（9-12） 洋房 低层（1-3层） 多层（4-6
+层）中高层（7-9）） */ 
+                     ,xf_buildingcol                /*  */ 
+                     ,xf_buildingcol1               /*  */ 
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /* 楼栋ID */ 
+                     ,#{name,jdbcType=VARCHAR}                          /* 楼栋名称 */ 
+                     ,#{addr,jdbcType=VARCHAR}                          /* 楼栋位置 */ 
+                     ,#{pid,jdbcType=VARCHAR}                           /* 楼盘项目ID */ 
+                     ,#{isDelete,jdbcType=VARCHAR}                      /*  */ 
+                     ,#{createtime,jdbcType=TIMESTAMP}                    /*  */ 
+                     ,#{kaipanDate,jdbcType=TIMESTAMP}     
+                     ,#{createuser,jdbcType=VARCHAR}                    /*  */ 
+                     ,#{floorcount,jdbcType=INTEGER}                    /*  */ 
+                     ,#{type,jdbcType=VARCHAR}                          /* 楼栋类型:高层（12层以上） 小高层（9-12） 洋房 低层（1-3层） 多层（4-6
+层）中高层（7-9）） */ 
+                     ,#{xfBuildingcol,jdbcType=VARCHAR}                 /*  */ 
+                     ,#{xfBuildingcol1,jdbcType=INTEGER}                /*  */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfBuilding.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   xf_building  	/* 选房 楼栋表 */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="name != null">
+		    		 		/* 楼栋名称 */ 
+	    		 			name = #{name,jdbcType=VARCHAR},
+						 </if>
+						 <if test="addr != null">
+		    		 		/* 楼栋位置 */ 
+	    		 			addr = #{addr,jdbcType=VARCHAR},
+						 </if>
+						 <if test="pid != null">
+		    		 		/* 楼盘项目ID */ 
+	    		 			pid = #{pid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isDelete != null">
+		    		 		/*  */ 
+	    		 			is_delete = #{isDelete,jdbcType=VARCHAR},
+						 </if>
+						 <if test="createtime != null">
+		    		 		/*  */ 
+	    		 			createtime = #{createtime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="kaipanDate != null">
+		    		 		/*  */ 
+	    		 			kaipan_date = #{kaipanDate,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="createuser != null">
+		    		 		/*  */ 
+	    		 			createuser = #{createuser,jdbcType=VARCHAR},
+						 </if>
+						 <if test="floorcount != null">
+		    		 		/*  */ 
+	    		 			floorCount = #{floorcount,jdbcType=INTEGER},
+						 </if>
+						 <if test="type != null">
+		    		 		/* 楼栋类型:高层（12层以上） 小高层（9-12） 洋房 低层（1-3层） 多层（4-6
+层）中高层（7-9）） */ 
+	    		 			type = #{type,jdbcType=VARCHAR},
+						 </if>
+						 <if test="xfBuildingcol != null">
+		    		 		/*  */ 
+	    		 			xf_buildingcol = #{xfBuildingcol,jdbcType=VARCHAR},
+						 </if>
+						 <if test="xfBuildingcol1 != null">
+		    		 		/*  */ 
+	    		 			xf_buildingcol1 = #{xfBuildingcol1,jdbcType=INTEGER},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}			createuser = #{createuser}	/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfBuilding.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="XfBuilding">
+		   SELECT   
+                   xb.ID                            /* 楼栋ID */ 
+                  ,xb.name                          /* 楼栋名称 */ 
+                  ,xb.addr                          /* 楼栋位置 */ 
+                  ,xb.pid                           /* 楼盘项目ID */ 
+                  ,xb.is_delete                     /*  */ 
+                  ,xb.createtime                    /*  */ 
+                  ,xb.kaipan_date
+                  ,xb.createuser                    /*  */ 
+                  ,xb.floorCount                    /*  */ 
+                  ,xb.type                          /* 楼栋类型:高层（12层以上） 小高层（9-12） 洋房 低层（1-3层） 多层（4-6
+层）中高层（7-9）） */ 
+                  ,xb.xf_buildingcol                /*  */ 
+                  ,xb.xf_buildingcol1               /*  */ 
+		   FROM   xf_building      AS xb      /* 选房 楼栋表 */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfBuilding.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM xf_building 	/* 选房 楼栋表 */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfBuilding.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  xf_building      AS xb      /* 选房 楼栋表 */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfBuilding.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="XfBuilding">
+		    SELECT 
+                   xb.ID                            /* 楼栋ID */ 
+                  ,xb.name                          /* 楼栋名称 */ 
+                  ,xb.addr                          /* 楼栋位置 */ 
+                  ,xb.pid                           /* 楼盘项目ID */ 
+                  ,xb.is_delete                     /*  */ 
+                  ,xb.createtime                    /*  */ 
+                  ,xb.kaipan_date
+                  ,xb.createuser                    /*  */ 
+                  ,xb.floorCount                    /*  */ 
+                  ,xb.type                          /* 楼栋类型:高层（12层以上） 小高层（9-12） 洋房 低层（1-3层） 多层（4-6
+层）中高层（7-9）） */ 
+                  ,xb.xf_buildingcol                /*  */ 
+                  ,xb.xf_buildingcol1               /*  */ 
+		FROM   	 xf_building      AS xb      /* 选房 楼栋表 */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+		<select id="queryByCondit" parameterType="Object"  resultMap="XfBuilding">
+		    SELECT 
+                   xb.ID                            /* 楼栋ID */ 
+                  ,xb.name                          /* 楼栋名称 */ 
+                  ,xb.addr                          /* 楼栋位置 */ 
+                  ,xb.pid                           /* 楼盘项目ID */ 
+                  ,xb.is_delete                     /*  */ 
+                  ,xb.createtime                    /*  */ 
+                  ,xb.kaipan_date
+                  ,xb.createuser                    /*  */ 
+                  ,xb.floorCount                    /*  */ 
+                  ,xb.type                          /* 楼栋类型:高层（12层以上） 小高层（9-12） 洋房 低层（1-3层） 多层（4-6
+层）中高层（7-9）） */ 
+                  ,xb.xf_buildingcol                /*  */ 
+                  ,xb.xf_buildingcol1               /*  */ 
+		FROM   	 xf_building      AS xb      /* 选房 楼栋表 */ 
+		WHERE 1=1	and xb.is_delete='0'
+		   <include refid="wherecontation1"/>  order by  name asc 
+	</select>
+
+	
+</mapper>

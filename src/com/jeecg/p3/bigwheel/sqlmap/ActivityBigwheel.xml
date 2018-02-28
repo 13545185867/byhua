@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.bigwheel.entity.ActivityBigwheel">
+
+	<!-- Result Map-->
+	<resultMap id="ActivityBigwheel" type="com.jeecg.p3.bigwheel.entity.ActivityBigwheel" >
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="title" property="title" jdbcType="VARCHAR"/>
+		<result column="end" property="end" jdbcType="TIMESTAMP"/>
+		<result column="start" property="start" jdbcType="TIMESTAMP"/>
+		<result column="hideParticipant" property="hideparticipant" jdbcType="VARCHAR"/>
+		<result column="ruleTips" property="ruletips" jdbcType="VARCHAR"/>
+		<result column="deleted" property="deleted" jdbcType="INTEGER"/>
+		<result column="activityType" property="activitytype" jdbcType="VARCHAR"/>
+		<result column="jwid" property="jwid" jdbcType="VARCHAR"/>
+		<result column="userid" property="userid" jdbcType="VARCHAR"/>
+		<result column="pagejsoncontent" property="pagejsoncontent" jdbcType="VARCHAR"/>
+		<result column="ispublish" property="ispublish" jdbcType="VARCHAR"/>
+		<result column="globalProbability" property="globalprobability" jdbcType="INTEGER"/>
+		<result column="probabilityType" property="probabilitytype" jdbcType="INTEGER"/>
+		<result column="trophyValidator" property="trophyvalidator" jdbcType="VARCHAR"/>
+		<result column="qrcodeUrl" property="qrcodeurl" jdbcType="VARCHAR"/>
+		<result column="awardSendType" property="awardsendtype" jdbcType="INTEGER"/>
+		<result column="extendOperation" property="extendOperation" jdbcType="VARCHAR"/>
+		<result column="creatDate" property="creatDate" jdbcType="TIMESTAMP"/>
+		<result column="isBuy" property="isBuy" jdbcType="VARCHAR"/>
+		<result column="everydayprob" property="everydayprob" jdbcType="DECIMAL"/>
+		
+	</resultMap>
+	
+	<resultMap id="ActRuntime" type="com.jeecg.p3.bigwheel.entity.ActRuntime" >
+		<result column="playerNum" property="playerNum" jdbcType="INTEGER"/>
+		<result column="playTimes" property="playTimes" jdbcType="INTEGER"/>
+		<result column="helpNum" property="helpNum" jdbcType="INTEGER"/>
+	</resultMap>
+	
+		<resultMap id="ActivityBigwheelConfigPlayRule" type="com.jeecg.p3.bigwheel.entity.ActivityBigwheelConfigPlayRule" >
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="title" property="title" jdbcType="VARCHAR"/>
+		<result column="isBuy" property="isBuy" jdbcType="VARCHAR"/>
+		<result column="everydayprob" property="everydayprob" jdbcType="DECIMAL"/>
+		<result column="end" property="end" jdbcType="TIMESTAMP"/>
+		<result column="start" property="start" jdbcType="TIMESTAMP"/>
+		<result column="hideParticipant" property="hideparticipant" jdbcType="VARCHAR"/>
+		<result column="ruleTips" property="ruletips" jdbcType="VARCHAR"/>
+		<result column="deleted" property="deleted" jdbcType="INTEGER"/>
+		<result column="activityType" property="activitytype" jdbcType="VARCHAR"/>
+		<result column="jwid" property="jwid" jdbcType="VARCHAR"/>
+		<result column="userid" property="userid" jdbcType="VARCHAR"/>
+		<!-- Result Map
+		<result column="pagejsoncontent" property="pagejsoncontent" jdbcType="VARCHAR"/>-->
+		<result column="ispublish" property="ispublish" jdbcType="VARCHAR"/>
+		<result column="globalProbability" property="globalprobability" jdbcType="INTEGER"/>
+		<result column="probabilityType" property="probabilitytype" jdbcType="INTEGER"/>
+		<result column="trophyValidator" property="trophyvalidator" jdbcType="VARCHAR"/>
+		<result column="qrcodeUrl" property="qrcodeurl" jdbcType="VARCHAR"/>
+		<result column="awardSendType" property="awardsendtype" jdbcType="INTEGER"/>
+		<!-- Result Map
+		<result column="extendOperation" property="extendOperation" jdbcType="VARCHAR"/>-->
+		<result column="creatDate" property="creatDate" jdbcType="TIMESTAMP"/>
+		<result column="limitLottery" property="limitlottery" jdbcType="VARCHAR"/>
+		<result column="totalLotteryCount" property="totallotterycount" jdbcType="INTEGER"/>
+		<result column="dayLotteryCount" property="daylotterycount" jdbcType="INTEGER"/>
+		<result column="singleUserAwards" property="singleuserawards" jdbcType="INTEGER"/>
+		<result column="initialProbability" property="initialprobability" jdbcType="VARCHAR"/>
+		<result column="percentage" property="percentage" jdbcType="INTEGER"/>
+		<result column="helpNum" property="helpnum" jdbcType="INTEGER"/>
+		<result column="activity_playrulecol" property="activityPlayrulecol" jdbcType="VARCHAR"/>
+		<result column="activity_playrulecol1" property="activityPlayrulecol1" jdbcType="VARCHAR"/>
+		<result column="activity_playrulecol2" property="activityPlayrulecol2" jdbcType="VARCHAR"/>
+		<result column="exchangeLimit" property="exchangelimit" jdbcType="VARCHAR"/>
+		<result column="participateLimit" property="participatelimit" jdbcType="VARCHAR"/>
+		<result column="gameTime" property="gametime" jdbcType="INTEGER"/>
+		<result column="gameTimeType" property="gametimetype" jdbcType="INTEGER"/>
+		<result column="organizer" property="organizer" jdbcType="VARCHAR"/>
+		<result column="useDefaultLoadPage" property="usedefaultloadpage" jdbcType="INTEGER"/>
+		<result column="jumpLinkBtn" property="jumplinkbtn" jdbcType="INTEGER"/>
+		<result column="organizerLink" property="organizerlink" jdbcType="VARCHAR"/>
+		<result column="useDefaultCopyright" property="usedefaultcopyright" jdbcType="VARCHAR"/>
+		<result column="useShareIco" property="useshareico" jdbcType="INTEGER"/>
+		<result column="shareimgPath" property="shareimgpath" jdbcType="VARCHAR"/>
+		<result column="useShareTitle" property="usesharetitle" jdbcType="INTEGER"/>
+		<result column="sharetitleText" property="sharetitletext" jdbcType="VARCHAR"/>
+		<result column="useShareTxt" property="usesharetxt" jdbcType="INTEGER"/>
+		<result column="noAwardText" property="noawardtext" jdbcType="VARCHAR"/>
+		<result column="awardText" property="awardtext" jdbcType="VARCHAR"/>
+		<result column="wxlink" property="wxlink" jdbcType="VARCHAR"/>
+		<result column="needFollow" property="needfollow" jdbcType="VARCHAR"/>
+		<result column="addresstext" property="addresstext" jdbcType="VARCHAR"/>
+		<result column="activity_configcol" property="activityConfigcol" jdbcType="VARCHAR"/>
+		<result column="activity_configcol1" property="activityConfigcol1" jdbcType="VARCHAR"/>
+		<result column="activity_configcol2" property="activityConfigcol2" jdbcType="VARCHAR"/>
+		<result column="customCopyrightPic" property="customcopyrightpic" jdbcType="VARCHAR"/>
+		<result column="copyrightLink" property="copyrightlink" jdbcType="VARCHAR"/>
+		<result column="iscurrent" property="iscurrent" jdbcType="INTEGER"/>
+		<result column="organizerLogo" property="organizerlogo" jdbcType="VARCHAR"/>
+		<result column="bgPic" property="bgpic" jdbcType="VARCHAR"/>
+		<result column="needArea" property="needarea" jdbcType="VARCHAR"/>
+		<result column="needSex" property="needsex" jdbcType="VARCHAR"/>
+		<result column="withHelp" property="withhelp" jdbcType="VARCHAR"/>
+		<result column="city" property="city" jdbcType="VARCHAR"/>
+		<result column="province" property="province" jdbcType="VARCHAR"/>
+		<result column="hideOrganizerLogo" property="hideorganizerlogo" jdbcType="VARCHAR"/>
+		<result column="showCopyright" property="showcopyright" jdbcType="VARCHAR"/>
+		<result column="showSupport" property="showsupport" jdbcType="VARCHAR"/>
+		<result column="participateLimit" property="participateLimit" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.title != null and query.title != ''" >
+	  		 		/* 活动名称 */
+			    	AND ab.title =  #{query.title,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isBuy != null and query.isBuy != ''" >
+			    	AND ab.isBuy =  #{query.isBuy,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.everydayprob != null and query.everydayprob != ''" >
+			    	AND ab.everydayprob =  #{query.everydayprob,jdbcType=DECIMAL}
+				 </if>
+				 <if test="query.end != null and query.end != ''" >
+	  		 		/*  */
+			    	AND ab.end =  #{query.end,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.start != null and query.start != ''" >
+	  		 		/*  */
+			    	AND ab.start =  #{query.start,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.hideparticipant != null and query.hideparticipant != ''" >
+	  		 		/* 是否显示参与人数0隐藏1为显示 */
+			    	AND ab.hideParticipant =  #{query.hideparticipant,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.ruletips != null and query.ruletips != ''" >
+	  		 		/* 活动规则 */
+			    	AND ab.ruleTips =  #{query.ruletips,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.deleted != null " >
+	  		 		/* 1为已删除
+0为正常 */
+			    	AND ab.deleted =  #{query.deleted,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.activitytype != null and query.activitytype != ''" >
+	  		 		/* 活动类型 */
+			    	AND ab.activityType =  #{query.activitytype,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.jwid != null and query.jwid != ''" >
+	  		 		/* 所属公众号 */
+			    	AND ab.jwid =  #{query.jwid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.userid != null and query.userid != ''" >
+	  		 		/* 创建人 */
+			    	AND ab.userid =  #{query.userid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.pagejsoncontent != null and query.pagejsoncontent != ''" >
+	  		 		/* 活动界面设计 */
+			    	AND ab.pagejsoncontent =  #{query.pagejsoncontent,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.ispublish != null and query.ispublish != ''" >
+	  		 		/*  */
+			    	AND ab.ispublish =  #{query.ispublish,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.globalprobability != null and query.globalprobability != ''" >
+	  		 		/* 总中奖率 */
+			    	AND ab.globalProbability =  #{query.globalprobability,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.probabilitytype != null and query.probabilitytype != ''" >
+	  		 		/* 是否均匀发放 */
+			    	AND ab.probabilityType =  #{query.probabilitytype,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.trophyvalidator != null and query.trophyvalidator != ''" >
+	  		 		/* 获奖验证 */
+			    	AND ab.trophyValidator =  #{query.trophyvalidator,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.qrcodeurl != null and query.qrcodeurl != ''" >
+	  		 		/* 助力环节图片及布局 */
+			    	AND ab.qrcodeUrl =  #{query.qrcodeurl,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.awardsendtype != null and query.awardsendtype != ''" >
+	  		 		/*  */
+			    	AND ab.awardSendType =  #{query.awardsendtype,jdbcType=INTEGER}
+				 </if>
+				 				 <if test="query.extendOperation != null and query.extendOperation != ''" >
+	  		 		/* 助力环节图片及布局 */
+			    	AND ab.extendOperation =  #{query.extendOperation,jdbcType=VARCHAR}
+				 </if>
+				 				 <if test="query.creatDate != null and query.creatDate != ''" >
+	  		 		/*  */
+			    	AND ab.creatDate =  #{query.creatDate,jdbcType=TIMESTAMP}
+				 </if>
+				 
+				 
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheel.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" keyProperty="id" useGeneratedKeys="true">
+	  INSERT  INTO  activity_bigwheel   /*  */  
+					(	
+                       title                         /* 活动名称 */ 
+                     ,end                           /*  */ 
+                     ,start                         /*  */ 
+                     ,hideParticipant               /* 是否显示参与人数0隐藏1为显示 */ 
+                     ,ruleTips                      /* 活动规则 */ 
+                     ,deleted                       /* 1为已删除
+0为正常 */ 
+                     ,activityType                  /* 活动类型 */ 
+                     ,jwid                         /* 所属公众号 */ 
+                     ,userid                        /* 创建人 */ 
+                     ,pagejsoncontent               /* 活动界面设计 */ 
+                     ,ispublish          /*  */ 
+                     ,globalProbability             /* 总中奖率 */ 
+                     ,probabilityType               /* 是否均匀发放 */ 
+                     ,trophyValidator               /* 获奖验证 */ 
+                     ,qrcodeUrl                     /* 助力环节图片及布局 */ 
+                     ,awardSendType                 /*  */ 
+                     ,extendOperation
+                     ,creatDate
+                     ,isBuy
+                     ,everydayprob
+					)
+			values (
+                       #{title,jdbcType=VARCHAR}                         /* 活动名称 */ 
+                     ,#{end,jdbcType=TIMESTAMP}                           /*  */ 
+                     ,#{start,jdbcType=TIMESTAMP}                         /*  */ 
+                     ,#{hideparticipant,jdbcType=VARCHAR}               /* 是否显示参与人数0隐藏1为显示 */ 
+                     ,#{ruletips,jdbcType=VARCHAR}                      /* 活动规则 */ 
+                     ,#{deleted,jdbcType=INTEGER}                       /* 1为已删除
+0为正常 */ 
+                     ,#{activitytype,jdbcType=VARCHAR}                  /* 活动类型 */ 
+                     ,#{jwid,jdbcType=VARCHAR}                         /* 所属公众号 */ 
+                     ,#{userid,jdbcType=VARCHAR}                        /* 创建人 */ 
+                     ,#{pagejsoncontent,jdbcType=VARCHAR}               /* 活动界面设计 */ 
+                     ,#{ispublish,jdbcType=VARCHAR}           /*  */ 
+                     ,#{globalprobability,jdbcType=INTEGER}             /* 总中奖率 */ 
+                     ,#{probabilitytype,jdbcType=INTEGER}               /* 是否均匀发放 */ 
+                     ,#{trophyvalidator,jdbcType=VARCHAR}               /* 获奖验证 */ 
+                     ,#{qrcodeurl,jdbcType=VARCHAR}                     /* 助力环节图片及布局 */ 
+                     ,#{awardsendtype,jdbcType=INTEGER}                 /*  */ 
+                     ,#{extendOperation,jdbcType=VARCHAR}  
+                     ,#{creatDate,jdbcType=TIMESTAMP} 
+                     ,#{isBuy,jdbcType=VARCHAR}  
+                     ,#{everydayprob,jdbcType=DECIMAL}
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheel.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   activity_bigwheel  	/*  */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="title != null">
+		    		 		/* 活动名称 */ 
+	    		 			title = #{title,jdbcType=VARCHAR},
+						 </if>
+						 <if test="everydayprob != null">
+		    		 		/* 活动名称 */ 
+	    		 			everydayprob = #{everydayprob,jdbcType=DECIMAL},
+						 </if>
+						  <if test="isBuy != null">
+		    		 		/* 活动名称 */ 
+	    		 			isBuy = #{isBuy,jdbcType=VARCHAR},
+						 </if>
+						 <if test="end != null">
+		    		 		/*  */ 
+	    		 			end = #{end,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="start != null">
+		    		 		/*  */ 
+	    		 			start = #{start,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="hideparticipant != null">
+		    		 		/* 是否显示参与人数0隐藏1为显示 */ 
+	    		 			hideParticipant = #{hideparticipant,jdbcType=VARCHAR},
+						 </if>
+						 <if test="ruletips != null">
+		    		 		/* 活动规则 */ 
+	    		 			ruleTips = #{ruletips,jdbcType=VARCHAR},
+						 </if>
+						 <if test="deleted != null">
+		    		 		/* 1为已删除
+0为正常 */ 
+	    		 			deleted = #{deleted,jdbcType=INTEGER},
+						 </if>
+						 <if test="activitytype != null">
+		    		 		/* 活动类型 */ 
+	    		 			activityType = #{activitytype,jdbcType=VARCHAR},
+						 </if>
+						 <if test="jwid != null">
+		    		 		/* 所属公众号 */ 
+	    		 			jwid = #{jwid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="userid != null">
+		    		 		/* 创建人 */ 
+	    		 			userid = #{userid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="pagejsoncontent != null">
+		    		 		/* 活动界面设计 */ 
+	    		 			pagejsoncontent = #{pagejsoncontent,jdbcType=VARCHAR},
+						 </if>
+						 <if test="ispublish != null">
+		    		 		/*  */ 
+	    		 			ispublish = #{ispublish,jdbcType=VARCHAR},
+						 </if>
+						 <if test="globalprobability != null">
+		    		 		/* 总中奖率 */ 
+	    		 			globalProbability = #{globalprobability,jdbcType=INTEGER},
+						 </if>
+						 <if test="probabilitytype != null">
+		    		 		/* 是否均匀发放 */ 
+	    		 			probabilityType = #{probabilitytype,jdbcType=INTEGER},
+						 </if>
+						 <if test="trophyvalidator != null">
+		    		 		/* 获奖验证 */ 
+	    		 			trophyValidator = #{trophyvalidator,jdbcType=VARCHAR},
+						 </if>
+						 <if test="qrcodeurl != null">
+		    		 		/* 助力环节图片及布局 */ 
+	    		 			qrcodeUrl = #{qrcodeurl,jdbcType=VARCHAR},
+						 </if>
+						 <if test="awardsendtype != null">
+		    		 		/*  */ 
+	    		 			awardSendType = #{awardsendtype,jdbcType=INTEGER},
+						 </if>
+						  <if test="extendOperation != null">
+		    		 		/* 助力环节图片及布局 */ 
+	    		 			extendOperation = #{extendOperation,jdbcType=VARCHAR},
+						 </if>
+						 <if test="creatDate != null">
+		    		 		/*  */ 
+	    		 			creatDate = #{creatDate,jdbcType=TIMESTAMP},
+						 </if> 
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheel.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="ActivityBigwheel">
+		   SELECT   
+                   ab.id                            /*  */ 
+                  ,ab.title                         /* 活动名称 */ 
+                  ,ab.end                           /*  */ 
+                  ,ab.start                         /*  */ 
+                  ,ab.hideParticipant               /* 是否显示参与人数0隐藏1为显示 */ 
+                  ,ab.ruleTips                      /* 活动规则 */ 
+                  ,ab.deleted                       /* 1为已删除
+0为正常 */ 
+                  ,ab.activityType                  /* 活动类型 */ 
+                  ,ab.jwid                         /* 所属公众号 */ 
+                  ,ab.userid                        /* 创建人 */ 
+                  ,ab.pagejsoncontent               /* 活动界面设计 */ 
+                  ,ab.ispublish          /*  */ 
+                  ,ab.globalProbability             /* 总中奖率 */ 
+                  ,ab.probabilityType               /* 是否均匀发放 */ 
+                  ,ab.trophyValidator               /* 获奖验证 */ 
+                  ,ab.qrcodeUrl                     /* 助力环节图片及布局 */ 
+                  ,ab.awardSendType                 /*  */ 
+                  ,ab.extendOperation
+                  ,ab.creatDate
+                  ,ab.isBuy
+                  ,ab.everydayprob
+		   FROM   activity_bigwheel      AS ab      /*  */ 
+		   WHERE
+				id = #{id}	and 	deleted !='1'	/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheel.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM activity_bigwheel 	/*  */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheel.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  activity_bigwheel      AS ab      /*  */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheel.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="ActivityBigwheel">
+		    SELECT 
+                   ab.id                            /*  */ 
+                  ,ab.title                         /* 活动名称 */ 
+                  ,ab.end                           /*  */ 
+                  ,ab.start                         /*  */ 
+                  ,ab.hideParticipant               /* 是否显示参与人数0隐藏1为显示 */ 
+                  ,ab.ruleTips                      /* 活动规则 */ 
+                  ,ab.deleted                       /* 1为已删除
+0为正常 */ 
+                  ,ab.activityType                  /* 活动类型 */ 
+                  ,ab.jwid                         /* 所属公众号 */ 
+                  ,ab.userid                        /* 创建人 */ 
+                  ,ab.pagejsoncontent               /* 活动界面设计 */ 
+                  ,ab.ispublish          /*  */ 
+                  ,ab.globalProbability             /* 总中奖率 */ 
+                  ,ab.probabilityType               /* 是否均匀发放 */ 
+                  ,ab.trophyValidator               /* 获奖验证 */ 
+                  ,ab.qrcodeUrl                     /* 助力环节图片及布局 */ 
+                  ,ab.awardSendType                 /*  */ 
+                  ,ab.extendOperation
+                  ,ab.creatDate
+                  ,ab.isBuy
+                  ,ab.everydayprob
+		FROM   	 activity_bigwheel      AS ab      /*  */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+	
+		<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheel.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="getByIdAndUserid" parameterType="Object"  resultMap="ActivityBigwheel">
+		   SELECT   
+                   ab.id                            /*  */ 
+                  ,ab.title                         /* 活动名称 */ 
+                  ,ab.end                           /*  */ 
+                  ,ab.start                         /*  */ 
+                  ,ab.hideParticipant               /* 是否显示参与人数0隐藏1为显示 */ 
+                  ,ab.ruleTips                      /* 活动规则 */ 
+                  ,ab.deleted                       /* 1为已删除
+0为正常 */ 
+                  ,ab.activityType                  /* 活动类型 */ 
+                  ,ab.jwid                         /* 所属公众号 */ 
+                  ,ab.userid                        /* 创建人 */ 
+                  ,ab.pagejsoncontent               /* 活动界面设计 */ 
+                  ,ab.ispublish          /*  */ 
+                  ,ab.globalProbability             /* 总中奖率 */ 
+                  ,ab.probabilityType               /* 是否均匀发放 */ 
+                  ,ab.trophyValidator               /* 获奖验证 */ 
+                  ,ab.qrcodeUrl                     /* 助力环节图片及布局 */ 
+                  ,ab.awardSendType                 /*  */ 
+                  ,ab.extendOperation
+                  ,ab.creatDate
+                  ,ab.isBuy
+                  ,ab.everydayprob
+		   FROM   activity_bigwheel      AS ab      /*  */ 
+		   WHERE
+				id = #{id,jdbcType=INTEGER}	 and 	userid = #{userid,jdbcType=VARCHAR}	/* 序号 */ 
+	</select>
+	
+	
+		<select id="getActRuntime" parameterType="Object"  resultMap="ActRuntime">
+select  count(a.openid) as playerNum , sum(a.parcount) as playTimes ,b.helpcount as helpNum from (select openid ,count(*) as parcount from activity_bigwheel_record group by openid) a  , (select count(*) helpcount from  activity_bigwheel_record b  where  b.helpid != '') b
+	</select>
+	
+	<select id="getBigwheelAll" parameterType="Object"  resultMap="ActivityBigwheelConfigPlayRule">
+	 select * from activity_bigwheel_playrule b,activity_config c ,activity_bigwheel a where a.id =b.activityId and a.id =c.activityId and a.id = #{id} and  deleted !='1'	
+	</select>
+</mapper>

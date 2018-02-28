@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="Keywords" content="友房网">
+    <meta name="description" content="友房网">
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 720;
+        var ua = navigator.userAgent;
+        document.write('<meta name="viewport" content="width=device-width, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi, user-scalable=no">');
+    </script>
+    <title>友房网</title>
+ 
+    <link href="$!{basePath}/content/houseaOnline/back/css/cs" rel="stylesheet" type="text/css">
+ <script src="$!{basePath}/content/js/vue.min.js" type="text/javascript"></script>
+  </head>
+<body style="background:#ffffff;">
+ <div class="container"  id="carousel">
+    <input type="hidden" id="IsLogin" name="IsLogin" value="true">
+    <div class="weui-header">
+        <a href="javascript:history.go(-1)"><i class="icon-back"></i></a>
+        <div class="alcent weui-box">
+            <span class="title textellipsis">$!{xfProject.name}</span>
+        </div>
+        <p class="head-fllow"  v-on:click="doFollow()"><i v-if="isfollow" class="icon-fllowed "></i><i v-else  class="icon-fllow "></i><span id="j_fllowcount">{{followcount}}人</span></p>
+    </div>
+   
+  	   <div class="carousel-wrap">
+		    <transition-group tag="ul" class='slide-ul' name="list">
+		      <li v-for="(list,index) in slideList" :key="index" v-show="index===currentIndex" @mouseenter="stop" @mouseleave="go">
+		          <img :src="list.src" :alt="list.name">
+		      </li>
+		    </transition-group>
+		 
+		    <div class="carousel-items">
+		      <span v-for="(item,index) in slideList.length" :class="{'active':index===currentIndex}" @mouseover="change(index)"></span>
+		    </div>
+		</div>
+  
+
+    <section class="project_detail">
+        <div class="base">
+            <div class="page__bd_spacing">
+                <div class="title">
+                    <p>$!{xfProject.name}</p>
+                    <span class="viewcount"><i class="icon-viewcount"></i>($!{xfProject.xfProjectcol1})</span>
+                </div>
+                <div class="price">
+                    <p>$!{xfProject.avPrice}</p>
+                </div>
+                <div class="discount">
+                    <p class=""><i class="icon-discount"></i> $!{xfProject.discount}</p>
+                </div>
+                <div class="stage">
+                </div>
+
+                <div class="paddress">
+                    <p class="textellipsis"><i class="icon-address"></i>$!{xfProject.addr}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="project_detail">
+        <div class="building">
+            <div class="page__bd_spacing">
+                <div class="info_title">
+                    <i></i>楼盘信息
+                </div>
+                <p class="des"><span class="sub_title">开发单位:</span>&nbsp;&nbsp;<span style="font-size:26px;">$!{xfProject.buildCompany}</span></p>
+                <p class="des"><span class="sub_title">最新开盘:</span>&nbsp;&nbsp;<span style="font-size:26px;">$!dateTool.format("yyyy-MM-dd",$!{xfProject.kaipanDate})</span></p>
+                <p class="des"><span class="sub_title">交房时间:</span>&nbsp;&nbsp;<span style="font-size:26px;">$!dateTool.format("yyyy-MM-dd",$!{xfProject.deliveryDate})</span></p>
+                <p class="des"><span class="sub_title">装修情况:</span>&nbsp;&nbsp;<span style="font-size:26px;">$!{xfProject.zhuangxiu}</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="project_detail">
+        <div class="building">
+            <div class="page__bd_spacing">
+                <div class="info_title">
+                    <i></i>楼栋及户型
+                </div> 
+                    <div class="ysw-slide">
+                        <div class="ysw-slide-bd">
+                            <ul class="ysw-slide-cells">
+                                    <li class="ysw-slide-cell" v-for="pagehxInfo in pagehxInfos">
+                                        <div class="house">
+                                            <div class="pic">
+                                                    <img :src="pagehxInfo.pic[0].src" class="img-responsive">   
+                                            </div>
+                                            <div class="s_title">
+                                                <p>{{pagehxInfo.name}}</p>
+                                            </div>
+                                            <div class="">
+                                                {{pagehxInfo.area}}m²
+                                            </div>
+                                        </div>
+                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project_detail">
+        <div class="building">
+            <div class="page__bd_spacing">
+                <div class="info_title">
+                    <i></i>项目介绍
+                </div>
+                <div>
+                    $!{xfProject.content}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div style="height:98px;"></div>
+
+    <div class="footer1">
+        <div class="right-btn">
+            <div class="flexbox">
+                    <a class="tj-yh btn_return" href="$!{basePath}/houseaOnline/houseIndex.html?pid=$!{xfProject.id}">查看房源</a>
+                
+            </div>
+        </div>
+    </div>
+<div class="ui-dialog ui-dialog-notice show"  v-if="loading"  ><div class="ui-dialog-cnt"><i class="ui-loading-bright"></i><p>操作中,请稍后</p></div></div>
+</div>
+</body>
+ <script> 
+ 			var id = "$!{xfProject.id}";
+			var count ="$!{xfProject.xfProjectcol1}";
+			var serverroot="$!{basePath}";
+			var isfollow1 = $!{isfollow};
+			var followcount1 = $!{followcount};
+			var resourcename = "$!{xfProject.name}";
+			var resourcetype="0";
+			var slideList=$!{xfProject.xfProjectcol} ;
+			var pagehxInfos=$!{pagehxInfos};
+
+
+	</script>
+ 
+</html>
+<script type="text/javascript" src="$!{basePath}/content/jlb/js/jquery.min.js"></script> 
+<script type="text/javascript" src="$!{basePath}/content/houseaOnline/back/js/projectdetail.js"></script> 
+<script type="text/javascript" src="$!{basePath}/content/jlb/js/actbook.js"></script>

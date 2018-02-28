@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">详情</div>
+				  	<div class="panel-body">
+				   		<form class="form-horizontal" role="form">
+							  <fieldset disabled>
+							  																 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">楼栋名称</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfBuilding.name}" name="name" id="name" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">楼栋位置</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfBuilding.addr}" name="addr" id="addr" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">楼盘项目ID</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfBuilding.pid}" name="pid" id="pid" class="form-control" />
+													    </div>
+													  </div>
+													  
+													   <div class="form-group mno" >
+												    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">开盘时间</label>
+												    <div class="col-sm-2">
+												      <input type="text" value="$!{xfBuilding.kaipanDate}" name="kaipanDate" id="kaipanDate" class="form-control"/>
+												    </div>
+												</div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfBuilding.isDelete}" name="isDelete" id="isDelete" class="form-control" />
+													    </div>
+													  </div>
+													  <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!dateTool.format("yyyy-MM-dd",$!{xfBuilding.createtime})" name="createtime" id="createtime" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfBuilding.createuser}" name="createuser" id="createuser" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfBuilding.floorcount}" name="floorcount" id="floorcount" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">楼栋类型:高层（12层以上） 小高层（9-12） 洋房 低层（1-3层） 多层（4-6
+层）中高层（7-9））</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfBuilding.type}" name="type" id="type" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfBuilding.xfBuildingcol}" name="xfBuildingcol" id="xfBuildingcol" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;"></label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{xfBuilding.xfBuildingcol1}" name="xfBuildingcol1" id="xfBuildingcol1" class="form-control" />
+													    </div>
+													  </div>
+							  </fieldset>
+							  			<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/houseaOnline/back/xfBuilding/list.html')">返回</button>
+        									 </div>
+        							    </div>
+						</form>
+					</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

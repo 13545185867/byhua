@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>$!{toupiaoOption.title}-$!{toupiao.actName}</title>
+<meta name="description" content="$!{toupiaoOption.title}-$!{toupiao.actName}">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="email=no" name="format-detection">
+<meta content="telephone=no" name="format-detection">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+<link href="$!{basePath}/content/toupiao/css/bootstrap.wxvote.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="$!{basePath}/content/toupiao/css/font-awesome.min.css">
+<link href="$!{basePath}/content/toupiao/css/style.css" rel="stylesheet" media="screen">
+<link href="$!{basePath}/content/toupiao/css/wapstyle.css" rel="stylesheet" media="screen">
+<link href="$!{basePath}/content/toupiao/css/votestyle.css" rel="stylesheet" media="screen">
+<script src="$!{basePath}/content/toupiao/js/jquery.js"></script>
+<script src="$!{basePath}/content/toupiao/js/icheck.min.js"></script>
+<script>
+var editor_lang = "zh-cn";
+var captchtimermax = '2';
+var hideopindex = false;  // 
+var TESTCODEMODE = "0";
+var geetestObj = null;
+var wxvrcode = 0;
+var notifyserver = "";
+var guid = "$!{toupiao.id}";
+var serverroot = "$!{basePath}";
+var ghash = "3063bb3f421fb94523b12283a1a4b656";
+var fguid = "a6c3559f-b7b9-d3f1-6447-54d21c4dfde720170623";
+var expired =  "$!{expired}";
+var wxsubmittype = $!{toupiao.voteType};
+var maxselectionnum =$!{toupiao.checkVoteCount};
+var minselectionnum = 1;
+var wxeachsubmitnum = $!{toupiao.checkVoteCount};
+var qqverified = 0;
+var invitecode = 0;
+
+var isinweixin = $!{isinweixin};
+var isinqq = 0;
+var caninqq = 0;
+var optionsnum = 1;
+var optionViewStyle = $!{toupiao.optionViewStyle};
+var loadpagedone = false;
+var ismustfollow = $!{toupiao.foucsUserCanJoin};
+var  showopvotenum = 1;
+var tpldiyfile = "viewvotewx.tpl";
+var loadoptionspernum = 20;
+var checktxt = "选择";
+var checkedtxt = "已选择";
+var optionunitname = "个";
+var votebtntype = "1";
+var votebtntxtinfo = {"btntxt":"\u6295\u7968","unit":"\u7968","action":"\u6295","unit1":"\u7968","btntxt1":"\u6295TA\u4e00\u7968"};
+var hadselnum = 0;
+
+</script>
+<script src="$!{basePath}/content/toupiao/js/config.js"></script>
+<script src="$!{basePath}/content/toupiao/js/bootstrap.min.js"></script>
+<link href="$!{basePath}/content/toupiao/css/$!{toupiao.pageViewStyle}" rel="stylesheet" media="screen">
+<style>
+body{background-color:#ffffff  }
+</style>
+
+<style type="text/css"></style></head>
+<body class="weixinstyle">
+<div class="topbar" style="position: fixed; opacity: 1;">
+<a href="#" onclick="history.go(-1)" target="_top"><i class=" icon-angle-left"></i> 返回</a>
+</div>
+<div class="wapwrap" style="padding-top:30px;">
+
+	
+<div class="container bodycontainer" style="min-height:350px;">	
+			<div class="page-header">
+            $!{toupiaoOption.identifier}. $!{toupiaoOption.title}
+          	</div>
+
+			<div class="oppageimg" style="margin-bottom:20px;text-align:center;">
+					<img src="$!{basePath}/upload/img/system/$!{toupiaoOption.image}">
+			</div>
+			
+			<div class="vopagecontentbody">
+				$!{toupiaoOption.description}
+			</div>
+			<div class="votenuminfo" id="wxinfo_$!{toupiaoOption.id}">
+			已获投票数：<span>$!{toupiaoOption.voteCount}</span>
+			</div>
+						<div class="votebuttons">
+			<button class="btn btn-info wxvotebutton " name="$!{toupiaoOption.id}">投票</button>
+						</div>
+					<input type="hidden" value="" name="wxparam" id="wxparam">
+</div>
+</div>
+<div class="wapalert">
+	<p>投票成功</p>
+</div>
+
+
+<script src="$!{basePath}/content/toupiao/js/lang_206.js"></script>
+<script src="$!{basePath}/content/toupiao/js/main.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/toupiao/js/wxvote.js"></script>
+
+<div class="footer footerwap" style="position: relative; ">
+
+<p style="color:#666;">
+<a href="" style="color:#0088cc">大悟君逸文化传媒</a>提供技术支持
+</p>
+
+</div>
+<input type="hidden" name="openid" id="openid" value="$!{weixinDto.openid}"/>
+<input type="hidden" name="nickname" id="nickname" value="$!{weixinDto.nickname}"/>
+<input type="hidden" name="subscribe" id="subscribe" value="$!{weixinDto.subscribe}"/>
+<input type="hidden" name="jwid" id="jwid" value="$!{weixinDto.jwid}"/>
+<input type="hidden" name="appid" id="appid" value="$!{weixinDto.appid}"/>
+<script>
+var openid =$("#openid").val();
+var subscribe =$("#subscribe").val();
+var actId =$("#actId").val();
+var jwid =$("#jwid").val();
+window.onscroll=function(){
+	
+	if(getScrollTop() > 10)
+	{
+		$(".topbar").css({"opacity":0.7})
+	}
+	else
+	{
+		$(".topbar").css({"opacity":1})
+	}
+}
+</script>
+</body></html>

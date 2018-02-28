@@ -1,0 +1,337 @@
+#parse("content/base/back/common/macro.vm")
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<form role="form" class="form-inline" action="$!{basePath}/activity/back/activityConfig/list.do" method="post"  id="formSubmit">
+				<div  class="col-md-10" style="width:100%">
+								<div class="panel panel-default">
+								  <div class="panel-heading">砍价活动配置列表</div>
+								  <div class="panel-body">
+								  		<div class="search">
+															 <div class="form-group col-sm-3">
+															    <label for="organizer" class="control-label col-sm-3 line34">主办单位</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="organizer" id="organizer" value="$!{activityConfig.organizer}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="usedefaultloadpage" class="control-label col-sm-3 line34">打开前加载页0为系统默认，1为自定义</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="usedefaultloadpage" id="usedefaultloadpage" value="$!{activityConfig.usedefaultloadpage}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="jumplinkbtn" class="control-label col-sm-3 line34">主办单位url链接0为不开启
+1为开启</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="jumplinkbtn" id="jumplinkbtn" value="$!{activityConfig.jumplinkbtn}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="organizerlink" class="control-label col-sm-3 line34">主办方URL</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="organizerlink" id="organizerlink" value="$!{activityConfig.organizerlink}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="usedefaultcopyright" class="control-label col-sm-3 line34">显示版权0为显示系统默认 1为自定义</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="usedefaultcopyright" id="usedefaultcopyright" value="$!{activityConfig.usedefaultcopyright}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="useshareico" class="control-label col-sm-3 line34">分享图片0为系统默认
+1为自定义图片</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="useshareico" id="useshareico" value="$!{activityConfig.useshareico}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="shareimgpath" class="control-label col-sm-3 line34">分享小图标url</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="shareimgpath" id="shareimgpath" value="$!{activityConfig.shareimgpath}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="usesharetitle" class="control-label col-sm-3 line34">分享标题 0为默认
+1是为自定义</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="usesharetitle" id="usesharetitle" value="$!{activityConfig.usesharetitle}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="sharetitletext" class="control-label col-sm-3 line34">分享自定义标题</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="sharetitletext" id="sharetitletext" value="$!{activityConfig.sharetitletext}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="usesharetxt" class="control-label col-sm-3 line34">分享内容0为默认1为自定义</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="usesharetxt" id="usesharetxt" value="$!{activityConfig.usesharetxt}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="noawardtext" class="control-label col-sm-3 line34">未得奖分享内容</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="noawardtext" id="noawardtext" value="$!{activityConfig.noawardtext}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="awardtext" class="control-label col-sm-3 line34">得奖分享内容</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="awardtext" id="awardtext" value="$!{activityConfig.awardtext}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="wxlink" class="control-label col-sm-3 line34">引导关注图链接</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="wxlink" id="wxlink" value="$!{activityConfig.wxlink}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="needfollow" class="control-label col-sm-3 line34">是否需要关注后参加0为不关注可参加1为否</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="needfollow" id="needfollow" value="$!{activityConfig.needfollow}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="participatelimit" class="control-label col-sm-3 line34">填写手机号码才可参加 0为关闭1为开启</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="participatelimit" id="participatelimit" value="$!{activityConfig.participatelimit}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="exchangelimit" class="control-label col-sm-3 line34">1填写信息才可兑奖
+0不用填写</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="exchangelimit" id="exchangelimit" value="$!{activityConfig.exchangelimit}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="addresstext" class="control-label col-sm-3 line34">只允许这些地能得奖或投票</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="addresstext" id="addresstext" value="$!{activityConfig.addresstext}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="activityid" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="activityid" id="activityid" value="$!{activityConfig.activityid}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="activityConfigcol" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="activityConfigcol" id="activityConfigcol" value="$!{activityConfig.activityConfigcol}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="activityConfigcol1" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="activityConfigcol1" id="activityConfigcol1" value="$!{activityConfig.activityConfigcol1}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="activityConfigcol2" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="activityConfigcol2" id="activityConfigcol2" value="$!{activityConfig.activityConfigcol2}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="customcopyrightpic" class="control-label col-sm-3 line34">自定义版权图</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="customcopyrightpic" id="customcopyrightpic" value="$!{activityConfig.customcopyrightpic}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="copyrightlink" class="control-label col-sm-3 line34">版权链接</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="copyrightlink" id="copyrightlink" value="$!{activityConfig.copyrightlink}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="iscurrent" class="control-label col-sm-3 line34">是否是现场活动
+0为否
+1为是
+现场活动需现场参加</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="iscurrent" id="iscurrent" value="$!{activityConfig.iscurrent}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="organizerlogo" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="organizerlogo" id="organizerlogo" value="$!{activityConfig.organizerlogo}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="bgpic" class="control-label col-sm-3 line34">活动背景</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="bgpic" id="bgpic" value="$!{activityConfig.bgpic}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="needarea" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="needarea" id="needarea" value="$!{activityConfig.needarea}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="needsex" class="control-label col-sm-3 line34">性别验证</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="needsex" id="needsex" value="$!{activityConfig.needsex}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="withhelp" class="control-label col-sm-3 line34">true为开启好友协助false为不开启</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="withhelp" id="withhelp" value="$!{activityConfig.withhelp}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="city" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="city" id="city" value="$!{activityConfig.city}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="province" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="province" id="province" value="$!{activityConfig.province}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="hideorganizerlogo" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="hideorganizerlogo" id="hideorganizerlogo" value="$!{activityConfig.hideorganizerlogo}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="showcopyright" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="showcopyright" id="showcopyright" value="$!{activityConfig.showcopyright}" class="form-control">
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="showsupport" class="control-label col-sm-3 line34"></label>
+															     <div class="col-sm-8">
+															    <input type="text" name="showsupport" id="showsupport" value="$!{activityConfig.showsupport}" class="form-control">
+															  	</div>
+															 </div>
+											  <button type="submit" class="btn btn-primary">搜  索</button>
+											  <div class="clearfix"></div>
+								  		</div>
+								  		<div id="legend">
+								          <legend  class="le"><button type="button" class="btn btn-primary" onclick="doUrl('$!{basePath}/activity/back/activityConfig/toAdd.do')" >新增</button></legend> 
+								        </div>
+								        <table class="table table-striped">
+									        <thead>
+													<th>主办单位</th>
+													<th>打开前加载页0为系统默认，1为自定义</th>
+													<th>主办单位url链接0为不开启
+1为开启</th>
+													<th>主办方URL</th>
+													<th>显示版权0为显示系统默认 1为自定义</th>
+													<th>分享图片0为系统默认
+1为自定义图片</th>
+													<th>分享小图标url</th>
+													<th>分享标题 0为默认
+1是为自定义</th>
+													<th>分享自定义标题</th>
+													<th>分享内容0为默认1为自定义</th>
+													<th>未得奖分享内容</th>
+													<th>得奖分享内容</th>
+													<th>引导关注图链接</th>
+													<th>是否需要关注后参加0为不关注可参加1为否</th>
+													<th>填写手机号码才可参加 0为关闭1为开启</th>
+													<th>1填写信息才可兑奖
+0不用填写</th>
+													<th>只允许这些地能得奖或投票</th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th>自定义版权图</th>
+													<th>版权链接</th>
+													<th>是否是现场活动
+0为否
+1为是
+现场活动需现场参加</th>
+													<th></th>
+													<th>活动背景</th>
+													<th></th>
+													<th>性别验证</th>
+													<th>true为开启好友协助false为不开启</th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th></th>
+													<th></th>
+						                			<th>操作</th>
+									        </thead>
+									        <tobody>
+									    	  #if($!{pageInfos})
+								                #foreach($!{info} in $!{pageInfos})
+									            	<tr>			
+																	<td>$!{info.organizer}</td>
+																	<td>$!{info.usedefaultloadpage}</td>
+																	<td>$!{info.jumplinkbtn}</td>
+																	<td>$!{info.organizerlink}</td>
+																	<td>$!{info.usedefaultcopyright}</td>
+																	<td>$!{info.useshareico}</td>
+																	<td>$!{info.shareimgpath}</td>
+																	<td>$!{info.usesharetitle}</td>
+																	<td>$!{info.sharetitletext}</td>
+																	<td>$!{info.usesharetxt}</td>
+																	<td>$!{info.noawardtext}</td>
+																	<td>$!{info.awardtext}</td>
+																	<td>$!{info.wxlink}</td>
+																	<td>$!{info.needfollow}</td>
+																	<td>$!{info.participatelimit}</td>
+																	<td>$!{info.exchangelimit}</td>
+																	<td>$!{info.addresstext}</td>
+																	<td>$!{info.activityid}</td>
+																	<td>$!{info.activityConfigcol}</td>
+																	<td>$!{info.activityConfigcol1}</td>
+																	<td>$!{info.activityConfigcol2}</td>
+																	<td>$!{info.customcopyrightpic}</td>
+																	<td>$!{info.copyrightlink}</td>
+																	<td>$!{info.iscurrent}</td>
+																	<td>$!{info.organizerlogo}</td>
+																	<td>$!{info.bgpic}</td>
+																	<td>$!{info.needarea}</td>
+																	<td>$!{info.needsex}</td>
+																	<td>$!{info.withhelp}</td>
+																	<td>$!{info.city}</td>
+																	<td>$!{info.province}</td>
+																	<td>$!{info.hideorganizerlogo}</td>
+																	<td>$!{info.showcopyright}</td>
+																	<td>$!{info.showsupport}</td>
+										                <td class="last">
+							                			<a href="javascript:doUrl('$!{basePath}/activity/back/activityConfig/toEdit.do?id=$!{info.id}')" >编辑</a>
+							                			<a href="javascript:delData('$!{basePath}/activity/back/activityConfig/doDelete.do?id=$!{info.id}')">删除</a>
+							                			<a href="javascript:doUrl('$!{basePath}/activity/back/activityConfig/toDetail.do?id=$!{info.id}')">详情</a>
+						                				</td>
+									           		</tr>
+									             #end
+									    	 #end
+									         </tobody>
+									    </table>
+										<div class="text-right">
+											<!--公用翻页代码-->
+							                #set($attr='formSubmit')
+							            	#showPageList($pageInfos $attr)
+							                <!--END公用翻页代码-->
+										</div>
+								  </div>	
+								</div>
+				</div>  
+				</form>
+		</div>
+	</div>
+</body>
+</html>

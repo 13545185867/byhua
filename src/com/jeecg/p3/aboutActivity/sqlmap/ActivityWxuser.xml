@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.aboutActivity.entity.ActivityWxuser">
+
+	<!-- Result Map-->
+	<resultMap id="ActivityWxuser" type="com.jeecg.p3.aboutActivity.entity.ActivityWxuser" >
+		<result column="openid" property="openid" jdbcType="VARCHAR"/>
+		<result column="headPic" property="headpic" jdbcType="VARCHAR"/>
+		<result column="nickName" property="nickname" jdbcType="VARCHAR"/>
+		<result column="city" property="city" jdbcType="VARCHAR"/>
+		<result column="province" property="province" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
+		<result column="subscribe" property="subscribe" jdbcType="INTEGER"/>
+		<result column="sex" property="sex" jdbcType="VARCHAR"/>
+		<result column="country" property="country" jdbcType="VARCHAR"/>
+		<result column="subscribe_time" property="subscribeTime" jdbcType="TIMESTAMP"/>
+		<result column="activity_wxusercol" property="activityWxusercol" jdbcType="VARCHAR"/>
+		<result column="activity_wxusercol1" property="activityWxusercol1" jdbcType="VARCHAR"/>
+		<result column="activity_wxusercol2" property="activityWxusercol2" jdbcType="VARCHAR"/>
+		<result column="realname" property="realname" jdbcType="VARCHAR"/>
+		<result column="phonenum" property="phonenum" jdbcType="VARCHAR"/>
+		<result column="addr" property="addr" jdbcType="VARCHAR"/>
+		<result column="wxappid" property="wxappid" jdbcType="VARCHAR"/>
+		<result column="id" property="id" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.openid != null and query.openid != ''" >
+	  		 		/*  */
+			    	AND aw.openid =  #{query.openid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.headpic != null and query.headpic != ''" >
+	  		 		/*  */
+			    	AND aw.headPic =  #{query.headpic,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.nickname != null and query.nickname != ''" >
+	  		 		/*  */
+			    	AND aw.nickName =  #{query.nickname,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.city != null and query.city != ''" >
+	  		 		/* 城市 */
+			    	AND aw.city =  #{query.city,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.province != null and query.province != ''" >
+	  		 		/* 省 */
+			    	AND aw.province =  #{query.province,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.status != null and query.status != ''" >
+	  		 		/* 0为正常
+1为拉黑 */
+			    	AND aw.status =  #{query.status,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.subscribe != null and query.subscribe != ''" >
+	  		 		/* 是否已关注0为未1 */
+			    	AND aw.subscribe =  #{query.subscribe,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.sex != null and query.sex != ''" >
+	  		 		/*  */
+			    	AND aw.sex =  #{query.sex,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.country != null and query.country != ''" >
+	  		 		/* 国家 */
+			    	AND aw.country =  #{query.country,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.subscribeTime != null and query.subscribeTime != ''" >
+	  		 		/* 关注时间 */
+			    	AND aw.subscribe_time =  #{query.subscribeTime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.activityWxusercol != null and query.activityWxusercol != ''" >
+	  		 		/*  */
+			    	AND aw.activity_wxusercol =  #{query.activityWxusercol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.activityWxusercol1 != null and query.activityWxusercol1 != ''" >
+	  		 		/*  */
+			    	AND aw.activity_wxusercol1 =  #{query.activityWxusercol1,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.activityWxusercol2 != null and query.activityWxusercol2 != ''" >
+	  		 		/*  */
+			    	AND aw.activity_wxusercol2 =  #{query.activityWxusercol2,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.realname != null and query.realname != ''" >
+	  		 		/*  */
+			    	AND aw.realname =  #{query.realname,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.phonenum != null and query.phonenum != ''" >
+	  		 		/*  */
+			    	AND aw.phonenum =  #{query.phonenum,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.addr != null and query.addr != ''" >
+	  		 		/*  */
+			    	AND aw.addr =  #{query.addr,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.wxappid != null and query.wxappid != ''" >
+	  		 		/* 活动APPid */
+			    	AND aw.wxappid =  #{query.wxappid,jdbcType=VARCHAR}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.activity.entity.ActivityWxuser.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  activity_wxuser   /*  */  
+					(	
+                      openid                        /*  */ 
+                     ,headPic                       /*  */ 
+                     ,nickName                      /*  */ 
+                     ,city                          /* 城市 */ 
+                     ,province                      /* 省 */ 
+                     ,status                        /* 0为正常
+1为拉黑 */ 
+                     ,subscribe                     /* 是否已关注0为未1 */ 
+                     ,sex                           /*  */ 
+                     ,country                       /* 国家 */ 
+                     ,subscribe_time                /* 关注时间 */ 
+                     ,activity_wxusercol            /*  */ 
+                     ,activity_wxusercol1           /*  */ 
+                     ,activity_wxusercol2           /*  */ 
+                     ,realname                      /*  */ 
+                     ,phonenum                      /*  */ 
+                     ,addr                          /*  */ 
+                     ,wxappid                       /* 活动APPid */ 
+                     ,id                            /*  */ 
+					)
+			values (
+                      #{openid,jdbcType=VARCHAR}                        /*  */ 
+                     ,#{headpic,jdbcType=VARCHAR}                       /*  */ 
+                     ,#{nickname,jdbcType=VARCHAR}                      /*  */ 
+                     ,#{city,jdbcType=VARCHAR}                          /* 城市 */ 
+                     ,#{province,jdbcType=VARCHAR}                      /* 省 */ 
+                     ,#{status,jdbcType=INTEGER}                        /* 0为正常
+1为拉黑 */ 
+                     ,#{subscribe,jdbcType=INTEGER}                     /* 是否已关注0为未1 */ 
+                     ,#{sex,jdbcType=VARCHAR}                           /*  */ 
+                     ,#{country,jdbcType=VARCHAR}                       /* 国家 */ 
+                     ,#{subscribeTime,jdbcType=TIMESTAMP}                 /* 关注时间 */ 
+                     ,#{activityWxusercol,jdbcType=VARCHAR}             /*  */ 
+                     ,#{activityWxusercol1,jdbcType=VARCHAR}            /*  */ 
+                     ,#{activityWxusercol2,jdbcType=VARCHAR}            /*  */ 
+                     ,#{realname,jdbcType=VARCHAR}                      /*  */ 
+                     ,#{phonenum,jdbcType=VARCHAR}                      /*  */ 
+                     ,#{addr,jdbcType=VARCHAR}                          /*  */ 
+                     ,#{wxappid,jdbcType=VARCHAR}                       /* 活动APPid */ 
+                     ,#{id,jdbcType=INTEGER}                            /*  */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.activity.entity.ActivityWxuser.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   activity_wxuser  	/*  */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="openid != null">
+		    		 		/*  */ 
+	    		 			openid = #{openid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="headpic != null">
+		    		 		/*  */ 
+	    		 			headPic = #{headpic,jdbcType=VARCHAR},
+						 </if>
+						 <if test="nickname != null">
+		    		 		/*  */ 
+	    		 			nickName = #{nickname,jdbcType=VARCHAR},
+						 </if>
+						 <if test="city != null">
+		    		 		/* 城市 */ 
+	    		 			city = #{city,jdbcType=VARCHAR},
+						 </if>
+						 <if test="province != null">
+		    		 		/* 省 */ 
+	    		 			province = #{province,jdbcType=VARCHAR},
+						 </if>
+						 <if test="status != null">
+		    		 		/* 0为正常
+1为拉黑 */ 
+	    		 			status = #{status,jdbcType=INTEGER},
+						 </if>
+						 <if test="subscribe != null">
+		    		 		/* 是否已关注0为未1 */ 
+	    		 			subscribe = #{subscribe,jdbcType=INTEGER},
+						 </if>
+						 <if test="sex != null">
+		    		 		/*  */ 
+	    		 			sex = #{sex,jdbcType=VARCHAR},
+						 </if>
+						 <if test="country != null">
+		    		 		/* 国家 */ 
+	    		 			country = #{country,jdbcType=VARCHAR},
+						 </if>
+						 <if test="subscribeTime != null">
+		    		 		/* 关注时间 */ 
+	    		 			subscribe_time = #{subscribeTime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="activityWxusercol != null">
+		    		 		/*  */ 
+	    		 			activity_wxusercol = #{activityWxusercol,jdbcType=VARCHAR},
+						 </if>
+						 <if test="activityWxusercol1 != null">
+		    		 		/*  */ 
+	    		 			activity_wxusercol1 = #{activityWxusercol1,jdbcType=VARCHAR},
+						 </if>
+						 <if test="activityWxusercol2 != null">
+		    		 		/*  */ 
+	    		 			activity_wxusercol2 = #{activityWxusercol2,jdbcType=VARCHAR},
+						 </if>
+						 <if test="realname != null">
+		    		 		/*  */ 
+	    		 			realname = #{realname,jdbcType=VARCHAR},
+						 </if>
+						 <if test="phonenum != null">
+		    		 		/*  */ 
+	    		 			phonenum = #{phonenum,jdbcType=VARCHAR},
+						 </if>
+						 <if test="addr != null">
+		    		 		/*  */ 
+	    		 			addr = #{addr,jdbcType=VARCHAR},
+						 </if>
+						 <if test="wxappid != null">
+		    		 		/* 活动APPid */ 
+	    		 			wxappid = #{wxappid,jdbcType=VARCHAR},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+	
+	 <update id="updateByopenid" parameterType="Object" >
+	  UPDATE   activity_wxuser  	/*  */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="headpic != null">
+		    		 		/*  */ 
+	    		 			headPic = #{headpic,jdbcType=VARCHAR},
+						 </if>
+						 <if test="nickname != null">
+		    		 		/*  */ 
+	    		 			nickName = #{nickname,jdbcType=VARCHAR},
+						 </if>
+						 <if test="city != null">
+		    		 		/* 城市 */ 
+	    		 			city = #{city,jdbcType=VARCHAR},
+						 </if>
+						 <if test="province != null">
+		    		 		/* 省 */ 
+	    		 			province = #{province,jdbcType=VARCHAR},
+						 </if>
+						 <if test="status != null">
+		    		 		/* 0为正常
+1为拉黑 */ 
+	    		 			status = #{status,jdbcType=INTEGER},
+						 </if>
+						 <if test="subscribe != null">
+		    		 		/* 是否已关注0为未1 */ 
+	    		 			subscribe = #{subscribe,jdbcType=INTEGER},
+						 </if>
+						 <if test="sex != null">
+		    		 		/*  */ 
+	    		 			sex = #{sex,jdbcType=VARCHAR},
+						 </if>
+						 <if test="country != null">
+		    		 		/* 国家 */ 
+	    		 			country = #{country,jdbcType=VARCHAR},
+						 </if>
+						 <if test="subscribeTime != null">
+		    		 		/* 关注时间 */ 
+	    		 			subscribe_time = #{subscribeTime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="activityWxusercol != null">
+		    		 		/*  */ 
+	    		 			activity_wxusercol = #{activityWxusercol,jdbcType=VARCHAR},
+						 </if>
+						 <if test="activityWxusercol1 != null">
+		    		 		/*  */ 
+	    		 			activity_wxusercol1 = #{activityWxusercol1,jdbcType=VARCHAR},
+						 </if>
+						 <if test="activityWxusercol2 != null">
+		    		 		/*  */ 
+	    		 			activity_wxusercol2 = #{activityWxusercol2,jdbcType=VARCHAR},
+						 </if>
+						 <if test="realname != null">
+		    		 		/*  */ 
+	    		 			realname = #{realname,jdbcType=VARCHAR},
+						 </if>
+						 <if test="phonenum != null">
+		    		 		/*  */ 
+	    		 			phonenum = #{phonenum,jdbcType=VARCHAR},
+						 </if>
+						 <if test="addr != null">
+		    		 		/*  */ 
+	    		 			addr = #{addr,jdbcType=VARCHAR},
+						 </if>
+						 <if test="wxappid != null">
+		    		 		/* 活动APPid */ 
+	    		 			wxappid = #{wxappid,jdbcType=VARCHAR},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		openid = #{openid}		/* 序号 */ 
+	 </update>
+	
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.activity.entity.ActivityWxuser.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="ActivityWxuser">
+		   SELECT   
+                   aw.openid                        /*  */ 
+                  ,aw.headPic                       /*  */ 
+                  ,aw.nickName                      /*  */ 
+                  ,aw.city                          /* 城市 */ 
+                  ,aw.province                      /* 省 */ 
+                  ,aw.status                        /* 0为正常
+1为拉黑 */ 
+                  ,aw.subscribe                     /* 是否已关注0为未1 */ 
+                  ,aw.sex                           /*  */ 
+                  ,aw.country                       /* 国家 */ 
+                  ,aw.subscribe_time                /* 关注时间 */ 
+                  ,aw.activity_wxusercol            /*  */ 
+                  ,aw.activity_wxusercol1           /*  */ 
+                  ,aw.activity_wxusercol2           /*  */ 
+                  ,aw.realname                      /*  */ 
+                  ,aw.phonenum                      /*  */ 
+                  ,aw.addr                          /*  */ 
+                  ,aw.wxappid                       /* 活动APPid */ 
+                  ,aw.id                            /*  */ 
+		   FROM   activity_wxuser      AS aw      /*  */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+		<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.activity.entity.ActivityWxuser.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="getByOpenId" parameterType="Object"  resultMap="ActivityWxuser">
+		   SELECT   
+                   aw.openid                        /*  */ 
+                  ,aw.headPic                       /*  */ 
+                  ,aw.nickName                      /*  */ 
+                  ,aw.city                          /* 城市 */ 
+                  ,aw.province                      /* 省 */ 
+                  ,aw.status                        /* 0为正常
+1为拉黑 */ 
+                  ,aw.subscribe                     /* 是否已关注0为未1 */ 
+                  ,aw.sex                           /*  */ 
+                  ,aw.country                       /* 国家 */ 
+                  ,aw.subscribe_time                /* 关注时间 */ 
+                  ,aw.activity_wxusercol            /*  */ 
+                  ,aw.activity_wxusercol1           /*  */ 
+                  ,aw.activity_wxusercol2           /*  */ 
+                  ,aw.realname                      /*  */ 
+                  ,aw.phonenum                      /*  */ 
+                  ,aw.addr                          /*  */ 
+                  ,aw.wxappid                       /* 活动APPid */ 
+                  ,aw.id                            /*  */ 
+		   FROM   activity_wxuser      AS aw      /*  */ 
+		   WHERE
+				openid = #{openid}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.activity.entity.ActivityWxuser.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM activity_wxuser 	/*  */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.activity.entity.ActivityWxuser.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  activity_wxuser      AS aw      /*  */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.activity.entity.ActivityWxuser.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="ActivityWxuser">
+		    SELECT 
+                   aw.openid                        /*  */ 
+                  ,aw.headPic                       /*  */ 
+                  ,aw.nickName                      /*  */ 
+                  ,aw.city                          /* 城市 */ 
+                  ,aw.province                      /* 省 */ 
+                  ,aw.status                        /* 0为正常
+1为拉黑 */ 
+                  ,aw.subscribe                     /* 是否已关注0为未1 */ 
+                  ,aw.sex                           /*  */ 
+                  ,aw.country                       /* 国家 */ 
+                  ,aw.subscribe_time                /* 关注时间 */ 
+                  ,aw.activity_wxusercol            /*  */ 
+                  ,aw.activity_wxusercol1           /*  */ 
+                  ,aw.activity_wxusercol2           /*  */ 
+                  ,aw.realname                      /*  */ 
+                  ,aw.phonenum                      /*  */ 
+                  ,aw.addr                          /*  */ 
+                  ,aw.wxappid                       /* 活动APPid */ 
+                  ,aw.id                            /*  */ 
+		FROM   	 activity_wxuser      AS aw      /*  */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+</mapper>

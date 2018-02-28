@@ -1,0 +1,88 @@
+#parse("content/base/back/common/macromobile.vm")
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="Keywords" content="友房网">
+    <meta name="description" content="友房网">
+     <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 720;
+        var ua = navigator.userAgent;
+        document.write('<meta name="viewport" content="width=device-width, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi, user-scalable=no">');
+    </script>
+    <title>友房网</title>
+    <link href="$!{basePath}/content/houseaOnline/back/css/cs" rel="stylesheet" type="text/css">
+  </head>
+<body>
+
+	 <div class="container">
+ 
+    <div class="page__bd_spacing">
+<form role="form" class="form-inline" action="$!{basePath}/houseaOnline/index.html" method="post"  id="formSubmit">
+<section>
+    <div class="celltitle">
+        <h1 class="page__title">热门房源</h1>
+    </div> 
+</section> 
+        <section>
+                <ul id="thelist" class="lstpro"> 
+   
+     #if($!{pageInfos})
+    #foreach($!{info} in $!{pageInfos})
+    <li>
+        <div class="project">
+            <div class="lf">
+                <div class="wrap" data-href="$!{basePath}/houseaOnline/projectDetail.html?id=$!{info.id}">
+					<a href="$!{basePath}/houseaOnline/projectDetail.html?id=$!{info.id}">
+                        <img src="$!{basePath}/upload/img/jlb/$!{info.pic}" class="img-responsive pic" style="height: 166px; width: 236px;">
+                    <span class="btype">#if('0' eq $!{info.type})住房 #end 
+															     #if('1' eq $!{info.type}) 商铺#end  
+															     #if('2' eq $!{info.type}) 储藏室#end  
+															     #if('3' eq $!{info.type}) 车位#end </span>
+					 </a>
+                </div>
+            </div>
+            <div class="rl">
+                <div class="title">
+                    <a href="$!{basePath}/houseaOnline/projectDetail.html?id=$!{info.id}">$!{info.name}</a>
+                    
+                </div>
+                <div class="paddress" data-href="$!{basePath}/houseaOnline/projectDetail.html?id=$!{info.id}">
+                    <p class=""><i class="icon-address"></i>$!{info.addr}</p>
+                </div>
+                <div class="row-fluid" data-href="$!{basePath}/houseaOnline/projectDetail.html?id=$!{info.id}">
+                    <div class="span5">
+                        <p class="stage textellipsis">通透一居</p>
+                    </div>
+                    <div class="span7 alright">
+                        <p class="price">$!{info.avPrice}</p>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                           <a href="$!{basePath}/houseaOnline/projectDetail.html?id=$!{info.id}" class="label">$!{info.descipt}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+        #end
+ #end
+                </ul>
+        </section>
+    </div>
+    <div class="text-center">
+											<!--公用翻页代码-->
+							                #set($attr='formSubmit')
+							            	#showPageListMobile($actnewInfos $attr)
+							                <!--END公用翻页代码-->
+ </div>
+ </form>
+</div>
+
+ 
+</body>
+ 
+</html>

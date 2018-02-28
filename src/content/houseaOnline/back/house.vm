@@ -1,0 +1,96 @@
+#parse("content/base/back/common/macromobile.vm")
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="Keywords" content="友房网">
+    <meta name="description" content="友房网">
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 720;
+        var ua = navigator.userAgent;
+        document.write('<meta name="viewport" content="width=device-width, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi, user-scalable=no">');
+    </script>
+    <title>友房网</title>
+    <link href="$!{basePath}/content/houseaOnline/back/css/cs" rel="stylesheet" type="text/css">
+          <script src="$!{basePath}/content/js/vue.min.js" type="text/javascript"></script>
+  </head>
+<body style="background:#ffffff;"> 
+<div class="container" id="content">
+    <div class="weui-header">
+        <a href="javascript:history.go(-1);"><i class="icon-back"></i></a>
+        <div class="input-search-customer weui-box alcent">
+            <span class="title textellipsis">{{projectInfos.name}}</span>
+        </div>
+        
+    </div>
+
+    <div class="banwarp">
+        <div class="bd">
+            <ul class="cells"  >
+            <li  class="cell" v-for="buildInfo in buildInfos">
+		    	<a  v-bind:class="{ active: buildInfo.id==curbuild }" @click="toggleban(buildInfo.id,'0')">{{buildInfo.name}}栋</a>
+		    </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="unitwarp">
+        <div class="bd">
+            <ul class="cells" id="j_unit">
+                 <li  class="cell textellipsis" v-for="cellInfo in cellInfos">
+			    	<a   v-bind:class="{ active: curcell==cellInfo.id }"  @click="toggleban(cellInfo.id,'1')">{{cellInfo.name}}单元</a>
+			    </li>     
+            </ul>
+        </div>
+    </div> 
+    <div class="page__bd_spacing">
+        <input id="categoryname" name="categoryname" type="hidden" value="1栋">
+        <input type="hidden" id="j_projectid" value="310">
+        <div id="roomList">
+
+    <div class="row-fluid">
+        <div class="span12">
+                <div class="housemap" style="margin-top:22px;">
+                            <div class="target_tbl markethouse" id="targetlist">
+		                         <ul>
+		                           			<li v-for="houseInfo in houseInfos"  style=" float:left;">
+		                                                <a :href="'$!{basePath}/houseaOnline/houseDetail.html?id='+houseInfo.id" class="pageslide status9 " >
+		                                                 <span class="room-status " :class="[{ 'default-label': houseInfo.status=='0' }, { 'green-label': houseInfo.status=='1' },{ 'yellow-label': houseInfo.status=='2' },{ 'red-label': houseInfo.status=='3' }]"></span>  {{houseInfo.name}}
+		                                                </a>
+		                                   </li>
+		                                   
+	                            </ul>
+                                    
+                       	 </div>
+               </div>
+        </div>
+    </div>
+
+<div class="ui-dialog ui-dialog-notice show"  v-if="loading"  ><div class="ui-dialog-cnt"><i class="ui-loading-bright"></i><p>加载中,请稍后</p></div></div>
+</div>
+    </div>
+    <div style="height:102px"></div>
+    <menu class="weui-tabbar-status">
+     <ul class="status"><li><span class="room-status default-label"></span>&nbsp;待售</li>
+     <li><span class="room-status green-label"></span>&nbsp;&nbsp;可售</li>
+      <li><span class="room-status yellow-label"></span>&nbsp;已订未支付</li>
+      <li><span class="room-status red-label"></span>&nbsp;&nbsp;已售</li> </ul>
+    </menu>
+</div>
+
+</body>
+</html>
+<script> 
+var projectInfo = $!{projectInfos};
+var cellInfo = $!{cellInfos};
+var buildInfo = $!{buildInfos};
+var houseInfo = $!{houseInfos};
+var curbuild ='$!{curbuild}';
+var curcell = '$!{curcell}';
+var serverroot='$!{basePath}';
+</script>
+ <script type="text/javascript" src="$!{basePath}/plug-in/js/jquery-1.9.1.js"></script>
+ <script src="$!{basePath}/content/houseaOnline/back/js/gethouse.js" type="text/javascript"></script>
+

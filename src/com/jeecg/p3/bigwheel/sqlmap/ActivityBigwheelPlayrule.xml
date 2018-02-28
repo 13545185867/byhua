@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.bigwheel.entity.ActivityBigwheelPlayrule">
+
+	<!-- Result Map-->
+	<resultMap id="ActivityBigwheelPlayrule" type="com.jeecg.p3.bigwheel.entity.ActivityBigwheelPlayrule" >
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="limitLottery" property="limitlottery" jdbcType="VARCHAR"/>
+		<result column="totalLotteryCount" property="totallotterycount" jdbcType="INTEGER"/>
+		<result column="dayLotteryCount" property="daylotterycount" jdbcType="INTEGER"/>
+		<result column="singleUserAwards" property="singleuserawards" jdbcType="INTEGER"/>
+		<result column="initialProbability" property="initialprobability" jdbcType="VARCHAR"/>
+		<result column="percentage" property="percentage" jdbcType="INTEGER"/>
+		<result column="helpNum" property="helpnum" jdbcType="INTEGER"/>
+		<result column="activityId" property="activityid" jdbcType="INTEGER"/>
+		<result column="activity_playrulecol" property="activityPlayrulecol" jdbcType="VARCHAR"/>
+		<result column="activity_playrulecol1" property="activityPlayrulecol1" jdbcType="VARCHAR"/>
+		<result column="activity_playrulecol2" property="activityPlayrulecol2" jdbcType="VARCHAR"/>
+		<result column="exchangeLimit" property="exchangelimit" jdbcType="VARCHAR"/>
+		<result column="gameTime" property="gametime" jdbcType="INTEGER"/>
+		<result column="gameTimeType" property="gametimetype" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.limitlottery != null and query.limitlottery != ''" >
+	  		 		/* 0为不开启限制1为开启次数限制 */
+			    	AND abp.limitLottery =  #{query.limitlottery,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.totallotterycount != null and query.totallotterycount != ''" >
+	  		 		/* 每个人最多参与次数 */
+			    	AND abp.totalLotteryCount =  #{query.totallotterycount,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.daylotterycount != null and query.daylotterycount != ''" >
+	  		 		/* 每天参与次数值  */
+			    	AND abp.dayLotteryCount =  #{query.daylotterycount,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.singleuserawards != null and query.singleuserawards != ''" >
+	  		 		/* 每个人最多中奖次数 */
+			    	AND abp.singleUserAwards =  #{query.singleuserawards,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.initialprobability != null and query.initialprobability != ''" >
+	  		 		/* 初始中奖百分比 */
+			    	AND abp.initialProbability =  #{query.initialprobability,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.percentage != null and query.percentage != ''" >
+	  		 		/* 助力成功率 */
+			    	AND abp.percentage =  #{query.percentage,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.helpnum != null and query.helpnum != ''" >
+	  		 		/* 助力成功人数 */
+			    	AND abp.helpNum =  #{query.helpnum,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.activityid != null and query.activityid != ''" >
+	  		 		/* 活动ID */
+			    	AND abp.activityId =  #{query.activityid,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.activityPlayrulecol != null and query.activityPlayrulecol != ''" >
+	  		 		/*  */
+			    	AND abp.activity_playrulecol =  #{query.activityPlayrulecol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.activityPlayrulecol1 != null and query.activityPlayrulecol1 != ''" >
+	  		 		/*  */
+			    	AND abp.activity_playrulecol1 =  #{query.activityPlayrulecol1,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.activityPlayrulecol2 != null and query.activityPlayrulecol2 != ''" >
+	  		 		/*  */
+			    	AND abp.activity_playrulecol2 =  #{query.activityPlayrulecol2,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.exchangelimit != null and query.exchangelimit != ''" >
+	  		 		/*  */
+			    	AND abp.exchangeLimit =  #{query.exchangelimit,jdbcType=VARCHAR}
+				 </if>
+				
+				 <if test="query.gametime != null and query.gametime != ''" >
+	  		 		/*  */
+			    	AND abp.gameTime =  #{query.gametime,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.gametimetype != null and query.gametimetype != ''" >
+	  		 		/*  */
+			    	AND abp.gameTimeType =  #{query.gametimetype,jdbcType=INTEGER}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelPlayrule.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  activity_bigwheel_playrule   /*  */  
+					(	
+                      limitLottery                  /* 0为不开启限制1为开启次数限制 */ 
+                     ,totalLotteryCount             /* 每个人最多参与次数 */ 
+                     ,dayLotteryCount               /* 每天参与次数值  */ 
+                     ,singleUserAwards              /* 每个人最多中奖次数 */ 
+                     ,initialProbability            /* 初始中奖百分比 */ 
+                     ,percentage                    /* 助力成功率 */ 
+                     ,helpNum                       /* 助力成功人数 */ 
+                     ,activityId                    /* 活动ID */ 
+                     ,activity_playrulecol          /*  */ 
+                     ,activity_playrulecol1         /*  */ 
+                     ,activity_playrulecol2         /*  */ 
+                     ,exchangeLimit                 /*  */ 
+                    
+                     ,gameTime                      /*  */ 
+                     ,gameTimeType                  /*  */ 
+					)
+			values (
+                      #{limitlottery,jdbcType=VARCHAR}                  /* 0为不开启限制1为开启次数限制 */ 
+                     ,#{totallotterycount,jdbcType=INTEGER}             /* 每个人最多参与次数 */ 
+                     ,#{daylotterycount,jdbcType=INTEGER}               /* 每天参与次数值  */ 
+                     ,#{singleuserawards,jdbcType=INTEGER}              /* 每个人最多中奖次数 */ 
+                     ,#{initialprobability,jdbcType=VARCHAR}            /* 初始中奖百分比 */ 
+                     ,#{percentage,jdbcType=INTEGER}                    /* 助力成功率 */ 
+                     ,#{helpnum,jdbcType=INTEGER}                       /* 助力成功人数 */ 
+                     ,#{activityid,jdbcType=INTEGER}                    /* 活动ID */ 
+                     ,#{activityPlayrulecol,jdbcType=VARCHAR}           /*  */ 
+                     ,#{activityPlayrulecol1,jdbcType=VARCHAR}          /*  */ 
+                     ,#{activityPlayrulecol2,jdbcType=VARCHAR}          /*  */ 
+                     ,#{exchangelimit,jdbcType=VARCHAR}                 /*  */ 
+                    
+                     ,#{gametime,jdbcType=INTEGER}                      /*  */ 
+                     ,#{gametimetype,jdbcType=INTEGER}                  /*  */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelPlayrule.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   activity_bigwheel_playrule  	/*  */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="limitlottery != null">
+		    		 		/* 0为不开启限制1为开启次数限制 */ 
+	    		 			limitLottery = #{limitlottery,jdbcType=VARCHAR},
+						 </if>
+						 <if test="totallotterycount != null">
+		    		 		/* 每个人最多参与次数 */ 
+	    		 			totalLotteryCount = #{totallotterycount,jdbcType=INTEGER},
+						 </if>
+						 <if test="daylotterycount != null">
+		    		 		/* 每天参与次数值  */ 
+	    		 			dayLotteryCount = #{daylotterycount,jdbcType=INTEGER},
+						 </if>
+						 <if test="singleuserawards != null">
+		    		 		/* 每个人最多中奖次数 */ 
+	    		 			singleUserAwards = #{singleuserawards,jdbcType=INTEGER},
+						 </if>
+						 <if test="initialprobability != null">
+		    		 		/* 初始中奖百分比 */ 
+	    		 			initialProbability = #{initialprobability,jdbcType=VARCHAR},
+						 </if>
+						 <if test="percentage != null">
+		    		 		/* 助力成功率 */ 
+	    		 			percentage = #{percentage,jdbcType=INTEGER},
+						 </if>
+						 <if test="helpnum != null">
+		    		 		/* 助力成功人数 */ 
+	    		 			helpNum = #{helpnum,jdbcType=INTEGER},
+						 </if>
+						 <if test="activityid != null">
+		    		 		/* 活动ID */ 
+	    		 			activityId = #{activityid,jdbcType=INTEGER},
+						 </if>
+						 <if test="activityPlayrulecol != null">
+		    		 		/*  */ 
+	    		 			activity_playrulecol = #{activityPlayrulecol,jdbcType=VARCHAR},
+						 </if>
+						 <if test="activityPlayrulecol1 != null">
+		    		 		/*  */ 
+	    		 			activity_playrulecol1 = #{activityPlayrulecol1,jdbcType=VARCHAR},
+						 </if>
+						 <if test="activityPlayrulecol2 != null">
+		    		 		/*  */ 
+	    		 			activity_playrulecol2 = #{activityPlayrulecol2,jdbcType=VARCHAR},
+						 </if>
+						 <if test="exchangelimit != null">
+		    		 		/*  */ 
+	    		 			exchangeLimit = #{exchangelimit,jdbcType=VARCHAR},
+						 </if>
+						
+						 <if test="gametime != null">
+		    		 		/*  */ 
+	    		 			gameTime = #{gametime,jdbcType=INTEGER},
+						 </if>
+						 <if test="gametimetype != null">
+		    		 		/*  */ 
+	    		 			gameTimeType = #{gametimetype,jdbcType=INTEGER},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		activityId = #{activityid}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelPlayrule.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="ActivityBigwheelPlayrule">
+		   SELECT   
+                   abp.id                            /*  */ 
+                  ,abp.limitLottery                  /* 0为不开启限制1为开启次数限制 */ 
+                  ,abp.totalLotteryCount             /* 每个人最多参与次数 */ 
+                  ,abp.dayLotteryCount               /* 每天参与次数值  */ 
+                  ,abp.singleUserAwards              /* 每个人最多中奖次数 */ 
+                  ,abp.initialProbability            /* 初始中奖百分比 */ 
+                  ,abp.percentage                    /* 助力成功率 */ 
+                  ,abp.helpNum                       /* 助力成功人数 */ 
+                  ,abp.activityId                    /* 活动ID */ 
+                  ,abp.activity_playrulecol          /*  */ 
+                  ,abp.activity_playrulecol1         /*  */ 
+                  ,abp.activity_playrulecol2         /*  */ 
+                  ,abp.exchangeLimit                 /*  */ 
+                 
+                  ,abp.gameTime                      /*  */ 
+                  ,abp.gameTimeType                  /*  */ 
+		   FROM   activity_bigwheel_playrule      AS abp      /*  */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelPlayrule.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM activity_bigwheel_playrule 	/*  */  
+		WHERE 
+			activityId = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelPlayrule.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  activity_bigwheel_playrule      AS abp      /*  */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelPlayrule.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="ActivityBigwheelPlayrule">
+		    SELECT 
+                   abp.id                            /*  */ 
+                  ,abp.limitLottery                  /* 0为不开启限制1为开启次数限制 */ 
+                  ,abp.totalLotteryCount             /* 每个人最多参与次数 */ 
+                  ,abp.dayLotteryCount               /* 每天参与次数值  */ 
+                  ,abp.singleUserAwards              /* 每个人最多中奖次数 */ 
+                  ,abp.initialProbability            /* 初始中奖百分比 */ 
+                  ,abp.percentage                    /* 助力成功率 */ 
+                  ,abp.helpNum                       /* 助力成功人数 */ 
+                  ,abp.activityId                    /* 活动ID */ 
+                  ,abp.activity_playrulecol          /*  */ 
+                  ,abp.activity_playrulecol1         /*  */ 
+                  ,abp.activity_playrulecol2         /*  */ 
+                  ,abp.exchangeLimit                 /*  */ 
+          
+                  ,abp.gameTime                      /*  */ 
+                  ,abp.gameTimeType                  /*  */ 
+		FROM   	 activity_bigwheel_playrule      AS abp      /*  */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+		<select id="queryBYCol" parameterType="Object"  resultMap="ActivityBigwheelPlayrule">
+		    SELECT 
+                   abp.id                            /*  */ 
+                  ,abp.limitLottery                  /* 0为不开启限制1为开启次数限制 */ 
+                  ,abp.totalLotteryCount             /* 每个人最多参与次数 */ 
+                  ,abp.dayLotteryCount               /* 每天参与次数值  */ 
+                  ,abp.singleUserAwards              /* 每个人最多中奖次数 */ 
+                  ,abp.initialProbability            /* 初始中奖百分比 */ 
+                  ,abp.percentage                    /* 助力成功率 */ 
+                  ,abp.helpNum                       /* 助力成功人数 */ 
+                  ,abp.activityId                    /* 活动ID */ 
+                  ,abp.activity_playrulecol          /*  */ 
+                  ,abp.activity_playrulecol1         /*  */ 
+                  ,abp.activity_playrulecol2         /*  */ 
+                  ,abp.exchangeLimit                 /*  */ 
+                 
+                  ,abp.gameTime                      /*  */ 
+                  ,abp.gameTimeType                  /*  */ 
+		FROM   	 activity_bigwheel_playrule      AS abp      /*  */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+	</select>
+	
+</mapper>

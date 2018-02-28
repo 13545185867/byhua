@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1,user-scalable=no,maximum-scale=1,initial-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no">  
+<meta http-equiv="x-rim-auto-match" content="none">  
+<link rel="stylesheet" href="$!{basePath}/content/bigwheel/back/files/lot/game_common.css" />
+<link rel="stylesheet" href="$!{basePath}/content/bigwheel/back/files/lot/game_style.css" /><title></title>
+<script type="text/javascript">
+window.isSkipStartPage = true;	// 跳过开始页面
+window.isSkipFllow = true; // 跳过助力人刚进入页面的关注提示
+var serverroot ="$!{basePath}";
+</script>
+</head>
+<style>
+#join_line_cont{
+	bottom: 1.8rem;
+}
+.start_page .rule_tag{
+	display: none;
+}
+</style>
+<body>
+
+<script type="text/javascript">
+// 是否控制loading页面的隐藏，如果true，则loading页面不会自动关闭
+var takeControlLoadingPage = false;
+//动态
+var openId = "${OPERATE_ACTIVITY_USER.openid}";
+var imgurl='$!{basePath}/content/bigwheel/back/files/lot/'
+
+var currentWwwPath=window.document.location.href;  
+//获取主机地址之后的目录，如：/supermarket/user.do(注意：不包括?后面传递的参数)
+var pathName=window.document.location.pathname;  
+//获取/uimcardprj中/的位置(也就是主机地址后面的/)，这里是：21
+var position=currentWwwPath.indexOf(pathName);  
+
+//获取主机地址，如：http://localhost:8080
+var localhostPath=currentWwwPath.substring(0,position); 
+
+</script>
+<link rel="stylesheet" href="$!{basePath}/content/bigwheel/back/files/lot/common.css" /><style type="text/css">
+.qx-modal{
+	z-index: -100;
+	opacity: 0;
+	transform: scale(1);
+	transition: transform .5s linear;
+    -webkit-transition: transform .4s linear;
+    background-color: rgba(0,0,0,.7);
+}
+.qx-modal.in{z-index: 99999;opacity: 1;}
+.qx-modal .modal-dialog{
+	padding: .7rem;
+    padding-top: .2rem;
+    transform: scale(0);
+}
+.qx-modal.in .modal-dialog{
+	transform: scale(1);
+	transition: transform .5s linear;
+    -webkit-transition: transform .4s linear;
+}
+.qx-modal .modal-header{
+	overflow: hidden;
+	border-bottom: 1px solid #f0f0f0;
+	padding: .3rem 0 .1rem;
+}
+.qx-modal .modal-body .text-default{
+	font-size: .8rem;
+}
+</style>
+<script type="text/javascript" src="$!{basePath}/content/bigwheel/back/files/lot/jquery-1.8.2.min.js"></script><script type="text/javascript">
+window.qianxi={
+	isTestAct:false,
+	isShoperAct:false,
+	isShoperEnterSelfAct:false,
+	isShoperPackageOverTime:false,
+	isQianxiAct:false,
+	isInFreetime:false,
+	qxAccount:""
+}
+</script>
+<script type="text/javascript">
+(function (doc, win) {
+	var docEl = doc.documentElement,
+	recalc = function () {
+		var clientWidth = docEl.clientWidth;
+		if (!clientWidth) return;
+		if(clientWidth > 800) clientWidth=800;
+		docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+	};
+	if (!doc.addEventListener) return;
+	recalc();
+})(document, window);
+</script>
+<!-- S custom css -->
+<style type="text/css" id="_yy_custom_css"></style>
+<!-- E custom css -->
+<!-- 活动自定义样式 -->
+<script type="text/javascript">
+//动态
+var extendOperation =${extendOperation};
+var _customStyle=document.getElementById("_yy_custom_css");
+var innerStyle = "";
+if(extendOperation.lotteryPic){
+	innerStyle += "#lotto_banner_bg {background-image:"+extendOperation.lotteryPic+";}";
+}
+if(extendOperation.lotteryLogo){
+	innerStyle += "#lotto_logo_bg {background-image:"+extendOperation.lotteryLogo+";}";
+}
+_customStyle.innerHTML=innerStyle;
+</script>
+<div class="topbar_unpublish">活动尚未发布，当前仅供预览，将不会派发奖品</div>
+<div class="mp_loading_clip" id="loading_clip" style="z-index: 2002;display: none;">
+<div class="mp_loading_bar"></div>
+</div>
+<div class="mp_loading_cover" style="z-index:2000;"></div>
+<!-- 通用组件分数、红包、奖品界面开始 -->
+<!-- 游戏通用弹出层页面 -->
+<div class="mask fire_res fire_loading " id="js_start_ad">
+	<a class="loading_banner_bg" id="loading_banner_bg" href="javascript:;">
+		<img alt="" src="$!{basePath}/content/bigwheel/back/files/lot/opening_bg2.jpg"">
+		</a>
+	<div class="yy_logo_bg" id="yy_logo_bg">
+		<img alt="" src="$!{basePath}/content/bigwheel/back/files/lot/opening_logo.png"">
+		</div>
+	<a href="javascript:;" class="skip_btn"><span class="skip_time"><span class="skip_count">3</span>秒</span> 跳过</a>
+	<!-- 加载页面开启可点击提示 -->
+	<div class="openClick-btn imgContainer hide">
+		<a id="openClick_pic_link" href="javascript:;">
+			<img id="openClick_pic" class="openClick-pic block_img slaveImg" style="width:5rem;height:2rem;top:6rem;left:-2.5rem;position: absolute;">
+			</a>
+    </div>
+</div>
+
+<div class="mask fire_res fire_success hide">
+	<div class="success_bg"></div>
+	<div class="fire_res_light a-rotateL"></div>
+	<div class="fire_res_success"></div>
+	<div class="fire_res_title"><div></div></div>
+	<div class="fire_res_star3"><div></div></div>
+	<div class="fire_res_star2"><div></div></div>
+	<div class="fire_res_star1"><div></div></div>
+	<div class="fire_res_guang"><div></div></div>
+	<p class="p_text_1">获得<span class="score">xx</span>分</p>
+	<p id="resule-status-daylimit" class="p_text_2"><span class="p_text">今天还有<span class="daylimit">xx</span>次，总共还有<span class="actlimit">xx</span>次抽奖机会</span></p>
+	<p id="resule-status-actlimit" class="p_text_3" style="display:none;"><span class="p_text">你总共还有<span class="actlimit">xxxxx</span>次抽奖机会</span></p>
+	<div class="fire_btn_cont">
+		<div class="fire_btn fire_ress_success_award link_lottery"></div>
+		<div class="fire_btn fire_ress_success_share share" data-role="share"></div>
+	    <div class="fire_btn fire_ress_success_subscribe subscribe_link"></div>
+    </div>
+</div>
+
+<div class="mask fire_res fire_fail hide">
+	<div class="fail_bg"></div>
+	<div class="fire_res_fail"></div>
+	<div class="fire_res_title"><div></div></div>
+	<div class="fire_res_star3"><div></div></div>
+	<div class="fire_res_star2"><div></div></div>
+	<div class="fire_res_star1"><div></div></div>
+	<p class="p_text_1">获得<span class="score">xx</span>分</p>
+	<p id="resule-status-minscore" class="p_text_2"><span class="p_text">需要达到<span class="prize_score">xx</span>分才能抽奖哦</span></p>
+	<p class="p_text_3"><span class="p_text">你还有1次挑战机会</span></p>
+	<div class="fire_btn_cont">
+		<div class="fire_btn fire_ress_fail_playagain playagain_link"></div>
+	    <div class="fire_btn fire_ress_fail_share share" data-role="share"></div>
+	    <div class="fire_btn fire_ress_fail_subscribe subscribe_link"></div>
+		<p class="share_text" style="display:none;">
+			分享给好友，可以获得更多游戏机会哦！
+		</p>
+	</div>
+</div>
+
+<div class="mask fire_res fire_end hide">
+	<div class="fire_res_light a-rotateL"></div>
+	<div class="fire_res_end"></div>
+	<p class="p_text_1">获得<span class="score_text">99</span>分</p>
+	<p class="p_text_2">您的最高分数<span class="total_score">99</span>分，排名<span class="rank_text">99</span></p>
+	<p class="p_text_3 share_text">分享给好友可以提高最高分哦！</p>
+	<div class="fire_btn_cont">
+		<div class="fire_btn fire_ress_end_playagain playagain_link"></div>
+	    <div class="fire_btn fire_ress_end_rank rank_link"></div>
+	    <div class="fire_btn fire_ress_end_share" data-role="share"></div>
+	    <div class="fire_btn fire_ress_end_subscribe subscribe_link"></div>
+	</div>
+</div>
+
+<div class="mask fire_res fire_prize_hb_success hide">
+	<div class="prize_success">
+       <div class="price_success_gift"></div>
+    </div>
+	<p class="p_text_1">获得了1个现金红包</p>
+	<div class="fire_btn_cont">
+		<div class="fire_btn fire_success_detail unlock_prize_link"></div>
+        <div class='fire_btn fire_success_subscribe subscribe_link '></div>
+        <div class="fire_btn fire_success_join join_play_link hide"></div>
+    </div>
+</div>
+<div class="mask fire_res fire_prize_success hide">
+	<div class="prize_success">
+	    <div class="price_success_gift"></div>
+	</div>
+	<p class="p_text_1">获得<span class="prizeName score">xxx</span></p>
+	<p class="jiangpinName">xxx</p>
+	<div class="fire_btn_cont">
+		<a class="unlock_prize_link" href="javascript:;"><div class="fire_btn fire_success_detail"></div></a>
+        <div class='fire_btn fire_success_subscribe subscribe_link '></div>
+        <div class="fire_btn fire_success_join join_play_link hide"></div>
+    </div>
+</div>
+<div class="mask fire_res fire_prize_fail hide">
+	<div class="prize_fail"></div>
+	<div class="prize_fail_lihe"></div>
+	<p class="p_text_1"><span>没中呢~再来一次，肯定中奖</span></p>
+	<p class="p_text_2">换个姿势，</p>
+	<p class="p_text_3">快来啊~</p>
+	<div class="fire_btn_cont">
+		<div class="fire_btn fire_prize_fail_playagain playagain_link"></div>
+        <div class='fire_btn fire_prize_fail_subscribe subscribe_link '></div>
+        <div class="fire_btn fire_prize_fail_join join_play_link hide"></div>
+    </div>
+</div>
+<!-- 没有机会了 -->
+<div class="mask fire_res fire_nochance hide">
+	<span class="close"></span>
+	<div class="fire_res_nochance"></div>
+	<p class="p_text_1"><span class="response_text">游戏机会已用完</span><span class="share_text">分享给好友可以获得更多机会哦。</span></p>
+	<div class="fire_btn_cont" style="margin-top:1.5rem;">
+	    <div class="fire_btn share" data-role="share"></div>
+	    <div class="fire_btn luckdraw" style="display:none;background-image: url($!{basePath}/content/bigwheel/back/files/lot/btn_continue.png);background-size:90%;background-position:center;"></div>
+	    <div class="fire_btn subscribe_link"><a href="javascript:void(0);"></a></div>
+	</div>
+</div>
+
+<div class="mask fire_res fire_qrcode hide">
+	<p class="p_text_1">长按保存图片，发送给小伙伴<br /><span class="share_text">邀请小伙伴扫码，给你提供助力！</span></p>
+	<img id="help_qrcode_img" class="help_qrcode_img">
+	<img id="youyu_qrcode_img" class="youyu_qrcode_img">
+</div>
+<!-- 分享二维码自定义页面  -->
+<!-- 
+<div class="mask fire_res fire_wx_share hide">
+	<img id="share_tips_img" class="share_tips_img" src="$!{basePath}/content/bigwheel/back/files/lot/share_tips_img.png">
+</div>
+ -->
+
+<!-- 通用弹出框 -->
+<div class="fire_res fire_common hide">
+	<span class="close"></span>
+	<div class="fire_res_common"></div>
+	<p class="p_text_1"></p>
+	<div class="fire_btn_cont">
+		<!-- 分享 -->
+	    <div class="fire_btn share hide"></div>
+	    <!-- 关注我们 -->
+	    <div class="fire_btn subscribe_link hide"><a href="javascript:void(0);"></a></div>
+	    <!-- 我要参与 -->
+	    <div class="fire_btn join_link hide"><a href="javascript:void(0);"></a></div>
+	</div>
+</div>
+
+<div class="mask fire_res fire_rule hide">
+	<a href="javascript:;" class="rule_myprize_link"></a>
+	<a href="javascript:;" class="rule_rule_link active"></a>
+	<span class="close"></span>
+	<div class="fire_res_rule_bg"></div>
+	<div class="content" id="ruleWrapper">
+		<div class="scroller">
+		<div class="rule_tab fire_res_rule_award">活动奖品</div>
+		<div id="rule_award">
+			<p>一等奖：XXX</p>
+			<p>二等奖：XXX</p>
+			<p>三等奖：XXX</p>
+		</div>
+		<div class="rule_tab fire_res_rule_time">活动时间</div>
+		<div id="rule_time">2016年03月31日~2016年04月05日</div>
+		<div class="rule_tab fire_res_rule_tips">活动规则</div>
+		<div id="rule_content_text" class="fire_res_rule_tips_text">
+			<p>1、控制宝宝在途中的方向，捡取途中的奶瓶和糖果获得积分；</p>
+			<p>2、要小心避开炸弹和枕头哦；</p>
+			<p>3、游戏达到100分即可参与抽奖；</p>
+			<p>4、每人有3次抽奖机会；</p>
+			<p>5、活动期间用户全程免费参与。</p>
+        </div>
+		<div class="rule_tab fire_res_rule_organizer">主办单位</div>
+		<div id="rule_organizer">
+			<p>本次活动主办单位为 <a href="javascript:;" class="organizer organizer_link">XXX</a></p>
+			<!-- <p>主办单位在法律允许的范围内拥有活动解释权</p> -->
+		</div>
+		</div>
+	</div>
+	<div class="content" id="myprizeWrapper">
+		<div class="scroller">
+			<div class="myprize_list_cont">
+			</div>
+			<div class="myprize_empty">您暂时没奖品哦~</div>
+		</div>
+	</div>
+</div>
+
+<div class="mask fire_res fire_rank hide">
+	<span class="close"></span>
+	<a href="javascript:;" class="rank_rank_link active"></a>
+	<a href="javascript:;" class="rank_prizerecord_link"></a>
+	<div class="fire_res_rank_bg"></div>
+	<div class="fire_res_rank_prizerecord_bg" style="display: none;"></div>
+	<div class="content" id="rankWrapper">
+		<div class="scroller">
+			<div class="rank_text">
+			当前排名第<span class="ranking_text">0</span>名，战胜了<span class="percent_text">0</span>%的对手
+			</div>
+			<div id="rankSpecialWrapper" class="rank_special">
+				<div class="rank_firstPlace">
+					<div class="headerimg"><img src='$!{basePath}/content/bigwheel/back/files/lot/icon_1.png'></div>
+					<div class="jiangtai">
+						<div class="personName"></div>
+						<div class="personScore"></div>
+						<div class="jiangpai"></div>
+					</div>
+				</div>
+				<div class="rank_secondPlace">
+					<div class="headerimg"><img src='$!{basePath}/content/bigwheel/back/files/lot/icon_1.png'></div>
+					<div class="jiangtai">
+						<div class="personName"></div>
+						<div class="personScore"></div>
+						<div class="jiangpai"></div>
+					</div>
+				</div>
+				<div class="rank_thirdPlace">
+					<div class="headerimg"><img src='$!{basePath}/content/bigwheel/back/files/lot/icon_1.png'></div>
+					<div class="jiangtai">
+						<div class="personName"></div>
+						<div class="personScore"></div>
+						<div class="jiangpai"></div>
+					</div>
+				</div>
+				<div class="dizuo">
+					<div class="jiangzuo"></div>
+				</div>
+			</div>
+			<div id="rankTableWrapper" class="rank_table">
+				<div class="scroller">
+					<table cellspacing="0">
+						<thead>
+							<tr class="header">
+								<th>排名</th>
+								<th>小伙伴</th>
+								<th>成绩</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<p class="ranklist_empty">没有更多排名数据了~</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content" id="prizeRecordWrapper">
+		<div class="scroller">
+			
+			<div id="prizeListTableWrapper" class="prizelist_table">
+				<div class="scroller">
+					<div class=""></div>
+					<table cellspacing="0">
+						<thead>
+							<tr class="header">
+								<th>头像</th>
+								<th>用户昵称</th>
+								<th>奖品</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<p class="prizelist_empty">没有更多中奖数据了~</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 钱戏套餐已过期提示 -->
+<div class="qx-modal qxFansModal">
+	<div class="modal-dialog">
+		<div class="modal-header textRight">
+			<div style="height: 1.275rem;padding: 0.237rem 0;display: inline-block;float: left;">
+				<span class="logo-grey"></span>
+			</div>
+			<!-- <span class="icon_close"></span> -->
+		</div>
+		<div class="modal-body" style="padding-top: .3rem">
+			<p class="text-default">该活动的账号已到期，现活动已暂停，需要联系主办方进行处理，方可继续该活动</p>
+		</div>
+		<div class="modal-footer textCenter">
+			<a class="qxBtn qxBtn-blue" href="tel:">联系主办方</a>
+		</div>
+	</div>
+</div>
+<div class="qx-modal qxShoperModal">
+	<div class="modal-dialog">
+		<div class="modal-header textRight">
+			<div style="height: 1.275rem;padding: 0.237rem 0;display: inline-block;float: left;">
+				<span class="logo-grey"></span>
+			</div>
+			<!-- <span class="icon_close"></span> -->
+		</div>
+		<div class="modal-body">
+			<p style="color: #5185EB;font-size: .9rem;padding: .3rem 0;">亲爱的账号：</p>
+			<p class="text-default">您的账号已到期，该活动已暂停运营，活动充值后方可继续该活动。快去充值！继续享受畅快活动。</p>
+		</div>
+		<div class="modal-footer textCenter">
+			<a class="qxBtn qxBtn-red" href="http://m.qianxi.weijuju.com/mobile/wxpay/qian_recharge.jsp">马上充值</a>
+		</div>
+	</div>
+</div>
+
+<!-- 钱戏演示活动版权信息 -->
+<div class="qx-copyright-box hide">
+	<div class="qx-copyright-logo"></div>
+	<div class="qx-copyright-title">本活动由钱戏互动制作</div>
+	<a class="qx-copyright-btn" href="http://m.qianxi.weijuju.com/mobile/qianxi/gameList.jsp">
+		<span class="qx-copyright-btn-text">我也要创建</span>
+		<span class="qx-copyright-btn-ico"></span>
+	</a>
+</div>
+<!-- 钱戏游戏页面投诉按钮 -->
+<div class='qx-complain-box hide'>
+	<a href="tel:075588308939">投诉</a>
+</div>
+<!-- 钱戏游戏页面分享二维码 -->
+<div class="qx-share-qrcode-box hide">
+	<div class="qxShareCloseIcon"></div>
+	<img id="qxShareQrcodeImg" class="qxShareQrcodeImg"></img>
+	<canvas id="qxShareQrcodeCanvas" class="qxShareQrcodeCanvas"></canvas>
+	<div id="qxShareQrcodeDiv" style="display: none;"></div>
+</div>
+
+<!-- 参与前提交个人信息 -->
+<div class="mask fire_res fire_participate_userinfo hide">
+	<div class="fire_res_userinfo_bg"></div>
+	<p class="p_tips_text">为了更好的联系您兑奖，请先填写您的联系电话再开始游戏</p>
+	<div class="input_cont phone_cont">
+		<input name="phone" id="phone" type="tel" placeholder="请填写您的手机号" />
+	</div>
+	<div class="fire_btn_cont">
+	    <div class="fire_btn btn_save"></div>
+	</div>
+	<p class="p_tips_text_2">若因未填写或填写错误导致兑奖失败<br />主办方不承担相关法律责任</p>
+	</div>
+
+<!-- 领奖前提交个人信息 -->
+<div class="mask fire_res fire_award_userinfo hide">
+	<div class="fire_res_userinfo_bg"></div>
+	<p class="p_tips_text">请填写联系电话方可领取奖品</p>
+	<div class="input_cont phone_cont">
+		<input name="phone" id="phone" type="tel" placeholder="请填写您的手机号" />
+	</div>
+	<div class="input_cont validcode_cont">
+		<input name="validcode" id="validcode" type="text" placeholder="请填写图片中的文字" />
+		<img class="valid_img" src="">
+		<img class="valid_refresh" src="$!{basePath}/content/bigwheel/back/files/lot/valid_refresh.png">
+	</div>
+	<div class="fire_btn_cont">
+	    <div class="fire_btn btn_save"></div>
+	</div>
+</div>
+
+<!-- 奖品详情 -->
+<div class="mask fire_res fire_award_info hide">
+	<span class="close"></span>
+	<div class="awardDetail">
+		<div class="award_detail_view_tip hide">(当前页面仅供参考，以手机端显示内容为主)</div>
+		<div class="organizerName"></div>
+		<div class="awardName ellipsis" id="trophyNamePhoneTxt">100元优惠券</div>
+		<div class="awardSubTitle" id="subheadPhoneTxt">这里是副标题</div>
+		<div class="awardCodeTime" style="display: none"><em>兑奖时间</em>：<span class="codeBgTime" id="validityStartPhoneTxt">2016.05.17</span> - <span class="codeEndTime" id="validityStopPhoneTxt">2016.06.30</span></div>
+		<div class="awardDetailWarp"></div>
+	</div>
+	<div class="codeImgBox">
+		<div id="codeStatusBox" class="hide">
+			<div id="codeStatusBtn"></div>
+			<div id="codeStatusInfo">商家已将该兑奖码设置为作废<br>详情请联系商家</div>
+		</div>
+		<div id="codeDetailInfoBox">
+			<div class="codeImg-wrapper">
+				<img class="codeImg">
+					<span class="codeStatu"></span>
+			</div>
+			<div class="codeLine"><span id="codeName">兑奖码</span>：<span class="code">666666</span></div>
+			<div class="copyHint" >(长按可复制兑奖码)</div>
+			<div class="codeOptInfo" id="operationTipPhoneTxt" style="word-wrap: break-word;">请联系现场工作人员兑奖</div>
+		</div>
+	</div>
+	<div>
+	<div style="height:0.4rem;"></div>
+		<div>
+            <div class="awardCusText awardDetailBtn"><span class="text">兑奖券详情</span><span class="awardDeailIcon"></span></div>
+            <div id="awardCusTextInfo" class="awardDetailText">
+            	<div class="ticketInfo">
+			        <div class="itemList clear-fix">
+			            <div class="title">兑奖时间</div>
+			            <div class="box">
+			                <span class="codeBgTime" id="validityStartPhoneTxt1">2016.03.03</span>-<span class="codeEndTime" id="validityStopPhoneTxt1">2017.03.03</span>
+			            </div>
+			        </div>
+			        <div class="itemList addressLine clear-fix">
+			            <div class="title titleAdress">兑奖地址</div>
+			            <div class="box">
+			                <div class="address" style="word-wrap: break-word;" id="storeAddressPhoneTxt">地址</div>
+			            </div>
+			        </div>
+			        <div class="itemList clear-fix">
+			            <div class="title">客服电话</div>
+			            <div class="box">
+			                <a class="tel" id="serviceTelPhoneTxt" style="color: #333"></a>
+			            </div>
+			        </div>
+			        <div class="itemList clear-fix">
+			            <div class="title titleNotice">兑奖须知</div>
+			            <div class="box">
+			                <div class="notice" style="word-wrap: break-word;" id="descriptionPhoneTxt">XXXXXX</div>
+			            </div>
+			        </div>
+			    </div>
+            </div>
+            <a id="awardCusBtnInfo" href="javascript:;" style="text-decoration:none;display: none;"><div class="awardCusBtn awardDetailBtn defBgColor" style="border-top:none;"><span class="text">自定义按钮<em>（未开启）</em></span><span class="awardDeailIcon"></span></div></a>
+			<a id="jumpBtn" href="javascript:;" style="display:none;">
+				<div class="awardCusBtn awardDetailBtn defBgColor" style="border-top:none;"><span class="text">企业官网</span><span class="awardDeailIcon"></span></div>
+			</a>
+		</div>
+	<div style="height:2.75rem;"></div>
+		<div class="awardCollection" style="display: none;">
+			<div id="awardCollectionBtn" ontouchend="window.game.favorite();">收藏兑奖券</div>
+		</div>
+		<div class="awardVerifyPwd">
+					<div id="awardVerifyPwdBtn">密码核销</div>
+				</div>
+			</div>
+</div>
+<!-- 定制处理 -->
+<script type="text/javascript">
+$(function(){
+	if(typeof(activityJson) != "undefined" && activityJson.unionId==405605){
+		$(".codeImg-wrapper").remove();
+		$(".awardVerifyPwd").remove();
+		$(".codeImgBox .codeLine").css({"font-size":"1rem","line-height":"2rem"});
+	}
+});
+</script>
+
+<!-- 红包奖品中奖列表 -->
+<div class="mask fire_res hbres hide">
+	<div class="hbTop"></div>
+	<div style="top: 4rem;left: 50%;margin-left: -10.1%;width: 21%;border-radius: 100%;">
+		<img style="width:100%;border-radius: 100%;" class="topheader header" src="">
+	</div>
+	<p style="width: 74%;top: 30%;margin-left: 13%;line-height: 1rem;color: black;font-size: 0.9rem;">获得<span class="wxname">XXX</span>的现金红包</p>
+	<p style="width: 74%;top: 38%;margin-left: 13%;line-height: 1.65rem;color: black;font-size: 0.7rem;"><span class="money" style="font-size: 3.4rem;">5.00</span>元</p>
+	<p style="width: 74%;top: 48%;margin-left: 13%;line-height: 1.65rem;color: black;font-size: 0.7rem;color:#497ACE;">点击服务通知领取红包存入零钱，可直接提现</p>
+	<div style="top: 55%;left: 0;width: 100%;" class="hblist">
+		<p class="list_header"><span style="margin-left:0.7rem;">已发放<span class="sendTotal">0</span>个红包（只显示最近30个）</span></p>
+	 </div>
+</div>
+
+<!-- 红包奖品详情 -->
+<div class="mask fire_res fire_hbres hide">
+	<span class="close"></span>
+	<div style="background-color: #fff;">
+		<div class="hbTop"></div>
+		<div class="header_cont">
+			<img style="width:100%;border-radius: 100%;" class="topheader header" src="">
+		</div>
+		<p class="p_text_1">获得<span class="wxname">XXX</span>的现金红包</p>
+		<p class="p_text_2"><span class="money" style="font-size: 3.4rem;">5.00</span>元</p>
+		<p class="p_text_3 codeOptInfo">点击服务通知领取红包存入零钱，可直接提现</p>
+	</div>
+	<div>
+		<div style="height:0.4rem;"></div>
+		<div>
+            <div class="awardCusText awardDetailBtn"><span class="text">详情</span><span class="awardDeailIcon"></span></div>
+            <div id="awardCusTextInfo" class="awardDetailText hide">
+            	<div class="ticketInfo">
+			        <div class="itemList clear-fix">
+			            <div class="title">客服电话</div>
+			            <div class="box">
+			                <div class="tel">13588888888</div>
+			            </div>
+			        </div>
+			        <div class="itemList clear-fix">
+			            <div class="title titleNotice">兑奖须知</div>
+			            <div class="box">
+			                <div class="notice">XXXXXX</div>
+			            </div>
+			        </div>
+			    </div>
+            </div>
+            <a id="awardCusBtnInfo" href="javascript:;" style="text-decoration:none;display: none;"><div class="awardCusBtn awardDetailBtn defBgColor" style="border-top:none;"><span class="text">自定义按钮<em>（未开启）</em></span><span class="awardDeailIcon"></span></div></a>
+		</div>
+	</div>
+</div>
+
+<!-- 抽奖页面 -->
+<div class="mask fire_res fire_lotto hide">
+	<div class="fire_lotto_page help_page_style" style="display: block;">
+		<div class="help_page_cont">
+			<div class="lotto_banner_bg" id="lotto_banner_bg"></div>
+			<div class="lotto_logo_bg" id="lotto_logo_bg"></div>
+			<div class="lotting_text_cont">
+				<div class="lotting_text">正在开奖</div>
+			</div>
+			<div class="loader_lotto"></div>
+		</div>
+	</div>
+</div>
+
+<!-- 红包领取验证码弹出框 -->
+<!-- 
+<div class="valid_code_mask">	
+	<div class="valid_code_mask_loading">
+		<img class="valid_text" src="http://static.resource.youyu.weijuju.com/image/mobile/paoku/valid_text.png">
+		<div class="valid_input" style="position: absolute;text-align: left;top: 26%;left: 6%;width: 90%;height: 14%;">
+			<input class="valid_val" placeholder="请输入右边的验证码"> 
+			<img class="valid_img" src="">
+			<img class="valid_refresh" src="http://static.resource.youyu.weijuju.com/image/mobile/paoku/valid_refresh.png">
+		</div>
+		<img class="valid_btn" src="http://static.resource.youyu.weijuju.com/image/mobile/paoku/valid_btn.png">
+		<div class="valid_tip">
+			请尽快输入验证码，不能离开游戏，否则红包会消失哦!
+		</div>
+	</div>
+</div>
+ -->
+
+<!-- 奖品核销前验证个人信息 -->
+<div class="mask fire_res fire_award_verify hide">
+	<div class="fire_res_verify_bg"></div>
+	<p class="p_award_name">100元优惠券</p>
+	<p class="p_tips_text">为了核实身份与方便奖品派送，<br />需填写以下信息</p>
+	<div class="userinfo_form_cont">
+		<div>
+			<div class="input_cont username_cont">
+				<input name="username" id="username" type="text" placeholder="请输入领奖人姓名" />
+			</div>
+			<div class="input_cont phone_cont">
+				<input name="phone" id="phone" type="tel" placeholder="请输入手机号码" />
+			</div>
+			<div class="input_cont address_cont">
+				<input name="address" id="address" type="text" placeholder="请输入领奖地址" />
+				</div>
+			<div class="input_cont expiry-area" style="display: none;">
+				<input name="expirydetail" data-fieldname="扩展项" type="text" placeholder="请输入扩展项" />
+			</div>
+			<div class="input_cont expiry-area" style="display: none;">
+				<input name="expirydetail" data-fieldname="扩展项" type="text" placeholder="请输入扩展项" />
+			</div>
+		</div>
+		<div class="input_cont validcode_cont">
+			<input name="validcode" id="validcode" type="text" placeholder="请输入验证码" />
+			<img class="valid_img" src="">
+		</div>
+		<div class="btn_save">验证</div>
+	</div>
+</div>
+
+<!-- 奖品核销前验证手机号码（发送语音验证码） -->
+<div class="mask fire_res fire_award_phone_verify hide">
+	<div class="fire_res_verify_phone_bg"></div>
+	<p class="p_tips_text">请先验证你的手机号</p>
+	<div class="input_cont phone_cont">
+		<span class="phone_label">手机</span>
+		<input name="phone" id="phone" type="tel" placeholder="请填写您的手机号" />
+	</div>
+	<div class="input_cont validcode_cont">
+		<input name="validcode" id="validcode" type="text" placeholder="请填写验证码" />
+		<img class="valid_img" src="">
+	</div>
+	<p class="yuyin_tips">验证码将会以语音电话形式发送，请注意接听来电</p>
+	<div class="btn_next">下一步</div>
+	
+	<div class="phone_display">
+		<div class="phone_number">
+			<span>1</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+			<span>x</span>
+		</div>
+		<div class="resend_btn">重现获取</div>
+	</div>
+	<div class="code_input_area">
+		<ul>
+			<li>
+				<input class="code_input" type="tel" maxlength="1"/>
+			</li>
+			<li>
+				<input class="code_input" type="tel" maxlength="1" />
+			</li>
+			<li>
+				<input class="code_input" type="tel" maxlength="1" />
+			</li>
+			<li>
+				<input class="code_input" type="tel" maxlength="1" />
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!-- 奖品核销密码输入框 -->
+<div class="mask fire_res fire_verify_pwd hide">
+	<div class="fire_res_verify_pwd_bg"></div>
+	<span class="close">×</span>
+	<p class="p_tips_text">请输入核销密码</p>
+	<div class="input_cont phone_cont">
+		<input name="verfiy_pwd" id="verfiy_pwd" type="password" />
+	</div>
+	<div class="btn_save">确定</div>
+	<p class="p_tips_text_2">核销功能仅供商家兑奖，请勿擅自使用</p>
+</div>
+
+<!-- 奖品密码核销结果输入框 -->
+<div class="mask fire_res fire_verify_pwd_result hide">
+	<div class="fire_res_verify_pwd_result_bg"></div>
+	<span class="close">×</span>
+	<p class="p_tips_text">核销成功</p>
+	<div class="btn_save">确定</div>
+</div>
+
+<!-- 游戏参与人数超过限制 -->
+<div class="mask fire_res fire_participate_overlimit hide">
+	<div class="fire_res_overlimit_bg"></div>
+	<div class="fire_btn_cont">
+	    <div class="fire_btn subscribe_link"></div>
+	</div>
+</div>
+
+<!-- 奖品核销前提示关注商家公众号 -->
+<div class="mask fire_res fire_award_attention_verify hide">
+	<div class="fire_res_verify_attention_bg"></div>
+	<p class="p_tips_text">请先关注【<span class="wxname">xxx</span>】<br/>才能领取红包哦</p>
+	<div class="btn_attention subscribe_link">马上去关注</div>
+</div>
+
+<div class="acitivity_isOver hide">
+	<div class= "btn hide" ></div>
+</div>
+<div class="activity_isOver_awards hide">
+	<div class= "btn"></div>
+	<div class= "btn hide"></div>
+</div>
+	
+
+
+<div class="mask activity_unStart hide">
+	<div class="timeRemain">
+		<!-- <div class="close"></div> -->
+		<p class="top">活动还没开始呢~</p>
+		<p class="timeHint">距离活动开始时间还有：</p>
+		<div class="time">
+			<span class="bottomLayer"><span class="timeSplit day1">0</span></span>
+			<span class="bottomLayer"><span class="timeSplit day2">0</span></span><span>天</span>
+			<span class="bottomLayer"><span class="timeSplit hour1">0</span></span>
+			<span class="bottomLayer"><span class="timeSplit hour2">0</span></span><span>时</span>
+			<span class="bottomLayer"><span class="timeSplit min1">0</span></span>
+			<span class="bottomLayer"><span class="timeSplit min2">0</span></span><span>分</span>
+			<span class="bottomLayer"><span class="timeSplit sec1">0</span></span>
+			<span class="bottomLayer"><span class="timeSplit sec2">0</span></span><span>秒</span>
+		</div>
+		<p class="bottom">敬请期待哦！</p>
+	</div>
+	<div class="statement"></div>
+	<div class="focus"></div>
+</div>
+
+<div class="mask dialPhone hide">
+	<div class="phoneBox">
+		<img class="close" src="$!{basePath}/content/bigwheel/back/files/lot/phoneBoxClose.png" alt="">
+		<p>拨打电话：<span class="phoneNumber"></span></p>
+		<a href="javascript:;" class="close">取消</a>
+		<a href="javascript:;">拨打</a>
+	</div>
+</div>
+<script type="text/javascript" src="$!{basePath}/content/bigwheel/back/files/lot/jquery.json-2.4.min.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/bigwheel/back/files/lot/jquery.deparam.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/bigwheel/back/files/lot/iscroll.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/bigwheel/back/files/lot/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/bigwheel/back/files/lot/game_common.js"></script>
+<!-- 七夕活动share.js特殊处理，这里不用默认的分享代码 -->
+<script type="text/javascript" src="$!{basePath}/content/bigwheel/back/files/lot/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="$!{basePath}/content/bigwheel/back/files/lot/share.js"></script>
+<!--手机端游戏开屏页面关闭后才显示开始页面的标题图片和按钮，这样才能看到css动画执行 -->
+<style>
+.start_page .title_img{
+	display: none;
+}
+.start_page #startBtnImg{
+	display: none;
+}
+</style>
+<!-- 通用组件分数、红包、奖品界面结束 -->
+<script type="text/javascript">
+//暴露皮肤id
+var skinId ="1";
+//预加载loadingPic图片
+$(function(){
+	if(extendOperation.loadingPic && extendOperation.loadingPic.indexOf("url") == 0){
+		var loadingPicUrl = extendOperation.loadingPic.substring(4,extendOperation.loadingPic.length-1);
+		if(extendOperation.loadingPic.indexOf("http") == 5){
+			loadingPicUrl = extendOperation.loadingPic.substring(5,extendOperation.loadingPic.length-2);
+		}
+		var loadingPicImg = new Image();
+		console.log(loadingPicImg);
+		loadingPicImg.onload = function(){
+			window.hasLoadLoadingBanner = true;
+			if($('.fire_loading').size() > 0){
+				// 游戏加载页面跳过事件
+				var skipCount = 3;
+				window.skipLoadingTimer = setInterval(function(){
+					skipCount--;
+					if(skipCount <= 0){
+						window.game._hideFireLoading();
+						window.clearInterval(window.skipLoadingTimer);
+					}
+					$('.fire_loading').find(".skip_count").text(skipCount);
+				},1000);
+			}
+		};
+		loadingPicImg.onerror = function(){
+			window.hasLoadLoadingBanner = true;
+			window.game._hideFireLoading();
+		};
+		loadingPicImg.src = loadingPicUrl;
+		loadingPicImg.imageSrcKey = loadingPicUrl;
+	} else {
+		window.hasLoadLoadingBanner = true;
+	}
+});
+</script>
+<!-- 数据统计开始 -->
+<script type="text/javascript" src="$!{basePath}/content/bigwheel/back/files/lot/sender.js"></script>
+<script type="text/javascript">
+</script><!-- 数据统计结束 -->
+<script type="text/javascript">
+//动态
+
+var dataDomain = "http://www.byhua.com";
+//动态
+var gamePageJson = $!{gamePageJson};
+	//动态
+var activityJson = $!{activityJson};
+console.log(activityJson);
+var _resRoot = '$!{basePath}/content/bigwheel/back/files/lot';
+var customImgUrl = localhostPath;// 用户自定义图片获取路径
+var _gameTemplateId = 29;
+var _isFreeUser = false;
+var _maxParticipateNumber = 300000;
+var _qiniuResRoot = localhostPath+'/';
+var imgTextShare = $!{imgTextShare};
+var _manage = false;
+var gameTime = 30;
+
+window.static_resourceDomain=localhostPath+'/';
+// 客户端服务端时间差
+var serverTimeDelta = $!{servertime}-new Date().getTime();
+// 加载页面是否跳转
+var open_loading_link = (activityJson.extraData&(Math.pow(2,3))) != 0;
+if(open_loading_link){
+	/** $("#loading_banner_bg").live("click",function(){
+		window.location.href=extendOperation.loadingLink;
+	}); **/
+	$("#loading_banner_bg").attr("href",extendOperation.loadingLink);
+}
+// 扫二维码加入游戏的不需要关注
+
+
+</script>
+
+<!-- 游戏奖品助力页面 -->
+<div class="award_help_page help_page_style">
+	<div class="award_help_cont help_page_cont" id="awardHelpCont">
+ 
+		<div class="help_lihe"></div>
+   
+		<p class="p_title">百花互动营销</p>
+		 <p class="p_awardname">100元优惠券</p> 
+		<div class="award_statu_1">
+			<p class="p_time">1天30分钟5秒内</p>
+			<p class="p_text_1">需集齐<span class="unlockPrizeCount">10</span>个小伙伴 拆奖品</p>
+		</div>
+		 
+		<div class="award_statu_2">
+			<p class="p_text_3">你已获得</p>
+			<p class="p_text_4">为了方便您联系，请留下您的联系方式</p>
+			<div class="input_cont phone_cont">
+				<input name="phone" id="phone" type="tel" placeholder="请填写您的手机号" />
+			</div>
+			 <div class="input_cont username_cont">
+			<input name="realname" id="realname" type="text" placeholder="请输入领奖人姓名" />
+			</div><!--    
+			<div class="input_cont validcode_cont">
+				<input name="validcode" id="validcode" type="text" placeholder="请填写图片中的文字" />
+				<img class="valid_img" src="">
+			</div>
+			-->
+		</div>
+		 
+		<div class="invite_btn">邀请伙伴</div>
+		<p class="p_text_2">还差<span class="unlockLeft">10</span>位</p>
+		<div style="position: relative;overflow: visible;top: -0.5rem;">
+			<div class="cyclo_l"></div>
+			<div class="cyclo_r"></div>
+		</div>
+		<div class="help_list_cont">
+			<p class="p_total">【已有<span class="unlockCount">5</span>位好友相助】</p>
+			<ul class="help_list">
+				<!--
+				<li>
+					<img class="headimg" src="http://wx.qlogo.cn/mmopen/SRtFY5jQzZibm0CTUsMQ69hYlLHJaGibpjgoBwg7EDTnKz9J53DEV6arzPc8xarzaRPU9icw0jia5ZcQHd9mJP4ZhnyWxgrYH3TJ/0" />
+					<p class="nickname">测试</p>
+					<p class="time">2016-09-09 12:2</p>
+					<p class="word">我来拆奖，友谊的小船不会翻</p>
+				</li>
+				 -->
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!-- 游戏通用封面页面 -->
+<div class="start_page home">
+	<div class="rule_tag rule_btn">
+		<img id="rule_tag_img" class="block_img" alt="" src="$!{basePath}/content/bigwheel/back/files/lot/btn_tag.png" />
+	</div>
+	<div class="rank_btn">
+		<img id="rank_tag_img" class="block_img" alt="" src="$!{basePath}/content/bigwheel/back/files/lot/btn_rank.png" />
+	</div>
+	<div id="homeBgBox"><img id="homeBg" src="" style="width:100%;height:auto"></div>
+	<a href="javascript:;" class="title_img titleDown imgContainer">
+		<img id="titleImg" class="block_img slaveImg" alt="" src="$!{basePath}/content/bigwheel/back/files/lot/title.png" />
+	</a>
+	<a href="javascript:;" class="start_btn imgContainer">
+		<img id="startBtnImg" class="block_img slaveImg startTada" alt="" src="$!{basePath}/content/bigwheel/back/files/lot/btn_begin.png" />
+	</a>
+	<div id="join_line_cont">
+		<div class="join_line">已有<span class="join_num">***</span>人参加游戏</div>
+	</div>
+	<a id="start_bottom" class="start_bottom" href="javascript:;">
+		<div class="start_logo imgContainer">
+		<img id="startLogoImg" class="block_img slaveImg" alt="" src="$!{basePath}/content/bigwheel/back/files/lot/yylogo_3.png" />
+		</div>
+	</a>
+	<!-- 企业logo -->
+	<div class="organizer-btn imgContainer hide">
+       	<img id="organizer_logo" class="organizer-logo block_img slaveImg" style="width:2rem;height:2rem;top:3.5rem;left:0.75rem;position: absolute;" src="$!{basePath}/content/bigwheel/back/files/lot/organizer_logo.jpg">
+    </div>
+</div>
+<div class="game_page">
+	<link rel="stylesheet" href="$!{basePath}/content/bigwheel/back/files/lot//bigWheel.css" /><!-- 背景音乐 -->
+	<audio id="music1" preload="preload" src="$!{basePath}/content/bigwheel/back/files/lot/wheel_button_down.mp3"></audio>
+	<audio id="music2" preload="preload" src="$!{basePath}/content/bigwheel/back/files/lot/wheel_rot_start.mp3" loop="loop"></audio>
+
+	<div id="superView" data-name="BG">
+		<!-- 底部轮播中奖人信息 -->
+		<div id="shufflingNews">
+			<div id="shufflingNewsList">
+				<div class="listBox">
+					<p><span class="sn_nickName">wenner</span>刚刚抽中了<span class="sn_prize">二等奖</span>，快来试试你的运气吧，分享给朋友可提升你的中奖率哦！</p>	 
+				</div>				
+			</div>
+		</div>
+		
+		
+		<img class="sv_title" data-name="bt" src="$!{basePath}/content/bigwheel/back/files/lot/bt.png" alt="标题">
+		<p class="sv_tip">你的抽奖机会为<b id="all_time">9</b>次，今天还剩<b id="now_time">4</b>次</p>
+		<div id="topbar_state" class="topbar_state">进行中</div>
+		<div id="smallView">
+			<img class="den" style="display: block;" src="$!{basePath}/content/bigwheel/back/files/lot/den1.png" alt="跑马灯">
+			<img class="den" src="$!{basePath}/content/bigwheel/back/files/lot/den2.png" alt="跑马灯">
+			<img class="den" src="$!{basePath}/content/bigwheel/back/files/lot/den3.png" alt="跑马灯">
+			<div id="wheelBox" class="prizeList6">
+				<ul id="prizeList" style="position:relative;">
+					<li class="prize6">
+						<h3 class="prize_name">奖品</h3>
+						<img class="prize_img" src="$!{basePath}/content/bigwheel/back/files/lot/p3.png" alt="奖品图片">
+					</li>
+					<li class="prize6">
+						<h3 class="prize_name">谢谢参与</h3>
+						<img class="prize_img">
+					</li>
+					<li class="prize6">
+						<h3 class="prize_name">奖品</h3>
+						<img class="prize_img" src="$!{basePath}/content/bigwheel/back/files/lot/p3.png" alt="奖品图片">
+					</li>
+					<li class="prize6">
+						<h3 class="prize_name">奖品</h3>
+						<img class="prize_img" src="$!{basePath}/content/bigwheel/back/files/lot/p3.png" alt="奖品图片">
+					</li>
+					<li class="prize6">
+						<h3 class="prize_name">奖品</h3>
+						<img class="prize_img" src="$!{basePath}/content/bigwheel/back/files/lot/p3.png" alt="奖品图片">
+					</li>
+					<li class="prize6">
+						<h3 class="prize_name">奖品</h3>
+						<img class="prize_img" src="$!{basePath}/content/bigwheel/back/files/lot/p3.png" alt="奖品图片">
+					</li>
+					<li class="prize6">
+						<h3 class="prize_name">奖品</h3>
+						<img class="prize_img" src="$!{basePath}/content/bigwheel/back/files/lot/p3.png" alt="奖品图片">
+					</li>
+					<li class="prize6">
+						<h3 class="prize_name">奖品</h3>
+						<img class="prize_img" src="$!{basePath}/content/bigwheel/back/files/lot/p3.png" alt="奖品图片">
+					</li>
+				</ul>
+			</div>
+			<img id="luckyBtn1" class="luckyBtn" data-name="btn1" style="display: block;" src="$!{basePath}/content/bigwheel/back/files/lot/btn1.png" alt="抽奖按钮">
+			<img id="luckyBtn2" class="luckyBtn" data-name="btn2" src="$!{basePath}/content/bigwheel/back/files/lot/btn2.png" alt="抽奖按钮">
+
+			<a id="rule_btn" class="gamebtn rule_rule_link" href="javascript:void(0)"></a>
+			<a id="prize_btn" class="gamebtn rule_myprize_link" href="javascript:void(0)"></a>
+			<div class="frendlytip" style="display:none;" >分享到朋友圈，可以提升中奖率哦！</div>
+		</div>
+	</div>
+
+
+	<script>
+		// 路径
+		var basepath='$!{basePath}/content/bigwheel/back/files/lot/';
+	</script>
+	<script type="text/javascript" src="$!{basePath}/content/bigwheel/back/files/lot/bigWheel.js"></script><script>	
+	
+	</script>
+</div>
+</body>
+<script type="text/javascript" src="$!{basePath}/content/bigwheel/back/files/lot/game_main.js"></script>
+<script type="text/javascript">
+
+	var gameConfig = {
+			image: {},
+			text: {},
+			style: {}
+	};
+	// 替换自定义资源
+	console.log(gameOrigin)
+	console.log(gamePageJson)
+	if(gamePageJson){
+		// 背景
+		if(gamePageJson.gbp){
+			
+			gameConfig.image.BG = window.game.replaceResRoot(gamePageJson.gbp);
+			console.log(gameConfig.image.BG)
+		}
+	}
+	if (gameOrigin) {
+		if(gameOrigin[0].path[0]){
+			gameConfig.image.bt = gameOrigin[0].path[0];
+		}
+		
+		if(gameOrigin[1].path[0][0]){
+			gameConfig.image.btn1 = gameOrigin[1].path[0][0];
+		}
+		
+		if(gameOrigin[1].path[1][0]){
+			gameConfig.image.btn2 = gameOrigin[1].path[1][0];
+		}
+	}
+	window.game.config.nickname="$!{OPERATE_ACTIVITY_USER.nickname}";
+		window.game.config.openid="$!{OPERATE_ACTIVITY_USER.openid}";
+				window.game.config.headimg="$!{OPERATE_ACTIVITY_USER.headimgurl}";
+</script>
+</html>

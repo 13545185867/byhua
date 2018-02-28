@@ -1,0 +1,457 @@
+<SCRIPT id="upload_img_field_tpl" type="text/x-template">
+	<div class="control-group" {{#if extend.disable}}style="display:none;" {{/if}}>
+	<label class="control-label">
+		{{#if noForFree}}
+		<div class="info nofree_tips_info">修改{{title}}为付费套餐功能 &nbsp;&nbsp;<a
+				href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzgwMDA4NjU0N180NDIyMjZfODAwMDg2NTQ3XzJf:;"
+				target="_blank" class="contact_qqbtn_1001">立即升级>></a>
+			<div class="sanjiao"></div>
+		</div>
+		<span class="nofree_tips">付费</span>{{/if}}{{title}}：
+	</label>
+	<div class="controls">
+		<div class="cover-area" style="padding-top:0px;position: relative;margin-top:0px;">
+			<p class="upload-tip"></p>
+			<div class="cover-hd">
+				<div class="info">{{infoText}}</div>
+					<span class="btn btn-primary fileinput-button {{#if noForFree}}disabled{{/if}}">上传图片
+						<input id="file_upload_editimg_{{index}}" data-sizelimit="{{parseInt(limit)}}"
+							   data-form-data='{"accountId": "424157","imgtype":"{{imgtype}}"}' {{#if noForFree}}disabled="disabled" {{/if}} type="file" name="fileupload" data-url="/youfang/system/back/jwSystemProject/doJQUpload.html?imgtype={{imgtype}}" multiple>
+					</span>
+				<input id="editimg_{{index}}" type="hidden" class="fileupload_input" name="editimg_{{index}}"
+					   disabled="disabled">
+			</div>
+			<div class="cover-bd img-area" data-from="{{from}}" data-defsrc="{{defSrc}}">
+				<div class="imgBox"><img class="thumb_img" src="{{img_src}}"/></div>
+				{{#if recover}}
+				<a href="javascript:;" class="vb cover-recovery">恢复默认</a>
+				{{/if}}
+				{{#if !recover}}
+				<a href="javascript:;" class="vb cover-recovery" style="display:none;">恢复默认</a>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+	</div>
+</SCRIPT>
+	 
+<SCRIPT id="award_tab_item_tpl" type="text/x-template">
+	{{#each items as item idx}}
+	<li class="prize_tab_item {{#if idx == 0}}active{{/if}}{{#if item.hidden}} hide{{/if}}"><a href="javascript:;"
+																							   class="award_tab_item_link"
+																							   data-idx="{{idx}}">{{getAwardName(idx+1)}}</a>
+	</li>
+	{{/each}}
+	<li><a href="javascript:;" class="del_award_tab_item">-</a></li>
+	<li><a href="javascript:;" class="add_award_tab_item">+</a></li>
+</SCRIPT>
+	 
+<SCRIPT id="award_tab_content_tpl" type="text/x-template">
+	{{#each items as item idx}}
+	<div class="award_tab award_tab_{{idx}}" data-id={{idx}} data-awardid="{{item.awardId || ''}}" {{#if
+		 idx!=0}}style="display:none;"{{/if}}>
+		<input type="hidden" name="awardId" value="{{item.awardId || ''}}"/>
+		<input type="hidden" name="trophyId" value="{{item.trophyId || ''}}"/>
+		<form action="#" class="form-horizontal award_detail_form" data-awardid="{{item.awardId || ''}}"
+			  id="award_detail_form_{{idx}}">
+			<div class="control-group" style="display:none;">
+				<label class="control-label">奖项等级：</label>
+				<div class="controls">
+					<select name="awardLevel" data-value="{{idx + 1}}">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+					</select>
+					<br/>
+					<span class="maroon">*</span><span class="help-inline">奖项等级按小排到大</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">奖项等级：</label>
+				<div class="controls">
+					<input name="awardName" class="span2" type="text" value="{{item.awardName}}" data-editable="false">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">奖品名字：</label>
+				<div class="controls">
+					<input name="trophyName" class="span2" type="text" value="{{item.trophyName}}">
+					<span class="maroon">*</span><span class="help-inline">活动发布后，奖品名字不能更改</span>
+				</div>
+				<div class="controls" style="">
+					<span class="help-inline">若启用微信卡券功能，限制填写9个字以内的文字，且建议填写“减免金额”及自定义内容，描述微信卡券具体优惠，如“卡布奇诺5元咖啡券“</span>
+				</div>
+			</div>
+
+			<!-- 图片上传 -->
+			<div class="control-group">
+				<label class="control-label">奖品图片</label>
+				<div class="controls">
+					<div class="cover-area">
+						<div class="cover-hd">
+							<div class="info">图片像素建议为 <span class="uploadSize">200px*200px</span><br>大小在100k以内，格式为jpg\bmp\png\gif
+								<div class="sanjiao"></div>
+							</div>
+	    															<span class="btn btn-primary fileinput-button">上传图片
+	        															<input id="file_upload_{{idx}}"
+																			   data-sizelimit="100"
+																			   data-form-data='{"accountId": "424157"}'
+																			   type="file" name="fileupload"
+																			   data-url="/youfang/system/back/jwSystemProject/doJQUpload.html">
+	    															</span>
+							<input id="prize_image_{{idx}}" type="hidden" class="fileupload_input" name="prize_image"
+								   disabled="disabled">
+						</div>
+						<p class="upload-tip">请上传jpg、png、gif格式的图片。</p>
+						<div class="cover-bd img-area" data-from="#organizer_logo">
+							<div class="imgBox">
+								<img class="thumb_img prize_thumb_img"
+									 src="http://static.resource.youyu.weijuju.com//image/admin/newgame/def_img_1.png"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">奖品类型：</label>
+				<div class="controls">
+					<select name="awardType" class="span2" data-editable="false">
+						<option value="1">实物礼品（奖券）</option>
+						<option value="4">优惠券（奖券）</option>
+						<option value="5">抵扣券（奖券）</option>
+						<!--<option value="2">微信红包</option>-->
+						 <!--<option>流量</option> -->
+						<!-- <option>优惠券</option> -->
+					</select>
+					<span class="maroon">*</span><span class="help-inline">活动发布后，奖品类型不能更改</span>
+				</div>
+			</div>
+			<div class="control-group trophy_datetime">
+				<label class="control-label">兑奖时间：</label>
+				<div class="controls">
+					<input name="validityStart" class="span2" type="text" value=""> 到 <input name="validityStop"
+																							 class="span2" type="text"
+																							 value="">
+					<span class="maroon">*</span><span class="help-inline">活动发布后，兑奖时间无法修改，且超过兑奖时间奖券将失效。</span>
+				</div>
+			</div>
+			<div class="control-group redpack_award_type">
+				<label class="control-label awardNumLabel">奖品数量： </label>
+				<div class="controls">
+					<input name="awardRealNum" class="span1 onlyNum" type="text" value="1" maxlength="6"><span class="maroon">*</span>
+					<span class="awardLoseBox hide">&nbsp;已领：&nbsp;<input name="awardLoseNum" class="span1 onlyNum"
+																		  type="text" value="0"
+																		  disabled="disabled"></span>
+					<span class="awardDefaultWinnerBox hide">&nbsp;已内定：&nbsp;<input name="awardDefaultWinnerNum" class="span1 onlyNum"
+																		  type="text" value="0"
+																		  disabled="disabled"></span>
+					<span class="j-awardNum-tips"></span>
+					<a href="javascript:;" class="add_sncode_award hide" data-awardid="{{item.awardId || ''}}">修改数量</a>
+				</div>
+			</div>
+			<div class="control-group set_defaultWinner_box">
+				<label class="control-label qijianban-label" for="defaultWinner">内定中奖：</label>
+				<div class="controls">
+					<label class="radio inline">
+						<input type="radio" name="defaultWinner" value="1" checked="checked" data-editable="false">关闭
+					</label>
+					<label class="radio inline">
+						<input type="radio" disabled="disabled" name="defaultWinner" value="2" data-editable="false">开启
+					</label>
+					</div>
+			</div>
+			<div class="control-group set_defaultWinnerAmount_box">
+				<label class="control-label">内定奖品数量：</label>
+				<div class="controls">
+					<input name="defaultWinnerAmount" class="span1 onlyIntNum" type="text" disabled="disabled" value="0" maxlength="4"><span class="maroon">*</span>
+					<span class="defaultWinnerLoseBox hide">&nbsp;已领：&nbsp;<input name="defaultWinnerLoseNum" class="span1 onlyNum"
+						type="text" value="0" disabled="disabled"></span>
+					<a href="javascript:;" class="add_defaultwinner_award hide" data-awardid="{{item.awardId || ''}}" data-trophyid="{{item.trophyId || ''}}">修改数量</a>
+					<span class="defaultWinnerAmount-tips help-inline">已内定<span class="c1">0</span>个奖品，可正常发放<span class="c2">0</span>个奖品</span>
+					<span class="defaultWinnerAmount-tips-error error help-inline" style="display:none;">内定奖品数量超过奖品数量</span>
+				</div>
+				<div class="controls">
+					<div class="default-winner-area fn-clear">
+						<div class="area_left">
+							<img class="qrcode_img" />
+							<a class="qrcode_down_link" target="_blank" href="javascript:;">下载二维码</a>
+						</div>
+						<div class="area_right">
+							<p class="default_winner_verifycode" style="display:none;">内定密码：<span class="verifycode"></span></p>
+							<p class="verify_tips help-inline">活动发布后，内定中奖人扫一扫二维码并输入内定密码，即可跳过游戏环节直接中奖。</p>
+							<p class="verify_tips help-inline" style="display:none;">注：为保障奖品安全，一个内定密码只对应一个奖品，领奖后密码将重置。</p>
+							<a class="btn get_default_winner_pwd" data-disabled="true" href="javascript:;">
+								<div class="info field_tips_info">发布后才可查看密码
+									<div class="sanjiao"></div>
+								</div>查看内定密码</a>
+							</div>
+					</div>
+				</div>
+			</div>
+			<div class="control-group set_operationTip_box" style="">
+				<label class="control-label">操作提示： </label>
+				<div class="controls">
+					<input name="operationTip" class="span4" type="text" value="{{item.operationTip}}" maxlength="100">
+					<span class="maroon">*</span><span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group j-sncode-type">
+				<label class="control-label" for="sncodeType">生成券号：</label>
+				<div class="controls">
+					<label class="radio inline">
+						<input type="radio" name="sncodeType" value="1" checked="checked" data-editable="false">系统生成
+					</label>
+					<label class="radio inline">
+						<input type="radio" name="sncodeType" value="3" data-editable="false">手工导入
+					</label>
+				</div>
+				<div class="controls hide sncode-controls j-sncode-controls">
+					<textarea name="sncodes" disabled="disabled" data-editable="false"></textarea>
+					<p><span class="j-sncode-msg">一行一个券号，券号数量与奖品数量需一致</span><a href="javascript:void(0);"
+																			   class="j-check-sncode">检测格式</a></p>
+				</div>
+			</div>
+			<div class="control-group set_isWxCard_box"  style="display:none;">
+				<label class="control-label" for="isWxCard">同步发布至微信卡券（包）：</label>
+				<div class="controls">
+					<label class="radio inline">
+						<input type="radio" name="isWxCard" disabled="disabled" value="1"
+							   data-editable="false">是
+					</label>
+					<label class="radio inline">
+						<input type="radio" name="isWxCard" value="2" checked="checked" data-editable="false">否
+					</label>
+				</div>
+				<div class="controls">
+					<p>（你还没有进行公众号服务授权，使用微信卡券需绑定认证微信公众号，且公众号需开通卡券功能，点击<a
+							style="text-decoration:underline;padding: 0 2px;"
+							href="/admin/remotelogin?page=%2Fadmin%2Fai%2Fyouyu_open_bind_new.jsp">服务授权</a>进行绑定。若没有进行绑定及开通卡券功能，将仍采用有娱平台优惠券，不同步至微信卡券）
+					</p>
+					</div>
+			</div>
+			
+			<div class="control-group trophy_redpack_text" style="display:none;">
+				<label class="control-label">红包总金额：</label>
+				<div class="controls">
+					<input name="totalCount" class="span1 onlyNum" maxlength="6" type="text" value="1"><span
+						class="maroon">*</span> <span
+						class="help-inline">10元以下不收取服务费，先体验试试吧！</span><a href="javascript:;"
+																			  class="add_redpack_award hide"
+																			  data-awardid="{{item.awardId || ''}}">追加红包</a>
+					</div>
+				<div class="controls" style="padding-top:5px;">平台技术服务费：<span
+						class="service_charge">0</span>元 &nbsp;&nbsp; 当前账户余额：0元 <a
+						href="/admin/asset/redpack_recharge.jsp">马上充值</a></div>
+			</div>
+			<div class="control-group trophy_redpack_text" style="display:none;">
+				<label class="control-label">每个红包金额范围：</label>
+				<div class="controls">
+					<input name="singleMin" class="span1 onlyNum" type="text" value="1"> 元 至
+					<input name="singleMax" class="span1 onlyNum" type="text" value="10"> 元<span class="money_fw_text">（最大金额范围1～200元）</span>
+				</div>
+			</div>
+			<div class="control-group redpack_award_type award_virtual_num"  style="display:none;">
+				<label class="control-label">虚拟奖品数量：</label>
+				<div class="controls">
+					<input name="awardVirtualNum" class="span1 onlyNum" type="text" value="0">
+				</div>
+			</div>
+			<div class="control-group redpack_award_type" style="display:none;">
+				<label class="control-label">中奖概率：</label>
+				<div class="controls">
+					<input style="margin: 8px;" type="radio" class="probabilityType" name="probabilityType{{idx}}"
+						   checked="checked" data-value="1"> 动态概率 <input style="margin: 8px;" type="radio"
+																		 class="probabilityType"
+																		 name="probabilityType{{idx}}" data-value="2">
+					固定概率 
+					<br/>
+					<span class="help-inline"> 传统概率模式下，易出现奖品发放过快或过慢的情况，启用动态概率调整功能，系统将自动调整中奖概率，使奖品在整个活动周期中均匀发放。</span><br/>
+				</div>
+			</div>
+			<div class="awardSettingLine" style="">
+				<span style="margin-left: 17px;">详情设置</span>
+				<div class="detailIcon awardDetailIcon"></div>
+			</div>
+			<div class="awardDetailSetting" style="">
+				<div class="control-group set_subhead_box">
+					<label class="control-label">副标题：</label>
+					<div class="controls">
+						<input name="subhead" class="span4" type="text" value="{{item.subhead}}" maxlength="20">
+					</div>
+				</div>
+				<div class="control-group set_storeAddress_box">
+					<label class="control-label">兑奖地址： </label>
+					<div class="controls">
+						<input name="storeAddress" class="span4" type="text" value="{{item.storeAddress}}"
+							   maxlength="120">
+					</div>
+				</div>
+				<div class="control-group set_serviceTel_box">
+					<label class="control-label">客服电话： </label>
+					<div class="controls">
+						<input name="serviceTel" class="span4" type="text" value="{{item.serviceTel}}" maxlength="30">
+					</div>
+				</div>
+				<div class="control-group set_description_box">
+					<label class="control-label">兑奖须知： </label>
+					<div class="controls">
+						<textarea name="description" style="height:100px;" class="span4" maxlength="220">{{item.description}}</textarea>
+					</div>
+				</div>
+				
+				<div class="control-group set_jumpBtn_box">
+					<label class="control-label qijianban-label">跳转按钮： </label>
+					<div class="controls">
+						<label class="radio inline">
+							<input type="radio" name="guanwanJumpBtn" value="1" checked="checked">关闭
+						</label>
+						<label class="radio inline">
+							<input type="radio" name="guanwanJumpBtn" value="2"  >开启
+						</label>
+						<div class="jumpBtnNameBox" style="margin: 7px 0 0 14px;display:none;">
+							<p style="float: left; margin: 7px 7px 0 0;">按钮名字：</p>
+							<input class="jumpBtnName" disabled="disabled" name="jumpBtnName" placeholder="企业官网" class="span4" type="text" value="">
+						</div>
+						<div class="jumpLinkBox" style="margin: 7px 0 0 14px;display:none;">
+							<p style="float: left; margin: 7px 7px 0 0;">跳转链接：</p>
+							<input class="jumpLink" disabled="disabled" name="jumpLink" placeholder="跳转链接" class="span4" type="text" value="">
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+		<!--
+        <div class="control-group sn_award_type">
+            <label class="control-label">奖品发放数量：</label>
+            <div class="controls">
+                <span>即将开放</span>
+            </div>
+        </div>
+        <div class="control-group coupon_award_type">
+            <label class="control-label">优惠券发放数量：</label>
+            <div class="controls">
+                <span>即将开放</span>
+            </div>
+        </div>
+        <div class="control-group flow_award_type">
+            <label class="control-label">流量包数量：</label>
+            <div class="controls">
+                <span>即将开放</span>
+            </div>
+        </div>
+         -->
+	</div>
+	{{/each}}
+</SCRIPT>
+	 
+<SCRIPT id="award_convert_limit_tpl" type="text/x-template">
+	{{#each items as item idx}}
+	<div class="control-group convert_limit convert_limit_{{idx}} {{#if item.hidden}} hide{{/if}}">
+		<label class="control-label">{{getAwardName(idx+1)}}：</label>
+		<div class="controls">
+			需要 <input class="span1 onlyIntNum" name="integralConvert{{idx}}" type="text" {{#if item.hidden}}
+					  disabled="disabled" {{/if}} value="{{item.integralConvert?item.integralConvert:""}}"
+			maxlength="3"> 个人成功助力
+		</div>
+	</div>
+	{{/each}}
+</SCRIPT>
+
+<SCRIPT type="text/javascript">
+console.log(1);
+var currentWwwPath=window.document.location.href;  
+    //获取主机地址之后的目录，如：/supermarket/user.do(注意：不包括?后面传递的参数)
+    var pathName=window.document.location.pathname;  
+    //获取/uimcardprj中/的位置(也就是主机地址后面的/)，这里是：21
+    var position=currentWwwPath.indexOf(pathName);  
+  
+    //获取主机地址，如：http://localhost:8080
+    var localhostPath=currentWwwPath.substring(0,position); 
+	window.www_domain = localhostPath;
+	window.www_game = localhostPath;
+	window.static_res_prefix = localhostPath+"/"+serverroot;
+	window.res_path_prefix = localhostPath+"/";
+	window.global_uid = 424157;
+	var _resRoot =localhostPath+"/"+ "content/bigwheel/back/files/lot";
+console.log(2);
+	var _hasBindWx = 'false';
+	var _packageType = -1;
+	var _verifyAvailable = 'false';
+	var _isQixi = false;
+	var _isZqJiZi = false;
+	var _isZqPinTu = false;
+	var _isZqBoBing = false;
+	var _isNewBargain = false;
+	var _isJiWuFu = false;
+	var _isGuangGun = false;
+	var _isWanSheng = false;
+	var _isQiangHuo = false;
+	var _isNewZrhb = false;
+	var _isNewPzhb = false;
+	var _isFromHb = false;
+	var _isNewShakeRedpack = false;
+	var _isXiuyixiu = false;
+	var _isBigWheel = false;
+	var _isExciteLottery = false;
+	var _isKlhb = false;
+	var _isNewYyhb = false;
+	var _isAbsolutelyBigWheel = true;
+	var _isYyttl = false;
+	var _isParkour = false;
+	var _isGolden_eggs = false;
+	var _isFuDan = false;
+	var _isZcqc = false;
+	var _isShakeRedEnvelope = false;
+	var _isPanoredpack = false;
+	var _isValuationHunter = false;
+	var _isHeartbeatMatch = false;
+	var _isTruthOrDare = false;
+	var _isRiddle = false;
+	var _isVoiceRiddle = false;
+	var _isChangeClothes = false;
+	var _isYanzhihb = false;
+	var _isFoolvoice = false;
+	var _isXiaoXiaoLe = false;
+	var _isDaFuWeng = false;
+	var _isClassicsBargain = false;
+	var _isJiaWaWa = false;
+	var _isSayToTheWorld = false;
+	var _isDaZhuanKuai = false;
+	var _isGunZiHero = false;
+	var _isImgMatch = false;
+	var _isThreeDPan = false;
+	var _isStarWar = false;
+	var _isObjectsFighting = false;
+	console.log(3);
+	var _qiniuResRoot = localhostPath+'/';
+	var params = $.deparam(window.location.search.substring(1));
+	var pageTemplateId = params["templateId"] || 34;
+	
+	var global_aid = params["aid"];
+	// 是否复制并重新创建
+	var isReCreate = params["recreate"] || false;
+	var isTest = params["isTest"] || false;
+	// 当前页面是否是编辑，若没有aid参数，则默认为新増
+	var isEdit = false;
+	if (global_aid && !isReCreate) {
+		isEdit = true;
+	}
+console.log(4);
+</SCRIPT>
+     
+<SCRIPT type="text/javascript">
+        var showFreeUserTips = true;
+        if (showFreeUserTips && !isEdit) {
+            $("#free_user_tips_modal").modal("show");
+        }
+        $(".free_user_tips_close").on("click", function(){
+            $("#free_user_tips_modal").modal("hide");
+        });
+    </SCRIPT>

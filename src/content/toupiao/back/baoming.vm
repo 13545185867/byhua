@@ -1,0 +1,14 @@
+<script>
+var ret = {};
+
+ret.status = $!{status};
+ret.errormsg = "$!{errormsg}";
+
+ret.guid = '$!{guid}';
+ret.imgthumb = '$!{basePath}/upload/img/system/$!{imgthumb}';
+ret.imgurl = '$!{basePath}/upload/img/system/$!{imgurl}';
+ret.imgName='$!{imgurl}';
+
+parent.uploadedImg(ret);
+
+</script>

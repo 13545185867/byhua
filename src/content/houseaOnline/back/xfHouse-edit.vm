@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<script type="text/javascript"  charset="utf-8" src="$!{basePath}/ueditor/ueditor.config.js"></script>
+  <script type="text/javascript"  charset="utf-8" src="$!{basePath}/ueditor/ueditor.all.min.js"></script>
+      <script type="text/javascript" charset="utf-8" src="$!{basePath}/ueditor/lang/zh-cn/zh-cn.js"></script>
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">编辑</div>
+				<div class="panel-body">
+					<form class="form-horizontal" role="form" id="dailogForm" action="$!{basePath}/houseaOnline/back/xfHouse/doEdit.html" method="POST">
+						 <input type="hidden" id="btn_sub" class="btn_sub" />
+						 <input type="hidden" value="$!{xfHouse.id}" name="id" id="id" />
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">房间编号</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{xfHouse.name}" name="name" id="name" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">户型 </label>
+												    <div class="col-sm-8">
+												        <select name="hxid" id="hxid"  value="$!{xfHouse.hxid}" class="form-control" >
+													      <option value="" >请选择房产户型 </option>
+													       	#if($!{pagehxInfos})
+													                #foreach($!{info} in $!{pagehxInfos})
+													               	 <option value="$!{info.id}" #if($!{info.id} eq $!{xfHouse.hxid})selected#end>$!{info.name}</option>
+														             #end
+													    	 	#end
+													      </select>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">销售状态：  </label>
+												    <div class="col-sm-8">
+												       <select name="status" id="status"  value="$!{xfHouse.status}" class="form-control" >
+															    <option value="" >选择销售状态</option>
+															    <option value="0" #if('0' eq $!{xfHouse.status})selected#end>待售</option>
+															    <option value="1" #if('1' eq $!{xfHouse.status})selected#end>在售</option>
+															    <option value="2" #if('2' eq $!{xfHouse.status})selected#end>已被预定未支付定金</option>
+															    <option value="3" #if('3' eq $!{xfHouse.status})selected#end>已支付定金</option>
+															    <option value="4" #if('3' eq $!{xfHouse.status})selected#end>已售</option>
+															    </select>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">报价</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{xfHouse.price}" name="price" id="price" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">装修情况</label>
+												    <div class="col-sm-8">
+												      <select name="zhuangxiustatus" id="zhuangxiustatus"  value="$!{xfHouse.zhuangxiustatus}" class="form-control" >
+															    <option value="" >设置装修情况</option>
+															    <option value="0" #if('0' eq $!{xfHouse.zhuangxiustatus})selected#end>毛坯</option>
+															    <option value="1" #if('1' eq $!{xfHouse.zhuangxiustatus})selected#end>简装</option>
+															    <option value="2" #if('2' eq $!{xfHouse.zhuangxiustatus})selected#end>精装</option>
+															    </select>
+													</div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">交房日期</label>
+												    <div class="col-sm-8" style="text-align:left;  ">
+												    <input type="text" value="$!dateTool.format("yyyy-MM-dd",$!{xfHouse.deliverydate})" name="deliverydate" id="deliverydate" class="form-control  "   onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+												    </div>
+												</div>
+												     
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">楼层</label>
+												    <div class="col-sm-8" style="text-align:left; width:130px">
+												      <input type="text" value="$!{xfHouse.floor}" name="floor" id="floor" class="form-control"/>
+												    </div>
+												    楼
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">电梯情况</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{xfHouse.elevator}" name="elevator" id="elevator" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">房屋朝向</label>
+												    <div class="col-sm-8">
+												      <input type="text" value="$!{xfHouse.chaoxiang}" name="chaoxiang" id="chaoxiang" class="form-control"/>
+												    </div>
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">网上定金</label>
+												    <div class="col-sm-8" style="text-align:left; width:130px">
+												      <input type="text" value="$!{xfHouse.orderprice}" name="orderprice" id="orderprice" class="form-control"/>
+												    </div>
+												    元
+												</div>
+												<div class="form-group mno">
+												    <label for="inputEmail3" class="col-sm-2 control-label" style="text-align:left;">详情</label>
+												    <div class="col-sm-8">
+												       <textarea name="content" id="content"  >$!{xfHouse.content}</textarea>
+															<script type="text/javascript">
+													        var editor = UE.getEditor('content');
+													    </script>
+												    </div>
+												</div>
+												
+									<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/houseaOnline/back/xfHouse/list.html?cellid=$!{xfHouse.cellid}&pid=$!{xfHouse.pid}&buildingid=$!{xfHouse.buildingid}')">返回</button>
+	        									<button type="button" class="btn btn-primary" id="formSubmit">提交</button>
+        									 </div>
+        							</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="$!{basePath}/plug-in/js/Validform_v5.3.2.js"></script> 
+<script type="text/javascript" src="$!{basePath}/plug-in/js/forminit.p3.js"></script>  

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">详情</div>
+				  	<div class="panel-body">
+				   		<form class="form-horizontal" role="form">
+							  <fieldset disabled>
+							  																 <div class="form-group mno" sytle="display:none;">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">活动ID</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{wxActToupiaoConfig.actId}" name="actId" id="actId" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">是否允许每天多次投票</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="#if($!{wxActToupiaoConfig.isManyVtoe} eq 1)允许#else禁止#end" name="isManyVtoe" id="isManyVtoe" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">每天投票次数</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{wxActToupiaoConfig.verydayMaxVotecount}" name="verydayMaxVotecount" id="verydayMaxVotecount" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">是否关注后投票</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="#if($!{wxActToupiaoConfig.foucsUserCanJoin} eq 1)是#else否#end" name="foucsUserCanJoin" id="foucsUserCanJoin" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">投票方式：单选、多选  </label>
+													    <div class="col-sm-2">
+													      <input type="text" value="#if($!{wxActToupiaoConfig.voteType} eq 1)多选#else单选#end" name="voteType" id="voteType" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">选项显示样式</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="#if($!{wxActToupiaoConfig.optionViewStyle} eq 1)单列显示#end #if($!{wxActToupiaoConfig.optionViewStyle} eq 2)两列显示#end #if($!{wxActToupiaoConfig.optionViewStyle} eq 3)三列显示#end" name="optionViewStyle" id="optionViewStyle" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">选项称谓</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{wxActToupiaoConfig.optionAddr}" name="optionAddr" id="optionAddr" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">选项量词</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{wxActToupiaoConfig.optionClassic}" name="optionClassic" id="optionClassic" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">是否显示搜索</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="#if($!{wxActToupiaoConfig.isViewSearch} eq 1)显示 #else不显示#end" name="isViewSearch" id="isViewSearch" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">是否显示活动介绍</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="#if($!{wxActToupiaoConfig.isViewDescript} eq 1)显示 #else不显示#end" name="isViewDescript" id="isViewDescript" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">是否显示活动统计</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="#if($!{wxActToupiaoConfig.isViewTongji} eq 1)显示 #else不显示#end" name="isViewTongji" id="isViewTongji" class="form-control" />
+													    </div>
+													  </div>
+													 <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">是否显示选项票数</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="#if($!{wxActToupiaoConfig.isViewPiaoshu} eq 1)显示 #else不显示#end" name="isViewPiaoshu" id="isViewPiaoshu" class="form-control" />
+													    </div>
+													  </div>
+													  
+													   <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">是否显示报名入口</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="#if($!{wxActToupiaoConfig.isEnter} eq 1)显示 #else不显示#end" name="isEnter" id="isEnter" class="form-control" />
+													    </div>
+													  </div>
+													  
+													  <div class="form-group mno">
+													    <label for="inputEmail3" class="col-sm-1 control-label" style="text-align:left;">每次最多可选个数</label>
+													    <div class="col-sm-2">
+													      <input type="text" value="$!{wxActToupiaoConfig.checkVoteCount}" name="checkVoteCount" id="checkVoteCount" class="form-control" />
+													    </div>
+													  </div>
+													  
+													 
+							  </fieldset>
+							  			<div class="form-group mno">
+											<div class="col-sm-offset-1 col-sm-6">
+												<button type="button" class="btn btn-default" id="formReturn" data-dismiss="modal" onclick="doUrl('$!{basePath}/toupiao/back/wxActToupiaoConfig/list.do')">返回</button>
+        									 </div>
+        							    </div>
+						</form>
+					</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

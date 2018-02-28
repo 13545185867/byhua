@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://rform.a.mvote.cn/plugin/jcrop/uploadimage_iframe.php?index=1 -->
+<html lang="zh-cn" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script type="text/javascript" src="./jquery.min.js"></script>
+<script type="text/javascript" language="javascript"> 
+var index = 1;
+function FileUpload_onselect()
+{
+	document.getElementById("formupload").submit();
+	parent.startUploading(index);
+}
+
+function select_file()
+{
+	$("#FileUpload").click();
+}
+
+function uploadedImg(json)
+{
+	if(json.status == 1)
+	{
+		//alert(json.guid);
+		parent.endUploading(json,index);
+	}
+	else
+	{
+		alert(json.errormsg);
+	}
+}
+
+    </script>
+
+</head>
+<body>
+<ul>
+
+</ul>
+<button id="selectpic">选择图片</button>
+<iframe name="posthere_upload" src="./saved_resource(4).html"></iframe>
+<form style="width:0px;height:0px; overflow:hidden;" method="post" action="/P3-Web/toupiao/upFile/doUp.do" enctype="multipart/form-data" target="posthere_upload" id="formupload">
+<input id="FileUpload" name="file" type="file" value="上传图片" onchange="return FileUpload_onselect()">
+<input type="hidden" name="index" value="1">
+<button id="doupload" type="submit">开始上传</button>
+</form>
+
+
+
+</body></html>

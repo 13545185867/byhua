@@ -1,0 +1,19 @@
+@CHARSET "utf-8";
+
+.questionlist form{padding-left:50px;}
+
+.questionlist .survelresult{}
+.questionlist .survelresult .opblock{float: left;width: 100%;}
+.questionlist .survelresult .opblock .optext{float: left;color:#666;}
+.questionlist .survelresult .opblock .opchecked{color:green;font-weight:bold;}
+.questionlist .survelresult ol li{float:left;width:80%;}
+.surveyuserinfo .control-group{margin-bottom:10px;}
+.surveyuserinfo .control-label{width:60px;}
+.surveyuserinfo  .controls{margin-left: 65px;}
+.surveyuserinfo legend{font-size:14px;}
+.surveyuserinfo  .controls textarea{width:400px;height:100px;}
+.userinfofield{width:215px;}
+.userinfodl dt{width:80px;line-height:30px;}
+.userinfodl dd{margin-left:95px;line-height:30px;}
+
+.wapwrap .surveyuserinfo  .controls textarea{width:207px;}

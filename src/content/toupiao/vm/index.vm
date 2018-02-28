@@ -1,0 +1,528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>$!{toupiao.actName}</title>
+<meta name="description" content="$!{toupiao.actName}">
+<meta name="”format-detection”" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="email=no" name="format-detection">
+<meta content="telephone=no" name="format-detection">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+
+<link href="$!{basePath}/content/toupiao/css/bootstrap.wxvote.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="$!{basePath}/content/toupiao/css/font-awesome.min.css">
+<link href="$!{basePath}/content/toupiao/css/style.css" rel="stylesheet" media="screen">
+<link href="$!{basePath}/content/toupiao/css/wapstyle.css" rel="stylesheet" media="screen">
+
+<link href="$!{basePath}/content/toupiao/css/votestyle.css" rel="stylesheet" media="screen">
+<script async="" src="$!{basePath}/content/toupiao/js/analytics.js"></script>
+<script src="$!{basePath}/content/toupiao/js/jquery.js"></script>
+<script src="$!{basePath}/content/toupiao/js/icheck.min.js"></script>
+
+<script>
+var editor_lang = "zh-cn";
+var captchtimermax = '2';
+var hideopindex = false;  // 
+var TESTCODEMODE = "0";
+var geetestObj = null;
+var wxvrcode = 0;
+var notifyserver = "";
+</script>
+<script src="$!{basePath}/content/toupiao/js/config.js"></script>
+<script src="$!{basePath}/content/toupiao/js/bootstrap.min.js"></script>
+
+<link href="$!{basePath}/content/toupiao/css/$!{toupiao.pageViewStyle}" rel="stylesheet" media="screen">
+<style>
+body{background-color:#ffffff  }
+.weixinstyle .blockcell {border-bottom:0px;}
+
+.bottombar {
+	text-align:center;
+	bottom: 0;
+    position: fixed;
+    z-index:1000;
+    text-align: center;
+    width: 100%;
+    background-color: #000;
+    height:43px;
+    line-height:18px;
+	
+}
+.weixinstyle .bottombar a{
+	color: #fff;
+    float: left;
+    font-size: 12px;
+    margin-top: 3px;
+    text-decoration: none;
+    width: 20%;
+    overflow:hidden;
+}
+.weixinstyle .bottombar a i{
+	 font-size: 18px;
+}
+
+
+.weixinstyle .searchbar input{
+
+	float: left;
+    margin-top: 10px;
+    
+}
+.weixinstyle .searchbar button{
+
+	float: left;
+    margin-left: 10px;
+    margin-top: 11px;
+    width: 80px;
+}
+.carousel-wrap {
+  position: relative;
+  height: 180px;
+  width: 100%;
+  overflow: hidden;
+  // 删除
+  background-color: #fff;
+  margin:0px;
+  padding:0px;
+}
+
+.slide-ul {
+  width: 100%;
+  height: 100%;
+  margin:0px;
+  padding:0px;
+  }
+ .slide-ul li {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+	}
+  .slide-ul li   img {
+      width: 100%;
+      height: 100%;
+    }
+ 
+.carousel-items {
+  position: absolute;
+  z-index: 10;
+  top: 153px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0;
+  }
+ .carousel-items  span {
+  display: inline-block;
+    height: 14px;
+    width: 14px;
+    margin: 0 3px;
+    background-color: #b2b2b2;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 50%;
+  }
+
+ 
+.list-enter-active {
+  transition: all 1s ease;
+  transform: translateX(0)
+}
+
+.list-leave-active {
+  transition: all 1s ease;
+  transform: translateX(-100%)
+}
+
+.list-enter {
+  transform: translateX(100%)
+}
+
+.list-leave {
+  transform: translateX(0)
+}
+</style>
+
+<script>
+var guid = "$!{toupiao.id}";
+var serverroot = "$!{basePath}";
+var ghash = "3063bb3f421fb94523b12283a1a4b656";
+var fguid = "a6c3559f-b7b9-d3f1-6447-54d21c4dfde720170623";
+var expired =  "$!{expired}";
+var wxsubmittype = $!{toupiao.voteType};
+var maxselectionnum =$!{toupiao.checkVoteCount};
+var minselectionnum = 1;
+var wxeachsubmitnum = $!{toupiao.checkVoteCount};
+var qqverified = 0;
+var invitecode = 0;
+
+var isinweixin = $!{isinweixin};
+var isinqq = 0;
+var caninqq = 0;
+var optionsnum = $!{optioncount};
+var optionViewStyle = $!{toupiao.optionViewStyle};
+var loadpagedone = false;
+var wxvrcode = "0";
+var ismustfollow = $!{toupiao.foucsUserCanJoin};
+var notifyserver = "";
+var  showopvotenum = 1;
+var tpldiyfile = "viewvotewx.tpl";
+var loadoptionspernum = 20;
+var checktxt = "选择";
+var checkedtxt = "已选择";
+var optionunitname = "$!{toupiao.optionClassic}";
+var votebtntype = "1";
+var votebtntxtinfo = {"btntxt":"\u6295\u7968","unit":"\u7968","action":"\u6295","unit1":"\u7968","btntxt1":"\u6295TA\u4e00\u7968"}
+var hadselnum = 0;
+</script>
+</head>
+<body class="weixinstyle">
+<div class="bottombar" style="text-align:center">
+
+<a href="$!{basePath}/toupiao/toIndex.html?actId=$!{toupiao.id}&jwid=$!{toupiao.jwid}" style="width:25%; " >
+<i class="icon-home"></i><br>主页</a>
+#if(($!{toupiao.isEnter} eq 1) && ($!{toupiao.isViewSearch} eq 1))
+<a href="$!{basePath}/toupiao/baoming.do?actId=$!{toupiao.id}&jwid=$!{jwid}" style="width:25%;" ><i class="icon-picture"></i><br>报名</a>
+<a href="#" id="searchbtn" style="width:25%; " ><i class="icon-search"></i><br>搜索</a>
+#else
+	#if($!{toupiao.isEnter} eq 1)
+	<a href="$!{basePath}/toupiao/baoming.do?actId=$!{toupiao.id}" style="width:50%;" ><i class="icon-picture"></i><br>报名</a>
+	#end
+	#if($!{toupiao.isViewSearch} eq 1)
+	<a href="#" id="searchbtn" style="width:50%; " ><i class="icon-search"></i><br>搜索</a>
+	#end
+
+#end
+<a href="$!{basePath}/toupiao/order.do?actId=$!{toupiao.id}" style="width:25%;" ><i class="icon-bar-chart"></i><br>排名</a>
+</div>
+			#if($!{toupiao.voteType} == 1)
+<div class="wxmoreselsubmit">
+<button id="wxmoreselsubmitbtn" class="btn btn-info ">提 交 投 票</button>
+</div>
+#end
+<div class="wapwrap">
+#if($!{backbar})
+<div class="topbar">
+<a href="$!{basePath}/toupiao/toIndex.html?actId=$!{toupiao.id}&jwid=$!{jwid}" ><i class=" icon-angle-left"></i> 返回</a>
+</div>
+
+#end
+  	   <div class="carousel-wrap" id="carousel">
+		    <transition-group tag="ul" class='slide-ul' name="list">
+		      <li v-for="(list,index) in slideList" :key="index" v-show="index===currentIndex" @mouseenter="stop" @mouseleave="go">
+		          <img :src="list.src" :alt="list.name">
+		      </li>
+		    </transition-group>
+		 
+		    <div class="carousel-items">
+		      <span v-for="(item,index) in slideList.length" :class="{'active':index===currentIndex}" @mouseover="change(index)"></span>
+		    </div>
+		</div>
+		
+<div class="container bodycontainer">
+
+<div class="votetitle">
+<h4>$!{toupiao.actName}</h4>
+</div>
+#if($!{toupiao.isViewTongji} eq 1)
+<div class="wxvoteinfo">
+	<ul class="inline">
+	<li>参与$!{toupiao.optionAddr}<br>$!{optioncount}</li>
+	<li class="left-border">累计投票<br><span id="wxallvotenum">#if("$!{votecountsum}" =="") 0 #else $!{votecountsum} #end </span></li>
+	<li class="left-border">访问次数<br><span id="wxallviewnum">$!{visitCount}</span></li>
+	</ul>
+</div>
+#end
+<div class="blockcell">
+<i class="icon-time"></i> 开始时间：$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{toupiao.beginTime})
+</div>
+<div class="blockcell">
+<i class="icon-time"></i> 截止时间：$!dateTool.format("yyyy-MM-dd HH:mm:ss",$!{toupiao.endTime})</div>
+<div class="blockcell">
+<i class="icon-warning-sign"></i> #if($!{toupiao.isManyVtoe} eq 0) 每个微信每天能投票1次#end#if($!{toupiao.isManyVtoe} eq 1)  每个微信每天能投$!{toupiao.verydayMaxVotecount}次。#end
+</div>
+<div class="toprulebar">
+<i class="icon-warning-sign"></i>#if($!{toupiao.isManyVtoe} eq 0) 每个微信每天能投票1次#end#if($!{toupiao.isManyVtoe} eq 1)  每个微信每天能投$!{toupiao.verydayMaxVotecount}次，#end每次可选$!{toupiao.checkVoteCount}项, 已选 <b class="hadselnumshow">0</b> 个
+</div>
+#if($!{toupiao.isViewDescript} eq 1)
+<div class="blockcell rightarrow" id="showvotedescinfo">
+<i class="icon-bar-chart"></i> 活动介绍
+<i class="arrow icon-double-angle-down "></i>
+</div>
+<div class="votedescinfo" id="votedescinfo">
+$!{toupiao.description}
+</div>
+#end
+
+#if($!{toupiao.isViewSearch} eq 1)
+<div class="blockcell" style="margin-top:10px;">
+<form method="post" class="form-inline" action="$!{basePath}/toupiao/toIndex.do" style="margin-bottom:5px;">
+<input type="hidden" name="actId" value="$!{toupiao.id}">
+<input type="text" name="searchkeyword" value="" class="input-medium" placeholder="请输入选手名称或编号" id="searchkeyword"> 
+<button type="submit" class="btn btn-info" style="width:80px;"><i class="icon-search"></i> 搜索</button>
+</form>
+</div>
+#end
+
+<div class="blockcell">
+<a href="$!{basePath}/toupiao/order.do?actId=$!{toupiao.id}" class="btn btn-info btnorderlist" style="width:93%;margin-top:8px;"><i class="icon-bar-chart"></i> 查看排名</a>
+</div>
+
+	<div class="voteoplist">
+<!--一列 -->
+ #if($!{pageInfos} && ($!{toupiao.optionViewStyle} eq 1) )
+	#foreach($!{info} in $!{pageInfos})		
+			<div id="wxop_$!{info.id}" class="wxop" style="width:100%;">
+			<div class="wxopimg">
+			<a href="$!{basePath}/toupiao/detail.do?actId=$!{toupiao.id}&id=$!{info.id}">
+				<img src="$!{basePath}/upload/img/system/$!{info.image}"  /></a>
+			</div>
+			<div class="wxoptxt">
+				<a href="$!{basePath}/toupiao/detail.do?actId=$!{toupiao.id}&id=$!{info.id}">$!{info.identifier}. $!{info.title}</a>
+			</div>		
+			<div class="wxopvotediv">
+			 
+			#if($!{toupiao.voteType} == 0)
+				<div class="wxvbtn"><button class="btn btn-info wxvotebutton " name="$!{info.id}"><i class="icon-thumbs-up"></i>投票</button></div>
+			#else
+			<div class="wxopradio">
+			<input type="checkbox" name="opids[]" value="$!{info.id}" class="" style="position: absolute; opacity: 0;">
+			</div>
+			#end
+			#if($!{toupiao.isViewPiaoshu} eq 1) 
+			<div class="wxvinfo" id="wxinfo_$!{info.id}">
+				<span>$!{info.voteCount}</span>票
+			</div>
+			#end
+			</div></div>
+	#end
+#end
+<!--两列 -->
+
+ #if($!{pageInfos} && ($!{toupiao.optionViewStyle} eq 2) )
+	#foreach($!{info} in $!{pageInfos})
+	
+	#if($velocityCount%2==1)
+								<div  id="wxop_$!{info.id}" class="wxop  wxopcol1">
+	#end
+	#if($velocityCount%2==0)
+								<div  id="wxop_$!{info.id}" class="wxop wxopcol2">
+	#end
+			<div class="wxopimg">
+			<a href="$!{basePath}/toupiao/detail.do?actId=$!{toupiao.id}&id=$!{info.id}">
+					<img src="$!{basePath}/upload/img/system/$!{info.image}"  /></a>
+			</div>
+			<div class="wxoptxt">
+				<a href="$!{basePath}/toupiao/detail.do?actId=$!{toupiao.id}&id=$!{info.id}">$!{info.identifier}. $!{info.title}</a>
+			</div>		
+			<div class="wxopvotediv">
+			 
+			#if($!{toupiao.voteType} == 0)
+				<div class="wxvbtn"><button class="btn btn-info wxvotebutton " name="$!{info.id}"><i class="icon-thumbs-up"></i>投票</button></div>
+			#else
+			
+			<div class="wxopradio">
+			
+			<input type="checkbox" name="opids[]" value="$!{info.id}" class="" style="position: absolute; opacity: 0;">
+</div>
+			
+			#end
+			#if($!{toupiao.isViewPiaoshu} eq 1) 
+			<div class="wxvinfo" id="wxinfo_$!{info.id}">
+				<span>$!{info.voteCount}</span>票
+			</div>
+			#end
+			</div></div>
+	
+#end
+#end
+
+	
+		<!--三列 -->
+	#if($!{pageInfos} && ($!{toupiao.optionViewStyle} eq 3) )
+	#foreach($!{info} in $!{pageInfos})
+	
+	#if($velocityCount%3!=0)
+								<div class="wxop wxopcol3" id="3">
+	#else
+								<div class="wxop wxopcol4">
+
+	#end
+			<div class="wxopimg">
+			<a href="$!{basePath}/toupiao/detail.do?actId=$!{toupiao.id}&id=$!{info.id}">
+						<img src="$!{basePath}/upload/img/system/$!{info.image}"  /></a>
+			</div>
+			<div class="wxoptxt">
+				<a href="$!{basePath}/toupiao/detail.do?actId=$!{toupiao.id}&id=$!{info.id}">$!{info.identifier}. $!{info.title}</a>
+			</div>		
+			<div class="wxopvotediv">
+			 
+			#if($!{toupiao.voteType} == 0)
+				<div class="wxvbtn"><button class="btn btn-info wxvotebutton " name="$!{info.id}"><i class="icon-thumbs-up"></i>投票</button></div>
+			#else
+			<div class="wxopradio">
+			<input type="checkbox" name="opids[]" value="$!{info.id}" class="" style="position: absolute; opacity: 0;">
+			</div>
+			#end
+			#if($!{toupiao.isViewPiaoshu} eq 1) 
+			<div class="wxvinfo" id="wxinfo_$!{info.id}">
+				<span>$!{info.voteCount}</span>票
+			</div>
+			#end
+			</div></div>
+	
+#end
+#end
+		
+		
+		
+	
+</div>
+<div style="text-align:center" id="loadmorebtn" class="loadmorebtn">
+<button class="btn btn-link" type="button">加载更多</button>
+</div>
+<div class="loadingpagealert">
+<img src="$!{basePath}/content/toupiao/img/loading.gif"> 正在加载更多请稍后...
+</div>
+<input type="hidden" value="" name="wxparam" id="wxparam">
+
+<div class="followalert followalertnew dofollowalert" style=";">
+		<div class="falertbox1" style="text-align:center;">
+		<h3 class="h31">第一步：长按二维码并识别</h3>
+		<p>请长按下图并选择识别图片中的二维码</p>
+		<p class="imgp"><img src="$!{basePath}/content/jiugongge/img/line_yellow.png"></p>
+
+		<p class="p1"><a href="#" id="cancelfollowalert" class="btn-link">取消，继续浏览</a></p>
+		</div>
+	</div>
+
+<div class="wapalert">
+	<p>投票成功</p>
+</div>
+<div class="geetestalert">
+<div id="geetestbox" class="geetestbox">
+	<h4>拖动下方滑块完成验证</h4>
+	<div id="geetestdiv"></div>
+</div>
+</div>
+
+<div class="musicbox">
+	<div class="mplaying"></div>
+</div>
+
+<!-- r.c.mvote.net  -->
+<script src="$!{basePath}/content/toupiao/js/lang_206.js"></script>
+<script src="$!{basePath}/content/toupiao/js/main.js"></script>
+<script src="$!{basePath}/content/js/vue.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="$!{basePath}/content/toupiao/js/wxvote.js"></script>
+<div class="footer footerwap" style="position: relative;margin-bottom:40px; ">
+
+<p style="color:#666;">
+<a href="" style="color:#0088cc">大悟君逸文化传媒</a>提供技术支持
+</p>
+
+</div>
+<div class="searchbar" style="display:none">
+
+<form method="post" class="form-inline" action="$!{basePath}/toupiao/toIndex.do">
+<input type="hidden" name="actId" value="$!{toupiao.id}">
+<input type="text" name="searchkeyword" value="" class="input-medium" placeholder="请输入选手名称或编号" id="searchkeyword"> 
+<button type="submit" class="btn btn-info" style="width:80px;"><i class="icon-search"></i> 搜索</button>
+</form>
+
+</div>
+<input type="hidden" id="optionbypage" value="1">
+<input type="hidden" name="actId" id="actId" value="$!{toupiao.id}"/>
+<input type="hidden" name="openid" id="openid" value="$!{OPERATE_ACTIVITY_USER.openid}"/>
+<input type="hidden" name="nickname" id="nickname" value="$!{OPERATE_ACTIVITY_USER.nickname}"/>
+<input type="hidden" name="subscribe" id="subscribe" value="$!{subscribe}"/>
+<input type="hidden" name="jwid" id="jwid" value="$!{jwid}"/>
+<script>
+var wxpage = 1;
+var loadingpage = false;
+var optionpagenum = $(".wxop").length;
+var pagesize = $!{pagesize};
+
+window.onscroll=function(){
+	if(optionpagenum < optionsnum)
+	{
+		if (getScrollTop()+getClientHeight()==getScrollHeight()){
+			showWxOptionListMore();
+		}
+	}
+	else
+	{
+		$("#loadmorebtn").hide();
+	}
+	if($(".moreselalert").is("div"))
+	{
+		if($(".moreselalert").offset().top < getScrollTop())
+		{
+			$(".toprulebar").show();
+		}
+		else
+		{
+			if(hadselnum == 0)
+				$(".toprulebar").hide();
+		}
+	}
+
+}
+$("#loadmorebtn").click(function(){	
+	showWxOptionListMore();
+})
+$("#searchbtn").click(function(){
+		
+		if($(".searchbar").css("display") == "none")
+		{
+			$(".searchbar").show();
+		}
+		else
+		{
+			$(".searchbar").hide();
+		}
+		
+		return false;
+	})
+var openid =$("#openid").val();
+var subscribe =$("#subscribe").val();
+var actId =$("#actId").val();
+var jwid =$("#jwid").val();
+</script>
+</div></body></html>
+<script>
+  new Vue({
+    el: '#carousel',
+    data: {
+        slideList:$!{toupiao.banner},
+        currentIndex: 0,
+        timer: '' 
+    },
+    methods: {
+        go() {
+            this.timer = setInterval(() => {
+                this.autoPlay()
+            }, 4000)
+        },
+        stop() {
+            clearInterval(this.timer)
+            this.timer = null
+        }, 
+        change(index) {
+            this.currentIndex = index
+        },
+        autoPlay() {
+            this.currentIndex++
+            if (this.currentIndex > this.slideList.length - 1) {
+                this.currentIndex = 0
+            }
+        }
+    },
+    created() {
+        this.$nextTick(() => {
+            this.timer = setInterval(() => {
+                this.autoPlay()
+            }, 4000)
+        })
+    }
+});
+</script>

@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.toupiao.entity.WxActToupiao">
+
+	<!-- Result Map-->
+	<resultMap id="WxActToupiao" type="com.jeecg.p3.toupiao.entity.WxActToupiao" >
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="act_name" property="actName" jdbcType="VARCHAR"/>
+		<result column="begin_time" property="beginTime" jdbcType="TIMESTAMP"/>
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+		<result column="creat_time" property="creatTime" jdbcType="TIMESTAMP"/>
+		<result column="end_enter_time" property="endEnterTime" jdbcType="TIMESTAMP"/>
+		<result column="attention" property="attention" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="hdurl" property="hdurl" jdbcType="VARCHAR"/>
+		<result column="jwid" property="jwid" jdbcType="VARCHAR"/>
+		<result column="userid" property="userid" jdbcType="VARCHAR"/>
+		<result column="project_code" property="projectCode" jdbcType="VARCHAR"/>
+		<result column="banner" property="banner" jdbcType="VARCHAR"/>
+		<result column="is_delete" property="isDelete" jdbcType="VARCHAR"/>
+		<result column="is_active" property="isActive" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+		<resultMap id="WxActToupiaoAConfig" type="com.jeecg.p3.toupiao.entity.WxActToupiaoAConfig" >
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="act_name" property="actName" jdbcType="VARCHAR"/>
+		<result column="begin_time" property="beginTime" jdbcType="TIMESTAMP"/>
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+		<result column="creat_time" property="creatTime" jdbcType="TIMESTAMP"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="end_enter_time" property="endEnterTime" jdbcType="TIMESTAMP"/>
+		<result column="attention" property="attention" jdbcType="VARCHAR"/>
+		<result column="hdurl" property="hdurl" jdbcType="VARCHAR"/>
+		<result column="jwid" property="jwid" jdbcType="VARCHAR"/>
+		<result column="userid" property="userid" jdbcType="VARCHAR"/>
+		<result column="project_code" property="projectCode" jdbcType="VARCHAR"/>
+		<result column="banner" property="banner" jdbcType="VARCHAR"/>
+		<result column="is_delete" property="isDelete" jdbcType="VARCHAR"/>
+		<result column="is_active" property="isActive" jdbcType="VARCHAR"/>
+		<result column="is_many_vtoe" property="isManyVtoe" jdbcType="VARCHAR"/>
+		<result column="veryday_max_votecount" property="verydayMaxVotecount" jdbcType="INTEGER"/>
+		<result column="foucs_user_can_join" property="foucsUserCanJoin" jdbcType="VARCHAR"/>
+		<result column="vote_type" property="voteType" jdbcType="VARCHAR"/>
+		<result column="option_view_style" property="optionViewStyle" jdbcType="VARCHAR"/>
+		<result column="option_addr" property="optionAddr" jdbcType="VARCHAR"/>
+		<result column="option_classic" property="optionClassic" jdbcType="VARCHAR"/>
+		<result column="is_view_search" property="isViewSearch" jdbcType="VARCHAR"/>
+		<result column="is_view_descript" property="isViewDescript" jdbcType="VARCHAR"/>
+		<result column="is_view_tongji" property="isViewTongji" jdbcType="VARCHAR"/>
+		<result column="is_enter" property="isEnter" jdbcType="VARCHAR"/>
+		<result column="is_view_piaoshu" property="isViewPiaoshu" jdbcType="VARCHAR"/>
+		<result column="check_vote_count" property="checkVoteCount" jdbcType="VARCHAR"/>
+				<result column="page_view_style" property="pageViewStyle" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.actName != null and query.actName != ''" >
+	  		 		/* 投票主题 */
+			    	AND wat.act_name =  #{query.actName,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.beginTime != null and query.beginTime != ''" >
+	  		 		/* 投票开始时间 */
+			    	AND wat.begin_time =  #{query.beginTime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.endTime != null and query.endTime != ''" >
+	  		 		/* 投票结束时间 */
+			    	AND wat.end_time =  #{query.endTime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.creatTime != null and query.creatTime != ''" >
+	  		 		/* 投票创建时间 */
+			    	AND wat.creat_time =  #{query.creatTime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.endEnterTime != null and query.endEnterTime != ''" >
+	  		 		/* 投票创建时间 */
+			    	AND wat.end_enter_time =  #{query.endEnterTime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.description != null and query.description != ''" >
+	  		 		/* 投票介绍 */
+			    	AND wat.description =  #{query.description,jdbcType=VARCHAR}
+				 </if>
+				  <if test="query.attention != null and query.attention != ''" >
+	  		 		/* 投票介绍 */
+			    	AND wat.attention =  #{query.attention,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.hdurl != null and query.hdurl != ''" >
+	  		 		/* 投票访问地址 */
+			    	AND wat.hdurl =  #{query.hdurl,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.jwid != null and query.jwid != ''" >
+	  		 		/* 对应微信平台APP ID */
+			    	AND wat.jwid =  #{query.jwid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.userid != null and query.userid != ''" >
+	  		 		/* 对应微信平台APP ID */
+			    	AND wat.userid =  #{query.userid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.projectCode != null and query.projectCode != ''" >
+	  		 		/* 程序ID */
+			    	AND wat.project_code =  #{query.projectCode,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.banner != null and query.banner != ''" >
+	  		 		/* 投票首页宣传图 */
+			    	AND wat.banner =  #{query.banner,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isDelete != null and query.isDelete != ''" >
+	  		 		/* 是否已删除 0为未删除 1为已删除 */
+			    	AND wat.is_delete =  #{query.isDelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isActive != null and query.isActive != ''" >
+	  		 		/* 是否启动该活动,0不启动,1为启动 */
+			    	AND wat.is_active =  #{query.isActive,jdbcType=VARCHAR}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiao.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object"  keyProperty="id" useGeneratedKeys="true" >
+	  INSERT  INTO  wx_act_toupiao   /*  */  
+					(	
+                      id                            /* 投票活动ID */ 
+                     ,act_name                      /* 投票主题 */ 
+                     ,begin_time                    /* 投票开始时间 */ 
+                     ,end_time                      /* 投票结束时间 */ 
+                     ,creat_time                    /* 投票创建时间 */ 
+                     ,end_enter_time
+                     ,description                   /* 投票介绍 */ 
+                     ,attention
+                     ,hdurl                         /* 投票访问地址 */ 
+                     ,jwid                          /* 对应微信平台APP ID */ 
+                     ,userid
+                     ,project_code                  /* 程序ID */ 
+                     ,banner                        /* 投票首页宣传图 */ 
+                     ,is_delete                     /* 是否已删除 0为未删除 1为已删除 */ 
+                     ,is_active                     /* 是否启动该活动,0不启动,1为启动 */ 
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /* 投票活动ID */ 
+                     ,#{actName,jdbcType=VARCHAR}                       /* 投票主题 */ 
+                     ,#{beginTime,jdbcType=TIMESTAMP}                     /* 投票开始时间 */ 
+                     ,#{endTime,jdbcType=TIMESTAMP}                       /* 投票结束时间 */ 
+                     ,#{creatTime,jdbcType=TIMESTAMP}                     /* 投票创建时间 */
+                     ,#{endEnterTime,jdbcType=TIMESTAMP} 
+                     ,#{description,jdbcType=VARCHAR}                   /* 投票介绍 */ 
+                     ,#{attention,jdbcType=VARCHAR}
+ 					,#{hdurl,jdbcType=VARCHAR}/* 活动链接 */ 
+                      /* 投票访问地址 */ 
+                     ,#{jwid,jdbcType=VARCHAR}                          /* 对应微信平台APP ID */ 
+                     ,#{userid,jdbcType=VARCHAR}
+                     ,#{projectCode,jdbcType=VARCHAR}                   /* 程序ID */ 
+                     ,#{banner,jdbcType=VARCHAR}                        /* 投票首页宣传图 */ 
+                     ,#{isDelete,jdbcType=VARCHAR}                      /* 是否已删除 0为未删除 1为已删除 */ 
+                     ,#{isActive,jdbcType=VARCHAR}                      /* 是否启动该活动,0不启动,1为启动 */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiao.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   wx_act_toupiao  	/*  */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="actName != null">
+		    		 		/* 投票主题 */ 
+	    		 			act_name = #{actName,jdbcType=VARCHAR},
+						 </if>
+						 <if test="beginTime != null">
+		    		 		/* 投票开始时间 */ 
+	    		 			begin_time = #{beginTime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="endTime != null">
+		    		 		/* 投票结束时间 */ 
+	    		 			end_time = #{endTime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="endEnterTime != null">
+		    		 		/* 投票结束时间 */ 
+	    		 			end_enter_time = #{endEnterTime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="creatTime != null">
+		    		 		/* 投票创建时间 */ 
+	    		 			creat_time = #{creatTime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="description != null">
+		    		 		/* 投票介绍 */ 
+	    		 			description = #{description,jdbcType=VARCHAR},
+						 </if>
+						 	<if test="attention != null">
+		    		 		/* 投票介绍 */ 
+	    		 			attention = #{attention,jdbcType=VARCHAR},
+						 </if>
+						 <if test="hdurl != null">
+		    		 		/* 投票访问地址 */ 
+	    		 			hdurl = #{hdurl,jdbcType=VARCHAR},
+						 </if>
+						 <if test="jwid != null">
+		    		 		/* 对应微信平台APP ID */ 
+	    		 			jwid = #{jwid,jdbcType=VARCHAR},
+						 </if>
+						  <if test="userid != null">
+		    		 		/* 对应微信平台user ID */ 
+	    		 			userid = #{userid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="projectCode != null">
+		    		 		/* 程序ID */ 
+	    		 			project_code = #{projectCode,jdbcType=VARCHAR},
+						 </if>
+						 <if test="banner != null">
+		    		 		/* 投票首页宣传图 */ 
+	    		 			banner = #{banner,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isDelete != null">
+		    		 		/* 是否已删除 0为未删除 1为已删除 */ 
+	    		 			is_delete = #{isDelete,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isActive != null">
+		    		 		/* 是否启动该活动,0不启动,1为启动 */ 
+	    		 			is_active = #{isActive,jdbcType=VARCHAR},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiao.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="WxActToupiao">
+		   SELECT   
+                   wat.id                            /* 投票活动ID */ 
+                  ,wat.act_name                      /* 投票主题 */ 
+                  ,wat.begin_time                    /* 投票开始时间 */ 
+                  ,wat.end_time                      /* 投票结束时间 */ 
+                  ,wat.end_enter_time
+                  ,wat.creat_time                    /* 投票创建时间 */ 
+                  ,wat.description                   /* 投票介绍 */ 
+                  ,wat.attention
+                  ,wat.hdurl                         /* 投票访问地址 */ 
+                  ,wat.jwid                          /* 对应微信平台APP ID */ 
+                  ,wat.userid
+                  ,wat.project_code                  /* 程序ID */ 
+                  ,wat.banner                        /* 投票首页宣传图 */ 
+                  ,wat.is_delete                     /* 是否已删除 0为未删除 1为已删除 */ 
+                  ,wat.is_active                     /* 是否启动该活动,0不启动,1为启动 */ 
+		   FROM   wx_act_toupiao      AS wat      /*  */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+		<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiao.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="getToupiaoAndConfig" parameterType="Object"  resultMap="WxActToupiaoAConfig">
+   SELECT   
+                   wat.id                            /* 投票活动ID */ 
+                  ,wat.act_name                      /* 投票主题 */ 
+                  ,wat.begin_time                    /* 投票开始时间 */ 
+                  ,wat.end_time                      /* 投票结束时间 */ 
+                  ,wat.end_enter_time
+                  ,wat.creat_time                    /* 投票创建时间 */ 
+                  ,wat.description                   /* 投票介绍 */ 
+                  ,wat.attention
+                  ,wat.hdurl                         /* 投票访问地址 */ 
+                  ,wat.jwid                          /* 对应微信平台APP ID */ 
+                  ,wat.userid
+                  ,wat.project_code                  /* 程序ID */ 
+                  ,wat.banner                        /* 投票首页宣传图 */ 
+                  ,wat.is_delete                     /* 是否已删除 0为未删除 1为已删除 */ 
+                  ,wat.is_active                     /* 是否启动该活动,0不启动,1为启动 */ 
+                  ,watc.act_id
+                  ,watc.is_many_vtoe                  /* 是否允许多次投票 0为否 1为是 */ 
+                  ,watc.veryday_max_votecount         /* 每天投票次数 */ 
+                  ,watc.foucs_user_can_join           /* 是否关注后投票，0为否 1为是 */ 
+                  ,watc.vote_type                     /* 投票方式：单选、多选  0为单选 1为多选 */ 
+                  ,watc.option_view_style             /* 选项显示样式，1为每行一个 2为每行2个  3为每行三个 */ 
+                  ,watc.option_addr                   /* 选项称谓 */ 
+                  ,watc.option_classic                /* 选项量词 */ 
+                  ,watc.is_view_search                /* 是否显示搜索 0为否 1为是 */ 
+                  ,watc.is_view_descript              /* 是否显示活动介绍 0为否 1为是 */ 
+                  ,watc.is_view_tongji                /* 是否显示活动统计 */ 
+                  ,watc.is_view_piaoshu               /* 是否显示选项票数 */ 
+                  ,watc.check_vote_count               /* 最多可选票数 */ 
+                  ,watc.is_enter
+                  ,watc.page_view_style
+		   FROM   wx_act_toupiao      AS wat   inner join  wx_act_toupiao_config  AS watc    /*  */ 
+		   on wat.id = watc.act_id 
+		   WHERE wat.is_active='1' and wat.is_delete = '0' and wat.id = #{id}				/* 序号 */ 
+	</select>
+	
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiao.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM wx_act_toupiao 	/*  */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiao.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  wx_act_toupiao      AS wat      /*  */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.toupiao.entity.WxActToupiao.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="WxActToupiao">
+		    SELECT 
+                   wat.id                            /* 投票活动ID */ 
+                  ,wat.act_name                      /* 投票主题 */ 
+                  ,wat.begin_time                    /* 投票开始时间 */ 
+                  ,wat.end_time                      /* 投票结束时间 */ 
+                  ,wat.end_enter_time
+                  ,wat.creat_time                    /* 投票创建时间 */ 
+                  ,wat.description                   /* 投票介绍 */ 
+                  ,wat.attention
+                  ,wat.hdurl                         /* 投票访问地址 */ 
+                  ,wat.jwid                          /* 对应微信平台APP ID */ 
+                  ,wat.userid
+                  ,wat.project_code                  /* 程序ID */ 
+                  ,wat.banner                        /* 投票首页宣传图 */ 
+                  ,wat.is_delete                     /* 是否已删除 0为未删除 1为已删除 */ 
+                  ,wat.is_active                     /* 是否启动该活动,0不启动,1为启动 */ 
+		FROM   	 wx_act_toupiao      AS wat      /*  */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+</mapper>

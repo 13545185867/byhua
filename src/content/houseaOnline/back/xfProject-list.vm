@@ -1,0 +1,125 @@
+#parse("content/base/back/common/macro.vm")
+<!DOCTYPE html>
+<html lang="en">
+#parse("content/base/back/common/head.vm")
+<body style='overflow:scroll;overflow-x:hidden'>
+	<div class="container bs-docs-container" style="width:100%;">
+		<div class="row">
+			<form role="form" class="form-inline" action="$!{basePath}/houseaOnline/back/xfProject/list.html" method="post"  id="formSubmit">
+				<div  class="col-md-10" style="width:100%">
+								<div class="panel panel-default">
+								  <div class="panel-heading">房产项目配置列表</div>
+								  <div class="panel-body">
+								  		<div class="search"> 
+															 <div class="form-group col-sm-3">
+															    <label for="name" class="control-label col-sm-3 line34">项目名称</label>
+															     <div class="col-sm-8">
+															    <input type="text" name="name" id="name" value="$!{xfProject.name}" class="form-control">
+															  	</div>
+															 </div> 
+															 <div class="form-group col-sm-3">
+															    <label for="descipt" class="control-label col-sm-3 line34">项目特色 </label>
+															     <div class="col-sm-8">
+															    <input type="text" name="descipt" id="descipt" value="$!{xfProject.descipt}" class="form-control">
+															  	</div>
+															 </div> 
+															 <div class="form-group col-sm-3">
+															    <label for="zhuangxiu" class="control-label col-sm-3 line34">装修情况 </label>
+															     <div class="col-sm-8">
+															    <input type="text" name="zhuangxiu" id="zhuangxiu" value="$!{xfProject.zhuangxiu}" class="form-control">
+															  	</div>
+															 </div> 
+															 <div class="form-group col-sm-3">
+															    <label for="status" class="control-label col-sm-3 line34">楼盘状态 </label>
+															     <div class="col-sm-8">
+															     <select name="status" id="status"  value="$!{xfProject.status}" class="form-control" >
+															    <option value="" >根据类型查询</option>
+															    <option value="0" #if('0' eq $!{xfProject.status})selected#end>未开盘</option>
+															    <option value="1" #if('1' eq $!{xfProject.status})selected#end>售卖中</option>
+															    </select>
+															  	</div>
+															 </div> 
+															 <div class="form-group col-sm-3">
+															    <label for="type" class="control-label col-sm-3 line34">类型 </label>
+															     <div class="col-sm-8">
+															     <select name="type" id="type"  value="$!{xfProject.type}" class="form-control" >
+															    <option value="" >根据类型查询</option>
+															    <option value="0" #if('0' eq $!{xfProject.type})selected#end>住房</option>
+															    <option value="1" #if('1' eq $!{xfProject.type})selected#end>商铺</option>
+															    <option value="2" #if('2' eq $!{xfProject.type})selected#end>储藏室</option>
+															    <option value="3" #if('3' eq $!{xfProject.type})selected#end>车位</option>
+															    </select>
+															  	</div>
+															 </div>
+															 <div class="form-group col-sm-3">
+															    <label for="areaid" class="control-label col-sm-3 line34">所属区域 </label>
+															     <div class="col-sm-8">
+															     <select name="areaid" id="areaid"  value="$!{xfProject.areaid}" class="form-control" >
+													      <option value="" >请选择项目所属区域</option>
+													       	#if($!{areaInfos})
+													                #foreach($!{info} in $!{areaInfos})
+													               	 <option value="$!{info.dictcode}" #if($!{info.dictcode} eq $!{xfProject.areaid})selected#end>$!{info.dictname}</option>
+														             #end
+													    	 	#end
+													      </select>
+															  	</div>
+															 </div>
+											  <button type="submit" class="btn btn-primary">搜  索</button>
+											  <div class="clearfix"></div>
+								  		</div>
+								  		<div id="legend">
+								          <legend  class="le"><button type="button" class="btn btn-primary" onclick="doUrl('$!{basePath}/houseaOnline/back/xfProject/toAdd.html')" >新增</button></legend> 
+								        </div>
+								        <table class="table table-striped">
+									        <thead>
+													<th>项目名</th>
+													<th>项目均价</th>
+													<th>项目开盘时间</th>
+													<th>项目交付时间</th>
+													<th>装修情况</th>
+													<th>楼盘状态</th>
+													<th>房产类型</th>
+						                			<th>操作</th>
+									        </thead>
+									        <tobody>
+									    	  #if($!{pageInfos})
+								                #foreach($!{info} in $!{pageInfos})
+									            	<tr>			
+																	<td>$!{info.name}</td>
+																	<td>$!{info.avPrice}</td>
+																	<td>$!dateTool.format("yyyy-MM-dd",$!{info.kaipanDate})</td>
+																	<td>$!dateTool.format("yyyy-MM-dd",$!{info.deliveryDate})</td>
+																	<td>$!{info.zhuangxiu}</td>
+																	<td> #if('0' eq $!{info.status})未开盘 #end 
+															     #if('1' eq $!{info.status}) 售卖中#end </td>
+																	<td>#if('0' eq $!{info.type})住房 #end 
+															     #if('1' eq $!{info.type}) 商铺#end  
+															     #if('2' eq $!{info.type}) 储藏室#end  
+															     #if('3' eq $!{info.type}) 车位#end  </td>
+										                <td class="last">
+							                			<a href="javascript:doUrl('$!{basePath}/houseaOnline/back/xfProject/toEdit.html?id=$!{info.id}')" >编辑</a>
+							                			<a href="javascript:delData('$!{basePath}/houseaOnline/back/xfProject/doDelete.html?id=$!{info.id}')">删除</a>
+							                			<a href="$!{basePath}/houseaOnline/back/xfProject/toDetail.html?id=$!{info.id}" target="_blank">详情</a>
+							                			<a href="javascript:doUrl('$!{basePath}/houseaOnline/back/xfHx/list.html?pid=$!{info.id}')">项目户型 </a>
+							                			<a href="javascript:doUrl('$!{basePath}/houseaOnline/back/xfBuilding/list.html?pid=$!{info.id}')">项目楼栋 </a>
+							                			
+						                				</td>
+									           		</tr>
+									             #end
+									    	 #end
+									         </tobody>
+									    </table>
+										<div class="text-right">
+											<!--公用翻页代码-->
+							                #set($attr='formSubmit')
+							            	#showPageList($pageInfos $attr)
+							                <!--END公用翻页代码-->
+										</div>
+								  </div>	
+								</div>
+				</div>  
+				</form>
+		</div>
+	</div>
+</body>
+</html>

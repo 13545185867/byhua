@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.bigwheel.entity.ActivityBigwheelAward">
+
+	<!-- Result Map-->
+	<resultMap id="ActivityBigwheelAward" type="com.jeecg.p3.bigwheel.entity.ActivityBigwheelAward" >
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="activityId" property="activityid" jdbcType="INTEGER"/>
+				<result column="probabilityType" property="probabilityType" jdbcType="INTEGER"/>
+		
+		<result column="awardName" property="awardname" jdbcType="VARCHAR"/>
+		<result column="trophyName" property="trophyname" jdbcType="VARCHAR"/>
+		<result column="awardPic" property="awardpic" jdbcType="VARCHAR"/>
+		<result column="awardType" property="awardtype" jdbcType="INTEGER"/>
+		<result column="validityStart" property="validitystart" jdbcType="TIMESTAMP"/>
+		<result column="validityStop" property="validitystop" jdbcType="TIMESTAMP"/>
+		<result column="awardRealNum" property="awardrealnum" jdbcType="INTEGER"/>
+		<result column="operationTip" property="operationtip" jdbcType="VARCHAR"/>
+		<result column="snGenerateType" property="sngeneratetype" jdbcType="INTEGER"/>
+		<result column="sncodes" property="sncodes" jdbcType="VARCHAR"/>
+		<result column="isWxCard" property="iswxcard" jdbcType="VARCHAR"/>
+		<result column="subhead" property="subhead" jdbcType="VARCHAR"/>
+		<result column="storeAddress" property="storeaddress" jdbcType="VARCHAR"/>
+		<result column="serviceTel" property="serviceTel" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="activity_awardcol" property="activityAwardcol" jdbcType="VARCHAR"/>
+		<result column="activity_awardcol1" property="activityAwardcol1" jdbcType="VARCHAR"/>
+		<result column="activity_awardcol2" property="activityAwardcol2" jdbcType="VARCHAR"/>
+		<result column="awardLevel" property="awardlevel" jdbcType="INTEGER"/>
+		<result column="activity_awardcol3" property="activityAwardcol3" jdbcType="VARCHAR"/>
+		<result column="singleMin" property="singlemin" jdbcType="VARCHAR"/>
+		<result column="singleMax" property="singlemax" jdbcType="VARCHAR"/>
+		<result column="totalCount" property="totalcount" jdbcType="VARCHAR"/>
+		<result column="awardVirtualNum" property="awardvirtualnum" jdbcType="INTEGER"/>
+		<result column="awardRemainNum" property="awardRemainNum" jdbcType="INTEGER"/>
+		<result column="awardEveryDay" property="awardEveryDay" jdbcType="INTEGER"/>
+		
+		
+		<result column="deleted" property="deleted" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.activityid != null and query.activityid != ''" >
+	  		 		/*  */
+			    	AND aba.activityId =  #{query.activityid,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.probabilityType != null and query.probabilityType != ''" >
+	  		 		/*  */
+			    	AND aba.probabilityType =  #{query.probabilityType,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.awardname != null and query.awardname != ''" >
+	  		 		/* 奖项名称 */
+			    	AND aba.awardName =  #{query.awardname,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.trophyname != null and query.trophyname != ''" >
+	  		 		/* 奖品名称 */
+			    	AND aba.trophyName =  #{query.trophyname,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.awardpic != null and query.awardpic != ''" >
+	  		 		/* 奖品图片 */
+			    	AND aba.awardPic =  #{query.awardpic,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.awardtype != null and query.awardtype != ''" >
+	  		 		/* 奖品类型1:实物礼品（奖券）
+2:微信红包
+5抵扣券（奖券）
+4优惠券（奖券） */
+			    	AND aba.awardType =  #{query.awardtype,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.validitystart != null and query.validitystart != ''" >
+	  		 		/* 对奖开始时间 */
+			    	AND aba.validityStart =  #{query.validitystart,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.validitystop != null and query.validitystop != ''" >
+	  		 		/* 兑奖结束时间 */
+			    	AND aba.validityStop =  #{query.validitystop,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.awardrealnum != null and query.awardrealnum != ''" >
+	  		 		/* 奖品数量 */
+			    	AND aba.awardRealNum =  #{query.awardrealnum,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.operationtip != null and query.operationtip != ''" >
+	  		 		/* 中奖详情页操作提示 */
+			    	AND aba.operationTip =  #{query.operationtip,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.sngeneratetype != null and query.sngeneratetype != ''" >
+	  		 		/* 0为系统生成券号
+1为手动输入 */
+			    	AND aba.snGenerateType =  #{query.sngeneratetype,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.sncodes != null and query.sncodes != ''" >
+	  		 		/* 手动输入的券号 */
+			    	AND aba.sncodes =  #{query.sncodes,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.iswxcard != null and query.iswxcard != ''" >
+	  		 		/* 是否是微信卡券
+0为否 
+1为是 */
+			    	AND aba.isWxCard =  #{query.iswxcard,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.subhead != null and query.subhead != ''" >
+	  		 		/* 副标题 */
+			    	AND aba.subhead =  #{query.subhead,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.storeaddress != null and query.storeaddress != ''" >
+	  		 		/* 兑奖地址 */
+			    	AND aba.storeAddress =  #{query.storeaddress,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.serviceTel != null and query.serviceTel != ''" >
+	  		 		/* 服务电话 */
+			    	AND aba.serviceTel =  #{query.serviceTel,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.description != null and query.description != ''" >
+	  		 		/* 兑奖须知 */
+			    	AND aba.description =  #{query.description,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.activityAwardcol != null and query.activityAwardcol != ''" >
+	  		 		/*  */
+			    	AND aba.activity_awardcol =  #{query.activityAwardcol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.activityAwardcol1 != null and query.activityAwardcol1 != ''" >
+	  		 		/*  */
+			    	AND aba.activity_awardcol1 =  #{query.activityAwardcol1,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.activityAwardcol2 != null and query.activityAwardcol2 != ''" >
+	  		 		/*  */
+			    	AND aba.activity_awardcol2 =  #{query.activityAwardcol2,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.awardlevel != null and query.awardlevel != ''" >
+	  		 		/* 奖项等级 */
+			    	AND aba.awardLevel =  #{query.awardlevel,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.activityAwardcol3 != null and query.activityAwardcol3 != ''" >
+	  		 		/*  */
+			    	AND aba.activity_awardcol3 =  #{query.activityAwardcol3,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.singlemin != null and query.singlemin != ''" >
+	  		 		/* 红包最小金额 */
+			    	AND aba.singleMin =  #{query.singlemin,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.singlemax != null and query.singlemax != ''" >
+	  		 		/* 红包最大金额 */
+			    	AND aba.singleMax =  #{query.singlemax,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.totalcount != null and query.totalcount != ''" >
+	  		 		/* 总金额 */
+			    	AND aba.totalCount =  #{query.totalcount,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.awardvirtualnum != null and query.awardvirtualnum != ''" >
+	  		 		/*  */
+			    	AND aba.awardVirtualNum =  #{query.awardvirtualnum,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.awardRemainNum != null and query.awardRemainNum != ''" >
+	  		 		/*  */
+			    	AND aba.awardRemainNum =  #{query.awardRemainNum,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.awardEveryDay != null and query.awardEveryDay != ''" >
+	  		 		/*  */
+			    	AND aba.awardEveryDay =  #{query.awardEveryDay,jdbcType=INTEGER}
+				 </if>
+				 
+				 <if test="query.deleted != null and query.deleted != ''" >
+	  		 		/*  */
+			    	AND aba.deleted =  #{query.deleted,jdbcType=VARCHAR}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelAward.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  activity_bigwheel_award   /*  */  
+					(	
+                      activityId                    /*  */ 
+                     ,probabilityType
+                     ,awardName                     /* 奖项名称 */ 
+                     ,trophyName                    /* 奖品名称 */ 
+                     ,awardPic                      /* 奖品图片 */ 
+                     ,awardType                     /* 奖品类型1:实物礼品（奖券）
+2:微信红包
+5抵扣券（奖券）
+4优惠券（奖券） */ 
+                     ,validityStart                 /* 对奖开始时间 */ 
+                     ,validityStop                  /* 兑奖结束时间 */ 
+                     ,awardRealNum                  /* 奖品数量 */ 
+                     ,operationTip                  /* 中奖详情页操作提示 */ 
+                     ,snGenerateType                /* 0为系统生成券号
+1为手动输入 */ 
+                     ,sncodes                       /* 手动输入的券号 */ 
+                     ,isWxCard                      /* 是否是微信卡券
+0为否 
+1为是 */ 
+                     ,subhead                       /* 副标题 */ 
+                     ,storeAddress                  /* 兑奖地址 */ 
+                     ,serviceTel                    /* 服务电话 */ 
+                     ,description                   /* 兑奖须知 */ 
+                     ,activity_awardcol             /*  */ 
+                     ,activity_awardcol1            /*  */ 
+                     ,activity_awardcol2            /*  */ 
+                     ,awardLevel                    /* 奖项等级 */ 
+                     ,activity_awardcol3            /*  */ 
+                     ,singleMin                     /* 红包最小金额 */ 
+                     ,singleMax                     /* 红包最大金额 */ 
+                     ,totalCount                    /* 总金额 */ 
+                     ,awardVirtualNum               /*  */ 
+                     ,awardRemainNum
+                     ,awardEveryDay
+                     ,deleted                       /*  */ 
+					)
+			values (
+                       #{activityid,jdbcType=INTEGER}                    /*  */
+                     ,#{probabilityType,jdbcType=INTEGER}                    /*  */ 
+                     ,#{awardname,jdbcType=VARCHAR}                     /* 奖项名称 */ 
+                     ,#{trophyname,jdbcType=VARCHAR}                    /* 奖品名称 */ 
+                     ,#{awardpic,jdbcType=VARCHAR}                      /* 奖品图片 */ 
+                     ,#{awardtype,jdbcType=INTEGER}                     /* 奖品类型1:实物礼品（奖券）
+2:微信红包
+5抵扣券（奖券）
+4优惠券（奖券） */ 
+                     ,#{validitystart,jdbcType=TIMESTAMP}                 /* 对奖开始时间 */ 
+                     ,#{validitystop,jdbcType=TIMESTAMP}                  /* 兑奖结束时间 */ 
+                     ,#{awardrealnum,jdbcType=INTEGER}                  /* 奖品数量 */ 
+                     ,#{operationtip,jdbcType=VARCHAR}                  /* 中奖详情页操作提示 */ 
+                     ,#{sngeneratetype,jdbcType=INTEGER}                /* 0为系统生成券号
+1为手动输入 */ 
+                     ,#{sncodes,jdbcType=VARCHAR}                       /* 手动输入的券号 */ 
+                     ,#{iswxcard,jdbcType=VARCHAR}                      /* 是否是微信卡券
+0为否 
+1为是 */ 
+                     ,#{subhead,jdbcType=VARCHAR}                       /* 副标题 */ 
+                     ,#{storeaddress,jdbcType=VARCHAR}                  /* 兑奖地址 */ 
+                     ,#{serviceTel,jdbcType=VARCHAR}                    /* 服务电话 */ 
+                     ,#{description,jdbcType=VARCHAR}                   /* 兑奖须知 */ 
+                     ,#{activityAwardcol,jdbcType=VARCHAR}              /*  */ 
+                     ,#{activityAwardcol1,jdbcType=VARCHAR}             /*  */ 
+                     ,#{activityAwardcol2,jdbcType=VARCHAR}             /*  */ 
+                     ,#{awardlevel,jdbcType=INTEGER}                    /* 奖项等级 */ 
+                     ,#{activityAwardcol3,jdbcType=VARCHAR}             /*  */ 
+                     ,#{singlemin,jdbcType=VARCHAR}                     /* 红包最小金额 */ 
+                     ,#{singlemax,jdbcType=VARCHAR}                     /* 红包最大金额 */ 
+                     ,#{totalcount,jdbcType=VARCHAR}                    /* 总金额 */ 
+                     ,#{awardvirtualnum,jdbcType=INTEGER}               /*  */ 
+                     ,#{awardRemainNum,jdbcType=INTEGER}
+                     ,#{awardEveryDay,jdbcType=INTEGER}
+                     ,#{deleted,jdbcType=VARCHAR}                       /*  */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelAward.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   activity_bigwheel_award  	/*  */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="activityid != null">
+		    		 		/*  */ 
+	    		 			activityId = #{activityid,jdbcType=INTEGER},
+						 </if>
+						  <if test="probabilityType != null">
+		    		 		/*  */ 
+	    		 			probabilityType = #{probabilityType,jdbcType=INTEGER},
+						 </if>
+						 <if test="awardname != null">
+		    		 		/* 奖项名称 */ 
+	    		 			awardName = #{awardname,jdbcType=VARCHAR},
+						 </if>
+						 <if test="trophyname != null">
+		    		 		/* 奖品名称 */ 
+	    		 			trophyName = #{trophyname,jdbcType=VARCHAR},
+						 </if>
+						 <if test="awardpic != null">
+		    		 		/* 奖品图片 */ 
+	    		 			awardPic = #{awardpic,jdbcType=VARCHAR},
+						 </if>
+						 <if test="awardtype != null">
+		    		 		/* 奖品类型1:实物礼品（奖券）
+2:微信红包
+5抵扣券（奖券）
+4优惠券（奖券） */ 
+	    		 			awardType = #{awardtype,jdbcType=INTEGER},
+						 </if>
+						 <if test="validitystart != null">
+		    		 		/* 对奖开始时间 */ 
+	    		 			validityStart = #{validitystart,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="validitystop != null">
+		    		 		/* 兑奖结束时间 */ 
+	    		 			validityStop = #{validitystop,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="awardrealnum != null">
+		    		 		/* 奖品数量 */ 
+	    		 			awardRealNum = #{awardrealnum,jdbcType=INTEGER},
+						 </if>
+						 <if test="operationtip != null">
+		    		 		/* 中奖详情页操作提示 */ 
+	    		 			operationTip = #{operationtip,jdbcType=VARCHAR},
+						 </if>
+						 <if test="sngeneratetype != null">
+		    		 		/* 0为系统生成券号
+1为手动输入 */ 
+	    		 			snGenerateType = #{sngeneratetype,jdbcType=INTEGER},
+						 </if>
+						 <if test="sncodes != null">
+		    		 		/* 手动输入的券号 */ 
+	    		 			sncodes = #{sncodes,jdbcType=VARCHAR},
+						 </if>
+						 <if test="iswxcard != null">
+		    		 		/* 是否是微信卡券
+0为否 
+1为是 */ 
+	    		 			isWxCard = #{iswxcard,jdbcType=VARCHAR},
+						 </if>
+						 <if test="subhead != null">
+		    		 		/* 副标题 */ 
+	    		 			subhead = #{subhead,jdbcType=VARCHAR},
+						 </if>
+						 <if test="storeaddress != null">
+		    		 		/* 兑奖地址 */ 
+	    		 			storeAddress = #{storeaddress,jdbcType=VARCHAR},
+						 </if>
+						 <if test="serviceTel != null">
+		    		 		/* 服务电话 */ 
+	    		 			serviceTel = #{serviceTel,jdbcType=VARCHAR},
+						 </if>
+						 <if test="description != null">
+		    		 		/* 兑奖须知 */ 
+	    		 			description = #{description,jdbcType=VARCHAR},
+						 </if>
+						 <if test="activityAwardcol != null">
+		    		 		/*  */ 
+	    		 			activity_awardcol = #{activityAwardcol,jdbcType=VARCHAR},
+						 </if>
+						 <if test="activityAwardcol1 != null">
+		    		 		/*  */ 
+	    		 			activity_awardcol1 = #{activityAwardcol1,jdbcType=VARCHAR},
+						 </if>
+						 <if test="activityAwardcol2 != null">
+		    		 		/*  */ 
+	    		 			activity_awardcol2 = #{activityAwardcol2,jdbcType=VARCHAR},
+						 </if>
+						 <if test="awardlevel != null">
+		    		 		/* 奖项等级 */ 
+	    		 			awardLevel = #{awardlevel,jdbcType=INTEGER},
+						 </if>
+						 <if test="activityAwardcol3 != null">
+		    		 		/*  */ 
+	    		 			activity_awardcol3 = #{activityAwardcol3,jdbcType=VARCHAR},
+						 </if>
+						 <if test="singlemin != null">
+		    		 		/* 红包最小金额 */ 
+	    		 			singleMin = #{singlemin,jdbcType=VARCHAR},
+						 </if>
+						 <if test="singlemax != null">
+		    		 		/* 红包最大金额 */ 
+	    		 			singleMax = #{singlemax,jdbcType=VARCHAR},
+						 </if>
+						 <if test="totalcount != null">
+		    		 		/* 总金额 */ 
+	    		 			totalCount = #{totalcount,jdbcType=VARCHAR},
+						 </if>
+						 <if test="awardvirtualnum != null">
+		    		 		/*  */ 
+	    		 			awardVirtualNum = #{awardvirtualnum,jdbcType=INTEGER},
+						 </if>
+						 <if test="awardRemainNum != null">
+		    		 		/*  */ 
+	    		 			awardRemainNum = #{awardRemainNum,jdbcType=INTEGER},
+						 </if>
+						 <if test="awardEveryDay != null">
+		    		 		/*  */ 
+	    		 			awardEveryDay = #{awardEveryDay,jdbcType=INTEGER},
+						 </if>
+						 
+						 <if test="deleted != null">
+		    		 		/*  */ 
+	    		 			deleted = #{deleted,jdbcType=VARCHAR},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelAward.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="ActivityBigwheelAward">
+		   SELECT   
+                   aba.id                            /*  */ 
+                  ,aba.activityId                    /*  */ 
+                  ,aba.probabilityType
+                  ,aba.awardName                     /* 奖项名称 */ 
+                  ,aba.trophyName                    /* 奖品名称 */ 
+                  ,aba.awardPic                      /* 奖品图片 */ 
+                  ,aba.awardType                     /* 奖品类型1:实物礼品（奖券）
+2:微信红包
+5抵扣券（奖券）
+4优惠券（奖券） */ 
+                  ,aba.validityStart                 /* 对奖开始时间 */ 
+                  ,aba.validityStop                  /* 兑奖结束时间 */ 
+                  ,aba.awardRealNum                  /* 奖品数量 */ 
+                  ,aba.operationTip                  /* 中奖详情页操作提示 */ 
+                  ,aba.snGenerateType                /* 0为系统生成券号
+1为手动输入 */ 
+                  ,aba.sncodes                       /* 手动输入的券号 */ 
+                  ,aba.isWxCard                      /* 是否是微信卡券
+0为否 
+1为是 */ 
+                  ,aba.subhead                       /* 副标题 */ 
+                  ,aba.storeAddress                  /* 兑奖地址 */ 
+                  ,aba.serviceTel                    /* 服务电话 */ 
+                  ,aba.description                   /* 兑奖须知 */ 
+                  ,aba.activity_awardcol             /*  */ 
+                  ,aba.activity_awardcol1            /*  */ 
+                  ,aba.activity_awardcol2            /*  */ 
+                  ,aba.awardLevel                    /* 奖项等级 */ 
+                  ,aba.activity_awardcol3            /*  */ 
+                  ,aba.singleMin                     /* 红包最小金额 */ 
+                  ,aba.singleMax                     /* 红包最大金额 */ 
+                  ,aba.totalCount                    /* 总金额 */ 
+                  ,aba.awardVirtualNum               /*  */ 
+                  ,aba.awardRemainNum
+                  ,aba.awardEveryDay
+                  ,aba.deleted                       /*  */ 
+		   FROM   activity_bigwheel_award      AS aba      /*  */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelAward.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM activity_bigwheel_award 	/*  */  
+		WHERE 
+			activityId = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelAward.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  activity_bigwheel_award      AS aba      /*  */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.bigwheel.entity.ActivityBigwheelAward.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="ActivityBigwheelAward">
+		    SELECT 
+                   aba.id                            /*  */ 
+                  ,aba.activityId                    /*  */ 
+                  ,aba.probabilityType
+                  ,aba.awardName                     /* 奖项名称 */ 
+                  ,aba.trophyName                    /* 奖品名称 */ 
+                  ,aba.awardPic                      /* 奖品图片 */ 
+                  ,aba.awardType                     /* 奖品类型1:实物礼品（奖券）
+2:微信红包
+5抵扣券（奖券）
+4优惠券（奖券） */ 
+                  ,aba.validityStart                 /* 对奖开始时间 */ 
+                  ,aba.validityStop                  /* 兑奖结束时间 */ 
+                  ,aba.awardRealNum                  /* 奖品数量 */ 
+                  ,aba.operationTip                  /* 中奖详情页操作提示 */ 
+                  ,aba.snGenerateType                /* 0为系统生成券号
+1为手动输入 */ 
+                  ,aba.sncodes                       /* 手动输入的券号 */ 
+                  ,aba.isWxCard                      /* 是否是微信卡券
+0为否 
+1为是 */ 
+                  ,aba.subhead                       /* 副标题 */ 
+                  ,aba.storeAddress                  /* 兑奖地址 */ 
+                  ,aba.serviceTel                    /* 服务电话 */ 
+                  ,aba.description                   /* 兑奖须知 */ 
+                  ,aba.activity_awardcol             /*  */ 
+                  ,aba.activity_awardcol1            /*  */ 
+                  ,aba.activity_awardcol2            /*  */ 
+                  ,aba.awardLevel                    /* 奖项等级 */ 
+                  ,aba.activity_awardcol3            /*  */ 
+                  ,aba.singleMin                     /* 红包最小金额 */ 
+                  ,aba.singleMax                     /* 红包最大金额 */ 
+                  ,aba.totalCount                    /* 总金额 */ 
+                  ,aba.awardVirtualNum               /*  */ 
+                  ,aba.awardRemainNum
+                  ,aba.awardEveryDay
+                  ,aba.deleted                       /*  */ 
+		FROM   	 activity_bigwheel_award      AS aba      /*  */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+		<select id="queryAwardList" parameterType="Object"  resultMap="ActivityBigwheelAward">
+		    SELECT 
+                   aba.id                            /*  */ 
+                  ,aba.activityId                    /*  */ 
+                  ,aba.probabilityType
+                  ,aba.awardName                     /* 奖项名称 */ 
+                  ,aba.trophyName                    /* 奖品名称 */ 
+                  ,aba.awardPic                      /* 奖品图片 */ 
+                  ,aba.awardType                     /* 奖品类型1:实物礼品（奖券）
+2:微信红包
+5抵扣券（奖券）
+4优惠券（奖券） */ 
+                  ,aba.validityStart                 /* 对奖开始时间 */ 
+                  ,aba.validityStop                  /* 兑奖结束时间 */ 
+                  ,aba.awardRealNum                  /* 奖品数量 */ 
+                  ,aba.operationTip                  /* 中奖详情页操作提示 */ 
+                  ,aba.snGenerateType                /* 0为系统生成券号
+1为手动输入 */ 
+                  ,aba.sncodes                       /* 手动输入的券号 */ 
+                  ,aba.isWxCard                      /* 是否是微信卡券
+0为否 
+1为是 */ 
+                  ,aba.subhead                       /* 副标题 */ 
+                  ,aba.storeAddress                  /* 兑奖地址 */ 
+                  ,aba.serviceTel                    /* 服务电话 */ 
+                  ,aba.description                   /* 兑奖须知 */ 
+                  ,aba.activity_awardcol             /*  */ 
+                  ,aba.activity_awardcol1            /*  */ 
+                  ,aba.activity_awardcol2            /*  */ 
+                  ,aba.awardLevel                    /* 奖项等级 */ 
+                  ,aba.activity_awardcol3            /*  */ 
+                  ,aba.singleMin                     /* 红包最小金额 */ 
+                  ,aba.singleMax                     /* 红包最大金额 */ 
+                  ,aba.totalCount                    /* 总金额 */ 
+                  ,aba.awardVirtualNum               /*  */ 
+                  ,aba.awardRemainNum
+                  ,aba.awardEveryDay
+                  ,aba.deleted                       /*  */ 
+		FROM   	 activity_bigwheel_award      AS aba      /*  */ 
+		WHERE 1=1  
+		   <include refid="wherecontation"/>
+	</select>
+	
+			<select id="queryAwardLeft" parameterType="Object"  resultMap="ActivityBigwheelAward">
+		    SELECT 
+                   aba.id                            /*  */ 
+                  ,aba.activityId                    /*  */ 
+                  ,aba.probabilityType
+                  ,aba.awardName                     /* 奖项名称 */ 
+                  ,aba.trophyName                    /* 奖品名称 */ 
+                  ,aba.awardPic                      /* 奖品图片 */ 
+                  ,aba.awardType                     /* 奖品类型1:实物礼品（奖券）
+2:微信红包
+5抵扣券（奖券）
+4优惠券（奖券） */ 
+                  ,aba.validityStart                 /* 对奖开始时间 */ 
+                  ,aba.validityStop                  /* 兑奖结束时间 */ 
+                  ,aba.awardRealNum                  /* 奖品数量 */ 
+                  ,aba.operationTip                  /* 中奖详情页操作提示 */ 
+                  ,aba.snGenerateType                /* 0为系统生成券号
+1为手动输入 */ 
+                  ,aba.sncodes                       /* 手动输入的券号 */ 
+                  ,aba.isWxCard                      /* 是否是微信卡券
+0为否 
+1为是 */ 
+                  ,aba.subhead                       /* 副标题 */ 
+                  ,aba.storeAddress                  /* 兑奖地址 */ 
+                  ,aba.serviceTel                    /* 服务电话 */ 
+                  ,aba.description                   /* 兑奖须知 */ 
+                  ,aba.activity_awardcol             /*  */ 
+                  ,aba.activity_awardcol1            /*  */ 
+                  ,aba.activity_awardcol2            /*  */ 
+                  ,aba.awardLevel                    /* 奖项等级 */ 
+                  ,aba.activity_awardcol3            /*  */ 
+                  ,aba.singleMin                     /* 红包最小金额 */ 
+                  ,aba.singleMax                     /* 红包最大金额 */ 
+                  ,aba.totalCount                    /* 总金额 */ 
+                  ,aba.awardVirtualNum               /*  */ 
+                  ,aba.awardRemainNum
+                  ,aba.awardEveryDay
+                  ,aba.deleted                       /*  */ 
+		FROM   	 activity_bigwheel_award      AS aba      /*  */ 
+		WHERE  activityId = #{activityid} and awardRemainNum>0
+	</select>
+	
+			<select id="getAwardSUM" parameterType="Object"  resultType="java.lang.Integer">
+		    SELECT 
+  				sum(aba.awardRealNum )                 /* 奖品数量 */ 
+                  /*  */ 
+		FROM   	 activity_bigwheel_award      AS aba      /*  */ 
+		WHERE activityId = #{activityid}
+	</select>
+	
+	<select id="queryUserAwardList" parameterType="Object"  resultMap="ActivityBigwheelAward">
+		    SELECT 
+                   aba.id                            /*  */ 
+                  ,aba.activityId                    /*  */ 
+                  ,aba.probabilityType
+                  ,aba.awardName                     /* 奖项名称 */ 
+                  ,aba.trophyName                    /* 奖品名称 */ 
+                  ,aba.awardPic                      /* 奖品图片 */ 
+                  ,aba.awardType                     /* 奖品类型1:实物礼品（奖券）
+2:微信红包
+5抵扣券（奖券）
+4优惠券（奖券） */ 
+                  ,aba.validityStart                 /* 对奖开始时间 */ 
+                  ,aba.validityStop                  /* 兑奖结束时间 */ 
+                  ,aba.awardRealNum                  /* 奖品数量 */ 
+                  ,aba.operationTip                  /* 中奖详情页操作提示 */ 
+                  ,aba.snGenerateType                /* 0为系统生成券号
+1为手动输入 */ 
+                  ,aba.sncodes                       /* 手动输入的券号 */ 
+                  ,aba.isWxCard                      /* 是否是微信卡券
+0为否 
+1为是 */ 
+                  ,aba.subhead                       /* 副标题 */ 
+                  ,aba.storeAddress                  /* 兑奖地址 */ 
+                  ,aba.serviceTel                    /* 服务电话 */ 
+                  ,aba.description                   /* 兑奖须知 */ 
+                  ,aba.activity_awardcol             /*  */ 
+                  ,aba.activity_awardcol1            /*  */ 
+                  ,aba.activity_awardcol2            /*  */ 
+                  ,aba.awardLevel                    /* 奖项等级 */ 
+                  ,aba.activity_awardcol3            /*  */ 
+                  ,aba.singleMin                     /* 红包最小金额 */ 
+                  ,aba.singleMax                     /* 红包最大金额 */ 
+                  ,aba.totalCount                    /* 总金额 */ 
+                  ,aba.awardVirtualNum               /*  */ 
+                  ,aba.awardRemainNum
+                  ,aba.awardEveryDay
+                  ,aba.deleted                       /*  */ 
+		from activity_bigwheel_record as abr left join activity_bigwheel_award as aba on abr.awardid=aba.id
+		 where abr.activityId='' and abr.openid=''
+
+	</select>
+</mapper>

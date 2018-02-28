@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.houseaOnline.entity.XfProject">
+
+	<!-- Result Map-->
+	<resultMap id="XfProject" type="com.jeecg.p3.houseaOnline.entity.XfProject" >
+		<result column="ID" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="pic" property="pic" jdbcType="VARCHAR"/>
+		<result column="descipt" property="descipt" jdbcType="VARCHAR"/>
+		<result column="av_price" property="avPrice" jdbcType="VARCHAR"/>
+		<result column="discount" property="discount" jdbcType="VARCHAR"/>
+		<result column="addr" property="addr" jdbcType="VARCHAR"/>
+		<result column="build_company" property="buildCompany" jdbcType="VARCHAR"/>
+		<result column="kaipan_date" property="kaipanDate" jdbcType="TIMESTAMP"/>
+		<result column="delivery_date" property="deliveryDate" jdbcType="TIMESTAMP"/>
+		<result column="zhuangxiu" property="zhuangxiu" jdbcType="VARCHAR"/>
+		<result column="content" property="content" jdbcType="VARCHAR"/>
+		<result column="is_delete" property="isDelete" jdbcType="VARCHAR"/>
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP"/>
+		<result column="creatuser" property="creatuser" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="xf_projectcol" property="xfProjectcol" jdbcType="VARCHAR"/>
+		<result column="xf_projectcol1" property="xfProjectcol1" jdbcType="INTEGER"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="areaid" property="areaid" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.name != null and query.name != ''" >
+	  		 		/* 项目名 */
+			    	AND xp.name =  #{query.name,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.pic != null and query.pic != ''" >
+	  		 		/* 项目缩略图 */
+			    	AND xp.pic =  #{query.pic,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.descipt != null and query.descipt != ''" >
+	  		 		/* 项目特色描述 */
+			    	AND xp.descipt =  #{query.descipt,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.avPrice != null and query.avPrice != ''" >
+	  		 		/* 均价 */
+			    	AND xp.av_price =  #{query.avPrice,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.discount != null and query.discount != ''" >
+	  		 		/* 优惠信息 */
+			    	AND xp.discount =  #{query.discount,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.addr != null and query.addr != ''" >
+	  		 		/* 项目地址 */
+			    	AND xp.addr =  #{query.addr,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.buildCompany != null and query.buildCompany != ''" >
+	  		 		/* 开发单位 */
+			    	AND xp.build_company =  #{query.buildCompany,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.kaipanDate != null and query.kaipanDate != ''" >
+	  		 		/* 预计开盘时间 */
+			    	AND xp.kaipan_date =  #{query.kaipanDate,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.deliveryDate != null and query.deliveryDate != ''" >
+	  		 		/* 预计交房时间 */
+			    	AND xp.delivery_date =  #{query.deliveryDate,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.zhuangxiu != null and query.zhuangxiu != ''" >
+	  		 		/* 装修情况  */
+			    	AND xp.zhuangxiu =  #{query.zhuangxiu,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.content != null and query.content != ''" >
+	  		 		/* 楼盘详情 */
+			    	AND xp.content =  #{query.content,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.isDelete != null and query.isDelete != ''" >
+	  		 		/* 是否已删除 */
+			    	AND xp.is_delete =  #{query.isDelete,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.createtime != null and query.createtime != ''" >
+	  		 		/* 创建时间 */
+			    	AND xp.createtime =  #{query.createtime,jdbcType=TIMESTAMP}
+				 </if>
+				 <if test="query.creatuser != null and query.creatuser != ''" >
+	  		 		/* 创建人 */
+			    	AND xp.creatuser =  #{query.creatuser,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.status != null and query.status != ''" >
+	  		 		/* 楼盘状态:0未开盘 ,1售卖中 */
+			    	AND xp.status =  #{query.status,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.xfProjectcol != null and query.xfProjectcol != ''" >
+	  		 		/*  */
+			    	AND xp.xf_projectcol =  #{query.xfProjectcol,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.xfProjectcol1 != null and query.xfProjectcol1 != ''" >
+	  		 		/*  */
+			    	AND xp.xf_projectcol1 =  #{query.xfProjectcol1,jdbcType=INTEGER}
+				 </if>
+				 <if test="query.type != null and query.type != ''" >
+	  		 		/* 类型：0住房 1商铺 2储藏室 3车位 */
+			    	AND xp.type =  #{query.type,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.areaid != null and query.areaid != ''" >
+	  		 		/* 所属区域ID */
+			    	AND xp.areaid =  #{query.areaid,jdbcType=INTEGER}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfProject.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  xf_project   /* 在线选房，楼盘项目表 */  
+					(	
+                      ID                            /*  */ 
+                     ,name                          /* 项目名 */ 
+                     ,pic                           /* 项目缩略图 */ 
+                     ,descipt                       /* 项目特色描述 */ 
+                     ,av_price                      /* 均价 */ 
+                     ,discount                      /* 优惠信息 */ 
+                     ,addr                          /* 项目地址 */ 
+                     ,build_company                 /* 开发单位 */ 
+                     ,kaipan_date                   /* 预计开盘时间 */ 
+                     ,delivery_date                 /* 预计交房时间 */ 
+                     ,zhuangxiu                     /* 装修情况  */ 
+                     ,content                       /* 楼盘详情 */ 
+                     ,is_delete                     /* 是否已删除 */ 
+                     ,createtime                    /* 创建时间 */ 
+                     ,creatuser                     /* 创建人 */ 
+                     ,status                        /* 楼盘状态:0未开盘 ,1售卖中 */ 
+                     ,xf_projectcol                 /*  */ 
+                     ,xf_projectcol1                /*  */ 
+                     ,type                          /* 类型：0住房 1商铺 2储藏室 3车位 */ 
+                     ,areaid                        /* 所属区域ID */ 
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /*  */ 
+                     ,#{name,jdbcType=VARCHAR}                          /* 项目名 */ 
+                     ,#{pic,jdbcType=VARCHAR}                           /* 项目缩略图 */ 
+                     ,#{descipt,jdbcType=VARCHAR}                       /* 项目特色描述 */ 
+                     ,#{avPrice,jdbcType=VARCHAR}                       /* 均价 */ 
+                     ,#{discount,jdbcType=VARCHAR}                      /* 优惠信息 */ 
+                     ,#{addr,jdbcType=VARCHAR}                          /* 项目地址 */ 
+                     ,#{buildCompany,jdbcType=VARCHAR}                  /* 开发单位 */ 
+                     ,#{kaipanDate,jdbcType=TIMESTAMP}                    /* 预计开盘时间 */ 
+                     ,#{deliveryDate,jdbcType=TIMESTAMP}                  /* 预计交房时间 */ 
+                     ,#{zhuangxiu,jdbcType=VARCHAR}                     /* 装修情况  */ 
+                     ,#{content,jdbcType=VARCHAR}                       /* 楼盘详情 */ 
+                     ,#{isDelete,jdbcType=VARCHAR}                      /* 是否已删除 */ 
+                     ,#{createtime,jdbcType=TIMESTAMP}                    /* 创建时间 */ 
+                     ,#{creatuser,jdbcType=VARCHAR}                     /* 创建人 */ 
+                     ,#{status,jdbcType=VARCHAR}                        /* 楼盘状态:0未开盘 ,1售卖中 */ 
+                     ,#{xfProjectcol,jdbcType=VARCHAR}                  /*  */ 
+                     ,#{xfProjectcol1,jdbcType=INTEGER}                 /*  */ 
+                     ,#{type,jdbcType=VARCHAR}                          /* 类型：0住房 1商铺 2储藏室 3车位 */ 
+                     ,#{areaid,jdbcType=INTEGER}                        /* 所属区域ID */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfProject.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   xf_project  	/* 在线选房，楼盘项目表 */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="name != null">
+		    		 		/* 项目名 */ 
+	    		 			name = #{name,jdbcType=VARCHAR},
+						 </if>
+						 <if test="pic != null">
+		    		 		/* 项目缩略图 */ 
+	    		 			pic = #{pic,jdbcType=VARCHAR},
+						 </if>
+						 <if test="descipt != null">
+		    		 		/* 项目特色描述 */ 
+	    		 			descipt = #{descipt,jdbcType=VARCHAR},
+						 </if>
+						 <if test="avPrice != null">
+		    		 		/* 均价 */ 
+	    		 			av_price = #{avPrice,jdbcType=VARCHAR},
+						 </if>
+						 <if test="discount != null">
+		    		 		/* 优惠信息 */ 
+	    		 			discount = #{discount,jdbcType=VARCHAR},
+						 </if>
+						 <if test="addr != null">
+		    		 		/* 项目地址 */ 
+	    		 			addr = #{addr,jdbcType=VARCHAR},
+						 </if>
+						 <if test="buildCompany != null">
+		    		 		/* 开发单位 */ 
+	    		 			build_company = #{buildCompany,jdbcType=VARCHAR},
+						 </if>
+						 <if test="kaipanDate != null">
+		    		 		/* 预计开盘时间 */ 
+	    		 			kaipan_date = #{kaipanDate,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="deliveryDate != null">
+		    		 		/* 预计交房时间 */ 
+	    		 			delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="zhuangxiu != null">
+		    		 		/* 装修情况  */ 
+	    		 			zhuangxiu = #{zhuangxiu,jdbcType=VARCHAR},
+						 </if>
+						 <if test="content != null">
+		    		 		/* 楼盘详情 */ 
+	    		 			content = #{content,jdbcType=VARCHAR},
+						 </if>
+						 <if test="isDelete != null">
+		    		 		/* 是否已删除 */ 
+	    		 			is_delete = #{isDelete,jdbcType=VARCHAR},
+						 </if>
+						 <if test="createtime != null">
+		    		 		/* 创建时间 */ 
+	    		 			createtime = #{createtime,jdbcType=TIMESTAMP},
+						 </if>
+						 <if test="creatuser != null">
+		    		 		/* 创建人 */ 
+	    		 			creatuser = #{creatuser,jdbcType=VARCHAR},
+						 </if>
+						 <if test="status != null">
+		    		 		/* 楼盘状态:0未开盘 ,1售卖中 */ 
+	    		 			status = #{status,jdbcType=VARCHAR},
+						 </if>
+						 <if test="xfProjectcol != null">
+		    		 		/*  */ 
+	    		 			xf_projectcol = #{xfProjectcol,jdbcType=VARCHAR},
+						 </if>
+						 <if test="xfProjectcol1 != null">
+		    		 		/*  */ 
+	    		 			xf_projectcol1 = #{xfProjectcol1,jdbcType=INTEGER},
+						 </if>
+						 <if test="type != null">
+		    		 		/* 类型：0住房 1商铺 2储藏室 3车位 */ 
+	    		 			type = #{type,jdbcType=VARCHAR},
+						 </if>
+						 <if test="areaid != null">
+		    		 		/* 所属区域ID */ 
+	    		 			areaid = #{areaid,jdbcType=INTEGER},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}	and creatuser=#{creatuser}	/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfProject.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="XfProject">
+		   SELECT   
+                   xp.ID                            /*  */ 
+                  ,xp.name                          /* 项目名 */ 
+                  ,xp.pic                           /* 项目缩略图 */ 
+                  ,xp.descipt                       /* 项目特色描述 */ 
+                  ,xp.av_price                      /* 均价 */ 
+                  ,xp.discount                      /* 优惠信息 */ 
+                  ,xp.addr                          /* 项目地址 */ 
+                  ,xp.build_company                 /* 开发单位 */ 
+                  ,xp.kaipan_date                   /* 预计开盘时间 */ 
+                  ,xp.delivery_date                 /* 预计交房时间 */ 
+                  ,xp.zhuangxiu                     /* 装修情况  */ 
+                  ,xp.content                       /* 楼盘详情 */ 
+                  ,xp.is_delete                     /* 是否已删除 */ 
+                  ,xp.createtime                    /* 创建时间 */ 
+                  ,xp.creatuser                     /* 创建人 */ 
+                  ,xp.status                        /* 楼盘状态:0未开盘 ,1售卖中 */ 
+                  ,xp.xf_projectcol                 /*  */ 
+                  ,xp.type                          /* 类型：0住房 1商铺 2储藏室 3车位 */ 
+                  ,xp.areaid                        /* 所属区域ID */ 
+                  ,v.viewcount as xf_projectcol1
+		   FROM   xf_project      AS xp      /* 在线选房，楼盘项目表 */  left join viewcount v on xp.id = v.resourceid
+		   WHERE
+				xp.id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfProject.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM xf_project 	/* 在线选房，楼盘项目表 */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfProject.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  xf_project      AS xp      /* 在线选房，楼盘项目表 */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.houseaOnline.entity.XfProject.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="XfProject">
+		    SELECT 
+                   xp.ID                            /*  */ 
+                  ,xp.name                          /* 项目名 */ 
+                  ,xp.pic                           /* 项目缩略图 */ 
+                  ,xp.descipt                       /* 项目特色描述 */ 
+                  ,xp.av_price                      /* 均价 */ 
+                  ,xp.discount                      /* 优惠信息 */ 
+                  ,xp.addr                          /* 项目地址 */ 
+                  ,xp.build_company                 /* 开发单位 */ 
+                  ,xp.kaipan_date                   /* 预计开盘时间 */ 
+                  ,xp.delivery_date                 /* 预计交房时间 */ 
+                  ,xp.zhuangxiu                     /* 装修情况  */ 
+                  ,xp.content                       /* 楼盘详情 */ 
+                  ,xp.is_delete                     /* 是否已删除 */ 
+                  ,xp.createtime                    /* 创建时间 */ 
+                  ,xp.creatuser                     /* 创建人 */ 
+                  ,xp.status                        /* 楼盘状态:0未开盘 ,1售卖中 */ 
+                  ,xp.xf_projectcol                 /*  */ 
+                  ,xp.xf_projectcol1                /*  */ 
+                  ,xp.type                          /* 类型：0住房 1商铺 2储藏室 3车位 */ 
+                  ,xp.areaid                        /* 所属区域ID */ 
+		FROM   	 xf_project      AS xp      /* 在线选房，楼盘项目表 */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+</mapper>

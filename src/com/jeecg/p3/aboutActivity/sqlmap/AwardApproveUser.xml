@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.aboutActivity.entity.AwardApproveUser">
+
+	<!-- Result Map-->
+	<resultMap id="AwardApproveUser" type="com.jeecg.p3.aboutActivity.entity.AwardApproveUser" >
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="activityid" property="activityid" jdbcType="VARCHAR"/>
+		<result column="openid" property="openid" jdbcType="VARCHAR"/>
+		<result column="nickname" property="nickname" jdbcType="VARCHAR"/>
+		<result column="headpic" property="headpic" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.activityid != null and query.activityid != ''" >
+	  		 		/* 活动id */
+			    	AND aau.activityid =  #{query.activityid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.openid != null and query.openid != ''" >
+	  		 		/* 核销者微信openid */
+			    	AND aau.openid =  #{query.openid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.nickname != null and query.nickname != ''" >
+	  		 		/*  */
+			    	AND aau.nickname =  #{query.nickname,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.headpic != null and query.headpic != ''" >
+	  		 		/*  */
+			    	AND aau.headpic =  #{query.headpic,jdbcType=VARCHAR}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.activity.entity.AwardApproveUser.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  award_approve_user   /*  */  
+					(	
+                      id                            /*  */ 
+                     ,activityid                    /* 活动id */ 
+                     ,openid                        /* 核销者微信openid */ 
+                     ,nickname                      /*  */ 
+                     ,headpic                       /*  */ 
+					)
+			values (
+                      #{id,jdbcType=INTEGER}                            /*  */ 
+                     ,#{activityid,jdbcType=VARCHAR}                    /* 活动id */ 
+                     ,#{openid,jdbcType=VARCHAR}                        /* 核销者微信openid */ 
+                     ,#{nickname,jdbcType=VARCHAR}                      /*  */ 
+                     ,#{headpic,jdbcType=VARCHAR}                       /*  */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.activity.entity.AwardApproveUser.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   award_approve_user  	/*  */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="activityid != null">
+		    		 		/* 活动id */ 
+	    		 			activityid = #{activityid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="openid != null">
+		    		 		/* 核销者微信openid */ 
+	    		 			openid = #{openid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="nickname != null">
+		    		 		/*  */ 
+	    		 			nickname = #{nickname,jdbcType=VARCHAR},
+						 </if>
+						 <if test="headpic != null">
+		    		 		/*  */ 
+	    		 			headpic = #{headpic,jdbcType=VARCHAR},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.activity.entity.AwardApproveUser.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="AwardApproveUser">
+		   SELECT   
+                   aau.id                            /*  */ 
+                  ,aau.activityid                    /* 活动id */ 
+                  ,aau.openid                        /* 核销者微信openid */ 
+                  ,aau.nickname                      /*  */ 
+                  ,aau.headpic                       /*  */ 
+		   FROM   award_approve_user      AS aau      /*  */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.activity.entity.AwardApproveUser.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM award_approve_user 	/*  */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.activity.entity.AwardApproveUser.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  award_approve_user      AS aau      /*  */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.activity.entity.AwardApproveUser.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="AwardApproveUser">
+		    SELECT 
+                   aau.id                            /*  */ 
+                  ,aau.activityid                    /* 活动id */ 
+                  ,aau.openid                        /* 核销者微信openid */ 
+                  ,aau.nickname                      /*  */ 
+                  ,aau.headpic                       /*  */ 
+		FROM   	 award_approve_user      AS aau      /*  */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	
+</mapper>
